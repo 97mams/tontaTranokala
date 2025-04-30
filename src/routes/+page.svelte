@@ -1,3 +1,9 @@
-<h1>Welcome to your library project</h1>
-<p>Create your package using @sveltejs/package and preview/showcase your work with SvelteKit</p>
-<p>Visit <a href="https://svelte.dev/docs/kit">svelte.dev/docs/kit</a> to read the documentation</p>
+<script lang="ts">
+   import "../style.css";
+</script>
+
+<div>
+  <button class="btn btn-success">hellow</button>
+  <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Minus eos explicabo esse id suscipit inventore. Aliquid, distinctio quam assumenda cum ab sunt, asperiores voluptatum, quas corrupti repellendus similique odit ipsam?</p>
+</div>
+
