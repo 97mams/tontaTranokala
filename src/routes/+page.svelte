@@ -1,6 +1,9 @@
 <script lang="ts">
-   import "../style.css";
+    import Header from "../components/Header.svelte";
+    import "../style.css";
 </script>
+
+<Header />
 
 <div>
   <button class="btn btn-success">hellow</button>
