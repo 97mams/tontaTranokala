@@ -1,12 +1,26 @@
-<script lang="ts">
-    import Header from "../components/Header.svelte";
-    import "../style.css";
-</script>
-
-<Header />
-
-<div>
-  <button class="btn btn-success">hellow</button>
-  <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Minus eos explicabo esse id suscipit inventore. Aliquid, distinctio quam assumenda cum ab sunt, asperiores voluptatum, quas corrupti repellendus similique odit ipsam?</p>
-</div>
-
+<table class="table">
+<thead>
+  <tr>
+    <th>nom</th>
+    <th>lien</th>
+    <th>description</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td>gmail</td>
+    <td>https://google.com/mail?c=2117</td>
+    <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur impedit fugiat quos sunt</td>
+  </tr>
+  <tr>
+    <td>gmail</td>
+    <td>https://google.com/mail?c=2117</td>
+    <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur impedit fugiat quos sunt</td>
+  </tr>
+  <tr>
+    <td>gmail</td>
+    <td>https://google.com/mail?c=2117</td>
+    <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur impedit fugiat quos sunt</td>
+  </tr>
+</tbody>
+</table>

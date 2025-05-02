@@ -46,5 +46,9 @@
 	},
 	"keywords": [
 		"svelte"
-	]
+	],
+	"dependencies": {
+		"prisma": "^6.7.0",
+		"tsx": "^4.19.4"
+	}
 }
