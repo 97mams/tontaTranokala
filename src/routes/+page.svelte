@@ -1,3 +1,11 @@
+<script>
+    import ModalForm from "../components/Modal_form.svelte";
+
+</script>
+<p class="py-8">
+  cliquer le boutton pour enregistrer un site web
+  <ModalForm />
+</p>
 <table class="table">
 <thead>
   <tr>
@@ -24,3 +32,11 @@
   </tr>
 </tbody>
 </table>
+<div class="toast toast-start">
+  <div class="alert alert-info">
+    <span>New mail arrived.</span>
+  </div>
+  <div class="alert alert-success">
+    <span>Message sent successfully.</span>
+  </div>
+</div>
