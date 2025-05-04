@@ -1,4 +1,6 @@
-
+<script>
+  let newname = $state(null)
+</script>
 
 <button class="btn btn-primary btn-sm" onclick={my_modal_1.showModal()}>+</button>
 
@@ -6,7 +8,7 @@
   <div class="modal-box">
     <h3 class="text-lg font-bold">Ajouter!</h3>
     <div class="modal-box">
-      <form method="POST" action="?/register">
+      <form method="POST">
         <fieldset class="fieldset">
           <legend class="fieldset-legend">Nom du site</legend>
           <input type="text" name="name" class="input" placeholder="Tapez ici" />
