@@ -1,5 +1,16 @@
 <script>
+    import { formatPostcssSourceMap } from "vite";
     import ModalForm from "../components/Modal_form.svelte";
+    export let form
+    let success = false
+    $:{
+      if (form && form.succes){
+        setTimeout(() => {
+          success = true
+        },3000)
+      }
+
+    }
 
 </script>
 <p class="py-8">
@@ -32,11 +43,12 @@
   </tr>
 </tbody>
 </table>
+
+{#if success}
 <div class="toast toast-start">
-  <div class="alert alert-info">
-    <span>New mail arrived.</span>
-  </div>
   <div class="alert alert-success">
     <span>Message sent successfully.</span>
   </div>
 </div>
+{/if}
+
