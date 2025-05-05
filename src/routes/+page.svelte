@@ -1,17 +1,13 @@
 <script>
-    import { formatPostcssSourceMap } from "vite";
     import ModalForm from "../components/Modal_form.svelte";
     export let form
     let success = false
-    $:{
-      if (form && form.succes){
+    if (form && form.success){
+      success = true
         setTimeout(() => {
-          success = true
+          success = false
         },3000)
       }
-
-    }
-
 </script>
 <p class="py-8">
   cliquer le boutton pour enregistrer un site web
@@ -47,7 +43,7 @@
 {#if success}
 <div class="toast toast-start">
   <div class="alert alert-success">
-    <span>Message sent successfully.</span>
+    <span>Enregistement réussie ! {success}</span>
   </div>
 </div>
 {/if}
