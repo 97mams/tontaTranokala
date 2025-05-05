@@ -1,5 +1,6 @@
 <script>
     import ModalForm from "../components/Modal_form.svelte";
+    import { createSites } from "./runes/site.svelte.js";
     export let form
     let success = false
     if (form && form.success){
@@ -8,6 +9,10 @@
           success = false
         },3000)
       }
+
+    let sites = createSites()
+    console.log(sites.isFetch);
+    
 </script>
 <p class="py-8">
   cliquer le boutton pour enregistrer un site web
@@ -22,21 +27,13 @@
   </tr>
 </thead>
 <tbody>
+  {#each sites.sites as site}
   <tr>
-    <td>gmail</td>
-    <td>https://google.com/mail?c=2117</td>
-    <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur impedit fugiat quos sunt</td>
+    <td>{site.name}</td>
+    <td>{site.url}</td>
+    <td>{site.description}</td>
   </tr>
-  <tr>
-    <td>gmail</td>
-    <td>https://google.com/mail?c=2117</td>
-    <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur impedit fugiat quos sunt</td>
-  </tr>
-  <tr>
-    <td>gmail</td>
-    <td>https://google.com/mail?c=2117</td>
-    <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur impedit fugiat quos sunt</td>
-  </tr>
+  {/each}
 </tbody>
 </table>
 
