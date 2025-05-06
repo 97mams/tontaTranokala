@@ -1,10 +1,18 @@
 import { json } from "@sveltejs/kit";
 import type { RequestHandler } from "./$types.js";
+import { PATH } from "$env/static/private";
 
-export function GET() {
-  return json([{name:'maiosa', url:'28', description:'lorem impsum dolor'}])
+const fileContent = await Bun.file(PATH)
+const response = await fileContent.json()
+
+export async function GET() {  
+  return json(response)
 }
 
-export const POST:RequestHandler =({request}) => {
-  return json('ok')
-} 
+export const POST:RequestHandler = async ({request}) => {
+  let data = response
+  const resp = await request.json()
+  data.push(resp)
+  const bun = await Bun.write(PATH, JSON.stringify(data))
+  return json(bun)
+}
