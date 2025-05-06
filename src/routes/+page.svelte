@@ -1,18 +1,28 @@
 <script>
+    import { browser } from "$app/environment";
     import ModalForm from "../components/Modal_form.svelte";
     import { createSites } from "./runes/site.svelte.js";
     export let form
     let success = false
-    if (form && form.success){
-      success = true
-        setTimeout(() => {
-          success = false
-        },3000)
-      }
-
-    let sites = createSites()
-    console.log(sites.isFetch);
     
+    if (form && form.success){
+      if (browser) {
+        fetch('/api',{
+          method: 'POST',
+          body:JSON.stringify(form.data),
+          headers: {
+            'content-type': 'application/json'
+          }
+        })
+    }
+    
+    success = true
+    setTimeout(() => {
+        success = false
+      },3000)
+    }
+    let sites = createSites()
+   console.log(sites.sites);
 </script>
 <p class="py-8">
   cliquer le boutton pour enregistrer un site web
