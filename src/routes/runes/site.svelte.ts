@@ -1,5 +1,8 @@
+import { browser } from "$app/environment"
 import { onMount } from "svelte"
+
 export type dataType = {
+  id: number,
   name:string,
   url: string,
   description: string
@@ -12,7 +15,7 @@ export function createSites() {
   onMount(() => {
     fetch('/api')
       .then((response) => response.json())
-      .then((value) => (sites = value))
+      .then((value) =>(sites = value))
       .finally(() => (isFetch=true))
   })
 
@@ -22,15 +25,6 @@ export function createSites() {
     },
     get isFetch(){
       return isFetch
-    }, 
-    addSite(data:dataType){
-      fetch('/api', {
-        method: 'POST',
-        body:JSON.stringify(data),
-        headers: {
-          'content-type': 'application/json'
-        }
-      })
     }
   }
 }
