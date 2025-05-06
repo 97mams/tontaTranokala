@@ -9,14 +9,14 @@
   <div class="modal-box">
     <h3 class="text-lg font-bold">Ajouter!</h3>
     <div class="modal-box">
-      <form method="POST" use:enhance>
+      <form method="POST">
         <fieldset class="fieldset">
           <legend class="fieldset-legend">Nom du site</legend>
-          <input type="text" name="name" class="input" placeholder="Tapez ici" value="name site" />
+          <input type="text" name="name" class="input" placeholder="Tapez ici"/>
         </fieldset>
         <fieldset class="fieldset">
           <legend class="fieldset-legend">URL</legend>
-          <input type="text" name="url" class="input" placeholder="Tapez ici" value="http://www.test.com?tst=0" />
+          <input type="text" name="url" class="input" placeholder="Tapez ici"/>
         </fieldset>
         <fieldset class="fieldset">
           <legend class="fieldset-legend">Déscription</legend>
