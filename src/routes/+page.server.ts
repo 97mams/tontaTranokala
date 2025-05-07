@@ -1,20 +1,14 @@
-import { browser } from "$app/environment";
-import type { Actions } from "./$types.js";
-import { type dataType } from "./runes/site.svelte.js";
+import type { Actions } from "@sveltejs/kit"
 
 export const actions = {
   default: async ({request}) => {
-    const formData = await request.formData()
-    const data:dataType = {
+    const response = await request.formData()
+    const data = {
       id: Date.now(),
-      name: String(formData.get('name')),
-      url: String(formData.get('url')),
-      description:String(formData.get('description')),
+      name: response.get('name'),
+      url: response.get('url'),
+      description: response.get('description')
     }
-  
-    return {
-      success: true,
-      data
-    }
+    return {succes: true, data}
   }
-}satisfies Actions
+} satisfies Actions

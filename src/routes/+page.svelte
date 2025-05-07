@@ -5,7 +5,7 @@
     export let form
     let success = false
     
-    if (form && form.success){
+    if (form && form.succes){
       if (browser) {
         fetch('/api',{
           method: 'POST',

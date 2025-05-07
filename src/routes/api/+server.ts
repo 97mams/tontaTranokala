@@ -10,6 +10,7 @@ export async function GET() {
 }
 
 export const POST:RequestHandler = async ({request}) => {
+  console.log('mety')
   let data = response
   const resp = await request.json()
   data.push(resp)

@@ -15,7 +15,7 @@ export function createSites() {
   onMount(() => {
     fetch('/api')
       .then((response) => response.json())
-      .then((value) =>(sites = value))
+      .then((value) =>console.log(value))
       .finally(() => (isFetch=true))
   })
 
