@@ -1,39 +1,36 @@
-node_modules
+/node_modules
+/.pnp
+.pnp.js
+*-lock.yaml
+# testing
+/coverage
 
-# Output
-.output
-.vercel
-.netlify
-.wrangler
-/.svelte-kit
+# next.js
+/.next/
+/out/
+
+# production
 /build
-/dist
 
-# OS
+# misc
 .DS_Store
-Thumbs.db
+*.pem
 
-# Env
-.env
-.env.*
-!.env.example
-!.env.test
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
 
-# Vite
-vite.config.js.timestamp-*
-vite.config.ts.timestamp-*
+# local env files
+.env*.local
 
-*.lock
+# vercel
+.vercel
 
-# Created by https://www.toptal.com/developers/gitignore/api/visualstudiocode,svelte
-# Edit at https://www.toptal.com/developers/gitignore?templates=visualstudiocode,svelte
-
-### Svelte ###
-# gitignore template for the SvelteKit, frontend web component framework
-# website: https://kit.svelte.dev/
-
-.svelte-kit/
-package
+# typescript
+*.tsbuildinfo
+next-env.d.ts
 
 ### VisualStudioCode ###
 .vscode/*
@@ -53,6 +50,3 @@ package
 # Ignore all local history of files
 .history
 .ionide
-
-# End of https://www.toptal.com/developers/gitignore/api/visualstudiocode,svelte
-
