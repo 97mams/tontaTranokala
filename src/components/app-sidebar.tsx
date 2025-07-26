@@ -1,3 +1,7 @@
+"use client"
+
+import { Collapsible } from "@radix-ui/react-collapsible"
+import { CollapsibleContent, CollapsibleTrigger } from "./ui/collapsible"
 import { SidebarGroupLabel, SidebarGroupContent,SidebarGroup } from "./ui/sidebar"
 import { ChevronDown } from "lucide-react"
 
