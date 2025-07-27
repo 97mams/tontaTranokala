@@ -5,15 +5,12 @@ import { Label } from "./ui/label"
 
 export function GroupSiteForm() {
   return (
-    <Card>
-      <CardHeader>Titre techonologie</CardHeader>
-      <CardContent>
-        <form action="">
-          <Label>Tritre de technologie</Label>
-          <Input name="groupe"/>
-          <Button>Ajouter</Button>
-      </form>
-      </CardContent>
-    </Card>
-  )
+        <form action="" className="my-3 w-md">
+            <Label htmlFor="input">Tritre de technologie</Label>
+           <div className="flex gp-2">
+              <Input id="input" name="groupe"/>
+              <Button className="ml-2">Ajouter</Button>
+           </div>
+        </form>
+      )
 }

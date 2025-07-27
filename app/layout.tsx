@@ -3,7 +3,6 @@ import { AppSidebar } from "@/components/app-sidebar"
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
 import { ThemeProvider } from "@/components/ui/theme-provider"
 import { ModeToggle } from "@/components/ui/theme-toggle"
-import { Button } from "@/components/ui/button"
 
 export default function RootLayout({
   children,
@@ -19,13 +18,14 @@ export default function RootLayout({
           enableSystem={true}
         >
           <SidebarProvider>
-            <AppSidebar />
-              <SidebarTrigger />
-              <main>
-                <ModeToggle />
+            <AppSidebar/>
+                <SidebarTrigger />
+              <main className="w-full">
+               <div className="w-full flex justify-end py-2 px-2"> 
+                  <ModeToggle />
+                </div>
                 {children}
               </main>
-              <Button>Aza eh</Button>
           </SidebarProvider>
         </ThemeProvider>
         </body>

@@ -2,30 +2,31 @@
 
 import { Collapsible } from "@radix-ui/react-collapsible"
 import { CollapsibleContent, CollapsibleTrigger } from "./ui/collapsible"
-import { SidebarGroupLabel, SidebarGroupContent,SidebarGroup, Sidebar } from "./ui/sidebar"
+import { SidebarGroupLabel, SidebarFooter,SidebarGroup, Sidebar, SidebarHeader } from "./ui/sidebar"
 import { ChevronDown } from "lucide-react"
+import { Button } from "./ui/button"
 
 export function AppSidebar() {
   return (
-    <Sidebar>
+    <Sidebar variant="inset">
+      <SidebarHeader>
+        Tranokalako
+      </SidebarHeader>
       <Collapsible defaultOpen className="group/collapsible">
         <SidebarGroup>
           <SidebarGroupLabel asChild>
             <CollapsibleTrigger>
-              Help
+              Historiques
               <ChevronDown className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180" />
             </CollapsibleTrigger>
           </SidebarGroupLabel>
           <CollapsibleContent>
-            <ul>
-              <li>mety </li>
-              <li>le izy</li>
-              <li>fa</li>
-              <li>rasy be</li>
-            </ul>
           </CollapsibleContent>
         </SidebarGroup>
       </Collapsible>
+      <SidebarFooter>
+        <Button>nouvelle stack</Button>
+      </SidebarFooter>
     </Sidebar>
   )
 }
