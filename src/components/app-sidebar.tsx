@@ -1,10 +1,10 @@
 "use client"
 
+import { GroupeSiteForm } from "./groupForm"
 import { Collapsible } from "@radix-ui/react-collapsible"
 import { CollapsibleContent, CollapsibleTrigger } from "./ui/collapsible"
 import { SidebarGroupLabel, SidebarFooter,SidebarGroup, Sidebar, SidebarHeader } from "./ui/sidebar"
 import { ChevronDown } from "lucide-react"
-import { Button } from "./ui/button"
 
 export function AppSidebar() {
   return (
@@ -25,7 +25,7 @@ export function AppSidebar() {
         </SidebarGroup>
       </Collapsible>
       <SidebarFooter>
-        <Button>nouvelle stack</Button>
+        <GroupeSiteForm />
       </SidebarFooter>
     </Sidebar>
   )
