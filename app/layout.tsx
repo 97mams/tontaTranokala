@@ -1,6 +1,7 @@
 import "./globals.css"
 import { AppSidebar } from "@/components/app-sidebar"
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
+import { Toaster } from "@/components/ui/sonner"
 import { ThemeProvider } from "@/components/ui/theme-provider"
 import { ModeToggle } from "@/components/ui/theme-toggle"
 
@@ -26,6 +27,7 @@ export default function RootLayout({
                 </div>
                 {children}
               </main>
+              <Toaster />
           </SidebarProvider>
         </ThemeProvider>
         </body>
