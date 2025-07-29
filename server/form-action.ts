@@ -6,7 +6,7 @@ import { toast } from "sonner";
 import { z } from "zod";
 
 const site = z.object({
-  title: z.string().min(1, "Title is required"),
+  name: z.string().min(1, "Title is required"),
   description: z.string().optional(),
   url: z.string().optional,
   });
@@ -37,4 +37,19 @@ export async function formGroupAction(formData: FormData) {
   revalidatePath("/")
 
   return {success: true, message: input.success}
+}
+
+export async function formSiteAction(formData:FormData) {
+  const name = formData.get('siteName')
+  const description = formData.get('description')
+  const url = formData.get('url')
+
+  const input = site.safeParse({name, description, url})
+
+  if(!input.success) {
+    return {error: true, message: input.error}
+  }
+
+  console.log('data', input)
+
 }

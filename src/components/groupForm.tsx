@@ -40,8 +40,6 @@ export function GroupeSiteForm() {
                   <DialogTitle>Ajout groupe</DialogTitle>
                   <DialogDescription>
                      Entrez le nom du groupe que vous voulez ajouter.
-                     <br />
-                     Vous pouvez ajouter plusieurs groupes pour organiser vos projets.
                   </DialogDescription>
                </DialogHeader>
                <form action={handlerSubmit}>

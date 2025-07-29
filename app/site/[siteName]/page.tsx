@@ -1,6 +1,5 @@
-import { Button } from "@/components/ui/button"
-import { Label } from "@/components/ui/label"
-import { Plus } from "lucide-react"
+import { SiteForm } from "@/components/siteForm"
+
 
 export default async function Page(props: {
   params:Promise<{siteName: string}>
@@ -10,10 +9,7 @@ export default async function Page(props: {
   return(
   <div className="flex flex-col gap-2">
     <div className="flex gap-4">
-      <Label>Ajouter</Label>
-      <Button size={"sm"} variant={"outline"}>
-        <Plus />
-      </Button>
+      <SiteForm name={name}/>
     </div>
     {name}
     </div>
