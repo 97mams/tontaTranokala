@@ -1,6 +1,7 @@
 "use server";
 
 import { prisma } from "@/lib/prisma";
+import { revalidatePath } from "next/cache";
 import { toast } from "sonner";
 import { z } from "zod";
 
@@ -23,15 +24,17 @@ export async function formGroupAction(formData: FormData) {
     return {error: true, message: input.error}
   }
 
-  // const addSiteGroup = await prisma.groupSite.create({
-  //   data: {
-  //     title: input.data.title,
-  //   },
-  // });
+  const addSiteGroup = await prisma.groupSite.create({
+    data: {
+      title: input.data.title,
+    },
+  });
 
-  // if (!addSiteGroup) {
-  //   return {error: true, message: "data not found"}
-  // }
+  if (!addSiteGroup) {
+    return {error: true, message: "data not found"}
+  }
+
+  revalidatePath("/")
 
   return {success: true, message: input.success}
 }
