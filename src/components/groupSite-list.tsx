@@ -13,7 +13,7 @@ export async function GroupeSiteList() {
       {groups.map(group =>(
           <Link 
             key={group.id} 
-            href={'/'+group.title}
+            href={'/site/'+group.title}
             className="hover:bg-muted pl-2 rounded text-sm p-3"
           >
             {group.title}
