@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { prisma } from "@/lib/prisma";
 import { UrlHelper } from "@/lib/urlHelper";
+import { ButtonAction } from "./buttonActions";
 
 
 
@@ -12,13 +13,15 @@ export async function GroupeSiteList() {
   return (
     <div className="w-full flex flex-col">
       {groups.map(group =>(
-          <Link 
-            key={group.id} 
-            href={'/site/' + UrlHelper(group.title)}
-            className="hover:bg-muted pl-2 rounded text-sm p-3"
-          >
-            {group.title}
-          </Link>
+          <div className="w-full rounded-sm px-2 flex items-center hover:bg-muted" key={group.id}>
+            <Link 
+              href={'/site/' + UrlHelper(group.title)}
+              className="  w-full text-sm p-3"
+            >
+              {group.title}
+            </Link>
+            <ButtonAction id={group.id}/> 
+          </div>
       ))}
     </div>
   )
