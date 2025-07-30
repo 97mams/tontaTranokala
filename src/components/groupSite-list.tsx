@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { prisma } from "@/lib/prisma";
+import { UrlHelper } from "@/lib/urlHelper";
 
 
 
@@ -13,7 +14,7 @@ export async function GroupeSiteList() {
       {groups.map(group =>(
           <Link 
             key={group.id} 
-            href={'/site/'+group.title}
+            href={'/site/' + UrlHelper(group.title)}
             className="hover:bg-muted pl-2 rounded text-sm p-3"
           >
             {group.title}
