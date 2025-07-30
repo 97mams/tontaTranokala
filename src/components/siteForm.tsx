@@ -16,6 +16,7 @@ import { Label } from "@/components/ui/label"
 import { formGroupAction, formSiteAction } from "../../server/form-action"
 import { toast } from "sonner"
 import { Plus } from "lucide-react"
+import { Textarea } from "./ui/textarea"
 
 export function SiteForm(props:{name:string}) {
 
@@ -52,16 +53,16 @@ export function SiteForm(props:{name:string}) {
                <form action={handlerSubmit}>
                   <div className="grid gap-4 my-2">
                      <div className="grid gap-3">
-                     <Label htmlFor="title">Titre</Label>
-                     <Input id="title" name="name" placeholder="ex: installer Nextjs" required/>
+                     <Label htmlFor="siteName-input">Nom site</Label>
+                     <Input id="siteName-input" name="nameSite" placeholder="ex: installer Nextjs" required/>
                      </div>
                      <div className="grid gap-3">
-                     <Label htmlFor="title">Description</Label>
-                     <Input id="title" name="title" placeholder="ex: Nextjs" required/>
+                     <Label htmlFor="desc-input">Description</Label>
+                     <Textarea id="desc-input" placeholder="ex: Mon super site..." name="description" />
                      </div>
                      <div className="grid gap-3">
-                     <Label htmlFor="title">Titre</Label>
-                     <Input id="title" name="title" placeholder="ex: Nextjs" required/>
+                     <Label htmlFor="link-input">Url</Label>
+                     <Input id="link-input" name="url" placeholder="ex: https://exemple.com" required/>
                      </div>
                   </div>
                   <DialogFooter>
