@@ -1,6 +1,7 @@
 "use server";
 
 import { prisma } from "@/lib/prisma";
+import { UrlHelper } from "@/lib/urlHelper";
 import { revalidatePath } from "next/cache";
 import { toast } from "sonner";
 import { z } from "zod";
@@ -36,7 +37,7 @@ export async function formGroupAction(formData: FormData) {
 
   revalidatePath("/")
 
-  return {success: true, message: input.success}
+  return {success: true, message: input.success, data: UrlHelper(input.data.title)}
 }
 
 export async function formSiteAction(formData:FormData) {

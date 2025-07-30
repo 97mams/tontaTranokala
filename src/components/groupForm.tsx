@@ -15,17 +15,19 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { formGroupAction } from "../../server/form-action"
 import { toast } from "sonner"
+import { redirect } from "next/navigation"
 
 export function GroupeSiteForm() {
 
    const handlerSubmit = (formatData: FormData) => {
       formGroupAction(formatData)
-      .then(r => {
-         if (r.error) {
+      .then(respose => {
+         if (respose.error) {
             toast.error("vérifier le champs ..")
          }
-         if (r.success) {
+         if (respose.success) {
             toast.success("Ajout réussir..")
+            redirect("/site/" + respose.data)
          }
       })
    }
