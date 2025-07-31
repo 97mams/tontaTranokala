@@ -13,24 +13,23 @@ import {
 } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { formGroupAction, formSiteAction } from "../../server/form-action"
+import { formSiteAction } from "../../server/form-action"
 import { toast } from "sonner"
 import { Plus } from "lucide-react"
 import { Textarea } from "./ui/textarea"
 
-export function SiteForm(props:{name:string}) {
+export function SiteForm(props:{id:number}) {
 
    const handlerSubmit = (formatData: FormData) => {
-      // formSiteAction(formatData)
-      // .then(r => {
-      //    if (r.error) {
-      //       toast.error("vérifier le champs ..")
-      //    }
-      //    if (r.success) {
-      //       toast.success("Ajout réussir..")
-      //    }
-      // })
       formSiteAction(formatData)
+      .then(r => {
+         if (r.error) {
+            toast.error(r.message)
+         }
+         if (r.success) {
+            toast.success("Ajout réussir..")
+         }
+      })
    }
 
    return(
@@ -62,8 +61,9 @@ export function SiteForm(props:{name:string}) {
                      </div>
                      <div className="grid gap-3">
                      <Label htmlFor="link-input">Url</Label>
-                     <Input id="link-input" name="url" placeholder="ex: https://exemple.com" required/>
+                     <Input id="link-input" name="urlSite" placeholder="ex: https://exemple.com" required/>
                      </div>
+                     <input type="text" hidden name="groupeSite" defaultValue={props.id} />
                   </div>
                   <DialogFooter>
                      <DialogClose asChild>
