@@ -17,7 +17,7 @@ datasource db {
 
 model GroupSite {
   id        Int      @id @default(autoincrement())
-  title     String   @unique
+  title     String   
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   siteId    site[]
@@ -26,7 +26,8 @@ model GroupSite {
 model site {
   id      Int     @id @default(autoincrement())
   name    String  @unique
-  url     String  @unique
+  description String
+  url     String?  @unique
   GroupSiteId Int
   GroupSite GroupSite @relation(fields: [GroupSiteId], references: [id])
   createdAt DateTime @default(now())

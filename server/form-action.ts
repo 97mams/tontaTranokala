@@ -3,13 +3,13 @@
 import { prisma } from "@/lib/prisma";
 import { UrlHelper } from "@/lib/urlHelper";
 import { revalidatePath } from "next/cache";
-import { toast } from "sonner";
 import { z } from "zod";
 
-const site = z.object({
+const siteSchema = z.object({
   name: z.string().min(1, "Title is required"),
-  description: z.string().optional(),
-  url: z.string().optional,
+  description: z.string(),
+  linkSite: z.string(),
+  groupSiteId: z.int()
   });
 
 const group = z.object({
@@ -41,17 +41,32 @@ export async function formGroupAction(formData: FormData) {
 }
 
 export async function formSiteAction(formData:FormData) {
-  const name = formData.get('siteName')
-  const description = formData.get('description')
-  const url = formData.get('url')
 
-  const input = site.safeParse({name, description, url})
+  const name = formData.get('nameSite')
+  const description = formData.get('description')
+  const linkSite = formData.get('urlSite')
+  const groupSiteId = Number(formData.get('groupeSite'))
+
+  const input = siteSchema.safeParse({name, description, linkSite, groupSiteId})
 
   if(!input.success) {
-    return {error: true, message: input.error}
+    return {error: true, message: "error type"}
   }
 
-  console.log('data', input)
+  const site = await prisma.site.create({
+    data: {
+      name: input.data.name,
+      description: input.data.description,
+      url: input.data.linkSite,
+      GroupSiteId: input.data.groupSiteId
+    }
+  })
+
+  if(!site) {
+    return {error: true, message: "register faild"}
+  }
+
+  return {success: true, message: "register success"}
 
 }
 
