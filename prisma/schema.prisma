@@ -18,6 +18,7 @@ datasource db {
 model GroupSite {
   id        Int      @id @default(autoincrement())
   title     String   
+  visits    Int      @default(0)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   siteId    site[]

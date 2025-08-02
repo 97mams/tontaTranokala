@@ -3,13 +3,15 @@ import { prisma } from "@/lib/prisma";
 import { UrlHelper } from "@/lib/urlHelper";
 import { ButtonAction } from "./buttonActions";
 
-
-
 export async function GroupeSiteList() {
+
   const groups = await prisma.groupSite.findMany({
     select: {id: true, title: true}
   })
 
+  const hadleVisit = (groupId:number) => {
+    return 
+  }
   return (
     <div className="w-full flex flex-col">
       {groups.map(group =>(
@@ -17,6 +19,7 @@ export async function GroupeSiteList() {
             <Link 
               href={'/site/' + UrlHelper(`${group.id}-${group.title}`)}
               className="  w-full text-sm p-3"
+              onClick={hadleVisit(group.id)}
             >
               {group.title}
             </Link>

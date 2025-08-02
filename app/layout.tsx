@@ -1,4 +1,5 @@
 import "./globals.css"
+import { TopProjects } from "@/components/sideListProject"
 import { AppSidebar } from "@/components/app-sidebar"
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
 import { Toaster } from "@/components/ui/sonner"
@@ -25,7 +26,10 @@ export default function RootLayout({
                <div className="w-full flex justify-end py-2 px-2"> 
                   <ModeToggle />
                 </div>
-                {children}
+                <div className="w-full flex flex-row">
+                  {children}
+                  <TopProjects />
+                </div>
               </main>
               <Toaster />
           </SidebarProvider>

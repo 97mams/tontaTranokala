@@ -3,7 +3,6 @@ import { SiteForm } from "@/components/siteForm"
 import { prisma } from "@/lib/prisma"
 import { castToString, stringToArray } from "@/lib/urlHelper"
 
-
 export default async function Page(props: {
   params:Promise<{siteName: string}>
 }) {
