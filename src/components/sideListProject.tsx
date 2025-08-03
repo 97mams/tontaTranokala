@@ -5,6 +5,9 @@ export async function TopProjects() {
   const projects = await prisma.groupSite.findMany({
     orderBy: {
       visits: 'desc',
+    },
+    take: 3
+  })
 
 
 
