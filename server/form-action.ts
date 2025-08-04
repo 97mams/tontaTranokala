@@ -10,7 +10,7 @@ const siteSchema = z.object({
   description: z.string(),
   linkSite: z.string(),
   groupSiteId: z.int()
-  });
+});
 
 const group = z.object({
   title: z.string().min(1, "Title is required")

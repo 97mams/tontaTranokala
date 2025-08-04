@@ -2,6 +2,7 @@ import { CardListSite } from "@/components/cardListSite"
 import { SiteForm } from "@/components/siteForm"
 import { prisma } from "@/lib/prisma"
 import { castToString, stringToArray } from "@/lib/urlHelper"
+import { updateGroupSiteVisits } from "../../../server/group-actions"
 
 export default async function Page(props: {
   params:Promise<{siteName: string}>
@@ -9,10 +10,13 @@ export default async function Page(props: {
   const params = await props.params
   const newParams = stringToArray(params.siteName)
 
+  const groupSiteId = Number(newParams[0])
   const sitesByGroupId = await prisma.site.findMany({
-    where: {GroupSiteId: Number(newParams[0])},
+    where: {GroupSiteId: groupSiteId},
     select: { id: true, name: true, description: true, url: true }
   })
+
+  await updateGroupSiteVisits(groupSiteId)
 
   return(
   <div className="flex flex-col gap-2">
