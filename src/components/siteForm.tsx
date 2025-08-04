@@ -17,9 +17,11 @@ import { formSiteAction } from "../../server/form-action"
 import { toast } from "sonner"
 import { Plus } from "lucide-react"
 import { Textarea } from "./ui/textarea"
+import { redirect, useParams } from "next/navigation"
 
 export function SiteForm(props:{id:number}) {
 
+   const params = useParams()
    const handlerSubmit = (formatData: FormData) => {
       formSiteAction(formatData)
       .then(r => {
@@ -28,6 +30,7 @@ export function SiteForm(props:{id:number}) {
          }
          if (r.success) {
             toast.success("Ajout réussir..")
+            redirect('/site/' + params.siteName)
          }
       })
    }
