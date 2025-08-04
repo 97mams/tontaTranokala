@@ -27,7 +27,9 @@ export default function RootLayout({
                   <ModeToggle />
                 </div>
                 <div className="w-full flex flex-row">
-                  {children}
+                  <div className="w-full">
+                    {children}
+                  </div>
                   <TopProjects />
                 </div>
               </main>
