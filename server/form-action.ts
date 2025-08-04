@@ -66,7 +66,7 @@ export async function formSiteAction(formData:FormData) {
     return {error: true, message: "register faild"}
   }
 
-  return {success: true, message: "register success"}
+  return {success: true, message: "register success",data: site}
 
 }
 
