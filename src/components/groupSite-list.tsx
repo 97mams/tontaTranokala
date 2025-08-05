@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { prisma } from "@/lib/prisma";
 import { UrlHelper } from "@/lib/urlHelper";
-import { ButtonAction } from "./buttonActions";
+import { ButtonAction } from "./groupButtonActions";
 
 export async function GroupeSiteList() {
 
