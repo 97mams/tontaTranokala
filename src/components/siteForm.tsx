@@ -19,10 +19,20 @@ import { Plus } from "lucide-react"
 import { Textarea } from "./ui/textarea"
 import { redirect, useParams } from "next/navigation"
 
-export function SiteForm(props:{id:number}) {
+export type propsSite = {
+   id:number,
+   name:string,
+   description: string,
+   url: string
+}
+
+export function SiteForm(props:{id:number, site?:propsSite}) {
 
    const params = useParams()
    const handlerSubmit = (formatData: FormData) => {
+      if (props.site) {
+         
+      }
       formSiteAction(formatData)
       .then(r => {
          if (r.error) {
@@ -39,11 +49,11 @@ export function SiteForm(props:{id:number}) {
        <Dialog>
             <DialogTrigger asChild>
                 <Label>
-                  Ajouter
-                  <Button size={"sm"} variant={"outline"}>
-                    <Plus />
+                  { props.site ? "": "Ajouter"}
+                  <Button size={props.site ? "lg" : "sm"} variant={props.site ? "default" : "outline"}>
+                     {props.site ? "Modifier" : <Plus />}
                   </Button>
-                </Label>
+               </Label>
             </DialogTrigger>
             <DialogContent className="sm:max-w-[425px]">
                <DialogHeader>
@@ -54,17 +64,18 @@ export function SiteForm(props:{id:number}) {
                </DialogHeader>
                <form action={handlerSubmit}>
                   <div className="grid gap-4 my-2">
+                     <input type="number" hidden defaultValue={props.site?.id}/>
                      <div className="grid gap-3">
-                     <Label htmlFor="siteName-input">Nom site</Label>
-                     <Input id="siteName-input" name="nameSite" placeholder="ex: installer Nextjs" required/>
+                        <Label htmlFor="siteName-input">Nom site</Label>
+                        <Input id="siteName-input" defaultValue={props.site?.name} name="nameSite" placeholder="ex: installer Nextjs" required/>
                      </div>
                      <div className="grid gap-3">
                      <Label htmlFor="desc-input">Description</Label>
-                     <Textarea id="desc-input" placeholder="ex: Mon super site..." name="description" />
+                     <Textarea id="desc-input" defaultValue={props.site?.description} placeholder="ex: Mon super site..." name="description" />
                      </div>
                      <div className="grid gap-3">
                      <Label htmlFor="link-input">Url</Label>
-                     <Input id="link-input" name="urlSite" placeholder="ex: https://exemple.com" required/>
+                     <Input id="link-input" defaultValue={props.site?.url} name="urlSite" placeholder="ex: https://exemple.com" required/>
                      </div>
                      <input type="text" hidden name="groupeSite" defaultValue={props.id} />
                   </div>
