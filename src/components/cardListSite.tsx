@@ -6,14 +6,10 @@ export async function CardListSite(props:
   {
     id: number,
     name: string, 
-    desciption: string,
-    url: string | null
+    description: string,
+    url: string
   }
 ) {
-    //I am lazy for change type of url 😅
-    if(!props.url) {
-      return ''
-    }
 
   return (
       <div className="my-8 mb-8">
@@ -26,10 +22,10 @@ export async function CardListSite(props:
             </TooltipTrigger>
             <TooltipContent>Ouvrir {props.name}</TooltipContent>
           </Tooltip>
-          <SiteButtonActions id={props.id}/>
+          <SiteButtonActions id={props.id} site={props}/>
         </div>
         <p className="text-muted-foreground text-sm pl-4">
-          {props.desciption}
+          {props.description}
         </p>
       </div>
   
