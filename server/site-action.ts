@@ -47,4 +47,10 @@ export async function deleteSite(id: number) {
     where: {id: id}
   })
 
+  if(!site) {
+    return {error: true, message: "site not matching"}
+  }
+
+  return site
+
 }
