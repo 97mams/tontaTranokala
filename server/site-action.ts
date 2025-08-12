@@ -51,6 +51,6 @@ export async function deleteSite(id: number) {
     return {error: true, message: "site not matching"}
   }
 
-  return site
+  return {success: true, message: "ok", data: site}
 
 }
