@@ -32,7 +32,7 @@ export default async function Page(props: {
           key={site.id}
           name={site.name}
           desciption={site.description}
-          url={site.url}
+          url={site?.url}
         />
       )) }
     </div>

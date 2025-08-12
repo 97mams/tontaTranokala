@@ -40,3 +40,17 @@ export async function updateSite(formData: FormData) {
 
   return {success: true, message: "update successfully"}
 }
+
+export async function deleteSite(id: number) {
+
+  const site = await prisma.site.delete({
+    where: {id: id}
+  })
+
+  if(!site) {
+    return {error: true, message: "site not matching"}
+  }
+
+  return site
+
+}
