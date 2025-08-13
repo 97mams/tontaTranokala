@@ -31,8 +31,7 @@ export function SiteForm(props:{id:number, site?:propsSite}) {
 
    const params = useParams()
    const handlerSubmit = (formData: FormData) => {
-      console.log('id:', formData.get('id'));
-      
+
       if(formData.get('id')){
          updateSite(formData)
          .then(response => {

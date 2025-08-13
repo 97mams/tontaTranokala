@@ -42,6 +42,9 @@ export async function formGroupAction(formData: FormData) {
 
 export async function formSiteAction(formData:FormData) {
 
+  console.log("ici le log eh");
+  
+
   const name = formData.get('nameSite')
   const description = formData.get('description')
   const linkSite = formData.get('urlSite')
