@@ -37,7 +37,7 @@ export async function formGroupAction(formData: FormData) {
 
   revalidatePath("/")
 
-  return {success: true, message: input.success, data: UrlHelper(input.data.title)}
+  return {success: true, message: input.success, data: UrlHelper(`${addSiteGroup.id}-${addSiteGroup.title}`)};
 }
 
 export async function formSiteAction(formData:FormData) {
