@@ -30,9 +30,11 @@ export type propsSite = {
 export function SiteForm(props:{id:number, site?:propsSite}) {
 
    const params = useParams()
-   const handlerSubmit = (formatData: FormData) => {
-      if(formatData.get('id')){
-         updateSite(formatData)
+   const handlerSubmit = (formData: FormData) => {
+      console.log('id:', formData.get('id'));
+      
+      if(formData.get('id')){
+         updateSite(formData)
          .then(response => {
             if (response.error) {
                toast.error("modification échouée")
@@ -43,7 +45,7 @@ export function SiteForm(props:{id:number, site?:propsSite}) {
             }
          })
       } else {
-      formSiteAction(formatData)
+      formSiteAction(formData)
       .then(r => {
          if (r.error) {
             toast.error(r.message)
