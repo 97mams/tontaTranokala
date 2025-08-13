@@ -18,6 +18,7 @@ import { toast } from "sonner"
 import { Plus } from "lucide-react"
 import { Textarea } from "./ui/textarea"
 import { redirect, useParams } from "next/navigation"
+import { updateSite } from "../../server/site-action"
 
 export type propsSite = {
    id:number,
@@ -30,9 +31,18 @@ export function SiteForm(props:{id:number, site?:propsSite}) {
 
    const params = useParams()
    const handlerSubmit = (formatData: FormData) => {
-      if (props.site) {
-         
-      }
+      if(formatData.get('id')){
+         updateSite(formatData)
+         .then(response => {
+            if (response.error) {
+               toast.error("modification échouée")
+            }
+            if(response.success) {
+               toast.success("Mise à jour réussie.")
+               redirect('/site/' + params.siteName)
+            }
+         })
+      } else {
       formSiteAction(formatData)
       .then(r => {
          if (r.error) {
@@ -43,6 +53,7 @@ export function SiteForm(props:{id:number, site?:propsSite}) {
             redirect('/site/' + params.siteName)
          }
       })
+   }
    }
 
    return(
@@ -64,7 +75,7 @@ export function SiteForm(props:{id:number, site?:propsSite}) {
                </DialogHeader>
                <form action={handlerSubmit}>
                   <div className="grid gap-4 my-2">
-                     <input type="number" hidden defaultValue={props.site?.id}/>
+                     <input type="number" name="id" hidden defaultValue={props.site?.id}/>
                      <div className="grid gap-3">
                         <Label htmlFor="siteName-input">Nom site</Label>
                         <Input id="siteName-input" defaultValue={props.site?.name} name="nameSite" placeholder="ex: installer Nextjs" required/>

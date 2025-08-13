@@ -1,4 +1,7 @@
+"use server"
+
 import { prisma } from "@/lib/prisma";
+import { group } from "console";
 import z from "zod";
 import { ur } from "zod/v4/locales";
 
@@ -11,12 +14,20 @@ const siteShema = z.object({
 });
 
 export async function updateSite(formData: FormData) {
-  const id = formData.get('id')
-  const name = formData.get('siteName')
+  const id = Number(formData.get('id'))
+  const name = formData.get('nameSite')
   const description = formData.get('description')
   const url = formData.get('urlSite')
 
-  const input = siteShema.safeParse(id, name, description, url)
+  const input= siteShema.safeParse({
+    id,
+    name,
+    description,
+    linkSite: url,
+    groupSiteId: Number(formData.get('groupeSite'))
+  })
+
+ console.log("data:", input)
 
   const site = await prisma.site.update(
     {
