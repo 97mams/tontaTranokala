@@ -30,9 +30,10 @@ export default async function Page(props: {
       { sitesByGroupId.map(site => (
         <CardListSite 
           key={site.id}
+          id={site.id}
           name={site.name}
-          desciption={site.description}
-          url={site?.url}
+          description={site.description}
+          url={site?.url ? site.url : ""}
         />
       )) }
     </div>
