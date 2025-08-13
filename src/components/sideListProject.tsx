@@ -10,7 +10,7 @@ export async function TopProjects() {
     take: 3
   })
 
-  const projectIsVisited = projects.filter(project => project.visits != 0)
+  const projectIsVisited = projects.filter(project => project.visits >= 3)
 
   return (
     <div className="w-md p-4">
