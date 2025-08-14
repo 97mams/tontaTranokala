@@ -8,7 +8,7 @@ import { z } from "zod";
 const siteSchema = z.object({
   name: z.string().min(1, "Title is required"),
   description: z.string(),
-  linkSite: z.string(),
+  linkSite: z.string().url("Invalid URL"),
   groupSiteId: z.int()
 });
 
@@ -53,7 +53,7 @@ export async function formSiteAction(formData:FormData) {
   const input = siteSchema.safeParse({name, description, linkSite, groupSiteId})
 
   if(!input.success) {
-    return {error: true, message: "error type"}
+    return {error: true, message: input.error}
   }
 
   const site = await prisma.site.create({
