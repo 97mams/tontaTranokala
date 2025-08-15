@@ -19,6 +19,7 @@ import { Plus } from "lucide-react"
 import { Textarea } from "./ui/textarea"
 import { redirect, useParams } from "next/navigation"
 import { updateSite } from "../../server/site-action"
+import { use, useState } from "react"
 
 export type propsSite = {
    id:number,
@@ -28,6 +29,8 @@ export type propsSite = {
 }
 
 export function SiteForm(props:{id:number, site?:propsSite}) {
+
+   const [validate, setValidate] = useState("") 
 
    const params = useParams()
    const handlerSubmit = (formData: FormData) => {
@@ -47,7 +50,9 @@ export function SiteForm(props:{id:number, site?:propsSite}) {
       formSiteAction(formData)
       .then(r => {
          if (r.error) {
-            toast.error(r.message)
+            console.log(r);
+            
+            // setValidate(r.message[0].message)
          }
          if (r.success) {
             toast.success("Ajout réussir..")
@@ -56,6 +61,8 @@ export function SiteForm(props:{id:number, site?:propsSite}) {
       })
    }
    }
+
+   console.log('erro:', validate)
 
    return(
        <Dialog>
@@ -95,7 +102,7 @@ export function SiteForm(props:{id:number, site?:propsSite}) {
                      <DialogClose asChild>
                         <Button variant="outline">Annuler</Button>
                      </DialogClose>
-                     <DialogClose asChild>
+                     <DialogClose asChild={false}>
                         <Button type="submit">Enregister</Button>
                      </DialogClose>
                   </DialogFooter>
