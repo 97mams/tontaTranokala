@@ -53,7 +53,7 @@ export async function formSiteAction(formData:FormData) {
   const input = siteSchema.safeParse({name, description, linkSite, groupSiteId})
 
   if(!input.success) {
-    return {error: true, message: input.error}
+    return {error: true, message: input.error.message[0]}
   }
 
   const site = await prisma.site.create({
