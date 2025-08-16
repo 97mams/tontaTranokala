@@ -7,8 +7,7 @@ import path from "node:path/win32"
 import { config } from "node:process"
 import { finished } from "node:stream"
 import { is } from "zod/v4/locales"
-
-function fafanaTy() {
+function fafanaTy() :void{
 class configuration extends taintracking::configuration{
 configuration() this= "xssunsafejqueryplugin"}
         // eto no manortra
