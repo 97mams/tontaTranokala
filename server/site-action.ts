@@ -1,9 +1,8 @@
 "use server"
 
 import { prisma } from "@/lib/prisma";
-import { group } from "console";
+import { revalidatePath } from "next/cache";
 import z from "zod";
-import { ur } from "zod/v4/locales";
 
 const siteShema = z.object({
   id: z.number(),
@@ -53,7 +52,6 @@ export async function updateSite(formData: FormData) {
 }
 
 export async function deleteSite(id: number) {
-
   const site = await prisma.site.delete({
     where: {id: id}
   })
@@ -61,6 +59,8 @@ export async function deleteSite(id: number) {
   if(!site) {
     return {error: true, message: "site not matching"}
   }
+
+  revalidatePath("/");
 
   return {success: true, message: "ok", data: site}
 
