@@ -17,7 +17,7 @@ datasource db {
 
 model GroupSite {
   id        Int      @id @default(autoincrement())
-  title     String   
+  title     String   @unique
   visits    Int      @default(0)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -26,7 +26,7 @@ model GroupSite {
 
 model site {
   id      Int     @id @default(autoincrement())
-  name    String  @unique
+  name    String
   description String
   url     String?  @unique
   GroupSiteId Int
