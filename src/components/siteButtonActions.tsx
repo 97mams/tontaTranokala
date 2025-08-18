@@ -16,7 +16,6 @@ import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover"
 import { propsSite, SiteForm } from "./siteForm"
 import { deleteSite } from "../../server/site-action"
 import { toast } from "sonner"
-import { revalidatePath } from "next/cache"
 
 export function SiteButtonActions(props: {id:number, site: propsSite}) {
 
@@ -44,7 +43,6 @@ const DeleteCard = (props: {id: number}) => {
         toast.error("suppression échouée")
       }
       if(response.success) {
-        revalidatePath(`/}`);
         toast.success("suppression réussie");
       }
     }).catch((error) => {
