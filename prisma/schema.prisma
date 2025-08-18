@@ -40,6 +40,8 @@ model site {
 model plateform {
   id          Int     @id @default(autoincrement())
   name       String
+  email     String
+  passWord   String
   description String
   url        String?  @unique
   GroupSiteId Int
