@@ -50,9 +50,7 @@ export function SiteForm(props:{id:number, site?:propsSite}) {
       formSiteAction(formData)
       .then(r => {
          if (r.error) {
-            console.log(r);
-            
-            // setValidate(r.message[0].message)
+            toast.error("Échec de l'ajout du site")
          }
          if (r.success) {
             toast.success("Ajout réussir..")
@@ -76,9 +74,11 @@ export function SiteForm(props:{id:number, site?:propsSite}) {
             </DialogTrigger>
             <DialogContent className="sm:max-w-[425px]">
                <DialogHeader>
-                  <DialogTitle>Ajout groupe</DialogTitle>
+                  <DialogTitle>
+                     {props.site ? "Modifier site" : "Ajout site"}
+                  </DialogTitle>
                   <DialogDescription>
-                     Vous pouvez ajouter plusieurs sites pour organiser vos projets.
+                     {props.site ? "Vous pouvez modifier ce site." : "Vous pouvez ajouter plusieurs sites pour organiser vos projets."}
                   </DialogDescription>
                </DialogHeader>
                <form action={handlerSubmit}>
