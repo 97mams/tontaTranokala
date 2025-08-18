@@ -16,6 +16,7 @@ import { Label } from "@/components/ui/label"
 import { formGroupAction } from "../../server/form-action"
 import { toast } from "sonner"
 import { redirect } from "next/navigation"
+import { Switch } from "./ui/switch"
 
 export function GroupeSiteForm() {
 
@@ -47,8 +48,12 @@ export function GroupeSiteForm() {
                <form action={handlerSubmit}>
                   <div className="grid gap-4 my-2">
                      <div className="grid gap-3">
-                     <Label htmlFor="title">Titre</Label>
-                     <Input id="title" name="title" placeholder="ex: Nextjs" required/>
+                        <Label htmlFor="title">Titre</Label>
+                        <Input id="title" name="title" placeholder="ex: Nextjs" required/>
+                     </div>
+                     <div className="flex items-center space-x-2">
+                        <Switch id="airplane-mode" name="type" />
+                        <Label htmlFor="airplane-mode">Activez seulement si c’est une plateforme, pas un simple site</Label>
                      </div>
                   </div>
                   <DialogFooter>
