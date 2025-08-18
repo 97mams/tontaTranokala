@@ -13,14 +13,16 @@ const siteSchema = z.object({
 });
 
 const group = z.object({
-  title: z.string().min(1, "Title is required")
+  title: z.string().min(1, "Title is required"),
+  type: z.string().default("site")
 });
 
 export async function formGroupAction(formData: FormData) {
 
   const title = formData.get("title") as string;
+  const type = formData.get("type") as string;
 
-  const input = group.safeParse({ title });
+  const input = group.safeParse({ title, type });
   if (!input.success) {
     return {error: true, message: input.error}
   }
@@ -28,6 +30,7 @@ export async function formGroupAction(formData: FormData) {
   const addSiteGroup = await prisma.groupSite.create({
     data: {
       title: input.data.title,
+      type: input.data.type
     },
   });
 
