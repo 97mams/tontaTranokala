@@ -1,3 +1,5 @@
+"use client"
+
 import { 
   Dialog, 
   DialogContent, 
@@ -12,7 +14,9 @@ import { Button } from "./ui/button"
 import { EllipsisVertical, TriangleAlert } from "lucide-react"
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover"
 import { propsSite, SiteForm } from "./siteForm"
-import { site } from "@/generated/prisma"
+import { deleteSite } from "../../server/site-action"
+import { toast } from "sonner"
+import { revalidatePath } from "next/cache"
 
 export function SiteButtonActions(props: {id:number, site: propsSite}) {
 
@@ -33,6 +37,21 @@ export function SiteButtonActions(props: {id:number, site: propsSite}) {
 }
 
 const DeleteCard = (props: {id: number}) => {
+  const handleDeleteSite = () => {
+    deleteSite(props.id)
+    .then((response) => {
+      if(response.error) {
+        toast.error("suppression échouée")
+      }
+      if(response.success) {
+        revalidatePath(`/}`);
+        toast.success("suppression réussie");
+      }
+    }).catch((error) => {
+      throw new Error("Failed to delete site: " + error.message);
+    });
+  }
+
   return (
       <Dialog>
         <DialogTrigger asChild>
@@ -50,17 +69,16 @@ const DeleteCard = (props: {id: number}) => {
                   Vous voulez vraiment le supprimer ?
               </DialogDescription>
             </DialogHeader>
-            <form >
-              <input type="number" defaultValue={props.id} name="id"  hidden/>
               <DialogFooter>
                   <DialogClose asChild>
                     <Button variant="outline">Non</Button>
                   </DialogClose>
-                  <DialogClose asChild>
-                    <Button type="submit" variant={"destructive"}>Oui</Button>
-                  </DialogClose>
+                    <DialogClose asChild>
+                      <Button type="submit" variant={"destructive"} onClick={handleDeleteSite}>
+                        Oui
+                      </Button>
+                    </DialogClose>
               </DialogFooter>
-            </form>
         </DialogContent>
       </Dialog>)
 }
