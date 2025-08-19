@@ -9,51 +9,58 @@ const siteSchema = z.object({
   name: z.string().min(1, "Title is required"),
   description: z.string(),
   linkSite: z.string().url("Invalid URL"),
-  groupSiteId: z.int()
+  groupSiteId: z.int(),
 });
 
 const group = z.object({
   title: z.string().min(1, "Title is required"),
-  type: z.string().default("site")
+  type: z.string().default("site"),
 });
 
 export async function formGroupAction(formData: FormData) {
-
   const title = formData.get("title") as string;
   const type = formData.get("type") as string;
 
   const input = group.safeParse({ title, type });
   if (!input.success) {
-    return {error: true, message: input.error}
+    return { error: true, message: input.error };
   }
 
   const addSiteGroup = await prisma.groupSite.create({
     data: {
       title: input.data.title,
-      type: input.data.type
+      type: input.data.type,
     },
   });
 
   if (!addSiteGroup) {
-    return {error: true, message: "data not found"}
+    return { error: true, message: "data not found" };
   }
 
-  revalidatePath("/")
+  revalidatePath("/");
 
-  return {success: true, message: input.success, data: UrlHelper(`${addSiteGroup.id}-${addSiteGroup.title}`)};
+  return {
+    success: true,
+    message: input.success,
+    data: UrlHelper(`${addSiteGroup.id}-${addSiteGroup.title}`),
+  };
 }
 
-export async function formSiteAction(formData:FormData) {
+export async function formSiteAction(formData: FormData) {
+  const name = formData.get("nameSite");
+  const description = formData.get("description");
+  const linkSite = formData.get("urlSite");
+  const groupSiteId = Number(formData.get("groupeSite"));
 
-  const name = formData.get('nameSite')
-  const description = formData.get('description')
-  const linkSite = formData.get('urlSite')
-  const groupSiteId = Number(formData.get('groupeSite'))
+  const input = siteSchema.safeParse({
+    name,
+    description,
+    linkSite,
+    groupSiteId,
+  });
 
-  const input = siteSchema.safeParse({name, description, linkSite, groupSiteId})
-
-  if(!input.success) {
-    return {error: true, message: input.error.message[0]}
+  if (!input.success) {
+    return { error: true, message: input.error.message[0] };
   }
 
   const site = await prisma.site.create({
@@ -61,27 +68,26 @@ export async function formSiteAction(formData:FormData) {
       name: input.data.name,
       description: input.data.description,
       url: input.data.linkSite,
-      GroupSiteId: input.data.groupSiteId
-    }
-  })
+      GroupSiteId: input.data.groupSiteId,
+    },
+  });
 
-  if(!site) {
-    return {error: true, message: "register faild"}
+  if (!site) {
+    return { error: true, message: "register faild" };
   }
 
-  return {success: true, message: "register success",data: site}
-
+  return { success: true, message: "register success", data: site };
 }
 
-export async function groupSiteDeleteAction(formData:FormData) {
-  const id:number = Number(formData.get('id'))
-  const groupSite = await prisma.groupSite.delete({where: {id: id}})
-  console.log(groupSite)
-  if(!group) {
-    return {error: true, message: "id is not matching"}
+export async function groupSiteDeleteAction(formData: FormData) {
+  const id: number = Number(formData.get("id"));
+  const groupSite = await prisma.groupSite.delete({ where: { id: id } });
+  console.log(groupSite);
+  if (!group) {
+    return { error: true, message: "id is not matching" };
   }
 
-  revalidatePath("/")
+  revalidatePath("/");
 
-  return {success: true, message: "delete successfully"}
+  return { success: true, message: "delete successfully" };
 }
