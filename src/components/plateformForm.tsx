@@ -17,7 +17,6 @@ import { toast } from "sonner"
 import { Plus } from "lucide-react"
 import { Textarea } from "./ui/textarea"
 import { redirect, useParams } from "next/navigation"
-// import { updateplateform } from "../../server/plateform-action"
 import { use, useState } from "react"
 import { formPlateformAction } from "../../server/plateform-action"
 
@@ -30,7 +29,6 @@ export type propsPlateform = {
 
 export function plateformForm(props:{id:number, plateform?:propsPlateform}) {
 
-   const [validate, setValidate] = useState("") 
 
    const params = useParams()
    const handlerSubmit = (formData: FormData) => {
@@ -59,8 +57,6 @@ export function plateformForm(props:{id:number, plateform?:propsPlateform}) {
       })
    }
    }
-
-   console.log('erro:', validate)
 
    return(
        <Dialog>
