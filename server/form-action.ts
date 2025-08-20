@@ -14,7 +14,7 @@ const siteSchema = z.object({
 
 const group = z.object({
   title: z.string().min(1, "Title is required"),
-  type: z.string().default("site"),
+  type: z.string().default("off"),
 });
 
 export async function formGroupAction(formData: FormData) {
