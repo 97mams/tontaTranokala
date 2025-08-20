@@ -14,14 +14,13 @@ const siteSchema = z.object({
 
 const group = z.object({
   title: z.string().min(1, "Title is required"),
-  type: z.string().default("off"),
 });
 
 export async function formGroupAction(formData: FormData) {
   const title = formData.get("title") as string;
-  const type = formData.get("type") as string;
+  const inputType = type(formData.get("type") as string);
 
-  const input = group.safeParse({ title, type });
+  const input = group.safeParse({ title });
   if (!input.success) {
     return { error: true, message: input.error };
   }
@@ -29,7 +28,7 @@ export async function formGroupAction(formData: FormData) {
   const addSiteGroup = await prisma.groupSite.create({
     data: {
       title: input.data.title,
-      type: input.data.type,
+      type: inputType,
     },
   });
 
@@ -91,3 +90,12 @@ export async function groupSiteDeleteAction(formData: FormData) {
 
   return { success: true, message: "delete successfully" };
 }
+
+//set values of type
+const type = (input: string): string => {
+  console.log("input:", input);
+  if (input === null) {
+    return "site";
+  }
+  return "plateform";
+};
