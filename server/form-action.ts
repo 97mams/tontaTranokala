@@ -41,7 +41,10 @@ export async function formGroupAction(formData: FormData) {
   return {
     success: true,
     message: input.success,
-    data: UrlHelper(`${addSiteGroup.id}-${addSiteGroup.title}`),
+    data: {
+      params: UrlHelper(`${addSiteGroup.id}-${addSiteGroup.title}`),
+      type: addSiteGroup.type,
+    },
   };
 }
 

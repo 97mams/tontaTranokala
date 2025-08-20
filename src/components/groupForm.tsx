@@ -27,7 +27,7 @@ export function GroupeSiteForm() {
       }
       if (respose.success) {
         toast.success("Ajout réussir..");
-        redirect("/site/" + respose.data);
+        redirect(respose.data.type + "/" + respose.data.params);
       }
     });
   };
@@ -56,11 +56,7 @@ export function GroupeSiteForm() {
               />
             </div>
             <div className="flex items-center space-x-2">
-              <Switch 
-                id="airplane-mode" 
-                name="type"
-                defaultValue={"off"}
-              />
+              <Switch id="airplane-mode" name="type" defaultValue={"off"} />
               <Label htmlFor="airplane-mode">
                 Activez seulement si c’est une plateforme, pas un simple site
               </Label>
