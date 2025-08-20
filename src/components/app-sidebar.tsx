@@ -1,32 +1,55 @@
-import { GroupeSiteForm } from "./groupForm"
-import { Collapsible } from "@radix-ui/react-collapsible"
-import { CollapsibleContent, CollapsibleTrigger } from "./ui/collapsible"
-import { SidebarGroupLabel, SidebarFooter,SidebarGroup, Sidebar, SidebarHeader } from "./ui/sidebar"
-import { ChevronDown } from "lucide-react"
-import { GroupeSiteList } from "./groupSite-list"
+import { Collapsible } from "@radix-ui/react-collapsible";
+import { ChevronDown } from "lucide-react";
+import Link from "next/link";
+import { GroupeSiteForm } from "./groupForm";
+import { GroupeList } from "./groupList";
+import { CollapsibleContent, CollapsibleTrigger } from "./ui/collapsible";
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarFooter,
+  SidebarGroup,
+  SidebarGroupLabel,
+  SidebarHeader,
+} from "./ui/sidebar";
 
 export function AppSidebar() {
   return (
     <Sidebar variant="inset">
       <SidebarHeader>
-        Tranokalako
+        <Link href={"/"}>Tranokalako</Link>
       </SidebarHeader>
-      <Collapsible defaultOpen className="group/collapsible">
-        <SidebarGroup>
-          <SidebarGroupLabel asChild>
-            <CollapsibleTrigger>
-              Historiques
-              <ChevronDown className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180" />
-            </CollapsibleTrigger>
-          </SidebarGroupLabel>
-          <CollapsibleContent>
-              <GroupeSiteList />
-          </CollapsibleContent>
-        </SidebarGroup>
-      </Collapsible>
+      <SidebarContent>
+        <Collapsible defaultOpen className="group/collapsible">
+          <SidebarGroup>
+            <SidebarGroupLabel asChild>
+              <CollapsibleTrigger>
+                Groupe Sites
+                <ChevronDown className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180" />
+              </CollapsibleTrigger>
+            </SidebarGroupLabel>
+            <CollapsibleContent>
+              <GroupeList type="site" />
+            </CollapsibleContent>
+          </SidebarGroup>
+          <Collapsible defaultOpen className="group/collapsible">
+            <SidebarGroup>
+              <SidebarGroupLabel asChild>
+                <CollapsibleTrigger>
+                  Groupe Plateforms
+                  <ChevronDown className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180" />
+                </CollapsibleTrigger>
+              </SidebarGroupLabel>
+              <CollapsibleContent>
+                <GroupeList type="plateform" />
+              </CollapsibleContent>
+            </SidebarGroup>
+          </Collapsible>
+        </Collapsible>
+      </SidebarContent>
       <SidebarFooter>
         <GroupeSiteForm />
       </SidebarFooter>
     </Sidebar>
-  )
+  );
 }
