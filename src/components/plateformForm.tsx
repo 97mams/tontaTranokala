@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { decryptData } from "@/lib/cachingData";
 import { Eye, EyeOff, Plus } from "lucide-react";
 import { redirect, useParams } from "next/navigation";
 import { useState } from "react";
@@ -21,10 +22,13 @@ import { formPlateformAction } from "../../server/plateform-action";
 import { Textarea } from "./ui/textarea";
 
 export type propsPlateform = {
-  id: number;
-  name: string;
-  description: string;
-  url: string;
+  id: 0;
+  name: "";
+  description: "";
+  url: "";
+  email: "";
+  passWord: "";
+  type: "";
 };
 
 export function PlateformForm(props: {
@@ -32,6 +36,8 @@ export function PlateformForm(props: {
   plateform?: propsPlateform;
 }) {
   const [showPassword, setShowPassword] = useState(false);
+
+  const defaultValuePassword = decryptData(props.plateform?.passWord || "");
 
   const params = useParams();
   const handlerSubmit = (formData: FormData) => {
@@ -48,6 +54,7 @@ export function PlateformForm(props: {
     } else {
       formPlateformAction(formData).then((r) => {
         if (r.error) {
+          throw new Error(r.message);
           toast.error("Échec de l'ajout du plateform");
         }
         if (r.success) {
@@ -118,6 +125,7 @@ export function PlateformForm(props: {
                 <Input
                   type={showPassword ? "text" : "password"}
                   placeholder="ex: motdepasse"
+                  defaultValue={defaultValuePassword}
                   required
                   name="pwd"
                   id="pwd-input"
