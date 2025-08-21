@@ -1,38 +1,54 @@
-"use server"
+"use server";
 
-import { prisma } from "@/lib/prisma"
-import z from "zod"
+import { encryptData } from "@/lib/cachingData";
+import { prisma } from "@/lib/prisma";
+import { revalidatePath } from "next/cache";
+import z from "zod";
 
 const platefromShema = z.object({
-    name: z.string(),
-    email     : z.string(),
-    passWord   : z.string(),
-    description: z.string(),
-    url       : z.string().optional()
-})
+  name: z.string(),
+  email: z.string(),
+  passWord: z.string(),
+  description: z.string(),
+  url: z.string(),
+  groupId: z.number(),
+});
 
-export async function formPlateformAction(formData:FormData) {
+export async function formPlateformAction(formData: FormData) {
+  const name = formData.get("nameplateform") as string;
+  const email = formData.get("email") as string;
+  const passWord = formData.get("pwd") as string;
+  const description = formData.get("description") as string;
+  const url = formData.get("urlplateform") as string;
+  const groupId = Number(formData.get("groupeplateform"));
 
-    const name = formData.get('nameplateform')?.toString()
-    const email = formData.get('email')?.toString()
-    const passWord = formData.get('pwd')?.toString()
-    const description = formData.get('description')?.toString()
-    const url = formData.get('urlplateform')?.toString()
+  const hashPassword = encryptData(passWord);
+  console.log("hashPassword", hashPassword);
 
-   const result = platefromShema.safeParse({name,email,passWord,description,url})
-   if (!result.success) {
-       return { error: true, message: "verify your data" }
-   }
+  const result = platefromShema.safeParse({
+    name,
+    email,
+    passWord: hashPassword,
+    description,
+    url,
+    groupId,
+  });
+  if (!result.success) {
+    return { error: true, message: result.error.message };
+  }
 
-   const plateform = await prisma.plateform.create({
-       data: {
-           name: result.data.name,
-           email: result.data.email,
-           passWord: result.data.passWord,
-           description: result.data.description,
-           url: result.data.url
-       }
-   })
+  const plateform = await prisma.plateform.create({
+    data: {
+      name: result.data.name,
+      email: result.data.email,
+      passWord: result.data.passWord,
+      description: result.data.description,
+      url: result.data.url,
+      GroupSiteId: result.data.groupId,
+    },
+  });
 
-   return {success: true, message: "Platform created successfully"}
+  revalidatePath("/");
+
+  return { success: true, message: "Platform created successfully" };
 }
