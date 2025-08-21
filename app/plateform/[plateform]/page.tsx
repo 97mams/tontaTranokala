@@ -1,5 +1,5 @@
 import { CardListSite } from "@/components/cardListSite";
-import { SiteForm } from "@/components/siteForm";
+import { PlateformForm } from "@/components/plateformForm";
 import { prisma } from "@/lib/prisma";
 import { castToString, stringToArray } from "@/lib/urlHelper";
 import { updateGroupSiteVisits } from "../../../server/group-actions";
@@ -39,7 +39,7 @@ export default async function Page(props: {
         ))}
       </div>
       <div className="flex gap-4 mt-8">
-        <SiteForm id={Number(newParams[0])} />
+        <PlateformForm id={Number(newParams[0])} />
       </div>
     </div>
   );
