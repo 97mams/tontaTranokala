@@ -1,4 +1,4 @@
-import { CardListSite } from "@/components/cardListSite";
+import { CardListPlateform } from "@/components/cardListPlateform";
 import { PlateformForm } from "@/components/plateformForm";
 import { prisma } from "@/lib/prisma";
 import { castToString, stringToArray } from "@/lib/urlHelper";
@@ -11,9 +11,21 @@ export default async function Page(props: {
   const newParams = stringToArray(params.plateform);
 
   const groupSiteId = Number(newParams[0]);
-  const sitesByGroupId = await prisma.site.findMany({
+  const sitesByGroupId = await prisma.plateform.findMany({
     where: { GroupSiteId: groupSiteId },
-    select: { id: true, name: true, description: true, url: true },
+    select: {
+      id: true,
+      name: true,
+      description: true,
+      url: true,
+      email: true,
+      passWord: true,
+      GroupSite: {
+        select: {
+          type: true,
+        },
+      },
+    },
   });
 
   await updateGroupSiteVisits(groupSiteId);
@@ -28,13 +40,16 @@ export default async function Page(props: {
         .
       </p>
       <div>
-        {sitesByGroupId.map((site) => (
-          <CardListSite
-            key={site.id}
-            id={site.id}
-            name={site.name}
-            description={site.description}
-            url={site?.url ? site.url : ""}
+        {sitesByGroupId.map((plateform) => (
+          <CardListPlateform
+            key={plateform.id}
+            id={plateform.id}
+            name={plateform.name}
+            email={plateform.email}
+            password={plateform.passWord}
+            description={plateform.description}
+            url={plateform?.url ? plateform.url : ""}
+            type={plateform.GroupSite.type}
           />
         ))}
       </div>
