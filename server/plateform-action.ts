@@ -1,7 +1,7 @@
 "use server";
 
-import { encryptData } from "@/lib/cachingData";
 import { prisma } from "@/lib/prisma";
+import { caesarCipher } from "@/lib/utils";
 import { revalidatePath } from "next/cache";
 import z from "zod";
 
@@ -22,8 +22,7 @@ export async function formPlateformAction(formData: FormData) {
   const url = formData.get("urlplateform") as string;
   const groupId = Number(formData.get("groupeplateform"));
 
-  const hashPassword = encryptData(passWord);
-  console.log("hashPassword", hashPassword);
+  const hashPassword = caesarCipher(passWord, 12);
 
   const result = platefromShema.safeParse({
     name,

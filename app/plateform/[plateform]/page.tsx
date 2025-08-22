@@ -2,7 +2,7 @@ import { CardListPlateform } from "@/components/cardListPlateform";
 import { PlateformForm } from "@/components/plateformForm";
 import { prisma } from "@/lib/prisma";
 import { castToString, stringToArray } from "@/lib/urlHelper";
-import { updateGroupSiteVisits } from "../../../server/group-actions";
+import { caesarCipher } from "@/lib/utils";
 
 export default async function Page(props: {
   params: Promise<{ plateform: string }>;
@@ -11,7 +11,7 @@ export default async function Page(props: {
   const newParams = stringToArray(params.plateform);
 
   const groupSiteId = Number(newParams[0]);
-  const sitesByGroupId = await prisma.plateform.findMany({
+  const plateformeByGroupId = await prisma.plateform.findMany({
     where: { GroupSiteId: groupSiteId },
     select: {
       id: true,
@@ -28,8 +28,6 @@ export default async function Page(props: {
     },
   });
 
-  await updateGroupSiteVisits(groupSiteId);
-
   return (
     <div className="flex flex-col gap-2">
       <h1 className="scroll-m-20 uppercase text-4xl font-extrabold tracking-tight text-balance">
@@ -40,7 +38,7 @@ export default async function Page(props: {
         .
       </p>
       <div>
-        {sitesByGroupId.map((plateform) => (
+        {plateformeByGroupId.map((plateform) => (
           <CardListPlateform
             key={plateform.id}
             id={plateform.id}

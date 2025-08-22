@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { decryptData } from "@/lib/cachingData";
+import { caesarCipher } from "@/lib/utils";
 import { Eye, EyeOff, Plus } from "lucide-react";
 import { redirect, useParams } from "next/navigation";
 import { useState } from "react";
@@ -27,7 +27,7 @@ export type propsPlateform = {
   description: "";
   url: "";
   email: "";
-  passWord: "";
+  password: "";
   type: "";
 };
 
@@ -36,8 +36,14 @@ export function PlateformForm(props: {
   plateform?: propsPlateform;
 }) {
   const [showPassword, setShowPassword] = useState(false);
+  console.log("props:", props.plateform?.name);
+  const defaultValuePassword = caesarCipher(
+    props.plateform?.password || "",
+    12,
+    true
+  );
 
-  const defaultValuePassword = decryptData(props.plateform?.passWord || "");
+  console.log("defaultValuePassword", props.plateform?.password);
 
   const params = useParams();
   const handlerSubmit = (formData: FormData) => {
@@ -113,7 +119,7 @@ export function PlateformForm(props: {
               </Label>
               <Input
                 id="plateformEmail-input"
-                defaultValue={props.plateform?.name}
+                defaultValue={props.plateform?.email}
                 name="email"
                 placeholder="ex: plateform@exemple.com"
                 required
