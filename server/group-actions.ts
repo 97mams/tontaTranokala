@@ -16,7 +16,9 @@ export async function updateGroupSiteVisits(groupId: number) {
 
 export async function groupSiteDeleteAction(formData: FormData) {
   const id: number = Number(formData.get("id"));
-  const groupSite = await prisma.groupSite.delete({ where: { id: id } });
+  const groupSite = await prisma.groupSite.delete({
+    where: { id: id },
+  });
   console.log(groupSite);
   if (!group) {
     return { error: true, message: "id is not matching" };
