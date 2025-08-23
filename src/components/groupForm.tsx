@@ -27,7 +27,7 @@ export function GroupeSiteForm() {
       }
       if (respose.success) {
         toast.success("Ajout réussir..");
-        redirect(respose.data.type + "/" + respose.data.params);
+        redirect("/" + respose.data.type + "/" + respose.data.params);
       }
     });
   };
