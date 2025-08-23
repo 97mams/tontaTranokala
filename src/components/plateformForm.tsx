@@ -15,10 +15,13 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { caesarCipher } from "@/lib/utils";
 import { Eye, EyeOff, Plus } from "lucide-react";
-import { redirect, useParams } from "next/navigation";
+import { useParams } from "next/navigation";
 import { useState } from "react";
 import { toast } from "sonner";
-import { formPlateformAction } from "../../server/plateform-action";
+import {
+  formPlateformAction,
+  updatePlateformAction,
+} from "../../server/plateform-action";
 import { Textarea } from "./ui/textarea";
 
 export type propsPlateform = {
@@ -48,24 +51,23 @@ export function PlateformForm(props: {
   const params = useParams();
   const handlerSubmit = (formData: FormData) => {
     if (formData.get("id")) {
-      formPlateformAction(formData).then((response) => {
+      updatePlateformAction(formData).then((response) => {
         if (response.error) {
+          console.error(response.message);
           toast.error("modification échouée");
         }
         if (response.success) {
           toast.success("Mise à jour réussie.");
-          redirect("/plateform/" + params.plateformName);
         }
       });
     } else {
       formPlateformAction(formData).then((r) => {
         if (r.error) {
-          throw new Error(r.message);
           toast.error("Échec de l'ajout du plateform");
+          throw new Error(r.message);
         }
         if (r.success) {
           toast.success("Ajout réussir..");
-          redirect("/plateform/" + params.plateformName);
         }
       });
     }
