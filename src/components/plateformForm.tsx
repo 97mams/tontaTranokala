@@ -39,7 +39,6 @@ export function PlateformForm(props: {
   plateform?: propsPlateform;
 }) {
   const [showPassword, setShowPassword] = useState(false);
-  console.log("props:", props.plateform?.name);
   const defaultValuePassword = caesarCipher(
     props.plateform?.password || "",
     12,
