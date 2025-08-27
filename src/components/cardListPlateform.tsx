@@ -29,14 +29,14 @@ export function CardListPlateform(props: {
   const formatPassword = caesarCipher(props.password, 12, true);
 
   return (
-    <div className="my-8 mb-8">
+    <div className="my-8 mb-10">
       <div className="w-full flex justify-between">
         <Tooltip>
           <TooltipTrigger>
             <Link
               href={props.url}
               target="_blank"
-              className="text-lg font-semibold flex hover:before:content-['#'] hover:before:text-muted-foreground before:text-transparent before:content-['#'] before:mr-2"
+              className="scroll-m-20  pb-2 text-3xl font-semibold tracking-tight first:mt-0 flex hover:before:content-['#'] hover:before:text-muted-foreground before:text-transparent before:content-['#'] before:mr-2"
             >
               {props.name}
             </Link>
@@ -46,12 +46,16 @@ export function CardListPlateform(props: {
         <SiteButtonActions id={props.id} data={props} />
       </div>
       <div className="pl-4">
-        <p className="text-muted-foreground text-sm">{props.description}</p>
-        <h3>Adresse mail associée</h3>
+        <p className="text-muted-foreground text-sm mb-8 capitalize">
+          {props.description}
+        </p>
+        <h4 className="scroll-m-20 text-xl font-semibold tracking-tight">
+          Adresse mail associée
+        </h4>
         <p className="text-muted-foreground text-sm">
           Identifiant associé à la plateforme
         </p>
-        <div className="relative">
+        <div className="relative my-4">
           <pre className="bg-muted p-3 rounded-md text-sm overflow-x-auto">
             {props.email}
           </pre>
@@ -70,11 +74,13 @@ export function CardListPlateform(props: {
             )}
           </Button>
         </div>
-        <h3>Adresse mail associée</h3>
+        <h4 className="scroll-m-20 text-xl font-semibold tracking-tight">
+          Mot de passe
+        </h4>
         <p className="text-muted-foreground text-sm">
           Conservez-le en sécurité, vous pouvez l’afficher ou le copier.
         </p>
-        <div className="relative">
+        <div className="relative my-4">
           <pre className="bg-muted p-3 rounded-md text-sm overflow-x-auto">
             <input
               type={showPassword ? "text" : "password"}
