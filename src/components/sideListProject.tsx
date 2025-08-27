@@ -12,7 +12,7 @@ export async function TopProjects() {
   const projectIsVisited = projects.filter((project) => project.visits >= 3);
 
   return (
-    <div className="w-md p-4 fixed z-50 right-0 flex-1">
+    <div className="w-sm p-4 fixed z-50 right-0 flex-1">
       <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight mb-2">
         Top projets
       </h3>

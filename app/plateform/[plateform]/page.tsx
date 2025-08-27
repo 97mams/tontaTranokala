@@ -2,7 +2,6 @@ import { CardListPlateform } from "@/components/cardListPlateform";
 import { PlateformForm } from "@/components/plateformForm";
 import { prisma } from "@/lib/prisma";
 import { castToString, stringToArray } from "@/lib/urlHelper";
-import { caesarCipher } from "@/lib/utils";
 
 export default async function Page(props: {
   params: Promise<{ plateform: string }>;
@@ -51,7 +50,7 @@ export default async function Page(props: {
           />
         ))}
       </div>
-      <div className="flex gap-4 mt-8">
+      <div className="flex gap-4 pb-20">
         <PlateformForm id={Number(newParams[0])} />
       </div>
     </div>
