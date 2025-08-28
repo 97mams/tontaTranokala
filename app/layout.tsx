@@ -19,14 +19,14 @@ export default function RootLayout({
           defaultTheme="treu"
           enableSystem={true}
         >
-          <SidebarProvider>
+          <SidebarProvider className="overflow-hidden">
             <AppSidebar />
-            <SidebarTrigger />
             <main className="w-full h-screen">
-              <div className="w-full flex justify-end py-2 px-2">
+              <div className="w-full sticky z-40 flex justify-between py-2 px-2 ">
+                <SidebarTrigger />
                 <ModeToggle />
               </div>
-              <div className="w-full h-screen flex overflow-scroll">
+              <div className="w-full max-h-screen flex overflow-scroll">
                 {children}
                 <TopProjects />
               </div>
