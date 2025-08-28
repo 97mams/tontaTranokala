@@ -32,19 +32,19 @@ export function AppSidebar() {
               <GroupeList type="site" />
             </CollapsibleContent>
           </SidebarGroup>
-          <Collapsible defaultOpen className="group/collapsible">
-            <SidebarGroup>
-              <SidebarGroupLabel asChild>
-                <CollapsibleTrigger>
-                  Groupe Plateforms
-                  <ChevronDown className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180" />
-                </CollapsibleTrigger>
-              </SidebarGroupLabel>
-              <CollapsibleContent>
-                <GroupeList type="plateform" />
-              </CollapsibleContent>
-            </SidebarGroup>
-          </Collapsible>
+        </Collapsible>
+        <Collapsible defaultOpen className="group/collapsible">
+          <SidebarGroup>
+            <SidebarGroupLabel asChild>
+              <CollapsibleTrigger>
+                Groupe Plateforms
+                <ChevronDown className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180" />
+              </CollapsibleTrigger>
+            </SidebarGroupLabel>
+            <CollapsibleContent>
+              <GroupeList type="plateform" />
+            </CollapsibleContent>
+          </SidebarGroup>
         </Collapsible>
       </SidebarContent>
       <SidebarFooter>
