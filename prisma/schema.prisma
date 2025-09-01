@@ -29,7 +29,7 @@ model GroupSite {
 model site {
   id      Int     @id @default(autoincrement())
   name    String
-  description String
+  description String  @db.LongText
   url     String?  @unique
   GroupSiteId Int
   GroupSite GroupSite @relation(fields: [GroupSiteId], references: [id], onDelete: Cascade)
@@ -42,7 +42,7 @@ model plateform {
   name       String
   email     String
   passWord   String
-  description String
+  description String  @db.LongText
   url        String?  @unique
   GroupSiteId Int
   GroupSite  GroupSite @relation(fields: [GroupSiteId], references: [id], onDelete: Cascade)
