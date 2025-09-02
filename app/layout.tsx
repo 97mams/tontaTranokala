@@ -1,10 +1,10 @@
 import { AppSidebar } from "@/components/app-sidebar";
-import { TopProjects } from "@/components/sideListProject";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { Toaster } from "@/components/ui/sonner";
 import { ThemeProvider } from "@/components/ui/theme-provider";
 import { ModeToggle } from "@/components/ui/theme-toggle";
 import "./globals.css";
+import { TopProjects } from "@/components/sideListProject";
 
 export default function RootLayout({
   children,
