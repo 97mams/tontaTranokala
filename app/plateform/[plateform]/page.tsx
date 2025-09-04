@@ -23,10 +23,15 @@ export default async function Page(props: {
       GroupSite: {
         select: {
           type: true,
+          title: true,
         },
       },
     },
   });
+
+  if (!plateformeByGroupId) {
+    return;
+  }
 
   return (
     <div className="full">
