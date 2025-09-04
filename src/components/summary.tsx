@@ -1,7 +1,7 @@
 import { Card, CardContent } from "./ui/card";
 
 export function Summary(props: {
-  projects: Array<{ id: number; name: string }>;
+  projects: Array<{ id: number; name: string; GroupSite: { title: string } }>;
   active: number;
 }) {
   return (
@@ -13,9 +13,12 @@ export function Summary(props: {
         <p className="text-muted-foreground text-sm">
           Voici un aperçu de vos projets.
         </p>
+        <h4 className="capitalize text-xl">
+          {props.projects[0].GroupSite.title}
+        </h4>
         <ul>
           {props.projects.map((project) => (
-            <li key={project.id}>
+            <li key={project.id} className="text-sm ml-3 mb-2 capitalize">
               <a href="#">{project.name}</a>
             </li>
           ))}
