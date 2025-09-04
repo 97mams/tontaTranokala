@@ -34,13 +34,13 @@ export default async function Page(props: {
   }
 
   return (
-    <div className="full">
+    <div className="w-3xl">
       <div className="flex flex-col gap-2">
         <h1 className="scroll-m-20 uppercase text-4xl font-extrabold tracking-tight text-balance">
           {castToString(newParams[1])}
         </h1>
         <p className="leading-7 [&:not(:first-child)]:mt-6">
-          Ici, retrouvez tous les plateforms dédiés à{" "}
+          Ici, retrouvez tous les plateforms dédiés à
           {castToString(newParams[1])}.
         </p>
         <div>
