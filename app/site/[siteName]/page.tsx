@@ -1,16 +1,16 @@
 import { CardListSite } from "@/components/cardListSite";
 import { SiteForm } from "@/components/siteForm";
 import { prisma } from "@/lib/prisma";
-import { castToString, stringToArray } from "@/lib/urlHelper";
+import { castToString, stringToObject } from "@/lib/urlHelper";
 import { updateGroupSiteVisits } from "../../../server/group-actions";
 
 export default async function Page(props: {
   params: Promise<{ siteName: string }>;
 }) {
   const params = await props.params;
-  const newParams = stringToArray(params.siteName);
+  const newParams = stringToObject(params.siteName);
 
-  const groupSiteId = Number(newParams[0]);
+  const groupSiteId = newParams.id;
   const sitesByGroupId = await prisma.site.findMany({
     where: { GroupSiteId: groupSiteId },
     select: {
@@ -29,12 +29,12 @@ export default async function Page(props: {
   await updateGroupSiteVisits(groupSiteId);
 
   return (
-    <div className="flex flex-col gap-2">
+    <div className="w-xl flex flex-col gap-2">
       <h1 className="scroll-m-20 uppercase text-4xl font-extrabold tracking-tight text-balance">
-        {castToString(newParams[1])}
+        {castToString(newParams.title)}
       </h1>
       <p className="leading-7 [&:not(:first-child)]:mt-6">
-        Ici, retrouvez tous les sites dédiés à {castToString(newParams[1])}.
+        Ici, retrouvez tous les sites dédiés à {castToString(newParams.title)}.
       </p>
       <div>
         {sitesByGroupId.map((site) => (
@@ -49,7 +49,7 @@ export default async function Page(props: {
         ))}
       </div>
       <div className="flex gap-4 mt-8">
-        <SiteForm id={Number(newParams[0])} />
+        <SiteForm id={Number(newParams.title)} />
       </div>
     </div>
   );
