@@ -3,19 +3,16 @@
 import { prisma } from "@/lib/prisma";
 import { castToString, stringToObject } from "@/lib/urlHelper";
 import { useParams } from "next/navigation";
-import { useEffect, useState } from "react";
+
+const fetchData = async (id: number) => {
+  return await prisma.plateform.findMany({ where: { id: id } });
+};
 
 export default function Page() {
-  const [data, setData] = useState();
+  // const [data, setData] = useState();
   const getParams = useParams();
   const params = stringToObject(String(getParams.plateform));
   const plateformId = params.id;
-  useEffect(() => {
-    const fetchData = async () => {
-     
-      setData
-    };
-  }, [plateformId]);
 
   return (
     <div className="w-3xl">
