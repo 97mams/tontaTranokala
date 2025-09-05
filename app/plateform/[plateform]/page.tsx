@@ -1,49 +1,33 @@
-import { CardListPlateform } from "@/components/cardListPlateform";
-import { PlateformForm } from "@/components/plateformForm";
-import { Summary } from "@/components/summary";
+"use client";
+
 import { prisma } from "@/lib/prisma";
-import { castToString, stringToArray } from "@/lib/urlHelper";
+import { castToString, stringToObject } from "@/lib/urlHelper";
+import { useParams } from "next/navigation";
+import { useEffect, useState } from "react";
 
-export default async function Page(props: {
-  params: Promise<{ plateform: string }>;
-}) {
-  const params = await props.params;
-  const newParams = stringToArray(params.plateform);
-
-  const groupSiteId = Number(newParams[0]);
-  const plateformeByGroupId = await prisma.plateform.findMany({
-    where: { GroupSiteId: groupSiteId },
-    select: {
-      id: true,
-      name: true,
-      description: true,
-      url: true,
-      email: true,
-      passWord: true,
-      GroupSite: {
-        select: {
-          type: true,
-          title: true,
-        },
-      },
-    },
-  });
-
-  if (!plateformeByGroupId) {
-    return;
-  }
+export default function Page() {
+  const [data, setData] = useState();
+  const getParams = useParams();
+  const params = stringToObject(String(getParams.plateform));
+  const plateformId = params.id;
+  useEffect(() => {
+    const fetchData = async () => {
+     
+      setData
+    };
+  }, [plateformId]);
 
   return (
     <div className="w-3xl">
       <div className="flex flex-col gap-2">
         <h1 className="scroll-m-20 uppercase text-4xl font-extrabold tracking-tight text-balance">
-          {castToString(newParams[1])}
+          {castToString(params.title)}
         </h1>
         <p className="leading-7 [&:not(:first-child)]:mt-6">
-          Ici, retrouvez tous les plateforms dédiés à
-          {castToString(newParams[1])}.
+          Ici, retrouvez tous les plateforms dédiés à{" "}
+          {castToString(params.title)}.
         </p>
-        <div>
+        {/* <div>
           {plateformeByGroupId.map((plateform) => (
             <CardListPlateform
               key={plateform.id}
@@ -59,9 +43,9 @@ export default async function Page(props: {
         </div>
         <div className="flex gap-4 pb-20">
           <PlateformForm id={Number(newParams[0])} />
-        </div>
+        </div> */}
       </div>
-      <Summary projects={plateformeByGroupId} active={1} />
+      {/* <Summary projects={plateformeByGroupId} active={1} /> */}
     </div>
   );
 }
