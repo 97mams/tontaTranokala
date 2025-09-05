@@ -94,3 +94,39 @@ export async function updatePlateformAction(formData: FormData) {
 
   return { success: true, message: "Platform updated successfully" };
 }
+
+type plateform = {
+  name: string;
+  email: string;
+  passWord: string;
+  description: string;
+  url: string | null;
+  id: number;
+  GroupSite: {
+    title: string;
+    type: string;
+  };
+};
+
+export const plateformeByGroupId = async (
+  plateformId: number
+): Promise<plateform[]> => {
+  const result = await prisma.plateform.findMany({
+    where: { GroupSiteId: plateformId },
+    select: {
+      id: true,
+      name: true,
+      description: true,
+      url: true,
+      email: true,
+      passWord: true,
+      GroupSite: {
+        select: {
+          type: true,
+          title: true,
+        },
+      },
+    },
+  });
+  return result;
+};
