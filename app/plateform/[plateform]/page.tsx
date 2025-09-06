@@ -32,6 +32,10 @@ export default function Page() {
     fetch(`/api/plateform/${groupPlateformId}`)
       .then((response) => response.json())
       .then((data) => {
+        if (data.plateform.length === 0) {
+          setIsPending(false);
+          return;
+        }
         setData(data.plateform);
         setIsPending(false);
       });
@@ -48,6 +52,8 @@ export default function Page() {
   if (!data) {
     return;
   }
+
+  console.log("ito: ", data);
 
   return (
     <div className="w-full  h-screen overflow-scroll">
