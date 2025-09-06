@@ -124,7 +124,7 @@ export function SiteForm(props: { id: number; site?: propsSite }) {
               type="text"
               hidden
               name="groupeSite"
-              defaultValue={props.id}
+              defaultValue={String(props.id)}
             />
           </div>
           <DialogFooter>
