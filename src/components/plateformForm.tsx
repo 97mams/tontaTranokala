@@ -77,7 +77,10 @@ export function PlateformForm(props: {
       <DialogTrigger asChild>
         <Label>
           {props.plateform ? "" : "Ajouter"}
-          <Button size={"sm"} variant={props.plateform ? "secondary" : "outline"}>
+          <Button
+            size={"sm"}
+            variant={props.plateform ? "secondary" : "outline"}
+          >
             {props.plateform ? <Upload /> : <Plus />}
           </Button>
         </Label>
@@ -183,7 +186,7 @@ export function PlateformForm(props: {
             <DialogClose asChild>
               <Button variant="outline">Annuler</Button>
             </DialogClose>
-            <DialogClose asChild={false}>
+            <DialogClose asChild>
               <Button type="submit">Enregister</Button>
             </DialogClose>
           </DialogFooter>

@@ -1,10 +1,10 @@
 import { AppSidebar } from "@/components/app-sidebar";
+import { TopProjects } from "@/components/sideListProject";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { Toaster } from "@/components/ui/sonner";
 import { ThemeProvider } from "@/components/ui/theme-provider";
 import { ModeToggle } from "@/components/ui/theme-toggle";
 import "./globals.css";
-import { TopProjects } from "@/components/sideListProject";
 
 export default function RootLayout({
   children,
@@ -26,7 +26,7 @@ export default function RootLayout({
                 <SidebarTrigger />
                 <ModeToggle />
               </div>
-              <div className="w-full max-h-screen flex overflow-scroll">
+              <div className="w-full max-h-screen flex">
                 {children}
                 <TopProjects />
               </div>

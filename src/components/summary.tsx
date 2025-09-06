@@ -2,16 +2,23 @@
 
 import { useEffect, useState } from "react";
 import { Card, CardContent } from "./ui/card";
-
-export function Summary(props: {
-  projects: Array<{ id: number; name: string; GroupSite: { title: string } }>;
-  active: number;
-}) {
+type plateform = {
+  id: number;
+  name: string;
+  email: string;
+  passWord: string;
+  description: string;
+  url: string | null;
+  GroupSite: {
+    id: number;
+    type: string;
+    title: string;
+  };
+};
+export function Summary(props: { projects: plateform[]; active: number }) {
   const [activeSection, setActiveSection] = useState<String>(
     props.projects[0].name + props.projects[0].id
   );
-
-  console.log(activeSection === props.projects[0].name + props.projects[0].id);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -61,7 +68,7 @@ export function Summary(props: {
               onClick={() => scrollToSection(project.name + project.id)}
             >
               <a
-                href={project.name + project.id}
+                href={"#" + project.name + project.id}
                 className={
                   activeSection === project.name + project.id ? "underline" : ""
                 }
