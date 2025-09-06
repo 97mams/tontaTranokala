@@ -29,7 +29,7 @@ export default async function Page(props: {
   await updateGroupSiteVisits(groupSiteId);
 
   return (
-    <div className="w-xl flex flex-col gap-2">
+    <div className="w-3xl flex flex-col gap-2">
       <h1 className="scroll-m-20 uppercase text-4xl font-extrabold tracking-tight text-balance">
         {castToString(newParams.title)}
       </h1>
