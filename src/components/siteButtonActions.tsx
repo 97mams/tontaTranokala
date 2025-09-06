@@ -1,6 +1,6 @@
 "use client";
 
-import { EllipsisVertical, TriangleAlert } from "lucide-react";
+import { EllipsisVertical, Trash2, TriangleAlert } from "lucide-react";
 import { toast } from "sonner";
 import { deleteSite } from "../../server/site-action";
 import { PlateformForm, propsPlateform } from "./plateformForm";
@@ -26,7 +26,7 @@ export function SiteButtonActions(props: { id: number; data: any }) {
           <EllipsisVertical />
         </Button>
       </PopoverTrigger>
-      <PopoverContent>
+      <PopoverContent className="w-30">
         <div className="w-full flex justify-around">
           {props.data.type === "site" ? (
             <SiteForm id={props.id} site={props.data as propsSite} />
@@ -62,7 +62,9 @@ const DeleteCard = (props: { id: number }) => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant={"destructive"}>Supprimer</Button>
+        <Button variant={"destructive"} size={"sm"}>
+          <Trash2 />
+        </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
