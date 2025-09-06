@@ -126,7 +126,7 @@ export function SiteForm(props: { id: number; site?: propsSite }) {
             <DialogClose asChild>
               <Button variant="outline">Annuler</Button>
             </DialogClose>
-            <DialogClose asChild={false}>
+            <DialogClose asChild>
               <Button type="submit">Enregister</Button>
             </DialogClose>
           </DialogFooter>
