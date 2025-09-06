@@ -14,7 +14,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { caesarCipher } from "@/lib/utils";
-import { Eye, EyeOff, Plus } from "lucide-react";
+import { Eye, EyeOff, Plus, Upload } from "lucide-react";
 import { useParams } from "next/navigation";
 import { useState } from "react";
 import { toast } from "sonner";
@@ -77,11 +77,8 @@ export function PlateformForm(props: {
       <DialogTrigger asChild>
         <Label>
           {props.plateform ? "" : "Ajouter"}
-          <Button
-            size={props.plateform ? "lg" : "sm"}
-            variant={props.plateform ? "default" : "outline"}
-          >
-            {props.plateform ? "Modifier" : <Plus />}
+          <Button size={"sm"} variant={props.plateform ? "secondary" : "outline"}>
+            {props.plateform ? <Upload /> : <Plus />}
           </Button>
         </Label>
       </DialogTrigger>

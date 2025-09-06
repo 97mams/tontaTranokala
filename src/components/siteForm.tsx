@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Plus } from "lucide-react";
+import { Plus, Upload } from "lucide-react";
 import { redirect, useParams } from "next/navigation";
 import { useState } from "react";
 import { toast } from "sonner";
@@ -57,18 +57,13 @@ export function SiteForm(props: { id: number; site?: propsSite }) {
     }
   };
 
-  console.log("erro:", validate);
-
   return (
     <Dialog>
       <DialogTrigger asChild>
         <Label>
           {props.site ? "" : "Ajouter"}
-          <Button
-            size={props.site ? "lg" : "sm"}
-            variant={props.site ? "default" : "outline"}
-          >
-            {props.site ? "Modifier" : <Plus />}
+          <Button size={"sm"} variant={props.site ? "secondary" : "outline"}>
+            {props.site ? <Upload /> : <Plus />}
           </Button>
         </Label>
       </DialogTrigger>
