@@ -15,21 +15,27 @@ type plateform = {
     title: string;
   };
 };
-export function Summary(props: { projects: plateform[]; active: number }) {
+export function Summary(props: { projects?: plateform[]; active: number }) {
+  if (!props.projects) {
+    return;
+  }
   const [activeSection, setActiveSection] = useState<String>(
     props.projects[0].name + props.projects[0].id
   );
 
   useEffect(() => {
     const handleScroll = () => {
-      let current = props.projects[0].name + props.projects[0].id;
-      props.projects.forEach((section) => {
-        const element = document.getElementById(section.name + section.id);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          if (rect.top <= 100) current = section.name + section.id;
-        }
-      });
+      let current = "";
+      if (props.projects) {
+        let current = props.projects[0].name + props.projects[0].id;
+        props.projects.forEach((section) => {
+          const element = document.getElementById(section.name + section.id);
+          if (element) {
+            const rect = element.getBoundingClientRect();
+            if (rect.top <= 100) current = section.name + section.id;
+          }
+        });
+      }
       setActiveSection(current);
     };
     window.addEventListener("scroll", handleScroll);
