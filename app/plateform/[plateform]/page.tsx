@@ -1,6 +1,7 @@
 "use client";
 
 import { CardListPlateform } from "@/components/cardListPlateform";
+import { PlateformForm } from "@/components/plateformForm";
 import { Summary } from "@/components/summary";
 import { castToString, stringToObject } from "@/lib/urlHelper";
 import { Loader } from "lucide-react";
@@ -22,7 +23,7 @@ type plateform = {
 };
 
 export default function Page() {
-  const [data, setData] = useState<plateform[]>();
+  const [data, setData] = useState<plateform[]>([]);
   const [isPending, setIsPending] = useState(false);
   const getParams = useParams();
   const params = stringToObject(String(getParams.plateform));
@@ -32,11 +33,8 @@ export default function Page() {
     fetch(`/api/plateform/${groupPlateformId}`)
       .then((response) => response.json())
       .then((data) => {
-        if (data.plateform.length === 0) {
-          setIsPending(false);
-          return;
-        }
         setData(data.plateform);
+
         setIsPending(false);
       });
   }, [groupPlateformId]);
@@ -48,12 +46,20 @@ export default function Page() {
       </div>
     );
   };
+  console.log("data", data.length);
 
-  if (!data) {
-    return;
-  }
-
-  console.log("ito: ", data);
+  const EmptyData = () => {
+    return (
+      <div>
+        <div className="w-3xl flex flex-col gap-4 h-50 justify-center items-center">
+          <p className="leading-7 [&:not(:first-child)]:mt-6">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. .
+          </p>
+          <PlateformForm id={Number(params.id)} isButton={true} />
+        </div>
+      </div>
+    );
+  };
 
   return (
     <div className="w-full  h-screen overflow-scroll">
@@ -62,12 +68,17 @@ export default function Page() {
           <h1 className="scroll-m-20 uppercase text-4xl font-extrabold tracking-tight text-balance">
             {castToString(params.title)}
           </h1>
-          <p className="leading-7 [&:not(:first-child)]:mt-6">
-            Ici, retrouvez tous les plateforms dédiés à{" "}
-            {castToString(params.title)}.
-          </p>
+          {data ? (
+            <p className="leading-7 [&:not(:first-child)]:mt-6">
+              Ici, retrouvez tous les plateforms dédiés à{" "}
+              {castToString(params.title)}.
+            </p>
+          ) : (
+            ""
+          )}
           <div>
             {isPending ? <Pending /> : ""}
+            {isPending && data.length !== 0 ? "" : <EmptyData />}
             {data?.map((plateform) => (
               <CardListPlateform
                 key={plateform.id}
@@ -82,7 +93,7 @@ export default function Page() {
             ))}
           </div>
           <div className="flex gap-4 pb-20">
-            {/* <PlateformForm id={Number(newParams[0])} /> */}
+            {data ? <PlateformForm id={Number(params.id)} /> : ""}
           </div>
         </div>
         <Summary projects={data} active={1} />
