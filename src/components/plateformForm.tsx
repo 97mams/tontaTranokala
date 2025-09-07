@@ -37,6 +37,7 @@ export type propsPlateform = {
 export function PlateformForm(props: {
   id: number;
   plateform?: propsPlateform;
+  isButton?: boolean;
 }) {
   const [showPassword, setShowPassword] = useState(false);
   const defaultValuePassword = caesarCipher(
@@ -44,8 +45,6 @@ export function PlateformForm(props: {
     12,
     true
   );
-
-  console.log("defaultValuePassword", props.plateform?.password);
 
   const params = useParams();
   const handlerSubmit = (formData: FormData) => {
@@ -72,16 +71,21 @@ export function PlateformForm(props: {
     }
   };
 
+  const Labeled = (md: boolean = false) => {
+    if (md) return "Ajout site";
+    return <Plus />;
+  };
+
   return (
     <Dialog>
       <DialogTrigger asChild>
         <Label>
-          {props.plateform ? "" : "Ajouter"}
+          {props.plateform || !props.isButton ? "" : "Ajouter"}
           <Button
-            size={"sm"}
+            size={props.isButton ? "default" : "sm"}
             variant={props.plateform ? "secondary" : "outline"}
           >
-            {props.plateform ? <Upload /> : <Plus />}
+            {props.plateform ? <Upload /> : <Labeled md={props.isButton} />}
           </Button>
         </Label>
       </DialogTrigger>
