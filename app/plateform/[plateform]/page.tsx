@@ -53,7 +53,7 @@ export default function Page() {
       <div>
         <div className="w-3xl flex flex-col gap-4 h-50 justify-center items-center">
           <p className="leading-7 [&:not(:first-child)]:mt-6">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. .
+            Ajoute ton premier enregistrement et garde tout à portée de main !
           </p>
           <PlateformForm id={Number(params.id)} isButton={true} />
         </div>
