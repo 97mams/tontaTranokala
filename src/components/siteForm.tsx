@@ -15,7 +15,6 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Plus, Upload } from "lucide-react";
 import { redirect, useParams } from "next/navigation";
-import { useState } from "react";
 import { toast } from "sonner";
 import { formSiteAction } from "../../server/form-action";
 import { updateSite } from "../../server/site-action";
@@ -38,8 +37,6 @@ export function SiteForm(props: {
   site?: propsSite;
   isButton?: boolean;
 }) {
-  const [validate, setValidate] = useState("");
-
   const params = useParams();
   const handlerSubmit = (formData: FormData) => {
     if (formData.get("id")) {
@@ -65,7 +62,8 @@ export function SiteForm(props: {
     }
   };
 
-  const Labeled: React.FC<Props> = ({ md }) => {
+  const Labeled: React.FC<Props> = ({ md = false }) => {
+    console.log("lele", md);
     return <span>{md ? "Ajout site" : <Plus />}</span>;
   };
 
@@ -78,7 +76,7 @@ export function SiteForm(props: {
             size={props.isButton ? "default" : "sm"}
             variant={props.site ? "secondary" : "outline"}
           >
-            {props.site ? <Upload /> : <Labeled md={true} />}
+            {props.site ? <Upload /> : <Labeled md={props.isButton} />}
           </Button>
         </Label>
       </DialogTrigger>

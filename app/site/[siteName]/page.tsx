@@ -68,9 +68,13 @@ export default async function Page(props: {
           />
         ))}
       </div>
-      <div className="flex gap-4 mt-8">
-        <SiteForm id={Number(newParams.title)} />
-      </div>
+      {sitesByGroupId.length !== 0 ? (
+        <div className="flex gap-4 mt-8">
+          <SiteForm id={Number(newParams.title)} isButton={false} />
+        </div>
+      ) : (
+        ""
+      )}
     </div>
   );
 }
