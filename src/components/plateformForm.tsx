@@ -15,7 +15,6 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { caesarCipher } from "@/lib/utils";
 import { Eye, EyeOff, Plus, Upload } from "lucide-react";
-import { useParams } from "next/navigation";
 import { useState } from "react";
 import { toast } from "sonner";
 import {
@@ -34,6 +33,10 @@ export type propsPlateform = {
   type: "";
 };
 
+type Props = {
+  md?: boolean;
+};
+
 export function PlateformForm(props: {
   id: number;
   plateform?: propsPlateform;
@@ -46,7 +49,6 @@ export function PlateformForm(props: {
     true
   );
 
-  const params = useParams();
   const handlerSubmit = (formData: FormData) => {
     if (formData.get("id")) {
       updatePlateformAction(formData).then((response) => {
@@ -71,16 +73,15 @@ export function PlateformForm(props: {
     }
   };
 
-  const Labeled = (md: boolean = false) => {
-    if (md) return "Ajout site";
-    return <Plus />;
+  const Labeled: React.FC<Props> = ({ md }) => {
+    return <span>{md ? "Ajout plateform" : <Plus />}</span>;
   };
 
   return (
     <Dialog>
       <DialogTrigger asChild>
         <Label>
-          {props.plateform || !props.isButton ? "" : "Ajouter"}
+          {props.plateform || props.isButton ? "" : "Ajouter"}
           <Button
             size={props.isButton ? "default" : "sm"}
             variant={props.plateform ? "secondary" : "outline"}
