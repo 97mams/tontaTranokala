@@ -29,7 +29,15 @@ export type propsSite = {
   type: string;
 };
 
-export function SiteForm(props: { id: number; site?: propsSite }) {
+type Props = {
+  md?: boolean;
+};
+
+export function SiteForm(props: {
+  id: number;
+  site?: propsSite;
+  isButton?: boolean;
+}) {
   const [validate, setValidate] = useState("");
 
   const params = useParams();
@@ -57,13 +65,20 @@ export function SiteForm(props: { id: number; site?: propsSite }) {
     }
   };
 
+  const Labeled: React.FC<Props> = ({ md }) => {
+    return <span>{md ? "Ajout site" : <Plus />}</span>;
+  };
+
   return (
     <Dialog>
       <DialogTrigger asChild>
         <Label>
-          {props.site ? "" : "Ajouter"}
-          <Button size={"sm"} variant={props.site ? "secondary" : "outline"}>
-            {props.site ? <Upload /> : <Plus />}
+          {props.site || props.isButton ? "" : "Ajouter"}
+          <Button
+            size={props.isButton ? "default" : "sm"}
+            variant={props.site ? "secondary" : "outline"}
+          >
+            {props.site ? <Upload /> : <Labeled md={true} />}
           </Button>
         </Label>
       </DialogTrigger>
