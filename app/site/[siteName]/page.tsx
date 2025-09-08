@@ -9,7 +9,6 @@ export default async function Page(props: {
 }) {
   const params = await props.params;
   const newParams = stringToObject(params.siteName);
-
   const groupSiteId = newParams.id;
   const sitesByGroupId = await prisma.site.findMany({
     where: { GroupSiteId: groupSiteId },
@@ -26,16 +25,37 @@ export default async function Page(props: {
     },
   });
 
+  console.log("ito: ", sitesByGroupId.length);
+
   await updateGroupSiteVisits(groupSiteId);
+
+  const EmptyData = () => {
+    return (
+      <div>
+        <div className="w-3xl flex flex-col gap-4  h-[calc(100vh-7rem)] justify-center items-center">
+          <p className="leading-7 [&:not(:first-child)]:mt-6">
+            Ajoute ton premier enregistrement et garde tout à portée de main !
+          </p>
+
+          <SiteForm id={Number(newParams.id)} isButton={true} />
+        </div>
+      </div>
+    );
+  };
 
   return (
     <div className="w-3xl flex flex-col gap-2">
       <h1 className="scroll-m-20 uppercase text-4xl font-extrabold tracking-tight text-balance">
         {castToString(newParams.title)}
       </h1>
-      <p className="leading-7 [&:not(:first-child)]:mt-6">
-        Ici, retrouvez tous les sites dédiés à {castToString(newParams.title)}.
-      </p>
+      {sitesByGroupId.length === 0 ? (
+        <EmptyData />
+      ) : (
+        <p className="leading-7 [&:not(:first-child)]:mt-6">
+          Ici, retrouvez tous les sites dédiés à {castToString(newParams.title)}
+          .
+        </p>
+      )}
       <div>
         {sitesByGroupId.map((site) => (
           <CardListSite
