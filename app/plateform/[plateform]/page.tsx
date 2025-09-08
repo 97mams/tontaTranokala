@@ -2,7 +2,6 @@
 
 import { CardListPlateform } from "@/components/cardListPlateform";
 import { PlateformForm } from "@/components/plateformForm";
-import { Summary } from "@/components/summary";
 import { castToString, stringToObject } from "@/lib/urlHelper";
 import { Loader } from "lucide-react";
 import { useParams } from "next/navigation";
@@ -41,7 +40,7 @@ export default function Page() {
 
   const Pending = () => {
     return (
-      <div className="w-3xl flex h-50 justify-center items-center">
+      <div className="w-3xl flex  h-[calc(100vh-7rem)] justify-center items-center">
         <Loader />
       </div>
     );
@@ -51,7 +50,7 @@ export default function Page() {
   const EmptyData = () => {
     return (
       <div>
-        <div className="w-3xl flex flex-col gap-4 h-50 justify-center items-center">
+        <div className="w-3xl flex flex-col gap-4  h-[calc(100vh-7rem)] justify-center items-center">
           <p className="leading-7 [&:not(:first-child)]:mt-6">
             Ajoute ton premier enregistrement et garde tout à portée de main !
           </p>
@@ -68,7 +67,7 @@ export default function Page() {
           <h1 className="scroll-m-20 uppercase text-4xl font-extrabold tracking-tight text-balance">
             {castToString(params.title)}
           </h1>
-          {data ? (
+          {data.length !== 0 ? (
             <p className="leading-7 [&:not(:first-child)]:mt-6">
               Ici, retrouvez tous les plateforms dédiés à{" "}
               {castToString(params.title)}.
@@ -78,7 +77,7 @@ export default function Page() {
           )}
           <div>
             {isPending ? <Pending /> : ""}
-            {isPending && data.length !== 0 ? "" : <EmptyData />}
+            {isPending || data.length !== 0 ? "" : <EmptyData />}
             {data?.map((plateform) => (
               <CardListPlateform
                 key={plateform.id}
@@ -93,10 +92,10 @@ export default function Page() {
             ))}
           </div>
           <div className="flex gap-4 pb-20">
-            {data ? <PlateformForm id={Number(params.id)} /> : ""}
+            {!data ? <PlateformForm id={Number(params.id)} /> : ""}
           </div>
         </div>
-        <Summary projects={data} active={1} />
+        {/* <Summary projects={data} active={1} /> */}
       </div>
     </div>
   );
