@@ -5,7 +5,7 @@ import { caesarCipher } from "@/lib/utils";
 import { Check, Copy, Eye, EyeOff } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
-import { SiteButtonActions } from "./siteButtonActions";
+import { PlateformButtonAction } from "./plateformButtonAction";
 import { Button } from "./ui/button";
 import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
 
@@ -43,7 +43,7 @@ export function CardListPlateform(props: {
           </TooltipTrigger>
           <TooltipContent>Ouvrir {props.name}</TooltipContent>
         </Tooltip>
-        <SiteButtonActions id={props.id} data={props} />
+        <PlateformButtonAction id={props.id} data={props} />
       </div>
       <div className="pl-4">
         <p className="text-muted-foreground text-sm mb-8 capitalize">
