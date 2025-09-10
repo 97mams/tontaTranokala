@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import { Card, CardContent } from "./ui/card";
 type plateform = {
   id: number;
@@ -19,38 +18,6 @@ export function Summary(props: { projects?: plateform[]; active: number }) {
   if (!props.projects) {
     return;
   }
-  const [activeSection, setActiveSection] = useState<String>(
-    props.projects[0].name + props.projects[0].id
-  );
-
-  // useEffect(() => {
-  //   const handleScroll = () => {
-  //     let current = "";
-  //     if (props.projects) {
-  //       let current = props.projects[0].name + props.projects[0].id;
-  //       props.projects.forEach((section) => {
-  //         const element = document.getElementById(section.name + section.id);
-  //         if (element) {
-  //           const rect = element.getBoundingClientRect();
-  //           if (rect.top <= 100) current = section.name + section.id;
-  //         }
-  //       });
-  //     }
-  //     setActiveSection(current);
-  //   };
-  //   window.addEventListener("scroll", handleScroll);
-  //   return () => window.removeEventListener("scroll", handleScroll);
-  // }, []);
-
-  // const scrollToSection = (sectionId: string) => {
-  //   const element = document.getElementById(sectionId);
-  //   if (element) {
-  //     window.scroll({
-  //       top: element.offsetTop - 50,
-  //       behavior: "smooth",
-  //     });
-  //   }
-  // };
 
   return (
     <Card className="w-70 absolute right-8 top-70">
@@ -71,13 +38,15 @@ export function Summary(props: { projects?: plateform[]; active: number }) {
               className={`
                 text-sm ml-3 mb-2 capitalize
               `}
-              onClick={() => scrollToSection(project.name + project.id)}
+              onClick={() =>
+                document
+                  .getElementById(project.name + project.id)
+                  ?.scrollIntoView({ behavior: "smooth" })
+              }
             >
               <a
                 href={"#" + project.name + project.id}
-                className={
-                  activeSection === project.name + project.id ? "underline" : ""
-                }
+                className={props.active === project.id ? "underline" : ""}
               >
                 {project.name}
               </a>
