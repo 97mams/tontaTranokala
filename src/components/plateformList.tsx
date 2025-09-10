@@ -23,7 +23,7 @@ export default function PlateformList(props: {
   params: { id: number; title: string };
 }) {
   return (
-    <div className="w-full  h-screen overflow-scroll">
+    <div className="w-full pb-8">
       <div className="w-3xl">
         <div className="flex flex-col gap-2">
           <div>
@@ -40,16 +40,14 @@ export default function PlateformList(props: {
               />
             ))}
           </div>
-          <div className="flex gap-4 pb-20">
-            {props.data ? (
-              <PlateformForm id={Number(props.params.id)} isButton={false} />
-            ) : (
-              ""
-            )}
-          </div>
+          {props.data ? (
+            <PlateformForm id={Number(props.params.id)} isButton={false} />
+          ) : (
+            ""
+          )}
         </div>
-        {props.data ? <Summary projects={props.data} active={1} /> : ""}
       </div>
+      {props.data ? <Summary projects={props.data} active={1} /> : ""}
     </div>
   );
 }
