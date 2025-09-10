@@ -26,16 +26,6 @@ export default function PlateformList(props: {
     <div className="w-full  h-screen overflow-scroll">
       <div className="w-3xl">
         <div className="flex flex-col gap-2">
-          <h1 className="scroll-m-20 uppercase text-4xl font-extrabold tracking-tight text-balance">
-            {props.params.title}
-          </h1>
-          {props.data.length !== 0 ? (
-            <p className="leading-7 [&:not(:first-child)]:mt-6">
-              Ici, retrouvez tous les plateforms dédiés à {props.params.title}.
-            </p>
-          ) : (
-            ""
-          )}
           <div>
             {props.data?.map((plateform) => (
               <CardListPlateform
