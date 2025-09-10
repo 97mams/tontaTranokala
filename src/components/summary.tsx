@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Card, CardContent } from "./ui/card";
 type plateform = {
   id: number;
@@ -23,34 +23,34 @@ export function Summary(props: { projects?: plateform[]; active: number }) {
     props.projects[0].name + props.projects[0].id
   );
 
-  useEffect(() => {
-    const handleScroll = () => {
-      let current = "";
-      if (props.projects) {
-        let current = props.projects[0].name + props.projects[0].id;
-        props.projects.forEach((section) => {
-          const element = document.getElementById(section.name + section.id);
-          if (element) {
-            const rect = element.getBoundingClientRect();
-            if (rect.top <= 100) current = section.name + section.id;
-          }
-        });
-      }
-      setActiveSection(current);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  // useEffect(() => {
+  //   const handleScroll = () => {
+  //     let current = "";
+  //     if (props.projects) {
+  //       let current = props.projects[0].name + props.projects[0].id;
+  //       props.projects.forEach((section) => {
+  //         const element = document.getElementById(section.name + section.id);
+  //         if (element) {
+  //           const rect = element.getBoundingClientRect();
+  //           if (rect.top <= 100) current = section.name + section.id;
+  //         }
+  //       });
+  //     }
+  //     setActiveSection(current);
+  //   };
+  //   window.addEventListener("scroll", handleScroll);
+  //   return () => window.removeEventListener("scroll", handleScroll);
+  // }, []);
 
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      window.scroll({
-        top: element.offsetTop - 50,
-        behavior: "smooth",
-      });
-    }
-  };
+  // const scrollToSection = (sectionId: string) => {
+  //   const element = document.getElementById(sectionId);
+  //   if (element) {
+  //     window.scroll({
+  //       top: element.offsetTop - 50,
+  //       behavior: "smooth",
+  //     });
+  //   }
+  // };
 
   return (
     <Card className="w-70 absolute right-8 top-70">
