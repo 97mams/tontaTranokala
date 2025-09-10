@@ -29,7 +29,7 @@ export function CardListPlateform(props: {
   const formatPassword = caesarCipher(props.password, 12, true);
 
   return (
-    <div className="my-8 mb-10">
+    <div className="my-8 mb-22">
       <div className="w-full flex justify-between">
         <Tooltip>
           <TooltipTrigger>
