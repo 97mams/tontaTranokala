@@ -130,3 +130,16 @@ export const plateformeByGroupId = async (
   });
   return result;
 };
+
+export async function plateformDeleteAction(id: number) {
+  const plateform = await prisma.plateform.delete({
+    where: { id: id },
+  });
+
+  if (!plateform) {
+    return { error: true, message: "id is not matching" };
+  }
+  revalidatePath("/");
+
+  return { success: true, message: "delete successfully" };
+}
