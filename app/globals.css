@@ -110,7 +110,6 @@
   --sidebar-ring: oklch(0.646 0.222 41.116);
 }
 
-
 @layer base {
   * {
     @apply border-border outline-ring/50;
@@ -118,4 +117,14 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Optionnel : pour éviter que le titre soit caché derrière un header ou sidebar */
+.project-section {
+  scroll-margin-top: 8rem;
+  min-height: 60vh; /* pour bien voir le scroll */
 }
