@@ -14,13 +14,13 @@ type plateform = {
     title: string;
   };
 };
-export function Summary(props: { projects?: plateform[]; active: number }) {
+export function Summary(props: { projects?: plateform[] }) {
   if (!props.projects) {
-    return;
+    return null;
   }
 
   return (
-    <Card className="w-70 absolute right-8 top-70">
+    <Card className="w-72 absolute right-8 top-72">
       <CardContent>
         <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight mb-2">
           Résumé
@@ -31,28 +31,17 @@ export function Summary(props: { projects?: plateform[]; active: number }) {
         <h4 className="capitalize text-xl">
           {props.projects[0].GroupSite.title}
         </h4>
-        <ul>
+        <nav className="flex flex-col gap-2 pl-4 mt-2">
           {props.projects.map((project) => (
-            <li
+            <a
               key={project.id}
-              className={`
-                text-sm ml-3 mb-2 capitalize
-              `}
-              onClick={() =>
-                document
-                  .getElementById(project.name + project.id)
-                  ?.scrollIntoView({ behavior: "smooth" })
-              }
+              href={"#project-" + project.id}
+              className="cursor-pointer hover:underline"
             >
-              <a
-                href={"#" + project.name + project.id}
-                className={props.active === project.id ? "underline" : ""}
-              >
-                {project.name}
-              </a>
-            </li>
+              {project.name}
+            </a>
           ))}
-        </ul>
+        </nav>
       </CardContent>
     </Card>
   );
