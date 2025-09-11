@@ -20,8 +20,8 @@ export default async function Page({ params }: PlateformParams) {
   });
 
   return (
-    <div className="w-full h-[calc(100vh-7rem)] overflow-scroll">
-      <h1 className="scroll-m-20 uppercase text-4xl font-extrabold tracking-tight text-balance">
+    <div className="w-full h-[calc(100vh-7rem)] overflow-auto">
+      <h1 className="uppercase text-4xl font-extrabold tracking-tight text-balance">
         {newParams.title}
       </h1>
       {plateforms.length !== 0 ? (
