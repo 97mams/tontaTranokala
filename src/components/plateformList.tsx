@@ -28,16 +28,22 @@ export default function PlateformList(props: {
         <div className="flex flex-col gap-2">
           <div>
             {props.data?.map((plateform) => (
-              <CardListPlateform
+              <div
                 key={plateform.id}
-                id={plateform.id}
-                name={plateform.name}
-                email={plateform.email}
-                password={plateform.passWord}
-                description={plateform.description}
-                url={plateform?.url ? plateform.url : ""}
-                type={plateform.GroupSite.type}
-              />
+                id={"project-" + plateform.id}
+                className="project-section"
+              >
+                <CardListPlateform
+                  key={plateform.id}
+                  id={plateform.id}
+                  name={plateform.name}
+                  email={plateform.email}
+                  password={plateform.passWord}
+                  description={plateform.description}
+                  url={plateform?.url ? plateform.url : ""}
+                  type={plateform.GroupSite.type}
+                />
+              </div>
             ))}
           </div>
           {props.data ? (
@@ -47,7 +53,7 @@ export default function PlateformList(props: {
           )}
         </div>
       </div>
-      {props.data ? <Summary projects={props.data} active={1} /> : ""}
+      {props.data ? <Summary projects={props.data} /> : ""}
     </div>
   );
 }
