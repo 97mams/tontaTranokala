@@ -5,9 +5,11 @@ import { caesarCipher } from "@/lib/utils";
 import { Check, Copy, Eye, EyeOff } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
+import { Element } from "react-scroll";
 import { PlateformButtonAction } from "./plateformButtonAction";
 import { Button } from "./ui/button";
 import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
+import { Summary } from "./summary";
 
 export function CardListPlateform(props: {
   id: number;
@@ -29,7 +31,7 @@ export function CardListPlateform(props: {
   const formatPassword = caesarCipher(props.password, 12, true);
 
   return (
-    <div className="my-8 mb-22">
+    <Element name={props.name + props.id} className="my-8 mb-22">
       <div className="w-full flex justify-between">
         <Tooltip>
           <TooltipTrigger>
@@ -116,6 +118,6 @@ export function CardListPlateform(props: {
           </div>
         </div>
       </div>
-    </div>
+    </Element>
   );
 }
