@@ -3,6 +3,7 @@
 import { CardListPlateform } from "@/components/cardListPlateform";
 import { PlateformForm } from "@/components/plateformForm";
 import { Summary } from "@/components/summary";
+import { InView } from "./ui/in-view";
 
 type plateform = {
   id: number;
@@ -28,22 +29,32 @@ export default function PlateformList(props: {
         <div className="flex flex-col gap-2">
           <div>
             {props.data?.map((plateform) => (
-              <div
+              <InView
                 key={plateform.id}
-                id={"project-" + plateform.id}
-                className="project-section"
+                variants={{
+                  hidden: { opacity: 0, y: 100, filter: "blur(4px)" },
+                  visible: { opacity: 1, y: 0, filter: "blur(0px)" },
+                }}
+                viewOptions={{ margin: "0px 0px -200px 0px" }}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
               >
-                <CardListPlateform
+                <div
                   key={plateform.id}
-                  id={plateform.id}
-                  name={plateform.name}
-                  email={plateform.email}
-                  password={plateform.passWord}
-                  description={plateform.description}
-                  url={plateform?.url ? plateform.url : ""}
-                  type={plateform.GroupSite.type}
-                />
-              </div>
+                  id={"project-" + plateform.id}
+                  className="project-section"
+                >
+                  <CardListPlateform
+                    key={plateform.id}
+                    id={plateform.id}
+                    name={plateform.name}
+                    email={plateform.email}
+                    password={plateform.passWord}
+                    description={plateform.description}
+                    url={plateform?.url ? plateform.url : ""}
+                    type={plateform.GroupSite.type}
+                  />
+                </div>
+              </InView>
             ))}
           </div>
           {props.data ? (
