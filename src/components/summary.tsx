@@ -31,17 +31,18 @@ export function Summary(props: { projects?: plateform[] }) {
         <h4 className="capitalize text-xl">
           {props.projects[0].GroupSite.title}
         </h4>
-        <nav className="flex flex-col gap-2 pl-4 mt-2">
+        <ul className="flex flex-col gap-2 pl-4 mt-2">
           {props.projects.map((project) => (
-            <a
-              key={project.id}
-              href={"#project-" + project.id}
-              className="cursor-pointer hover:underline"
-            >
-              {project.name}
-            </a>
+            <li className="list-decimal" key={project.id}>
+              <a
+                href={"#project-" + project.id}
+                className="cursor-pointer hover:underline"
+              >
+                {project.name}
+              </a>
+            </li>
           ))}
-        </nav>
+        </ul>
       </CardContent>
     </Card>
   );
