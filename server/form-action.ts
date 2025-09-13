@@ -83,13 +83,13 @@ export async function formSiteAction(formData: FormData) {
 
 export async function groupSiteDeleteAction(formData: FormData) {
   const id: number = Number(formData.get("id"));
-  const groupSite = await prisma.groupSite.delete({ where: { id: id } });
+  const groupSite = await prisma.groupSite.deleteMany({ where: { id: id } });
   console.log(groupSite);
   if (!group) {
     return { error: true, message: "id is not matching" };
   }
 
-  revalidatePath("/");
+  revalidatePath("/", "page");
 
   return { success: true, message: "delete successfully" };
 }
