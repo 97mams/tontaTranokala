@@ -2,7 +2,6 @@ import { CardListSite } from "@/components/cardListSite";
 import { SiteForm } from "@/components/siteForm";
 import { prisma } from "@/lib/prisma";
 import { castToString, stringToObject } from "@/lib/urlHelper";
-import { updateGroupSiteVisits } from "../../../server/group-actions";
 
 export default async function Page(props: {
   params: Promise<{ siteName: string }>;
@@ -25,9 +24,12 @@ export default async function Page(props: {
     },
   });
 
-  console.log("ito: ", sitesByGroupId.length);
+  console.log("sitesByGroupId: ", sitesByGroupId.length);
 
-  await updateGroupSiteVisits(groupSiteId);
+  if (sitesByGroupId.length > 0) {
+    console.log("update visit");
+    // await updateGroupSiteVisits(groupSiteId);
+  }
 
   const EmptyData = () => {
     return (
