@@ -12,12 +12,15 @@ import {
   SidebarGroupLabel,
   SidebarHeader,
 } from "./ui/sidebar";
+import Image from "next/image";
 
 export function AppSidebar() {
   return (
     <Sidebar variant="inset">
       <SidebarHeader>
-        <Link href={"/"}>Tranokalako</Link>
+        <Link href={"/"}>
+          <Image width={30} height={30} alt="logo" src={"/tranokala.png"}/>
+        </Link>
       </SidebarHeader>
       <SidebarContent>
         <Collapsible defaultOpen className="group/collapsible">
