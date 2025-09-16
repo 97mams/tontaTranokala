@@ -12,19 +12,19 @@ export default function RootLayout({
   return (
     <ThemeProvider attribute="class" defaultTheme="treu" enableSystem={true}>
       <div className="w-full h-screen">
-        <div className="border-b-2 py-2 border-accent grid grid-cols-2">
+        <header className="border-b-2 py-2 border-accent grid grid-cols-2">
           <div className="flex items-center pl-60 ">
             <Link href={"/"}>
               <Image width={30} height={30} alt="logo" src={"/tranokala.png"} />
             </Link>
           </div>
           <div className="flex justify-end gap-1  pr-60">
-            <Link href={"/about"}>
+            <Link href={"/auth/signUp"}>
               <Button variant={"secondary"}>S'inscrire</Button>
             </Link>
             <ModeToggle />
           </div>
-        </div>
+        </header>
         {children}
       </div>
     </ThemeProvider>
