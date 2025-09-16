@@ -1,7 +1,7 @@
-import type { NextConfig } from 'next'
- 
+import type { NextConfig } from "next";
+
 const nextConfig: NextConfig = {
-  /* config options here */
-}
- 
-export default nextConfig
+  allowedDevOrigins: ["local-origin.dev", "*.local-oringin.dev"],
+};
+
+export default nextConfig;

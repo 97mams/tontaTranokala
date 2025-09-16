@@ -14,38 +14,97 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-
 model GroupSite {
-  id        Int      @id @default(autoincrement())
-  title     String   @unique
-  visits    Int      @default(0)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  type     String    @default("site")
-  siteId    site[]
+  id          Int         @id @default(autoincrement())
+  title       String      @unique
+  visits      Int         @default(0)
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  type        String      @default("site")
+  siteId      site[]
   palteformId plateform[]
 }
 
 model site {
-  id      Int     @id @default(autoincrement())
-  name    String
-  description String  @db.LongText
-  url     String?  @unique
+  id          Int       @id @default(autoincrement())
+  name        String
+  description String    @db.LongText
+  url         String?   @unique
   GroupSiteId Int
-  GroupSite GroupSite @relation(fields: [GroupSiteId], references: [id], onDelete: Cascade)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  GroupSite   GroupSite @relation(fields: [GroupSiteId], references: [id], onDelete: Cascade)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
 }
 
 model plateform {
-  id          Int     @id @default(autoincrement())
-  name       String
-  email     String
-  passWord   String
-  description String  @db.LongText
-  url        String?  @unique
+  id          Int       @id @default(autoincrement())
+  name        String
+  email       String
+  passWord    String
+  description String    @db.LongText
+  url         String?   @unique
   GroupSiteId Int
-  GroupSite  GroupSite @relation(fields: [GroupSiteId], references: [id], onDelete: Cascade)
+  GroupSite   GroupSite @relation(fields: [GroupSiteId], references: [id], onDelete: Cascade)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model User {
+  id            String    @id
+  name          String    @db.Text
+  email         String
+  emailVerified Boolean   @default(false)
+  image         String?   @db.Text
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @default(now()) @updatedAt
+  sessions      Session[]
+  accounts      Account[]
+
+  @@unique([email])
+  @@map("user")
+}
+
+model Session {
+  id        String   @id
+  expiresAt DateTime
+  token     String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  ipAddress String?  @db.Text
+  userAgent String?  @db.Text
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([token])
+  @@map("session")
+}
+
+model Account {
+  id                    String    @id
+  accountId             String    @db.Text
+  providerId            String    @db.Text
+  userId                String
+  user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  accessToken           String?   @db.Text
+  refreshToken          String?   @db.Text
+  idToken               String?   @db.Text
+  accessTokenExpiresAt  DateTime?
+  refreshTokenExpiresAt DateTime?
+  scope                 String?   @db.Text
+  password              String?   @db.Text
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+
+  @@map("account")
+}
+
+model Verification {
+  id         String   @id
+  identifier String   @db.Text
+  value      String   @db.Text
+  expiresAt  DateTime
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @default(now()) @updatedAt
+
+  @@map("verification")
 }
