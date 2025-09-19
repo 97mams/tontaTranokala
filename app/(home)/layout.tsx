@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button";
+import { SiginButton } from "@/components/sigInButtonAction";
 import { ThemeProvider } from "@/components/ui/theme-provider";
 import { ModeToggle } from "@/components/ui/theme-toggle";
 import Image from "next/image";
@@ -19,9 +19,7 @@ export default function RootLayout({
             </Link>
           </div>
           <div className="flex justify-end gap-1  pr-60">
-            <Link href={"/auth/signUp"}>
-              <Button variant={"secondary"}>S'inscrire</Button>
-            </Link>
+            <SiginButton />
             <ModeToggle />
           </div>
         </header>
