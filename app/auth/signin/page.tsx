@@ -47,7 +47,7 @@ export default function SignInPage() {
       },
       {
         onSuccess: () => {
-          router.push("/auth");
+          router.push("/tranokala");
         },
         onError: (error) => {
           toast.error(error.error.message);
