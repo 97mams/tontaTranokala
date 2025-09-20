@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 
 import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
 import {
   Form,
   FormControl,
@@ -14,8 +15,12 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { signUp } from "@/lib/auth-client";
+import { CheckedState } from "@radix-ui/react-checkbox";
+import { Loader } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { toast } from "sonner";
 
 const signupSchema = z.object({
@@ -23,14 +28,14 @@ const signupSchema = z.object({
     .string()
     .min(2, { message: "Le nom doit comporter au moins 2 caractères." }),
   email: z.string().email({ message: "Adresse e-mail invalide." }),
-  password: z
-    .string()
-    .min(4, {
-      message: "Le mot de passe doit comporter au moins 6 caractères.",
-    }),
+  password: z.string().min(2, {
+    message: "Le mot de passe doit comporter au moins 6 caractères.",
+  }),
 });
 
 export function SignUpForm() {
+  const [showPassword, setShowPassword] = useState<CheckedState>(false);
+  const [isPending, setIsPending] = useState<boolean>(false);
   const router = useRouter();
 
   const form = useForm<z.infer<typeof signupSchema>>({
@@ -60,9 +65,16 @@ export function SignUpForm() {
       }
     );
   }
+
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+      <form
+        onSubmit={() => {
+          form.handleSubmit(onSubmit);
+          setIsPending(true);
+        }}
+        className="space-y-8"
+      >
         <FormField
           control={form.control}
           name="name"
@@ -70,7 +82,7 @@ export function SignUpForm() {
             <FormItem>
               <FormLabel>Nom</FormLabel>
               <FormControl>
-                <Input {...field} />
+                <Input {...field} placeholder="votre nom" type="text" />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -84,7 +96,11 @@ export function SignUpForm() {
             <FormItem>
               <FormLabel>Email</FormLabel>
               <FormControl>
-                <Input {...field} type="email" />
+                <Input
+                  {...field}
+                  placeholder="votre adresse email"
+                  type="email"
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -96,16 +112,32 @@ export function SignUpForm() {
           name="password"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Password</FormLabel>
+              <FormLabel>Mot de passe</FormLabel>
               <FormControl>
-                <Input {...field} type="Mot de passe" />
+                <Input
+                  placeholder="********"
+                  type={showPassword ? "text" : "password"}
+                  {...field}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
 
-        <Button type="submit">S'inscrire</Button>
+        <div className="flex flex-row items-center space-x-3 space-y-0">
+          <Checkbox
+            checked={showPassword}
+            onCheckedChange={(checked) => {
+              setShowPassword(checked);
+            }}
+          />
+          <Label>Voire le mot de passe</Label>
+        </div>
+
+        <Button type="submit">
+          {isPending ? <Loader className="animate-spin" /> : "S'inscrire"}
+        </Button>
       </form>
     </Form>
   );
