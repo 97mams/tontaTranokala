@@ -19,11 +19,15 @@ import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 
 const signupSchema = z.object({
-  name: z.string().min(2, { message: "Name should be at least 2 characters." }),
-  email: z.string().email({ message: "Invalid email address." }),
+  name: z
+    .string()
+    .min(2, { message: "Le nom doit comporter au moins 2 caractères." }),
+  email: z.string().email({ message: "Adresse e-mail invalide." }),
   password: z
     .string()
-    .min(4, { message: "Password should be at least 6 characters." }),
+    .min(4, {
+      message: "Le mot de passe doit comporter au moins 6 caractères.",
+    }),
 });
 
 export function SignUpForm() {

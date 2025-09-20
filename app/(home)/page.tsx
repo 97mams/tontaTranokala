@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Page() {
   return (
     <section className="relative text-white min-h-[80vh] flex items-center justify-center">
@@ -14,9 +16,12 @@ export default function Page() {
         </p>
 
         <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
-          <button className="px-6 py-3 bg-white text-indigo-600 font-semibold rounded-2xl shadow-lg hover:scale-105 transition">
+          <Link
+            href={"/auth/signUp"}
+            className="px-6 py-3 bg-white text-indigo-600 font-semibold rounded-2xl shadow-lg hover:scale-105 transition"
+          >
             Commencer
-          </button>
+          </Link>
           <a
             href="/about"
             className="px-6 py-3 bg-indigo-500 border border-white/40 font-semibold rounded-2xl shadow-lg hover:scale-105 transition"
