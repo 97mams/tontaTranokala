@@ -10,10 +10,13 @@ import {
 } from "@/components/ui/dialog";
 import { signIn } from "@/lib/auth-client";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { CheckedState } from "@radix-ui/react-checkbox";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import z from "zod";
+import { Checkbox } from "./ui/checkbox";
 import {
   Form,
   FormControl,
@@ -23,6 +26,7 @@ import {
   FormMessage,
 } from "./ui/form";
 import { Input } from "./ui/input";
+import { Label } from "./ui/label";
 
 const signupSchema = z.object({
   email: z.string().email({ message: "Adresse e-mail invalide." }),
@@ -32,6 +36,7 @@ const signupSchema = z.object({
 });
 
 export const SignInButtonAction = () => {
+  const [showPassword, setShowPassword] = useState<CheckedState>(false);
   const router = useRouter();
   const form = useForm<z.infer<typeof signupSchema>>({
     resolver: zodResolver(signupSchema),
@@ -90,14 +95,28 @@ export const SignInButtonAction = () => {
               name="password"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Password</FormLabel>
+                  <FormLabel>Mot de passe</FormLabel>
                   <FormControl>
-                    <Input placeholder="********" type="password" {...field} />
+                    <Input
+                      placeholder="********"
+                      type={showPassword ? "text" : "password"}
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
+
+            <div className="flex flex-row items-center space-x-3 space-y-0">
+              <Checkbox
+                checked={showPassword}
+                onCheckedChange={(checked) => {
+                  setShowPassword(checked);
+                }}
+              />
+              <Label>Voire le mot de passe</Label>
+            </div>
             <Button variant="default" className="w-full">
               Connecter
             </Button>

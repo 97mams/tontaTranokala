@@ -12,8 +12,10 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { signIn } from "@/lib/auth-client";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { CheckedState } from "@radix-ui/react-checkbox";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -27,7 +29,8 @@ const signupSchema = z.object({
   }),
 });
 export default function SignInPage() {
-  const [showPassword, setShowPassword] = useState(false);
+  const [showPassword, setShowPassword] = useState<CheckedState>(false);
+  console.log(showPassword);
   const router = useRouter();
   const form = useForm<z.infer<typeof signupSchema>>({
     resolver: zodResolver(signupSchema),
@@ -83,7 +86,7 @@ export default function SignInPage() {
                   name="password"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Password</FormLabel>
+                      <FormLabel>Mot de passe</FormLabel>
                       <FormControl>
                         <Input
                           placeholder="********"
@@ -95,6 +98,17 @@ export default function SignInPage() {
                     </FormItem>
                   )}
                 />
+
+                <div className="flex flex-row items-center space-x-3 space-y-0">
+                  <Checkbox
+                    checked={showPassword}
+                    onCheckedChange={(checked) => {
+                      setShowPassword(checked);
+                    }}
+                  />
+                  <Label>Voire le mot de passe</Label>
+                </div>
+
                 <Button variant="default" className="w-full">
                   Connecter
                 </Button>
