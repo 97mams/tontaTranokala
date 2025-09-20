@@ -1,5 +1,6 @@
 import { Toaster } from "sonner";
 import "./globals.css";
+import { ThemeProvider } from "@/components/ui/theme-provider";
 
 export default function RootLayout({
   children,
@@ -9,8 +10,14 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body>
-        {children}
-        <Toaster />
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="treu"
+          enableSystem={true}
+        >
+          {children}
+          <Toaster />
+        </ThemeProvider>
       </body>
     </html>
   );
