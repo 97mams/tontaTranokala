@@ -73,6 +73,7 @@ export function SignUpForm() {
           form.handleSubmit(onSubmit);
           setIsPending(true);
         }}
+        method="post"
         className="space-y-8"
       >
         <FormField
