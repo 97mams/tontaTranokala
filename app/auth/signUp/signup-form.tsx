@@ -27,8 +27,8 @@ const signupSchema = z.object({
     .string()
     .min(2, { message: "Le nom doit comporter au moins 2 caractères." }),
   email: z.string().email({ message: "Adresse e-mail invalide." }),
-  password: z.string().min(4, {
-    message: "Le mot de passe doit comporter au moins 4 caractères.",
+  password: z.string().min(6, {
+    message: "Le mot de passe doit comporter au moins 6 caractères.",
   }),
 });
 
@@ -46,7 +46,6 @@ export function SignUpForm() {
     },
   });
 
-  // 2. Define a submit handler.
   async function onSubmit(values: z.infer<typeof signupSchema>) {
     setIsPending(true);
     await signUp.email(
@@ -57,7 +56,7 @@ export function SignUpForm() {
       },
       {
         onSuccess: () => {
-          router.push("/auth");
+          router.push("/tranokala");
         },
         onError: (error) => {
           toast.error(error.error.message);
