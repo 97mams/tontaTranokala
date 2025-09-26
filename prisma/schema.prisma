@@ -23,6 +23,9 @@ model GroupSite {
   type        String      @default("site")
   siteId      site[]
   palteformId plateform[]
+  userId      String
+  user        User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
 }
 
 model site {
@@ -59,6 +62,7 @@ model User {
   updatedAt     DateTime  @default(now()) @updatedAt
   sessions      Session[]
   accounts      Account[]
+  groupeSite    GroupSite[]
 
   @@unique([email])
   @@map("user")
