@@ -1,6 +1,8 @@
+import Link from "next/link";
+
 export default function Page() {
   return (
-    <section className="min-h-screen bg-background flex items-center justify-center px-6 py-16">
+    <section className="min-h-screen bg-background flex flex-col items-center justify-center px-6 py-16 space-y-24">
       <div className="max-w-4xl mx-auto text-center">
         <h1 className="scroll-m-20 text-center text-4xl font-extrabold tracking-tight text-balance text-primary">
           À propos de notre projet
@@ -54,6 +56,36 @@ export default function Page() {
             <span className="font-semibold"> garder le contrôle</span> sur leurs
             informations.
           </p>
+        </div>
+      </div>
+
+      {/* Section Pricing */}
+      <div className="max-w-4xl mx-auto text-center">
+        <h2 className="scroll-m-20 text-3xl font-extrabold tracking-tight text-primary mb-12">
+          Nos prix
+        </h2>
+        <div className="">
+          {/* Carte Gratuit */}
+          <div className="p-6 bg-card rounded-2xl shadow-lg hover:shadow-xl transition">
+            <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight">
+              Gratuit
+            </h3>
+            <p className="leading-7 [&:not(:first-child)]:mt-6">
+              Pour tester notre service sans engagement
+            </p>
+            <p className="scroll-m-20 text-3xl font-bold mt-4">0€ / mois</p>
+            <ul className="text-gray-600 mb-6 space-y-1 mt-4">
+              <li>✔ 3 groupes Site</li>
+              <li>✔ 3 groupes Plateforme</li>
+              <li>✔ 6 enregistrements par groupe</li>
+            </ul>
+            <Link
+              href={"/auth/signUp"}
+              className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition"
+            >
+              Commencer
+            </Link>
+          </div>
         </div>
       </div>
     </section>
