@@ -1,5 +1,6 @@
 "use server";
 
+import { getUser } from "@/lib/auth-server";
 import { prisma } from "@/lib/prisma";
 import { UrlHelper } from "@/lib/urlHelper";
 import { revalidatePath } from "next/cache";
@@ -19,7 +20,7 @@ const group = z.object({
 export async function formGroupAction(formData: FormData) {
   const title = formData.get("title") as string;
   const inputType = type(formData.get("type") as string);
-
+  const user = await getUser();
   const input = group.safeParse({ title });
   if (!input.success) {
     return { error: true, message: input.error };
@@ -29,6 +30,7 @@ export async function formGroupAction(formData: FormData) {
     data: {
       title: input.data.title,
       type: inputType,
+      userId: String(user?.id),
     },
   });
 
@@ -36,7 +38,7 @@ export async function formGroupAction(formData: FormData) {
     return { error: true, message: "data not found" };
   }
 
-  revalidatePath("/");
+  revalidatePath("/tranokala");
 
   return {
     success: true,
@@ -89,7 +91,7 @@ export async function groupSiteDeleteAction(formData: FormData) {
     return { error: true, message: "id is not matching" };
   }
 
-  revalidatePath("/", "page");
+  revalidatePath("/tranokala", "page");
 
   return { success: true, message: "delete successfully" };
 }
