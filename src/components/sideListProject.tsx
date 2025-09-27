@@ -23,7 +23,7 @@ export async function TopProjects() {
         {projectIsVisited.map((project) => (
           <li key={project.id}>
             <a
-              href={`/site/${project.id}-${project.title}`}
+              href={`/tranokala/site/${project.id}-${project.title}`}
               className="hover:underline"
             >
               {project.title}

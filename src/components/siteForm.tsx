@@ -46,7 +46,7 @@ export function SiteForm(props: {
         }
         if (response.success) {
           toast.success("Mise à jour réussie.");
-          redirect("/site/" + params.siteName);
+          redirect("/tranokala/site/" + params.siteName);
         }
       });
     } else {
@@ -56,14 +56,13 @@ export function SiteForm(props: {
         }
         if (r.success) {
           toast.success("Ajout réussir..");
-          redirect("/site/" + params.siteName);
+          redirect("/tranokala/site/" + params.siteName);
         }
       });
     }
   };
 
   const Labeled: React.FC<Props> = ({ md = false }) => {
-    console.log("lele", md);
     return <span>{md ? "Ajout site" : <Plus />}</span>;
   };
 

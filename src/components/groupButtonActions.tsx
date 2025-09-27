@@ -23,14 +23,13 @@ export function ButtonAction(props: { id: number }) {
       .then((respose) => {
         if (respose.success) {
           toast.success("Suppression réussir...");
-          router.push("/");
+          router.push("/tranokala");
         }
         if (respose.error) {
           toast.error("Echec de suppression...");
         }
       })
       .catch((error) => {
-        console.log(error);
         throw new Error(error);
       });
   };

@@ -22,12 +22,11 @@ export function GroupeSiteForm() {
   const handlerSubmit = (formatData: FormData) => {
     formGroupAction(formatData).then((respose) => {
       if (respose.error) {
-        console.error(respose.message);
         toast.error("vérifier le champs ..");
       }
       if (respose.success) {
         toast.success("Ajout réussir..");
-        redirect("/" + respose.data.type + "/" + respose.data.params);
+        redirect("/tranokala/" + respose.data.type + "/" + respose.data.params);
       }
     });
   };

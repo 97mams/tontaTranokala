@@ -19,7 +19,10 @@ export async function GroupeList({ type }: { type: "site" | "plateform" }) {
         >
           <Link
             href={
-              "/" + group.type + "/" + UrlHelper(`${group.id}-${group.title}`)
+              "/tranokala/" +
+              group.type +
+              "/" +
+              UrlHelper(`${group.id}-${group.title}`)
             }
             className="  w-full text-sm p-3"
           >
