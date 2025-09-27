@@ -24,13 +24,6 @@ export default async function Page(props: {
     },
   });
 
-  console.log("sitesByGroupId: ", sitesByGroupId.length);
-
-  if (sitesByGroupId.length > 0) {
-    console.log("update visit");
-    // await updateGroupSiteVisits(groupSiteId);
-  }
-
   const EmptyData = () => {
     return (
       <div>
