@@ -34,7 +34,7 @@ export function GroupeSiteForm() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="outline">Nouvelle groupe</Button>
+        <Button variant="outline">Nouveau groupe</Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
