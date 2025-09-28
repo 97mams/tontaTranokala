@@ -1,4 +1,5 @@
 import { AppSidebar } from "@/components/app-sidebar";
+import { Counter } from "@/components/counter";
 import { TopProjects } from "@/components/sideListProject";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { ThemeProvider } from "@/components/ui/theme-provider";
@@ -25,6 +26,7 @@ export default async function RootLayout({
           <div className="w-full sticky z-40 flex justify-between py-2 px-2 ">
             <SidebarTrigger />
             <div className="flex gap-1">
+              <Counter />
               <Profil user={user} />
               <ModeToggle />
             </div>
