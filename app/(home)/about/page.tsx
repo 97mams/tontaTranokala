@@ -70,7 +70,7 @@ export default function Page() {
             <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight">
               Gratuit
             </h3>
-            <p className="leading-7 [&:not(:first-child)]:mt-6">
+            <p className="leading-7 [pnp&:not(:first-child)]:mt-6">
               Pour tester notre service sans engagement
             </p>
             <p className="scroll-m-20 text-3xl font-bold mt-4">0€ / mois</p>
