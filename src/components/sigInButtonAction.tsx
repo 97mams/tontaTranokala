@@ -63,7 +63,9 @@ export const SignInButtonAction = () => {
         },
       }
     );
+    setIsPending(false);
   };
+  console.log(isPending);
   return (
     <Dialog>
       <DialogTrigger asChild>
