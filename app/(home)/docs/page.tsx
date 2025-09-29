@@ -1,25 +1,23 @@
 "use client";
 
+import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 
 export default function DocsPage() {
   return (
-    <div className="flex flex-col items-center p-6 md:p-12 text-gray-200">
+    <div className="flex flex-col items-center p-6 md:p-12">
       <div className="max-w-4xl w-full">
-        <h1 className="text-3xl font-bold mb-6 text-primary">
-          Antotan-tranokala
-        </h1>
-
+        <Badge variant={"outline"}>Commencer</Badge>
         {/* Introduction */}
         <section className="mb-6">
-          <h2 className="text-xl font-semibold text-primary">
-            1. Introduction
-          </h2>
-          <p className="mt-2">
+          <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight text-balance">
+            Antotan-tranokala
+          </h1>
+          <p className="leading-7 [&:not(:first-child)]:mt-6">
             Bienvenue sur la plateforme d’enregistrement de sites et de
             plateformes. Cette application vous permet de :
           </p>
-          <ul className="list-disc list-inside mt-2 space-y-1">
+          <ul className="my-6 ml-6 list-disc [&>li]:mt-2">
             <li>
               Créer des <b>groupes</b> (Sites ou Plateformes)
             </li>
@@ -34,33 +32,29 @@ export default function DocsPage() {
             </li>
           </ul>
         </section>
-
-        <Separator className="my-4 bg-accent" />
-
+        <Separator />
         {/* Inscription */}
         <section className="mb-6">
-          <h2 className="text-xl font-semibold text-primary">
-            2. Inscription et Connexion
+          <h2 className=" scroll-m-20 pb-2 text-3xl font-semibold tracking-tight first:mt-0">
+            1. Inscription et Connexion
           </h2>
-          <p className="mt-2">
+          <p className="leading-7 [&:not(:first-child)]:mt-6">
             Cliquez sur <b>S’inscrire</b> pour créer un compte, puis
             connectez-vous avec vos identifiants.
           </p>
         </section>
 
-        <Separator className="my-4 bg-accent" />
-
         {/* Dashboard */}
         <section className="mb-6">
-          <h2 className="text-xl font-semibold text-primary">
-            3. Tableau de bord
+          <h2 className=" scroll-m-20 pb-2 text-3xl font-semibold tracking-tight first:mt-0">
+            2. Tableau de bord
           </h2>
-          <p className="mt-2">
+          <p className="leading-7 [&:not(:first-child)]:mt-6">
             Après connexion, vous arrivez sur le <b>dashboard</b> :
           </p>
           <ul className="list-disc list-inside mt-2 space-y-1">
             <li>
-              Centre : bouton <b>Nouvelle groupe</b>
+              Centre : bouton <b> Nouveau groupe</b>
             </li>
             <li>
               Gauche : vos <b>Groupes Sites</b> et <b>Groupes Plateformes</b>
@@ -71,41 +65,37 @@ export default function DocsPage() {
           </ul>
         </section>
 
-        <Separator className="my-4 bg-accent" />
-
         {/* Groupes */}
         <section className="mb-6">
-          <h2 className="text-xl font-semibold text-primary">
-            4. Gestion des Groupes
+          <h2 className=" scroll-m-20 pb-2 text-3xl font-semibold tracking-tight first:mt-0">
+            3. Gestion des Groupes
           </h2>
-          <p className="mt-2">
-            Cliquez sur <b>Nouvelle groupe</b> pour créer un groupe (ex. “Sites
+          <p className="leading-7 [&:not(:first-child)]:mt-6">
+            Cliquez sur <b> Nouveau groupe</b> pour créer un groupe (ex. “Sites
             Perso” ou “Plateformes Pro”). Supprimez un groupe via la croix ❌.
           </p>
         </section>
 
-        <Separator className="my-4 bg-accent" />
-
         {/* Projets */}
         <section className="mb-6">
-          <h2 className="text-xl font-semibold text-primary">
-            5. Ajout de Projets
+          <h2 className=" scroll-m-20  pb-2 text-3xl font-semibold tracking-tight first:mt-0">
+            4. Ajout de Projets
           </h2>
-          <p className="mt-2">
+          <p className="leading-7 [&:not(:first-child)]:mt-6">
             Sélectionnez un groupe existant, puis cliquez sur <b>Ajouter (+)</b>{" "}
             pour créer un projet. Donnez un <b>nom</b> et une <b>description</b>
             .
           </p>
         </section>
 
-        <Separator className="my-4 bg-accent" />
-
         {/* Identifiants */}
         <section className="mb-6">
-          <h2 className="text-xl font-semibold text-primary">
-            6. Gestion des Identifiants
+          <h2 className=" scroll-m-20  pb-2 text-3xl font-semibold tracking-tight first:mt-0">
+            5. Gestion des Identifiants
           </h2>
-          <p className="mt-2">Chaque projet peut contenir vos accès :</p>
+          <p className="leading-7 [&:not(:first-child)]:mt-6">
+            Chaque projet peut contenir vos accès :
+          </p>
           <ul className="list-disc list-inside mt-2 space-y-1">
             <li>
               <b>Adresse mail associée</b> (identifiant)
@@ -116,26 +106,24 @@ export default function DocsPage() {
           </ul>
         </section>
 
-        <Separator className="my-4 bg-accent" />
-
         {/* Résumé */}
         <section className="mb-6">
-          <h2 className="text-xl font-semibold text-primary">
-            7. Résumé et Navigation
+          <h2 className=" scroll-m-20  pb-2 text-3xl font-semibold tracking-tight first:mt-0">
+            6. Résumé et Navigation
           </h2>
-          <p className="mt-2">
+          <p className="leading-7 [&:not(:first-child)]:mt-6">
             Chaque groupe affiche un <b>Résumé</b> des projets. Vous pouvez
             cliquer pour voir les détails, ou utiliser <b>Top projets</b> pour
             accéder rapidement à vos favoris.
           </p>
         </section>
 
-        <Separator className="my-4 bg-accent" />
-
         {/* Mode sombre */}
         <section>
-          <h2 className="text-xl font-semibold text-primary">8. Mode Sombre</h2>
-          <p className="mt-2">
+          <h2 className=" scroll-m-20 pb-2 text-3xl font-semibold tracking-tight first:mt-0">
+            7. Mode Sombre
+          </h2>
+          <p className="leading-7 [&:not(:first-child)]:mt-6">
             Activez ou désactivez le <b>mode sombre</b> grâce au bouton en haut
             à droite.
           </p>
