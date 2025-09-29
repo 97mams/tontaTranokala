@@ -1,10 +1,13 @@
+import { getUser } from "@/lib/auth-server";
 import { prisma } from "@/lib/prisma";
 import { UrlHelper } from "@/lib/urlHelper";
 import Link from "next/link";
 import { ButtonAction } from "./groupButtonActions";
 
 export async function GroupeList({ type }: { type: "site" | "plateform" }) {
+  const user = await getUser();
   const groups = await prisma.groupSite.findMany({
+    where: { userId: user?.id },
     select: { id: true, title: true, type: true },
   });
 
