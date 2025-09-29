@@ -1,4 +1,6 @@
+import { Footer } from "@/components/footer";
 import { SignInButtonAction } from "@/components/sigInButtonAction";
+import { Button } from "@/components/ui/button";
 import { ModeToggle } from "@/components/ui/theme-toggle";
 import { getUser } from "@/lib/auth-server";
 import Image from "next/image";
@@ -23,11 +25,15 @@ export default async function RootLayout({
           </Link>
         </div>
         <div className="flex justify-end gap-1  pr-60">
+          <Link href={"/docs"}>
+            <Button variant={"outline"}>Documentation</Button>
+          </Link>
           <SignInButtonAction />
           <ModeToggle />
         </div>
       </header>
       {children}
+      <Footer />
     </div>
   );
 }
