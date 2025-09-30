@@ -3,14 +3,14 @@
 import { getUser } from "@/lib/auth-server";
 import { prisma } from "@/lib/prisma";
 
-export async function limiteData(limite: number): Promise<number> {
+export async function limiteData(limite: number): Promise<boolean> {
   const userGroup = await countGroupByUser();
   let result: number = 0;
   if (userGroup !== undefined) {
     result = limite - userGroup;
   }
 
-  return result;
+  return result === 0 ? true : false;
 }
 
 export async function countGroupByUser(): Promise<number | undefined> {
