@@ -5,6 +5,7 @@ import { prisma } from "@/lib/prisma";
 import { UrlHelper } from "@/lib/urlHelper";
 import { revalidatePath } from "next/cache";
 import { z } from "zod";
+import { limiteData } from "./limiteData";
 
 const siteSchema = z.object({
   name: z.string().min(1, "Title is required"),
@@ -21,6 +22,7 @@ export async function formGroupAction(formData: FormData) {
   const title = formData.get("title") as string;
   const inputType = type(formData.get("type") as string);
   const user = await getUser();
+  const limite = await limiteData(5);
   const input = group.safeParse({ title });
   if (!input.success) {
     return { error: true, message: input.error };
@@ -46,6 +48,7 @@ export async function formGroupAction(formData: FormData) {
     data: {
       params: UrlHelper(`${addSiteGroup.id}-${addSiteGroup.title}`),
       type: addSiteGroup.type,
+      limited: limite,
     },
   };
 }
