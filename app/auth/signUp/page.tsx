@@ -1,10 +1,16 @@
 import { Card, CardContent } from "@/components/ui/card";
+import Image from "next/image";
 import Link from "next/link";
 import { SignUpForm } from "./signup-form";
 
 export default function SignUpPage() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-gray-50 to-white p-6">
+    <div className="min-h-screen flex flex-col items-center gap-4 justify-center bg-gradient-to-b from-gray-50 to-white p-6">
+      <div className="w-full flex justify-start pl-30">
+        <Link href={"/"}>
+          <Image src={"/tranokala.png"} alt="logo" width={30} height={30} />
+        </Link>
+      </div>
       <Card className="rounded-2xl shadow-lg">
         <CardContent>
           {/* Left */}
