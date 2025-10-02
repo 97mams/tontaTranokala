@@ -16,6 +16,8 @@ import { Label } from "@/components/ui/label";
 import { signIn } from "@/lib/auth-client";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -58,7 +60,12 @@ export default function SignInPage() {
     );
   };
   return (
-    <div className="w-full h-screen flex justify-center items-center">
+    <div className="w-full h-screen flex  flex-col gap-24 items-center">
+      <div className="w-full flex justify-start mt-4 pl-30">
+        <Link href={"/"}>
+          <Image src={"/tranokala.png"} alt="logo" width={30} height={30} />
+        </Link>
+      </div>
       <Card className="w-xl">
         <CardHeader>
           <CardTitle>
