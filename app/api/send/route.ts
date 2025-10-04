@@ -1,6 +1,6 @@
-import { EmailTemplate } from "@/components/email-template";
 import { getUser } from "@/lib/auth-server";
 import { Resend } from "resend";
+import MagicLinkEmail from "../../../emails/magiv-link";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -11,7 +11,10 @@ export async function POST() {
       from: "totanTanokala <97mams@resend.dev>",
       to: [String(user?.email)],
       subject: "Hello world",
-      react: EmailTemplate({ firstName: "John" }),
+      react: MagicLinkEmail(
+        { magicLink: "localhost:3000" },
+        String(user?.name)
+      ),
     });
 
     if (error) {
