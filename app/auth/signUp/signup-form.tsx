@@ -56,6 +56,7 @@ export function SignUpForm() {
       },
       {
         onSuccess: () => {
+          fetch("http://localhost:3000/api/send", { method: "post" });
           router.push("/tranokala");
         },
         onError: (error) => {
