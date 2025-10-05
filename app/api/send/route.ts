@@ -9,8 +9,8 @@ export async function POST() {
   try {
     const { data, error } = await resend.emails.send({
       from: "totanTanokala <97mams@resend.dev>",
-      to: [String(user?.email)],
-      subject: "Hello world",
+      to: ["97mams@gmail.com"],
+      subject: "🚀 Bienvenue dans la communauté tontaTranokala",
       react: MagicLinkEmail(
         { magicLink: "localhost:3000" },
         String(user?.name)
