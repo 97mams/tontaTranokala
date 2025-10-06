@@ -91,7 +91,6 @@ export async function formSiteAction(formData: FormData) {
 export async function groupSiteDeleteAction(formData: FormData) {
   const id: number = Number(formData.get("id"));
   const groupSite = await prisma.groupSite.deleteMany({ where: { id: id } });
-  console.log(groupSite);
   if (!group) {
     return { error: true, message: "id is not matching" };
   }
@@ -103,7 +102,6 @@ export async function groupSiteDeleteAction(formData: FormData) {
 
 //set values of type
 const type = (input: string): string => {
-  console.log("input:", input);
   if (input === null) {
     return "site";
   }

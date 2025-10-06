@@ -38,6 +38,8 @@ export default async function Page(props: {
     );
   };
 
+  console.log(newParams.id);
+
   return (
     <div className="w-3xl flex flex-col gap-2">
       <h1 className="scroll-m-20 uppercase text-4xl font-extrabold tracking-tight text-balance">
@@ -65,7 +67,7 @@ export default async function Page(props: {
       </div>
       {sitesByGroupId.length !== 0 ? (
         <div className="flex gap-4 mt-8">
-          <SiteForm id={Number(newParams.title)} isButton={false} />
+          <SiteForm id={Number(newParams.id)} isButton={false} />
         </div>
       ) : (
         ""

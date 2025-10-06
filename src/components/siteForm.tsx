@@ -65,6 +65,7 @@ export function SiteForm(props: {
   const Labeled: React.FC<Props> = ({ md = false }) => {
     return <span>{md ? "Ajout site" : <Plus />}</span>;
   };
+  console.log("groupe id ito:", props.id);
 
   return (
     <Dialog>
@@ -92,12 +93,6 @@ export function SiteForm(props: {
         </DialogHeader>
         <form action={handlerSubmit}>
           <div className="grid gap-4 my-2">
-            <input
-              type="number"
-              name="id"
-              hidden
-              defaultValue={props.site?.id}
-            />
             <div className="grid gap-3">
               <Label htmlFor="siteName-input">Nom site</Label>
               <Input
