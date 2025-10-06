@@ -75,7 +75,9 @@ export async function formSiteAction(formData: FormData) {
       name: input.data.name,
       description: input.data.description,
       url: input.data.linkSite,
-      GroupSiteId: input.data.groupSiteId,
+      GroupSite: {
+        connect: { id: input.data.groupSiteId },
+      },
     },
   });
 
