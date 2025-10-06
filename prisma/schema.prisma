@@ -32,7 +32,7 @@ model site {
   id          Int       @id @default(autoincrement())
   name        String
   description String    @db.LongText
-  url         String?   @unique
+  url         String?
   GroupSiteId Int
   GroupSite   GroupSite @relation(fields: [GroupSiteId], references: [id], onDelete: Cascade)
   createdAt   DateTime  @default(now())
