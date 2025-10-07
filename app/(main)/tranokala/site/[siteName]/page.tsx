@@ -18,6 +18,7 @@ export default async function Page(props: {
       url: true,
       GroupSite: {
         select: {
+          id: true,
           type: true,
         },
       },
@@ -37,8 +38,6 @@ export default async function Page(props: {
       </div>
     );
   };
-
-  console.log(newParams.id);
 
   return (
     <div className="w-3xl flex flex-col gap-2">
