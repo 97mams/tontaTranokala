@@ -53,7 +53,6 @@ export function PlateformForm(props: {
     if (formData.get("id")) {
       updatePlateformAction(formData).then((response) => {
         if (response.error) {
-          console.error(response.message);
           toast.error("modification échouée");
         }
         if (response.success) {

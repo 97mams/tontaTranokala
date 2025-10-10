@@ -46,7 +46,7 @@ export function SiteForm(props: {
         }
         if (response.success) {
           toast.success("Mise à jour réussie.");
-          redirect("/site/" + params.siteName);
+          redirect("/tranokala/site/" + params.siteName);
         }
       });
     } else {
@@ -56,16 +56,16 @@ export function SiteForm(props: {
         }
         if (r.success) {
           toast.success("Ajout réussir..");
-          redirect("/site/" + params.siteName);
+          redirect("/tranokala/site/" + params.siteName);
         }
       });
     }
   };
 
   const Labeled: React.FC<Props> = ({ md = false }) => {
-    console.log("lele", md);
     return <span>{md ? "Ajout site" : <Plus />}</span>;
   };
+  console.log("groupe id ito:", props.id);
 
   return (
     <Dialog>
@@ -93,12 +93,6 @@ export function SiteForm(props: {
         </DialogHeader>
         <form action={handlerSubmit}>
           <div className="grid gap-4 my-2">
-            <input
-              type="number"
-              name="id"
-              hidden
-              defaultValue={props.site?.id}
-            />
             <div className="grid gap-3">
               <Label htmlFor="siteName-input">Nom site</Label>
               <Input

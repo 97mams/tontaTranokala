@@ -14,20 +14,22 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { redirect } from "next/navigation";
+import { useState } from "react";
 import { toast } from "sonner";
 import { formGroupAction } from "../../server/form-action";
 import { Switch } from "./ui/switch";
 
 export function GroupeSiteForm() {
+  const [isDisabled, setIsDisabled] = useState<boolean>();
   const handlerSubmit = (formatData: FormData) => {
     formGroupAction(formatData).then((respose) => {
       if (respose.error) {
-        console.error(respose.message);
         toast.error("vérifier le champs ..");
       }
       if (respose.success) {
+        setIsDisabled(respose.data.limited);
         toast.success("Ajout réussir..");
-        redirect("/" + respose.data.type + "/" + respose.data.params);
+        redirect("/tranokala/" + respose.data.type + "/" + respose.data.params);
       }
     });
   };
@@ -35,7 +37,9 @@ export function GroupeSiteForm() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="outline">Nouvelle groupe</Button>
+        <Button variant="outline" disabled={isDisabled}>
+          Nouveau groupe
+        </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>

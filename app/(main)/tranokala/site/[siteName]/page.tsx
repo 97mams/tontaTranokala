@@ -18,18 +18,12 @@ export default async function Page(props: {
       url: true,
       GroupSite: {
         select: {
+          id: true,
           type: true,
         },
       },
     },
   });
-
-  console.log("sitesByGroupId: ", sitesByGroupId.length);
-
-  if (sitesByGroupId.length > 0) {
-    console.log("update visit");
-    // await updateGroupSiteVisits(groupSiteId);
-  }
 
   const EmptyData = () => {
     return (
@@ -72,7 +66,7 @@ export default async function Page(props: {
       </div>
       {sitesByGroupId.length !== 0 ? (
         <div className="flex gap-4 mt-8">
-          <SiteForm id={Number(newParams.title)} isButton={false} />
+          <SiteForm id={Number(newParams.id)} isButton={false} />
         </div>
       ) : (
         ""

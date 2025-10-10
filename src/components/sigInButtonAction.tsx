@@ -11,6 +11,7 @@ import {
 import { signIn } from "@/lib/auth-client";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { CheckedState } from "@radix-ui/react-checkbox";
+import { Loader } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -38,6 +39,7 @@ const signupSchema = z.object({
 export const SignInButtonAction = () => {
   const [showPassword, setShowPassword] = useState<CheckedState>(false);
   const router = useRouter();
+  const [isPending, setIsPending] = useState<boolean>(false);
   const form = useForm<z.infer<typeof signupSchema>>({
     resolver: zodResolver(signupSchema),
     defaultValues: {
@@ -46,6 +48,7 @@ export const SignInButtonAction = () => {
     },
   });
   const handlerSubmit = async (values: z.infer<typeof signupSchema>) => {
+    setIsPending(true);
     await signIn.email(
       {
         email: values.email,
@@ -53,14 +56,16 @@ export const SignInButtonAction = () => {
       },
       {
         onSuccess: () => {
-          router.push("/auth");
+          router.push("/tranokala");
         },
         onError: (error) => {
           toast.error(error.error.message);
         },
       }
     );
+    setIsPending(false);
   };
+  console.log(isPending);
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -118,7 +123,7 @@ export const SignInButtonAction = () => {
               <Label>Voire le mot de passe</Label>
             </div>
             <Button variant="default" className="w-full">
-              Connecter
+              {isPending ? <Loader className="animate-spin" /> : "Connecter"}
             </Button>
           </form>
         </Form>

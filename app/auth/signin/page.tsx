@@ -15,7 +15,9 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { signIn } from "@/lib/auth-client";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { CheckedState } from "@radix-ui/react-checkbox";
+import { Loader } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -29,8 +31,8 @@ const signupSchema = z.object({
   }),
 });
 export default function SignInPage() {
-  const [showPassword, setShowPassword] = useState<CheckedState>(false);
-  console.log(showPassword);
+  const [isPending, setIsPending] = useState<boolean>(false);
+  const [showPassword, setShowPassword] = useState<boolean>(false);
   const router = useRouter();
   const form = useForm<z.infer<typeof signupSchema>>({
     resolver: zodResolver(signupSchema),
@@ -40,6 +42,7 @@ export default function SignInPage() {
     },
   });
   const handlerSubmit = async (values: z.infer<typeof signupSchema>) => {
+    setIsPending(true);
     await signIn.email(
       {
         email: values.email,
@@ -50,13 +53,19 @@ export default function SignInPage() {
           router.push("/tranokala");
         },
         onError: (error) => {
+          setIsPending(false);
           toast.error(error.error.message);
         },
       }
     );
   };
   return (
-    <div className="w-full h-screen flex justify-center items-center">
+    <div className="w-full h-screen flex  flex-col gap-24 items-center">
+      <div className="w-full flex justify-start mt-4 pl-30">
+        <Link href={"/"}>
+          <Image src={"/tranokala.png"} alt="logo" width={30} height={30} />
+        </Link>
+      </div>
       <Card className="w-xl">
         <CardHeader>
           <CardTitle>
@@ -103,14 +112,18 @@ export default function SignInPage() {
                   <Checkbox
                     checked={showPassword}
                     onCheckedChange={(checked) => {
-                      setShowPassword(checked);
+                      setShowPassword(checked === true);
                     }}
                   />
                   <Label>Voire le mot de passe</Label>
                 </div>
 
                 <Button variant="default" className="w-full">
-                  Connecter
+                  {isPending ? (
+                    <Loader className="animate-spin" />
+                  ) : (
+                    "Connecter"
+                  )}
                 </Button>
               </form>
             </Form>

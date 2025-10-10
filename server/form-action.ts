@@ -1,9 +1,11 @@
 "use server";
 
+import { getUser } from "@/lib/auth-server";
 import { prisma } from "@/lib/prisma";
 import { UrlHelper } from "@/lib/urlHelper";
 import { revalidatePath } from "next/cache";
 import { z } from "zod";
+import { limiteData } from "./limiteData";
 
 const siteSchema = z.object({
   name: z.string().min(1, "Title is required"),
@@ -19,7 +21,8 @@ const group = z.object({
 export async function formGroupAction(formData: FormData) {
   const title = formData.get("title") as string;
   const inputType = type(formData.get("type") as string);
-
+  const user = await getUser();
+  const limite = await limiteData(5);
   const input = group.safeParse({ title });
   if (!input.success) {
     return { error: true, message: input.error };
@@ -29,6 +32,7 @@ export async function formGroupAction(formData: FormData) {
     data: {
       title: input.data.title,
       type: inputType,
+      userId: String(user?.id),
     },
   });
 
@@ -36,7 +40,7 @@ export async function formGroupAction(formData: FormData) {
     return { error: true, message: "data not found" };
   }
 
-  revalidatePath("/");
+  revalidatePath("/tranokala");
 
   return {
     success: true,
@@ -44,6 +48,7 @@ export async function formGroupAction(formData: FormData) {
     data: {
       params: UrlHelper(`${addSiteGroup.id}-${addSiteGroup.title}`),
       type: addSiteGroup.type,
+      limited: limite,
     },
   };
 }
@@ -70,7 +75,9 @@ export async function formSiteAction(formData: FormData) {
       name: input.data.name,
       description: input.data.description,
       url: input.data.linkSite,
-      GroupSiteId: input.data.groupSiteId,
+      GroupSite: {
+        connect: { id: input.data.groupSiteId },
+      },
     },
   });
 
@@ -84,19 +91,17 @@ export async function formSiteAction(formData: FormData) {
 export async function groupSiteDeleteAction(formData: FormData) {
   const id: number = Number(formData.get("id"));
   const groupSite = await prisma.groupSite.deleteMany({ where: { id: id } });
-  console.log(groupSite);
   if (!group) {
     return { error: true, message: "id is not matching" };
   }
 
-  revalidatePath("/", "page");
+  revalidatePath("/tranokala", "page");
 
   return { success: true, message: "delete successfully" };
 }
 
 //set values of type
 const type = (input: string): string => {
-  console.log("input:", input);
   if (input === null) {
     return "site";
   }

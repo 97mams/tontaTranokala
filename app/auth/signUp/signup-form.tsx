@@ -17,7 +17,6 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { signUp } from "@/lib/auth-client";
-import { CheckedState } from "@radix-ui/react-checkbox";
 import { Loader } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -28,13 +27,13 @@ const signupSchema = z.object({
     .string()
     .min(2, { message: "Le nom doit comporter au moins 2 caractères." }),
   email: z.string().email({ message: "Adresse e-mail invalide." }),
-  password: z.string().min(2, {
+  password: z.string().min(6, {
     message: "Le mot de passe doit comporter au moins 6 caractères.",
   }),
 });
 
 export function SignUpForm() {
-  const [showPassword, setShowPassword] = useState<CheckedState>(false);
+  const [showPassword, setShowPassword] = useState<boolean>(false);
   const [isPending, setIsPending] = useState<boolean>(false);
   const router = useRouter();
 
@@ -47,8 +46,8 @@ export function SignUpForm() {
     },
   });
 
-  // 2. Define a submit handler.
   async function onSubmit(values: z.infer<typeof signupSchema>) {
+    setIsPending(true);
     await signUp.email(
       {
         name: values.name,
@@ -57,22 +56,22 @@ export function SignUpForm() {
       },
       {
         onSuccess: () => {
-          router.push("/auth");
+          fetch("http://localhost:3000/api/send", { method: "post" });
+          router.push("/tranokala");
         },
         onError: (error) => {
           toast.error(error.error.message);
         },
       }
     );
+    setIsPending(false);
   }
 
   return (
     <Form {...form}>
       <form
-        onSubmit={() => {
-          form.handleSubmit(onSubmit);
-          setIsPending(true);
-        }}
+        onSubmit={form.handleSubmit(onSubmit)}
+        method="post"
         className="space-y-8"
       >
         <FormField
@@ -129,10 +128,10 @@ export function SignUpForm() {
           <Checkbox
             checked={showPassword}
             onCheckedChange={(checked) => {
-              setShowPassword(checked);
+              setShowPassword(checked === true);
             }}
           />
-          <Label>Voire le mot de passe</Label>
+          <Label>Voir le mot de passe</Label>
         </div>
 
         <Button type="submit">

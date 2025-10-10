@@ -1,5 +1,6 @@
 import { Collapsible } from "@radix-ui/react-collapsible";
 import { ChevronDown } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { GroupeSiteForm } from "./groupForm";
 import { GroupeList } from "./groupList";
@@ -12,14 +13,13 @@ import {
   SidebarGroupLabel,
   SidebarHeader,
 } from "./ui/sidebar";
-import Image from "next/image";
 
 export function AppSidebar() {
   return (
     <Sidebar variant="inset">
       <SidebarHeader>
         <Link href={"/"}>
-          <Image width={30} height={30} alt="logo" src={"/tranokala.png"}/>
+          <Image width={30} height={30} alt="logo" src={"/tranokala.png"} />
         </Link>
       </SidebarHeader>
       <SidebarContent>
@@ -40,7 +40,7 @@ export function AppSidebar() {
           <SidebarGroup>
             <SidebarGroupLabel asChild>
               <CollapsibleTrigger>
-                Groupe Plateforms
+                Groupe Plateformes
                 <ChevronDown className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180" />
               </CollapsibleTrigger>
             </SidebarGroupLabel>
