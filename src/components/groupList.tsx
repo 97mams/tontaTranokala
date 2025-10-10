@@ -1,8 +1,6 @@
 import { getUser } from "@/lib/auth-server";
 import { prisma } from "@/lib/prisma";
-import { UrlHelper } from "@/lib/urlHelper";
-import Link from "next/link";
-import { ButtonAction } from "./groupButtonActions";
+import { ItemSidebar } from "./itmeSitebar";
 
 export async function GroupeList({ type }: { type: "site" | "plateform" }) {
   const user = await getUser();
@@ -16,23 +14,12 @@ export async function GroupeList({ type }: { type: "site" | "plateform" }) {
   return (
     <div className="w-full flex flex-col">
       {filteredGroups.map((group) => (
-        <div
-          className="w-full rounded-sm px-2 flex items-center hover:bg-muted"
+        <ItemSidebar
           key={group.id}
-        >
-          <Link
-            href={
-              "/tranokala/" +
-              group.type +
-              "/" +
-              UrlHelper(`${group.id}-${group.title}`)
-            }
-            className="  w-full text-sm p-3"
-          >
-            {group.title}
-          </Link>
-          <ButtonAction id={group.id} />
-        </div>
+          id={group.id}
+          title={group.title}
+          type={group.type}
+        />
       ))}
     </div>
   );
