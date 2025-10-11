@@ -1,10 +1,22 @@
-"use client";
+import { getUser } from "@/lib/auth-server";
+import { prisma } from "@/lib/prisma";
 
-import { useProject } from "../../store/project-store";
+export async function TopProjects() {
+  const user = await getUser();
+  if (!user) return null;
 
-export function TopProjects() {
-  const visits = useProject((state) => state.visits);
-  if (visits.length === 0) return null;
+  const projects = await prisma.groupSite.findMany({
+    where: { userId: user.id },
+    orderBy: {
+      visits: "desc",
+    },
+    select: { id: true, title: true, visits: true },
+    take: 3,
+  });
+
+  if (projects.length === 0) return null;
+
+  const projectIsVisited = projects.filter((project) => project.visits >= 3);
 
   return (
     <div className=" md:w-[20rem] p-4 fixed right-0 flex-1">
@@ -15,10 +27,10 @@ export function TopProjects() {
         Retrouvez ici vos projets les plus utilisés.
       </p>
       <ul className="mt-4 my-6 ml-6 list-disc [&>li]:mt-2">
-        {visits.map((project) => (
+        {projectIsVisited.map((project) => (
           <li key={project.id}>
             <a
-              href={`/tranokala/site/${project.id}-${project.title}`}
+              href={`/site/${project.id}-${project.title}`}
               className="hover:underline"
             >
               {project.title}
