@@ -1,20 +1,21 @@
 import { create } from "zustand";
 
-const url = "localhost://3000/api/visits";
+const url = "/api/visits";
 
 type Store = {
   visits: number;
-  setVisits: () => void;
+  setVisits: (id: number) => void;
 };
 
 export const useProject = create<Store>()((set) => ({
   visits: 0,
-  setVisits() {
+  setVisits: (id) => {
     fetch(url, {
+      body: JSON.stringify({ id }),
       method: "post",
     })
       .then((resp) => resp.json())
-      .then((json) => set(() => ({ visits: json.visits })))
+      .then((json) => set(() => ({ visits: json.data })))
       .catch((error) => {
         console.log(error);
       });
