@@ -10,8 +10,8 @@ export function ItemSidebar(props: {
   title: string;
   type: string;
 }) {
-  const { visits, setVisits } = useProject();
-  console.log({ito: visits });
+  const visits = useProject((state) => state.visits);
+  const setVisits = useProject((state) => state.setVisits);
   return (
     <div className="w-full rounded-sm px-2 flex items-center hover:bg-muted">
       <Link
@@ -22,7 +22,7 @@ export function ItemSidebar(props: {
           UrlHelper(`${props.id}-${props.title}`)
         }
         className="  w-full text-sm p-3"
-        onClick={() => setVisits()}
+        onClick={() => setVisits(props.id)}
       >
         {props.title}
       </Link>

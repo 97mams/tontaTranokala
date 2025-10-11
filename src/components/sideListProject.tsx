@@ -1,15 +1,10 @@
-import { prisma } from "@/lib/prisma";
+"use client";
 
-export async function TopProjects() {
-  const projects = await prisma.groupSite.findMany({
-    orderBy: {
-      visits: "desc",
-    },
-    select: { id: true, title: true, visits: true },
-    take: 3,
-  });
+import { useProject } from "../../store/project-store";
 
-  const projectIsVisited = projects.filter((project) => project.visits >= 3);
+export function TopProjects() {
+  const visits = useProject((state) => state.visits);
+  if (visits.length === 0) return null;
 
   return (
     <div className=" md:w-[20rem] p-4 fixed right-0 flex-1">
@@ -20,7 +15,7 @@ export async function TopProjects() {
         Retrouvez ici vos projets les plus utilisés.
       </p>
       <ul className="mt-4 my-6 ml-6 list-disc [&>li]:mt-2">
-        {projectIsVisited.map((project) => (
+        {visits.map((project) => (
           <li key={project.id}>
             <a
               href={`/tranokala/site/${project.id}-${project.title}`}

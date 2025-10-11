@@ -1,14 +1,15 @@
 import { getUser } from "@/lib/auth-server"; // adapte le chemin selon ton projet
 import { prisma } from "@/lib/prisma";
+import { revalidatePath } from "next/cache";
 import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {
   const user = await getUser();
   try {
     // Récupérer le JSON envoyé par le client
-    const { groupId } = await request.json();
+    const { id } = await request.json();
 
-    if (!groupId) {
+    if (!id) {
       return NextResponse.json(
         { success: false, error: "groupId is required" },
         { status: 400 }
@@ -17,7 +18,7 @@ export async function POST(request: Request) {
 
     const updated = await prisma.groupSite.update({
       where: {
-        id: groupId,
+        id: id,
         userId: user?.id,
       },
       data: {
@@ -25,8 +26,10 @@ export async function POST(request: Request) {
       },
     });
 
+    revalidatePath("/tranokala");
+
     return NextResponse.json(
-      { success: true, data: updated.visits },
+      { success: true, data: { visits: updated } },
       { status: 200 }
     );
   } catch (error: any) {
