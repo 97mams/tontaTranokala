@@ -1,6 +1,6 @@
 import { getUser } from "@/lib/auth-server";
 import { prisma } from "@/lib/prisma";
-import { ItemSidebar } from "./itmeSitebar";
+import { ItemSidebar } from "./itemSitebar";
 
 export async function GroupeList({ type }: { type: "site" | "plateform" }) {
   const user = await getUser();
