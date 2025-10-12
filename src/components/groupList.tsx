@@ -19,6 +19,7 @@ export async function GroupeList({ type }: { type: "site" | "plateform" }) {
           id={group.id}
           title={group.title}
           type={group.type}
+          userId={user?.id as string}
         />
       ))}
     </div>
