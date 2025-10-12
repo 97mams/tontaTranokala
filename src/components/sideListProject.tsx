@@ -1,22 +1,18 @@
-import { getUser } from "@/lib/auth-server";
-import { prisma } from "@/lib/prisma";
+"use client";
 
-export async function TopProjects() {
-  const user = await getUser();
-  if (!user) return null;
+import { useEffect, useState } from "react";
+import { TextMorph } from "../../components/motion-primitives/text-morph";
+import { useVisitStore } from "../../store/project-store";
 
-  const projects = await prisma.groupSite.findMany({
-    where: { userId: user.id },
-    orderBy: {
-      visits: "desc",
-    },
-    select: { id: true, title: true, visits: true },
-    take: 3,
-  });
+export function TopProjects(props: { userId: string }) {
+  const fetchVisits = useVisitStore((state) => state.fetchVisits);
+  const visits = useVisitStore((state) => state.visits);
+  const [text, setText] = useState("continue");
 
-  if (projects.length === 0) return null;
-
-  const projectIsVisited = projects.filter((project) => project.visits >= 3);
+  useEffect(() => {
+    fetchVisits(props.userId);
+    setText(text === "Continue" ? "Confirm" : "Continue");
+  }, [fetchVisits]);
 
   return (
     <div className=" md:w-[20rem] p-4 fixed right-0 flex-1">
@@ -26,18 +22,15 @@ export async function TopProjects() {
       <p className="text-muted-foreground text-sm">
         Retrouvez ici vos projets les plus utilisés.
       </p>
-      <ul className="mt-4 my-6 ml-6 list-disc [&>li]:mt-2">
-        {projectIsVisited.map((project) => (
-          <li key={project.id}>
-            <a
-              href={`/site/${project.id}-${project.title}`}
-              className="hover:underline"
-            >
-              {project.title}
-            </a>
-          </li>
-        ))}
-      </ul>
+      {visits.map((project) => (
+        <a
+          key={project.id}
+          href={`/tranokala/site/${project.id}-${project.title}`}
+          className="hover:text-primary my-6 ml-6 list-disc [&>li]:mt-2"
+        >
+          - <TextMorph className="hover:underline">{project.title}</TextMorph>
+        </a>
+      ))}
     </div>
   );
 }
