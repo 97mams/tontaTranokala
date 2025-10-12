@@ -33,7 +33,7 @@ export default async function RootLayout({
           </div>
           <div className="w-full max-h-screen flex">
             {children}
-            <TopProjects />
+            <TopProjects userId={user?.id} />
           </div>
         </main>
       </SidebarProvider>
