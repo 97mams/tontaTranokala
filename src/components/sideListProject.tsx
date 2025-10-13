@@ -7,6 +7,7 @@ import { useVisitStore } from "../../store/project-store";
 export function TopProjects(props: { userId: string }) {
   const fetchVisits = useVisitStore((state) => state.fetchVisits);
   const visits = useVisitStore((state) => state.visits);
+  const incrementVisit = useVisitStore((state) => state.incrementVisit);
   const [text, setText] = useState("continue");
 
   useEffect(() => {
@@ -27,8 +28,9 @@ export function TopProjects(props: { userId: string }) {
           key={project.id}
           href={`/tranokala/site/${project.id}-${project.title}`}
           className="hover:text-primary my-6 ml-6 list-disc [&>li]:mt-2"
+          onClick={() => incrementVisit(props.userId, parseInt(project.id))}
         >
-          - <TextMorph className="hover:underline">{project.title}</TextMorph>
+          <TextMorph className="hover:underline">{project.title}</TextMorph>
         </a>
       ))}
     </div>
