@@ -78,7 +78,7 @@ export function Profil(props: { user: UserProps }) {
         <DropdownMenuItem disabled>API</DropdownMenuItem> */}
         {/* <DropdownMenuSeparator /> */}
         <DropdownMenuItem onClick={logOut}>
-          Log out
+          Se déconnecter
           <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
         </DropdownMenuItem>
       </DropdownMenuContent>
