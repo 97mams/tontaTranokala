@@ -1,7 +1,7 @@
 import { AppSidebar } from "@/components/app-sidebar";
 import { Counter } from "@/components/counter";
 import { TopProjects } from "@/components/sideListProject";
-import { SidebarProvider } from "@/components/ui/sidebar";
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { ThemeProvider } from "@/components/ui/theme-provider";
 import { ModeToggle } from "@/components/ui/theme-toggle";
 import { Profil } from "@/components/userProfil";
@@ -19,12 +19,14 @@ export default async function RootLayout({
   }
 
   return (
-    <ThemeProvider attribute="class" defaultTheme="treu" enableSystem={true}>
+    <ThemeProvider attribute="class" defaultTheme="true" enableSystem={true}>
       <SidebarProvider className="overflow-hidden">
         <AppSidebar />
         <main className="w-full h-screen">
-          <div className="w-full sticky z-40 flex justify-end py-2 px-2 ">
-            {/* <SidebarTrigger /> */}
+          <div className="w-full sticky z-40 flex justify-between md:justify-end p-2 ">
+            <div className="block md:hidden ">
+              <SidebarTrigger />
+            </div>
             <div className="flex gap-1">
               <Counter />
               <Profil user={user} />
