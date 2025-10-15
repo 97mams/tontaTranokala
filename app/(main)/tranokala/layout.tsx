@@ -19,12 +19,14 @@ export default async function RootLayout({
   }
 
   return (
-    <ThemeProvider attribute="class" defaultTheme="treu" enableSystem={true}>
+    <ThemeProvider attribute="class" defaultTheme="true" enableSystem={true}>
       <SidebarProvider className="overflow-hidden">
         <AppSidebar />
         <main className="w-full h-screen">
-          <div className="w-full sticky z-40 flex justify-between py-2 px-2 ">
-            <SidebarTrigger />
+          <div className="w-full sticky z-40 flex justify-between md:justify-end p-2 ">
+            <div className="block md:hidden ">
+              <SidebarTrigger />
+            </div>
             <div className="flex gap-1">
               <Counter />
               <Profil user={user} />
@@ -33,7 +35,7 @@ export default async function RootLayout({
           </div>
           <div className="w-full max-h-screen flex">
             {children}
-            <TopProjects />
+            <TopProjects userId={user?.id} />
           </div>
         </main>
       </SidebarProvider>
