@@ -2,11 +2,13 @@ import { AppSidebar } from "@/components/app-sidebar";
 import { Counter } from "@/components/counter";
 import { TopProjects } from "@/components/sideListProject";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { Skeleton } from "@/components/ui/skeleton";
 import { ThemeProvider } from "@/components/ui/theme-provider";
 import { ModeToggle } from "@/components/ui/theme-toggle";
 import { Profil } from "@/components/userProfil";
 import { getUser } from "@/lib/auth-server";
 import { redirect } from "next/navigation";
+import { Suspense } from "react";
 
 export default async function RootLayout({
   children,
@@ -34,8 +36,10 @@ export default async function RootLayout({
             </div>
           </div>
           <div className="w-full max-h-screen flex">
-            {children}
-            <TopProjects userId={user?.id} />
+            <Suspense fallback={<Skeleton />}>
+              {children}
+              <TopProjects userId={user?.id} />
+            </Suspense>
           </div>
         </main>
       </SidebarProvider>
