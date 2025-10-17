@@ -74,47 +74,53 @@ export function CardListPlateform(props: {
             )}
           </Button>
         </div>
-        <h4 className="scroll-m-20 text-xl font-semibold tracking-tight">
-          Mot de passe
-        </h4>
-        <p className="text-muted-foreground text-sm">
-          Conservez-le en sécurité, vous pouvez l’afficher ou le copier.
-        </p>
-        <div className="relative my-4">
-          <pre className="bg-muted p-3 rounded-md text-sm overflow-x-auto">
-            <input
-              type={showPassword ? "text" : "password"}
-              defaultValue={formatPassword}
-            />
-          </pre>
-          <div className="absolute top-2 right-2 h-8 p-0 flex gap-2">
-            <Button
-              type="button"
-              variant="ghost"
-              size="sm"
-              onClick={() => setShowPassword((prev) => !prev)}
-            >
-              {showPassword ? (
-                <EyeOff className="h-4 w-4" />
-              ) : (
-                <Eye className="h-4 w-4" />
-              )}
-            </Button>
-            <Button
-              size="sm"
-              variant="ghost"
-              onClick={() => {
-                handleCopyPwd(formatPassword);
-              }}
-            >
-              {copyPwd ? (
-                <Check className="w-3 h-3" />
-              ) : (
-                <Copy className="w-3 h-3" />
-              )}
-            </Button>
+        {props.password === "" ? (
+          ""
+        ) : (
+          <div>
+            <h4 className="scroll-m-20 text-xl font-semibold tracking-tight">
+              Mot de passe
+            </h4>
+            <p className="text-muted-foreground text-sm">
+              Conservez-le en sécurité, vous pouvez l’afficher ou le copier.
+            </p>
+            <div className="relative my-4">
+              <pre className="bg-muted p-3 rounded-md text-sm overflow-x-auto">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  defaultValue={formatPassword}
+                />
+              </pre>
+              <div className="absolute top-2 right-2 h-8 p-0 flex gap-2">
+                <Button
+                  type="button"
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => setShowPassword((prev) => !prev)}
+                >
+                  {showPassword ? (
+                    <EyeOff className="h-4 w-4" />
+                  ) : (
+                    <Eye className="h-4 w-4" />
+                  )}
+                </Button>
+                <Button
+                  size="sm"
+                  variant="ghost"
+                  onClick={() => {
+                    handleCopyPwd(formatPassword);
+                  }}
+                >
+                  {copyPwd ? (
+                    <Check className="w-3 h-3" />
+                  ) : (
+                    <Copy className="w-3 h-3" />
+                  )}
+                </Button>
+              </div>
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );
