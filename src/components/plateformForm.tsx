@@ -131,13 +131,12 @@ export function PlateformForm(props: {
               />
             </div>
             <div className="grid gap-3">
-              <Label htmlFor="pwd-input">Mot de passe</Label>
+              <Label htmlFor="pwd-input">Mot de passe (facultative)</Label>
               <div className="relative">
                 <Input
                   type={showPassword ? "text" : "password"}
                   placeholder="ex: motdepasse"
                   defaultValue={defaultValuePassword}
-                  required
                   name="pwd"
                   id="pwd-input"
                 />
