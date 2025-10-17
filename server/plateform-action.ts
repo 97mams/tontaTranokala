@@ -8,7 +8,7 @@ import z from "zod";
 const platefromShema = z.object({
   name: z.string(),
   email: z.string(),
-  passWord: z.string(),
+  passWord: z.string().nullable(),
   description: z.string(),
   url: z.string(),
   groupId: z.number(),
@@ -40,7 +40,7 @@ export async function formPlateformAction(formData: FormData) {
     data: {
       name: result.data.name,
       email: result.data.email,
-      passWord: result.data.passWord,
+      passWord: result.data.passWord || "",
       description: result.data.description,
       url: result.data.url,
       GroupSiteId: result.data.groupId,
@@ -84,7 +84,7 @@ export async function updatePlateformAction(formData: FormData) {
     data: {
       name: result.data.name,
       email: result.data.email,
-      passWord: result.data.passWord,
+      passWord: result.data.passWord || "",
       description: result.data.description,
       url: result.data.url,
     },
