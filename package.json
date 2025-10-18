@@ -44,7 +44,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "email": "email dev"
+    "email": "email dev",
+    "vercel-build": "prisma generate && prisma migrate deploy && next build"
   },
   "devDependencies": {
     "@react-email/preview-server": "4.2.12",
