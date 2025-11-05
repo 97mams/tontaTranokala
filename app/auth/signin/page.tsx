@@ -60,13 +60,13 @@ export default function SignInPage() {
     );
   };
   return (
-    <div className="w-full h-screen flex  flex-col gap-24 items-center">
-      <div className="w-full flex justify-start mt-4 pl-30">
+    <div className="w-full h-screen flex  flex-col justify-center items-center">
+      <div className="w-full relative flex justify-start items-center mt-4 pl-10 sm:pl-20 border-accent md:pl-60">
         <Link href={"/"}>
           <Image src={"/tranokala.png"} alt="logo" width={30} height={30} />
         </Link>
       </div>
-      <Card className="w-xl">
+      <Card className=" w-full m-4 sm:max-w-[425px] md:w-xl">
         <CardHeader>
           <CardTitle>
             <h1 className="text-center">Authentification</h1>
