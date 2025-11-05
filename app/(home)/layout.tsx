@@ -43,7 +43,7 @@ export default async function RootLayout({
                 <Link href={"/docs"}>Documentation</Link>
               </DropdownMenuItem>
               <DropdownMenuItem>
-                <SignInButtonAction />
+                <Link href={"/auth/signin"}>Se connecter</Link>
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
