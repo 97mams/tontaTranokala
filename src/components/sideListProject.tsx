@@ -15,12 +15,12 @@ export function TopProjects(props: { userId: string }) {
     setText(text === "Continue" ? "Confirm" : "Continue");
   }, [fetchVisits]);
 
-  if(visits.length === 0) {
-    return null
+  if (visits.length === 0) {
+    return null;
   }
 
   return (
-    <div className=" md:w-[20rem] p-4 fixed right-0 flex-1">
+    <div className="hidden md:block md:w-[20rem] p-4 fixed right-0 flex-1">
       <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight mb-2">
         Top projets
       </h3>
