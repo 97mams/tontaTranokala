@@ -20,7 +20,7 @@ export function Summary(props: { projects?: plateform[] }) {
   }
 
   return (
-    <Card className="w-72 absolute right-8 top-72">
+    <Card className="hidden md:block w-72 absolute right-8 top-72">
       <CardContent>
         <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight mb-2">
           Résumé
