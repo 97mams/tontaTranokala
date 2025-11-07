@@ -25,7 +25,7 @@ export default function PlateformList(props: {
 }) {
   return (
     <div className="w-full pb-8">
-      <div className="w-3xl">
+      <div className="w-full md:w-5xl">
         <div className="flex flex-col gap-2">
           <div>
             {props.data?.map((plateform) => (
@@ -41,7 +41,7 @@ export default function PlateformList(props: {
                 <div
                   key={plateform.id}
                   id={"project-" + plateform.id}
-                  className="project-section"
+                  className="project-section w-full"
                 >
                   <CardListPlateform
                     key={plateform.id}
