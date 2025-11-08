@@ -16,7 +16,7 @@ export default async function Page() {
   });
 
   return (
-    <div className="h-[calc(100vh-7rem)] w-3xl flex flex-col items-center justify-start">
+    <div className="h-[calc(100vh-7rem)] w-full justify-center flex flex-col items-center">
       <Image alt="logo" width={300} height={300} src={"/tranokalaMd.png"} />
       <div className="text-center">
         {isGroup ? (
