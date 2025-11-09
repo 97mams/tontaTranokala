@@ -28,7 +28,7 @@ export default async function Page(props: {
   const EmptyData = () => {
     return (
       <div>
-        <div className="w-3xl flex flex-col gap-4  h-[calc(100vh-7rem)] justify-center items-center">
+        <div className="w-full flex flex-col gap-4  h-[calc(100vh-7rem)] justify-center items-center">
           <p className="leading-7 [&:not(:first-child)]:mt-6">
             Ajoute ton premier enregistrement et garde tout à portée de main !
           </p>
@@ -40,7 +40,7 @@ export default async function Page(props: {
   };
 
   return (
-    <div className="w-3xl flex flex-col gap-2">
+    <div className="w-full flex flex-col gap-2">
       <h1 className="scroll-m-20 uppercase text-4xl font-extrabold tracking-tight text-balance">
         {castToString(newParams.title)}
       </h1>
