@@ -30,7 +30,7 @@ export function CardListPlateform(props: {
 
   return (
     <div className="my-8 mb-22">
-      <div className="w-full flex justify-between">
+      <div className="w-full pr-8 flex justify-between">
         <Tooltip>
           <TooltipTrigger>
             <Link
@@ -45,7 +45,7 @@ export function CardListPlateform(props: {
         </Tooltip>
         <PlateformButtonAction id={props.id} data={props} />
       </div>
-      <div className="pl-8">
+      <div className="px-8 md:pl-8">
         <p className="text-muted-foreground text-sm mb-8 capitalize">
           {props.description}
         </p>
