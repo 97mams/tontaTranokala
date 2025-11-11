@@ -29,7 +29,7 @@ export default async function Page(props: {
     return (
       <div>
         <div className="w-full flex flex-col gap-4  h-[calc(100vh-7rem)] justify-center items-center">
-          <p className="leading-7 [&:not(:first-child)]:mt-6">
+          <p className="leading-7 [&:not(:first-child)]:mt-6 text-center">
             Ajoute ton premier enregistrement et garde tout à portée de main !
           </p>
 
