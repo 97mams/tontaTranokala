@@ -40,14 +40,14 @@ export default async function Page(props: {
   };
 
   return (
-    <div className="w-full flex justify-center flex-col gap-2">
+    <div className="w-full flex flex-col gap-2">
       <h1 className="text-center scroll-m-20 uppercase text-4xl font-extrabold tracking-tight text-balance">
         {castToString(newParams.title)}
       </h1>
       {sitesByGroupId.length === 0 ? (
         <EmptyData />
       ) : (
-        <p className="leading-7 text-center [&:not(:first-child)]:mt-6">
+        <p className="leading-7 [&:not(:first-child)]:mt-6">
           Ici, retrouvez tous les sites dédiés à {castToString(newParams.title)}
           .
         </p>
