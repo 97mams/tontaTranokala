@@ -16,8 +16,14 @@ export default async function Page() {
   });
 
   return (
-    <div className="h-[calc(100vh-7rem)] w-full justify-center flex flex-col items-center">
-      <Image alt="logo" width={300} height={300} src={"/tranokalaMd.png"} />
+    <div className="w-full sm:w-[calc(100%-20rem)] m-auto h-[calc(100vh-7rem)] justify-center flex flex-col items-center">
+      <Image
+        alt="logo"
+        width={300}
+        height={300}
+        className="hidden sm:block"
+        src={"/tranokalaMd.png"}
+      />
       <div className="text-center">
         {isGroup ? (
           <p className="leading-7 [&:not(:first-child)]:mt-6">
