@@ -42,8 +42,8 @@ export default async function Page({ params }: PlateformParams) {
 
 const EmptyData = ({ id }: { id: number }) => {
   return (
-    <div className="w-[calc(100%-20rem)] h-[calc(100vh-7rem)] flex flex-col justify-center items-center">
-      <p className="text-muted-foreground mb-8">
+    <div className="w-full sm:w-[calc(100%-20rem)] m-auto md:m-1 h-[calc(100vh-7rem)] flex flex-col justify-center items-center">
+      <p className="text-muted-foreground mb-8 text-center md:text-start">
         🔑 Ton coffre-fort numérique commence avec un enregistrement.
       </p>
       <PlateformForm id={id} isButton={true} />
