@@ -40,14 +40,14 @@ export default async function Page(props: {
   };
 
   return (
-    <div className="w-full flex flex-col gap-2">
-      <h1 className="text-center scroll-m-20 uppercase text-4xl font-extrabold tracking-tight text-balance">
+    <div className="w-full md:w-5xl flex flex-col gap-2">
+      <h1 className="text-center md:text-start scroll-m-20 uppercase text-4xl font-extrabold tracking-tight text-balance">
         {castToString(newParams.title)}
       </h1>
       {sitesByGroupId.length === 0 ? (
         <EmptyData />
       ) : (
-        <p className="leading-7 [&:not(:first-child)]:mt-6">
+        <p className="leading-7 [&:not(:first-child)]:mt-6 text-center md:text-start">
           Ici, retrouvez tous les sites dédiés à {castToString(newParams.title)}
           .
         </p>
@@ -65,7 +65,7 @@ export default async function Page(props: {
         ))}
       </div>
       {sitesByGroupId.length !== 0 ? (
-        <div className="flex gap-4 mt-8">
+        <div className="flex gap-4 m-8">
           <SiteForm id={Number(newParams.id)} isButton={false} />
         </div>
       ) : (
