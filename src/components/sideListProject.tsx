@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { TextMorph } from "../../components/motion-primitives/text-morph";
+import { TextMorph } from "./motion-primitives/text-morph";
 import { useVisitStore } from "../../store/project-store";
 
 export function TopProjects(props: { userId: string }) {
