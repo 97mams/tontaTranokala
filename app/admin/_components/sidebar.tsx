@@ -7,16 +7,16 @@ export function Sidebar() {
     { name: "Settings", href: "/admin/settings" },
   ];
   return (
-    <div className="w-sm h-screen bg-accent pt-8">
-      <h1 className="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0">
+    <div className="w-sm h-screen pt-8">
+      <h1 className="scroll-m-20 pb-2 text-3xl font-semibold tracking-tight first:mt-0">
         Tonta-tranokala
       </h1>
       <ul className="flex flex-col p-4 space-y-4">
         {menuItems.map((item) => (
           <li key={item.href}>
             <Link
-              href={item.href}
-              className="hover:bg-background/20 py-2 px-3 rounded"
+              href={"#" + item.name}
+              className="hover:bg-accent font-bold py-2 px-3 rounded"
             >
               {item.name}
             </Link>

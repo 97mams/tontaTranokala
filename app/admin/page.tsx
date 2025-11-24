@@ -1,10 +1,13 @@
 import { Sidebar } from "./_components/sidebar";
+import { Users } from "./_components/users";
 
 export default function Page() {
   return (
-    <div>
+    <div className="flex w-full h-screen">
       <Sidebar />
-      <div className="w-full bg-red-700"></div>
+      <div className="w-full pt-8 px-20">
+        <Users />
+      </div>
     </div>
   );
 }
