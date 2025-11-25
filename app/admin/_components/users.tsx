@@ -5,7 +5,6 @@ export async function Users() {
   const totalUsers = await prisma.user.count();
   return (
     <div className="grid grid-cols-4 gap-4 grid-rows-1">
-      <h2>users</h2>
       <Card>
         <CardHeader>Total users</CardHeader>
         <CardContent>
