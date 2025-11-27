@@ -1,4 +1,5 @@
 import { Chart } from "./_components/chart";
+import { ListUsers } from "./_components/listUsers";
 import { Sidebar } from "./_components/sidebar";
 import { Users } from "./_components/users";
 
@@ -9,6 +10,7 @@ export default function Page() {
       <div className="w-full pt-8 px-20 flex flex-col gap-4">
         <Users />
         <Chart />
+        <ListUsers />{" "}
       </div>
     </div>
   );
