@@ -145,7 +145,7 @@ export const columns: ColumnDef<User>[] = [
   },
 ];
 
-export function ListUsers() {
+export function ListUsers(props: { data: User[] }) {
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
