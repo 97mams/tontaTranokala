@@ -35,7 +35,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
-const data: User[] = [
+let data: User[] = [
   {
     id: "m5gr84i9",
     name: "mamisoa",
@@ -146,6 +146,7 @@ export const columns: ColumnDef<User>[] = [
 ];
 
 export function ListUsers(props: { data: User[] }) {
+  data = props.data;
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
