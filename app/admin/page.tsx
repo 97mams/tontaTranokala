@@ -11,6 +11,12 @@ export default async function Page() {
     select: { id: true, name: true, email: true },
   });
 
+  if (!users) {
+    return "without users";
+  }
+
+  const usersCount = users.length;
+
   return (
     <div className="flex w-full max-h-screen">
       <Sidebar />
