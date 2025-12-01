@@ -137,7 +137,9 @@ export const columns: ColumnDef<User>[] = [
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
             <DropdownMenuItem>Delete</DropdownMenuItem>
-            <DropdownMenuItem>View details</DropdownMenuItem>
+            <DropdownMenuItem>
+              <a href={`/admin/user/${row.original.id}`}>View details</a>
+            </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       );
