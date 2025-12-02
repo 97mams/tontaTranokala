@@ -3,8 +3,6 @@ import Link from "next/link";
 export function Sidebar() {
   const menuItems = [
     { name: "Dashboard", href: "/admin/dashboard" },
-    { name: "Users", href: "/admin/users" },
-    { name: "Settings", href: "/admin/settings" },
   ];
   return (
     <div className="w-sm h-screen pt-8">
