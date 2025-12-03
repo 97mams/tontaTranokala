@@ -29,6 +29,7 @@ export async function dataChart() {
   GROUP BY DATE(createdAt)
   ORDER BY day;
 `;
+
   return chartDataChema(plateform, site);
 }
 
@@ -42,30 +43,23 @@ function chartDataChema(
   plateform: Array<{ day: string; plateform: string }>,
   site: Array<{ day: string; site: string }>
 ) {
-  let result: chartData[] = [];
+  const castPlateform = plateform.map(Object.values);
+  const castSite = site.map(Object.values);
 
-  for (let i = 0; i < site.length; i++) {
-    const siteDate = site[i].day;
-
-    if (getDATE(siteDate) === getDATE(plateform[i].day)) {
-      result.push({
-        day: getDATE(siteDate),
-        plateform: Array.from(plateform[i].plateform)[0],
-        site: site[i].site,
-      });
-    } else {
-      result.push({
-        day: getDATE(siteDate),
-        plateform: plateform[i] ? Array.from(plateform[i].plateform)[0] : 0,
-        site: site[i].site,
-      });
-    }
+  console.log(castPlateform);
+  const result: any[] = [];
+  for (let i = 0; i < castPlateform.length; i++) {
+    const p = new Set(castPlateform[i]);
+    const s = new Set(castSite[i]);
+    s.union(p);
   }
 
-  return result;
+  console.log("result", result);
+  return [];
 }
 
 function getDATE(date: string) {
   const d = new Date(date);
-  return d.getMonth() + "-" + d.getDay() + "-" + d.getFullYear();
+  const newD = d.getDay() + "-" + d.getMonth() + "-" + d.getFullYear();
+  return newD;
 }

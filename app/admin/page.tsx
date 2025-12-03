@@ -1,10 +1,9 @@
 "use server";
 
 import { prisma } from "@/lib/prisma";
-import { Chart } from "./_components/chart";
+import { dataChart } from "../../server/admin";
 import { ListUsers } from "./_components/listUsers";
 import { Users } from "./_components/users";
-import { dataChart } from "../../server/admin";
 
 type chartData = {
   day: string;
@@ -18,6 +17,8 @@ export default async function Page() {
 
   const chartData = await dataChart();
 
+  // console.log(chartData);
+
   if (!users) {
     return "without users";
   }
@@ -27,7 +28,7 @@ export default async function Page() {
   return (
     <div className="w-full overflow-scroll pt-8 px-20 flex flex-col gap-4">
       <Users />
-      <Chart data={chartData} />
+      {/* <Chart data={chartData} /> */}
       <ListUsers data={users} />{" "}
     </div>
   );

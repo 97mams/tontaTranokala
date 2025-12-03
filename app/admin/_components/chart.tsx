@@ -47,8 +47,6 @@ type dataTypes = {
 export function Chart(props: { data: dataTypes }) {
   const [timeRange, setTimeRange] = React.useState("90d");
 
-  console.log(props.data);
-
   const filteredData = props.data.filter((item) => {
     const date = new Date(item.day);
     const referenceDate = new Date("2024-06-30");
