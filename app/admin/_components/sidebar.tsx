@@ -1,9 +1,7 @@
 import Link from "next/link";
 
 export function Sidebar() {
-  const menuItems = [
-    { name: "Dashboard", href: "/admin/dashboard" },
-  ];
+  const menuItems = [{ name: "Dashboard", href: "/admin/dashboard" }];
   return (
     <div className="w-sm h-screen pt-8">
       <h1 className="scroll-m-20 pb-2 text-3xl font-semibold tracking-tight first:mt-0">
@@ -13,7 +11,7 @@ export function Sidebar() {
         {menuItems.map((item) => (
           <li key={item.href}>
             <Link
-              href={"#" + item.name}
+              href={item.name}
               className="hover:bg-accent font-bold py-2 px-3 rounded"
             >
               {item.name}
