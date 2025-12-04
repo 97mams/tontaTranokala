@@ -17,8 +17,6 @@ export default async function Page() {
 
   const chartData = await dataChart();
 
-  // console.log(chartData);
-
   if (!users) {
     return "without users";
   }
