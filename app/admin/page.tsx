@@ -1,7 +1,7 @@
 "use server";
 
 import { prisma } from "@/lib/prisma";
-import { dataChart } from "../../server/admin";
+import { countIdbyCreateAt } from "../../server/admin";
 import { ListUsers } from "./_components/listUsers";
 import { Users } from "./_components/users";
 
@@ -15,7 +15,9 @@ export default async function Page() {
     select: { id: true, name: true, email: true },
   });
 
-  const chartData = await dataChart();
+  const chartData = await countIdbyCreateAt();
+
+  console.log("chartData", chartData);
 
   if (!users) {
     return "without users";

@@ -40,11 +40,33 @@ async function getSite() {
 export const countIdbyCreateAt = async () => {
   const plateformData = await getPlateform();
   const siteData = await getSite();
-
-  const formattedPlateformData = setData(plateformData);
-  const formattedSiteData = setData(siteData);
-  return flatData([...formattedPlateformData, ...formattedSiteData]);
+  return unionSitePlateform(
+    flatData(setData(plateformData)),
+    flatData(setData(siteData))
+  );
 };
+
+function unionSitePlateform(
+  siteData: data,
+  plateformData: data
+): { site: number; plateform: number; date: Date }[] {
+  const site = siteData.map((item) => {
+    return { site: item.id as number, date: item.createdAt as Date };
+  });
+  const plateform = plateformData.map((item) => {
+    return { plateform: item.id as number, date: item.createdAt as Date };
+  });
+  const result: { site: number; plateform: number; date: Date }[] = [];
+  site.forEach((siteItem, k) => {
+    const plateformItem = plateform.find((p) => p.date === siteItem.date);
+    result.push({
+      site: siteItem.site,
+      plateform: plateform[k].plateform,
+      date: siteItem.date,
+    });
+  });
+  return result;
+}
 
 /**
  * Count id grouped by createdAt date
@@ -54,11 +76,9 @@ export const countIdbyCreateAt = async () => {
  */
 function flatData(data: data) {
   const result: any[] = [];
-  console.log("data", data);
   for (let index = 0; index < data.length - 1; index++) {
     let id = 1;
     if (data[index].createdAt === data[index + 1]?.createdAt) {
-      console.log("true");
       id += 1;
     } else if (data[index].createdAt === data[index - 1]?.createdAt) {
       continue;
@@ -71,10 +91,10 @@ function flatData(data: data) {
 }
 
 /**
- * convert Date to Day-Month-Year format
+ * convert Date to Year-Month-Day format
  *
  * @param data {id: number , createdAt: Date}
- * @returns {id: number , createdAt: string} in Day-Month-Year format
+ * @returns {id: number , createdAt: string} in Year-Month-Day format
  */
 function setData(data: data) {
   const array: any[] = [];
@@ -85,9 +105,15 @@ function setData(data: data) {
   return array;
 }
 
+/**
+ * convert Date to Year-Month-Day format
+ *
+ * @param date
+ * @returns {Date} in Year-Month-Day format
+ */
 function DayMonthYear(date: Date) {
   const day = date.getDate().toString().padStart(2, "0");
   const month = (date.getMonth() + 1).toString().padStart(2, "0");
   const year = date.getFullYear();
-  return `${day}-${month}-${year}`;
+  return `${year}-${month}-${day}`;
 }
