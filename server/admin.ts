@@ -1,17 +1,18 @@
 import { prisma } from "@/lib/prisma";
 
+/**
+ * Type definition for data with id and createdAt date
+ */
 type data = {
   id: number;
   createdAt: Date;
 }[];
 
-type dataChart =
-  | {
-      plateform: number;
-      createdAt: Date;
-    }
-  | { site: number; createdAt: Date }[];
-
+/**
+ * Get platform data
+ *
+ * @returns {id:number, createdAt: Date}[]
+ */
 async function getPlateform() {
   const plateform = await prisma.plateform.findMany({
     select: { id: true, createdAt: true },
@@ -19,6 +20,11 @@ async function getPlateform() {
   return plateform;
 }
 
+/**
+ * Get site data
+ *
+ * @returns {id:number, createdAt: Date}[]
+ */
 async function getSite() {
   const site = await prisma.site.findMany({
     select: { id: true, createdAt: true },
@@ -26,22 +32,27 @@ async function getSite() {
   return site;
 }
 
+/**
+ * Count id by createdAt date for site and platform
+ *
+ * @returns {site:number, plateform:number, date:string}[]
+ */
 export const countIdbyCreateAt = async () => {
   const plateformData = await getPlateform();
   const siteData = await getSite();
 
-  const formattedPlateformData = setData(plateformData).map((item) => ({
-    plateform: item.id,
-    date: item.createdAt,
-  }));
-  const formattedSiteData = setData(siteData).map((item) => ({
-    site: item.id,
-    date: item.createdAt,
-  }));
+  const formattedPlateformData = setData(plateformData);
+  const formattedSiteData = setData(siteData);
   return flatData([...formattedPlateformData, ...formattedSiteData]);
 };
 
-function flatData(data: dataChart) {
+/**
+ * Count id grouped by createdAt date
+ *
+ * @param data {id: number, createdAt: Date}
+ * @returns {id: number, createdAt: string} with count of id grouped by createdAt date
+ */
+function flatData(data: data) {
   const result: any[] = [];
   console.log("data", data);
   for (let index = 0; index < data.length - 1; index++) {
@@ -59,6 +70,12 @@ function flatData(data: dataChart) {
   return result;
 }
 
+/**
+ * convert Date to Day-Month-Year format
+ *
+ * @param data {id: number , createdAt: Date}
+ * @returns {id: number , createdAt: string} in Day-Month-Year format
+ */
 function setData(data: data) {
   const array: any[] = [];
   for (let i = 0; i < data.length; i++) {
