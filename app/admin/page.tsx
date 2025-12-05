@@ -2,13 +2,9 @@
 
 import { prisma } from "@/lib/prisma";
 import { countIdbyCreateAt } from "../../server/admin";
+import { Chart } from "./_components/chart";
 import { ListUsers } from "./_components/listUsers";
 import { Users } from "./_components/users";
-
-type chartData = {
-  day: string;
-  total: number;
-};
 
 export default async function Page() {
   const users = await prisma.user.findMany({
@@ -16,8 +12,6 @@ export default async function Page() {
   });
 
   const chartData = await countIdbyCreateAt();
-
-  console.log("chartData", chartData);
 
   if (!users) {
     return "without users";
@@ -28,7 +22,7 @@ export default async function Page() {
   return (
     <div className="w-full overflow-scroll pt-8 px-20 flex flex-col gap-4">
       <Users />
-      {/* <Chart data={chartData} /> */}
+      <Chart data={chartData} />
       <ListUsers data={users} />{" "}
     </div>
   );
