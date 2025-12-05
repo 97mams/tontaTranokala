@@ -24,17 +24,17 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-export const description = "An interactive area chart";
+export const description = "Number data register";
 
 const chartConfig = {
   visitors: {
     label: "Visitors",
   },
-  desktop: {
+  plateform: {
     label: "Desktop",
     color: "var(--chart-1)",
   },
-  mobile: {
+  site: {
     label: "Mobile",
     color: "var(--chart-2)",
   },
@@ -97,7 +97,7 @@ export function Chart(props: { data: dataTypes }) {
         >
           <AreaChart data={filteredData}>
             <defs>
-              <linearGradient id="fillDesktop" x1="0" y1="0" x2="0" y2="1">
+              <linearGradient id="fillPlateform" x1="0" y1="0" x2="0" y2="1">
                 <stop
                   offset="5%"
                   stopColor="var(--color-desktop)"
@@ -109,7 +109,7 @@ export function Chart(props: { data: dataTypes }) {
                   stopOpacity={0.1}
                 />
               </linearGradient>
-              <linearGradient id="fillMobile" x1="0" y1="0" x2="0" y2="1">
+              <linearGradient id="fillSite" x1="0" y1="0" x2="0" y2="1">
                 <stop
                   offset="5%"
                   stopColor="var(--color-mobile)"
@@ -152,16 +152,16 @@ export function Chart(props: { data: dataTypes }) {
               }
             />
             <Area
-              dataKey="mobile"
+              dataKey="site"
               type="natural"
-              fill="url(#fillMobile)"
+              fill="url(#fillSite)"
               stroke="var(--color-mobile)"
               stackId="a"
             />
             <Area
-              dataKey="desktop"
+              dataKey="plateform"
               type="natural"
-              fill="url(#fillDesktop)"
+              fill="url(#fillPlateform)"
               stroke="var(--color-desktop)"
               stackId="a"
             />
