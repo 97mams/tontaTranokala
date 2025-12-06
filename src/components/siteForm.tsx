@@ -65,7 +65,6 @@ export function SiteForm(props: {
   const Labeled: React.FC<Props> = ({ md = false }) => {
     return <span>{md ? "Ajout site" : <Plus />}</span>;
   };
-  console.log("groupe id ito:", props.id);
 
   return (
     <Dialog>
