@@ -67,7 +67,7 @@ export function Chart(props: { data: any[] }) {
         <div className="grid flex-1 gap-1">
           <CardTitle>Area Chart - Interactive</CardTitle>
           <CardDescription>
-            Showing total visitors for the last 3 months
+            Showing total register for the last 3 months
           </CardDescription>
         </div>
         <Select value={timeRange} onValueChange={setTimeRange}>
