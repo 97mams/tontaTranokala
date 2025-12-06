@@ -3,12 +3,36 @@
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { prisma } from "@/lib/prisma";
 import { redirect } from "next/navigation";
+import { ChartRadialLabel } from "../../_components/user/Radical.Chart";
 
 export default async function Page({ params }: { params: { id: string } }) {
   const user = await prisma.user.findUnique({
     where: { id: params.id },
     select: { id: true, name: true, email: true },
   });
+
+  const userData = await prisma.groupSite.findMany({
+    where: { userId: params.id },
+    include: { siteId: true, palteformId: true },
+  });
+
+  const totalSites = userData.filter((site) => site.type == "site").length;
+  const totalPalteforms = userData.filter(
+    (site) => site.type == "palteform"
+  ).length;
+
+  const chartData = [
+    {
+      type: "plateform",
+      registers: totalPalteforms,
+      fill: "var(--color-plateform)",
+    },
+    {
+      type: "site",
+      registers: totalSites,
+      fill: "var(--color-site)",
+    },
+  ];
 
   if (!user) {
     return redirect("/admin");
@@ -51,6 +75,7 @@ export default async function Page({ params }: { params: { id: string } }) {
           </CardContent>
         </Card>
       </div>
+      <ChartRadialLabel user={chartData} />
     </div>
   );
 }
