@@ -9,6 +9,7 @@ import { Users } from "./_components/users";
 export default async function Page() {
   const users = await prisma.user.findMany({
     select: { id: true, name: true, email: true, createdAt: true },
+    orderBy: { createdAt: "desc" },
   });
 
   const additionalData = users.map((user) => {
