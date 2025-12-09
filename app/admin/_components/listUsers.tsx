@@ -41,6 +41,7 @@ let data: User[] = [
     id: "m5gr84i9",
     name: "mamisoa",
     email: "ken99@example.com",
+    recent: false,
   },
 ];
 
@@ -48,6 +49,7 @@ export type User = {
   id: string;
   name: string;
   email: string;
+  recent: boolean;
 };
 
 export const columns: ColumnDef<User>[] = [
@@ -106,9 +108,14 @@ export const columns: ColumnDef<User>[] = [
     cell: ({ row }) => (
       <div className="capitalize">
         {row.getValue("name")}{" "}
-        <Badge variant={"outline"} className="border-green-900 text-green-900">
-          New
-        </Badge>{" "}
+        {row.original.recent && (
+          <Badge
+            variant={"outline"}
+            className="border-green-900 text-green-900"
+          >
+            New
+          </Badge>
+        )}
       </div>
     ),
   },
