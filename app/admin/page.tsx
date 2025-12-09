@@ -40,8 +40,6 @@ export default async function Page() {
     return "without users";
   }
 
-  const usersCount = users.length;
-
   return (
     <div className="w-full overflow-scroll pt-8 px-20 flex flex-col gap-4">
       <Users />
