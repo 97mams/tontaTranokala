@@ -105,7 +105,10 @@ export const columns: ColumnDef<User>[] = [
     },
     cell: ({ row }) => (
       <div className="capitalize">
-        {row.getValue("name")} <Badge>New</Badge>{" "}
+        {row.getValue("name")}{" "}
+        <Badge variant={"outline"} className="border-green-900 text-green-900">
+          New
+        </Badge>{" "}
       </div>
     ),
   },
