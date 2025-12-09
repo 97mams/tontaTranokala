@@ -57,15 +57,26 @@ function unionSitePlateform(
     return { plateform: item.id as number, date: item.createdAt as Date };
   });
   const result: { site: number; plateform: number; date: Date }[] = [];
-  site.forEach((siteItem, k) => {
-    const plateformItem = plateform.find((p) => p.date === siteItem.date);
+  const breakLoop = intervallLengthOfArray(site, plateform);
+  console.log("breakLoop", breakLoop);
+  for (let i = 0; i < site.length + breakLoop; i++) {
+    const plateformItem = plateform.find((p) => p.date === site[i].date);
     result.push({
-      site: siteItem.site,
-      plateform: plateform[k].plateform,
-      date: siteItem.date,
+      site: site[i].site,
+      plateform: plateformItem?.plateform ?? 0,
+      date: site[i].date,
     });
-  });
+  }
+
+  console.log("result", result);
   return result;
+}
+
+function intervallLengthOfArray(FirstArray: any[], SecondArray: any[]): number {
+  console.log("FirstArray.length", FirstArray.length);
+  console.log("SecondArray.length", SecondArray.length);
+  const restLength = SecondArray.length - FirstArray.length;
+  return restLength === 0 ? 0 : restLength;
 }
 
 /**
