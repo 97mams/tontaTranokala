@@ -1,7 +1,6 @@
 import { GroupeSiteForm } from "@/components/groupForm";
 import { getUser } from "@/lib/auth-server";
 import { prisma } from "@/lib/prisma";
-import Image from "next/image";
 import { redirect } from "next/navigation";
 
 export default async function Page() {
@@ -17,20 +16,14 @@ export default async function Page() {
 
   return (
     <div className="w-full sm:w-[calc(100%-20rem)] m-auto h-[calc(100vh-7rem)] justify-center flex flex-col items-center">
-      <Image
-        alt="logo"
-        width={300}
-        height={300}
-        className="hidden sm:block"
-        src={"/tranokalaMd.png"}
-      />
-      <div className="text-center">
+      <div className="flex items-center flex-col gap-4">
         {isGroup ? (
-          <p className="leading-7 [&:not(:first-child)]:mt-6">
-            Organisez vos idées autrement : créez un nouveau groupe en un clic
+          <p className="scroll-m-20 text-center text-4xl font-extrabold tracking-tight text-balance">
+            Organisez vos idées autrement : <br /> créez un nouveau groupe en un
+            clic
           </p>
         ) : (
-          <p className="leading-7 [&:not(:first-child)]:mt-6">
+          <p className="scroll-m-20 text-center text-4xl font-extrabold tracking-tight text-balance">
             Bienvenue <span className="capitalize">{user.name}</span>. <br />{" "}
             Ajoute ton premier enregistrement et garde tout à portée de main !
           </p>
