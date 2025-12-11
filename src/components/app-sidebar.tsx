@@ -27,7 +27,9 @@ export function AppSidebar() {
           <SidebarGroup>
             <SidebarGroupLabel asChild>
               <CollapsibleTrigger>
-                Groupe Sites
+                <h4 className="scroll-m-20 text-xl font-semibold tracking-tight">
+                  Groupe Sites
+                </h4>
                 <ChevronDown className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180" />
               </CollapsibleTrigger>
             </SidebarGroupLabel>
@@ -40,7 +42,9 @@ export function AppSidebar() {
           <SidebarGroup>
             <SidebarGroupLabel asChild>
               <CollapsibleTrigger>
-                Groupe Plateformes
+                <h4 className="scroll-m-20 text-xl font-semibold tracking-tight">
+                  Groupe Plateformes
+                </h4>
                 <ChevronDown className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180" />
               </CollapsibleTrigger>
             </SidebarGroupLabel>
