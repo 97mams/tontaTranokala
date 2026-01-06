@@ -5,14 +5,20 @@ import { redirect } from "next/navigation";
 import { PersonalInfo } from "../../_components/user/personalInfo";
 import { ChartRadialLabel } from "../../_components/user/Radical.Chart";
 
-export default async function Page({ params }: { params: { id: string } }) {
+type PageProps = {
+  params: Promise<{ id: string }>;
+};
+
+export default async function Page({ params }: PageProps) {
+  const { id } = await params;
+
   const user = await prisma.user.findUnique({
-    where: { id: params.id },
+    where: { id: id },
     select: { id: true, name: true, email: true },
   });
 
   const userData = await prisma.groupSite.findMany({
-    where: { userId: params.id },
+    where: { userId: id },
     include: { siteId: true, palteformId: true },
   });
 
