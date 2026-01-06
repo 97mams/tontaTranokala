@@ -3,11 +3,13 @@ import { SiteForm } from "@/components/siteForm";
 import { prisma } from "@/lib/prisma";
 import { castToString, stringToObject } from "@/lib/urlHelper";
 
-export default async function Page(props: {
+type PageProps = {
   params: Promise<{ siteName: string }>;
-}) {
-  const params = await props.params;
-  const newParams = stringToObject(params.siteName);
+};
+
+export default async function Page({ params }: PageProps) {
+  const { siteName } = await params;
+  const newParams = stringToObject(siteName);
   const groupSiteId = newParams.id;
   const sitesByGroupId = await prisma.site.findMany({
     where: { GroupSiteId: groupSiteId },
