@@ -26,7 +26,7 @@ export default async function Page({ params }: PlateformParams) {
       </h1>
       {plateforms.length !== 0 ? (
         <p className="leading-7 text-center md:text-start [&:not(:first-child)]:mt-6">
-          Ici, retrouvez tous les plateforms dédiés à {newParams.title}.
+          Ici, retrouvez tous les plateformes dédiés à {newParams.title}.
         </p>
       ) : (
         ""
@@ -43,8 +43,8 @@ export default async function Page({ params }: PlateformParams) {
 const EmptyData = ({ id }: { id: number }) => {
   return (
     <div className="w-full sm:w-[calc(100%-20rem)] m-auto md:m-1 h-[calc(100vh-7rem)] flex flex-col justify-center items-center">
-      <p className="text-muted-foreground mb-8 text-center md:text-start">
-        🔑 Ton coffre-fort numérique commence avec un enregistrement.
+      <p className="scroll-m-20 text-center text-4xl font-extrabold tracking-tight text-balance mb-4">
+        Ton coffre-fort numérique <br /> commence avec un enregistrement.
       </p>
       <PlateformForm id={id} isButton={true} />
     </div>

@@ -92,7 +92,9 @@ export function PlateformForm(props: {
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
           <DialogTitle>
-            {props.plateform ? "Modifier la plateform" : "Ajouter la plateform"}
+            {props.plateform
+              ? "Modifier la plateforme"
+              : "Ajouter la plateforme"}
           </DialogTitle>
           <DialogDescription>
             {props.plateform
@@ -114,7 +116,7 @@ export function PlateformForm(props: {
                 id="plateformName-input"
                 defaultValue={props.plateform?.name}
                 name="nameplateform"
-                placeholder="ex: mon Plateform"
+                placeholder="ex: ma Plateforme"
                 required
               />
             </div>
@@ -126,7 +128,7 @@ export function PlateformForm(props: {
                 id="plateformEmail-input"
                 defaultValue={props.plateform?.email}
                 name="email"
-                placeholder="ex: plateform@exemple.com"
+                placeholder="ex: plateforme@exemple.com"
                 required
               />
             </div>
