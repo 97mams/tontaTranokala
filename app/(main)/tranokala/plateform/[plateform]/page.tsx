@@ -4,7 +4,7 @@ import { prisma } from "@/lib/prisma";
 import { stringToObject } from "@/lib/urlHelper";
 
 type PlateformParams = {
-  params: { plateform: string };
+  params: Promise<{ plateform: string }>;
 };
 
 export default async function Page({ params }: PlateformParams) {
