@@ -1,22 +1,22 @@
-'use client';
-import { cn } from '@/lib/utils';
-import { motion, SpringOptions, useSpring, useTransform } from 'motion/react';
-import { useEffect } from 'react';
+"use client";
+import { cn } from "@/lib/utils";
+import { motion, SpringOptions, useSpring, useTransform } from "motion/react";
+import { ElementType, useEffect } from "react";
 
 export type AnimatedNumberProps = {
   value: number;
   className?: string;
   springOptions?: SpringOptions;
-  as?: React.ElementType;
+  as?: ElementType;
 };
 
 export function AnimatedNumber({
   value,
   className,
   springOptions,
-  as = 'span',
+  as = "span",
 }: AnimatedNumberProps) {
-  const MotionComponent = motion.create(as as keyof JSX.IntrinsicElements);
+  const MotionComponent = motion.create(as ?? "span");
 
   const spring = useSpring(value, springOptions);
   const display = useTransform(spring, (current) =>
@@ -28,7 +28,7 @@ export function AnimatedNumber({
   }, [spring, value]);
 
   return (
-    <MotionComponent className={cn('tabular-nums', className)}>
+    <MotionComponent className={cn("tabular-nums", className)}>
       {display}
     </MotionComponent>
   );
