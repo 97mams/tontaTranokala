@@ -2,11 +2,11 @@ import { prisma } from "@/lib/prisma";
 import { NextRequest, NextResponse } from "next/server";
 export async function GET(
   request: NextRequest,
-  paramsPlateform: { params: { plateformId: string } }
+  paramsPlateform: { params: Promise<{ plateformId: string }> }
 ) {
-  const getParams = Number(paramsPlateform.params.plateformId);
+  const getParams = await paramsPlateform.params;
   const plateformByGroupPlateform = await prisma.plateform.findMany({
-    where: { GroupSiteId: getParams },
+    where: { GroupSiteId: Number(getParams.plateformId) },
     select: {
       id: true,
       name: true,
