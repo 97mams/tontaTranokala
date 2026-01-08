@@ -12,6 +12,7 @@ import {
   SidebarGroup,
   SidebarGroupLabel,
   SidebarHeader,
+  SidebarSeparator,
 } from "./ui/sidebar";
 
 export function AppSidebar() {
@@ -22,6 +23,7 @@ export function AppSidebar() {
           <Image width={30} height={30} alt="logo" src={"/tranokala.png"} />
         </Link>
       </SidebarHeader>
+      <SidebarSeparator />
       <SidebarContent>
         <Collapsible defaultOpen className="group/collapsible">
           <SidebarGroup>
