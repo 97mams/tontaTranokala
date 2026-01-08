@@ -15,7 +15,7 @@ export async function GET(req: Request) {
   const visits = await prisma.groupSite.findMany({
     where: { userId },
     orderBy: { visits: "desc" },
-    select: { id: true, title: true, visits: true },
+    select: { id: true, title: true, type: true, visits: true },
   });
 
   const projectIsVisited = visits.filter((visit) => visit.visits >= 3);
