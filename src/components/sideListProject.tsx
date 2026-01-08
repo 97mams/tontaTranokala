@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { TextMorph } from "./motion-primitives/text-morph";
 import { useVisitStore } from "../../store/project-store";
+import { TextMorph } from "./motion-primitives/text-morph";
 
 export function TopProjects(props: { userId: string }) {
   const fetchVisits = useVisitStore((state) => state.fetchVisits);
@@ -30,7 +30,7 @@ export function TopProjects(props: { userId: string }) {
       {visits.map((project) => (
         <a
           key={project.id}
-          href={`/tranokala/site/${project.id}-${project.title}`}
+          href={`/tranokala/${project.type}/${project.id}-${project.title}`}
           className="hover:text-primary my-6 ml-6 list-disc [&>li]:mt-2"
           onClick={() => incrementVisit(props.userId, parseInt(project.id))}
         >

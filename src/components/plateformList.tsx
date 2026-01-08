@@ -26,7 +26,7 @@ export default function PlateformList(props: {
   return (
     <div className="w-full pb-8">
       <div className="w-full md:w-5xl">
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-1">
           <div>
             {props.data?.map((plateform) => (
               <InView

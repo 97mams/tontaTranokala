@@ -19,7 +19,7 @@ export function AppSidebar() {
   return (
     <Sidebar variant="inset">
       <SidebarHeader>
-        <Link href={"/"}>
+        <Link href={"/tranokala"}>
           <Image width={30} height={30} alt="logo" src={"/tranokala.png"} />
         </Link>
       </SidebarHeader>
