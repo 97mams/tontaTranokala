@@ -25,7 +25,7 @@ export default async function RootLayout({
       <SidebarProvider className="overflow-hidden">
         <AppSidebar />
         <main className="w-full h-screen">
-          <div className="w-full sticky z-40 flex justify-between md:justify-end p-2 ">
+          <div className="w-full sticky z-40 border-b-2 flex justify-between md:justify-end p-2.5 ">
             <div className="block md:hidden ">
               <SidebarTrigger />
             </div>
