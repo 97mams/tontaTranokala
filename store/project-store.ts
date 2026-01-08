@@ -3,6 +3,7 @@ import { create } from "zustand";
 interface GroupSiteVisit {
   id: string;
   title: string;
+  type: string;
   visits: number;
 }
 
