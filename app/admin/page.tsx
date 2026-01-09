@@ -6,6 +6,8 @@ import { Chart } from "./_components/chart";
 import { ListUsers } from "./_components/listUsers";
 import { Users } from "./_components/users";
 
+export const dynamic = "force-dynamic";
+
 export default async function Page() {
   const users = await prisma.user.findMany({
     select: { id: true, name: true, email: true, createdAt: true },
