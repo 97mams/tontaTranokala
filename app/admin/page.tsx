@@ -1,5 +1,3 @@
-"use server";
-
 import { prisma } from "@/lib/prisma";
 import { countIdbyCreateAt } from "../../server/admin";
 import { Chart } from "./_components/chart";
@@ -15,39 +13,25 @@ export default async function Page() {
   });
 
   const additionalData = users.map((user) => {
-    const dateFin = new Date(Date.now());
-    const date = new Date(user.createdAt);
-    const diffrenceInTime = dateFin.getTime() - date.getTime();
-    const diffrenceInDays = Math.ceil(diffrenceInTime / (1000 * 3600 * 24));
+    const diffDays = Math.ceil(
+      (Date.now() - new Date(user.createdAt).getTime()) / (1000 * 3600 * 24)
+    );
 
-    if (diffrenceInDays <= 30) {
-      return {
-        id: user.id,
-        name: user.name,
-        email: user.email,
-        recent: true,
-      };
-    } else {
-      return {
-        id: user.id,
-        name: user.name,
-        email: user.email,
-        recent: false,
-      };
-    }
+    return {
+      id: user.id,
+      name: user.name,
+      email: user.email,
+      recent: diffDays <= 30,
+    };
   });
 
   const chartData = await countIdbyCreateAt();
-
-  if (!users) {
-    return "without users";
-  }
 
   return (
     <div className="w-full overflow-scroll pt-8 px-20 flex flex-col gap-4">
       <Users />
       <Chart data={chartData} />
-      <ListUsers data={additionalData} />{" "}
+      <ListUsers data={additionalData} />
     </div>
   );
 }
