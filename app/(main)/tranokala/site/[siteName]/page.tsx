@@ -42,7 +42,7 @@ export default async function Page({ params }: PageProps) {
   };
 
   return (
-    <div className="w-full md:w-5xl flex flex-col gap-2">
+    <div className="w-full md:w-5xl flex flex-col gap-2 m-8">
       <h1 className="text-center md:text-start scroll-m-20 uppercase text-4xl font-extrabold tracking-tight text-balance">
         {castToString(newParams.title)}
       </h1>
