@@ -29,8 +29,8 @@ export default async function Page({ params }: PageProps) {
 
   const EmptyData = () => {
     return (
-      <div>
-        <div className="w-full flex flex-col gap-4  h-[calc(100vh-7rem)] justify-center items-center">
+      <div className="w-full h-[calc(100vh-7rem)] flex items-center justify-end">
+        <div className="w-xl h-[36rem] flex flex-col gap-4 justify-center items-center">
           <p className="scroll-m-20 text-center text-4xl font-extrabold tracking-tight text-balance">
             Ajoute ton premier enregistrement et garde tout à portée de main !
           </p>
