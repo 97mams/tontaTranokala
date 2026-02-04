@@ -12,7 +12,7 @@ export default async function Page() {
   const isGroup = await prisma.user.findUnique({
     where: { id: user.id },
     select: { groupeSite: { select: { id: true } } },
-  });
+  });<consol log#nanah
 
   return (
     <div className="w-full sm:w-[calc(100%-20rem)] m-auto h-[calc(100vh-7rem)] justify-center flex flex-col items-center">
