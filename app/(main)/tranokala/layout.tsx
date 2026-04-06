@@ -35,7 +35,7 @@ export default async function RootLayout({
               <ModeToggle />
             </div>
           </div>
-          <div className="w-full max-h-screen p-8 h-[calc(100vh-3.6rem)] bg-accent flex">
+          <div className="w-full max-h-screen p-8 h-[calc(100vh-4rem)] bg-accent flex">
             <Suspense fallback={<Skeleton />}>
               {children}
               <TopProjects userId={user?.id} />
