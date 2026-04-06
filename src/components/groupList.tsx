@@ -13,15 +13,21 @@ export async function GroupeList({ type }: { type: "site" | "plateform" }) {
 
   return (
     <div className="w-full flex flex-col">
-      {filteredGroups.map((group) => (
-        <ItemSidebar
-          key={group.id}
-          id={group.id}
-          title={group.title}
-          type={group.type}
-          userId={user?.id as string}
-        />
-      ))}
+      {filteredGroups.length == 0 ? (
+        <div className="w-full text-muted px-2 flex items-center ">
+          Aucune enregistrement...
+        </div>
+      ) : (
+        filteredGroups.map((group) => (
+          <ItemSidebar
+            key={group.id}
+            id={group.id}
+            title={group.title}
+            type={group.type}
+            userId={user?.id as string}
+          />
+        ))
+      )}
     </div>
   );
 }
