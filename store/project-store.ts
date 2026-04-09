@@ -13,7 +13,7 @@ interface VisitStore {
   incrementVisit: (userId: number, groupSiteId: number) => Promise<void>;
 }
 
-export const useVisitStore = create<VisitStore>((set) => ({
+export const useVisitStore = create<VisitStore>((set: any) => ({
   visits: [],
 
   fetchVisits: async (userId: number) => {
