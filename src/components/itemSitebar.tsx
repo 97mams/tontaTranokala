@@ -26,7 +26,7 @@ export function ItemSidebar(props: {
       >
         {props.title}
       </Link>
-      <ButtonAction id={props.id} />
+      <ButtonAction id={props.id} userId={props.userId} />
     </div>
   );
 }
