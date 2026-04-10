@@ -4,6 +4,7 @@ import { TriangleAlert, XIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { groupSiteDeleteAction } from "../../server/form-action";
+import { useVisitStore } from "../../store/project-store";
 import { Button } from "./ui/button";
 import {
   Dialog,
@@ -16,12 +17,14 @@ import {
   DialogTrigger,
 } from "./ui/dialog";
 
-export function ButtonAction(props: { id: number }) {
+export function ButtonAction(props: { id: number; userId: string }) {
+  const setVisits = useVisitStore((state) => state.fetchVisits);
   const router = useRouter();
   const handlerSubmit = (formdata: FormData) => {
     groupSiteDeleteAction(formdata)
       .then((respose) => {
         if (respose.success) {
+          setVisits(props.userId);
           toast.success("Suppression réussir...");
           router.push("/tranokala");
         }
