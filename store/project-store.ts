@@ -9,21 +9,21 @@ interface GroupSiteVisit {
 
 interface VisitStore {
   visits: GroupSiteVisit[];
-  fetchVisits: (userId: number) => Promise<void>;
-  incrementVisit: (userId: number, groupSiteId: number) => Promise<void>;
-  refreshConterVisted: (userId: number) => void;
+  fetchVisits: (userId: string) => Promise<void>;
+  incrementVisit: (userId: string, groupSiteId: number) => Promise<void>;
+  refreshConterVisted: (userId: string) => void;
 }
 
 export const useVisitStore = create<VisitStore>((set: any) => ({
   visits: [],
 
-  fetchVisits: async (userId: number) => {
+  fetchVisits: async (userId: string) => {
     const res = await fetch(`/api/visits?userId=${userId}`);
     const data = await res.json();
     if (data.success) set({ visits: data.data });
   },
 
-  incrementVisit: async (userId: number, groupSiteId: number) => {
+  incrementVisit: async (userId: string, groupSiteId: number) => {
     const res = await fetch(`/api/visits`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -39,7 +39,7 @@ export const useVisitStore = create<VisitStore>((set: any) => ({
     }
   },
 
-  refreshConterVisted(userId: number) {
+  refreshConterVisted(userId: string) {
     fetch(`/api/visits?userId=${userId}`)
       .then((res) => res.json())
       .then((data) => {
