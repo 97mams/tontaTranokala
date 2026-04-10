@@ -11,7 +11,6 @@ export function ItemSidebar(props: {
   title: string;
   type: string;
 }) {
-  const visits = useVisitStore((state) => state.visits);
   const setVisits = useVisitStore((state) => state.incrementVisit);
   return (
     <div className="w-full rounded-sm px-2 flex items-center hover:bg-muted">
