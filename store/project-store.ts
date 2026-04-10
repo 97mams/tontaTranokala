@@ -11,7 +11,6 @@ interface VisitStore {
   visits: GroupSiteVisit[];
   fetchVisits: (userId: string) => Promise<void>;
   incrementVisit: (userId: string, groupSiteId: number) => Promise<void>;
-  refreshConterVisted: (userId: string) => void;
 }
 
 export const useVisitStore = create<VisitStore>((set: any) => ({
@@ -37,13 +36,5 @@ export const useVisitStore = create<VisitStore>((set: any) => ({
       const refreshedData = await refresh.json();
       if (refreshedData.success) set({ visits: refreshedData.data });
     }
-  },
-
-  refreshConterVisted(userId: string) {
-    fetch(`/api/visits?userId=${userId}`)
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.success) set({ visits: data.data });
-      });
   },
 }));
