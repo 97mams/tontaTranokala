@@ -42,13 +42,13 @@ export const countIdbyCreateAt = async () => {
   const siteData = await getSite();
   return unionSitePlateform(
     flatData(setData(plateformData)),
-    flatData(setData(siteData))
+    flatData(setData(siteData)),
   );
 };
 
 function unionSitePlateform(
   siteData: data,
-  plateformData: data
+  plateformData: data,
 ): { site: number; plateform: number; date: Date }[] {
   const site = siteData.map((item) => {
     return { site: item.id as number, date: item.createdAt as Date };
@@ -73,8 +73,6 @@ function unionSitePlateform(
 }
 
 function intervallLengthOfArray(FirstArray: any[], SecondArray: any[]): number {
-  console.log("FirstArray.length", FirstArray.length);
-  console.log("SecondArray.length", SecondArray.length);
   const restLength = SecondArray.length - FirstArray.length;
   return restLength === 0 ? 0 : restLength;
 }
