@@ -19,8 +19,6 @@ export default async function Page({ params }: PlateformParams) {
     },
   });
 
-  console.log("ito daoly,", plateforms);
-
   return (
     <div className="w-full h-[calc(100vh-7rem)] overflow-auto">
       <h1 className="uppercase text-4xl text-center md:text-start font-extrabold tracking-tight text-balance">

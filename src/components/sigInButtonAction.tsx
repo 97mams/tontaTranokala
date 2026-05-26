@@ -61,11 +61,10 @@ export const SignInButtonAction = () => {
         onError: (error) => {
           toast.error(error.error.message);
         },
-      }
+      },
     );
     setIsPending(false);
   };
-  console.log(isPending);
   return (
     <Dialog>
       <DialogTrigger asChild>
