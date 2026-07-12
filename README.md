@@ -18,9 +18,8 @@ The goal of TotanTranokala is to provide a centralized and user-friendly solutio
 
 ## 🛠️ Tech Stack
 
-- **Backend Framework:** NestJS  
-- **ORM:** Prisma  
-- **Database:** MySQL  
+- **Backend Framework:** Tanstack start
+- **Database:** Convex
 
 ## 📦 Installation
 
