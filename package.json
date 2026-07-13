@@ -13,10 +13,8 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@auth/core": "0.41.1",
     "@base-ui/react": "^1.6.0",
-    "@convex-dev/auth": "^0.0.94",
-    "@convex-dev/react-query": "^0.1.0",
+    "@convex-dev/better-auth": "^0.12.5",
     "@fontsource-variable/noto-sans": "^5.2.10",
     "@tailwindcss/vite": "^4",
     "@tanstack/react-devtools": "latest",
@@ -26,6 +24,7 @@
     "@tanstack/react-router-ssr-query": "latest",
     "@tanstack/react-start": "latest",
     "@tanstack/router-plugin": "latest",
+    "better-auth": "~1.6.23",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "convex": "^1.42.1",
