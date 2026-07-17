@@ -20,8 +20,8 @@ import { ModeToggle } from "@/components/mode-toggle";
 import { Header } from "@/components/header";
 import { ConvexReactClient } from "convex/react";
 
-import { authClient } from '~/lib/auth-client'
-import { getToken } from '~/lib/auth-server'
+import { authClient } from '@/lib/auth-client'
+import { getToken } from '@/lib/auth-server'
 
 // Get auth information for SSR using available cookies
 const getAuth = createServerFn({ method: 'GET' }).handler(async () => {

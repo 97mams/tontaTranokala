@@ -1,6 +1,7 @@
 //  @ts-check
 
 import { tanstackConfig } from "@tanstack/eslint-config";
+import { defineConfig } from "vite/types/internal/rollupTypeCompat.js";
 
 export default [
   ...tanstackConfig,
@@ -12,6 +13,7 @@ export default [
       "@typescript-eslint/array-type": "off",
       "@typescript-eslint/require-await": "off",
       "pnpm/json-enforce-catalog": "off",
+      "@typescript-eslint/consistent-type-imports": "error"
     },
   },
   {
