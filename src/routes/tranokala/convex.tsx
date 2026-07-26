@@ -6,7 +6,7 @@ import { Trash2, Plus, Check, Circle } from 'lucide-react'
 import { api } from '../../../convex/_generated/api'
 import type { Id } from '../../../convex/_generated/dataModel'
 
-export const Route = createFileRoute('/demo/convex')({
+export const Route = createFileRoute('/tranokala/convex')({
   ssr: false,
   component: ConvexTodos,
 })
