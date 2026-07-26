@@ -1,22 +1,20 @@
 //  @ts-check
 
-import { tanstackConfig } from "@tanstack/eslint-config";
-import { defineConfig } from "vite/types/internal/rollupTypeCompat.js";
+import { tanstackConfig } from '@tanstack/eslint-config'
 
 export default [
   ...tanstackConfig,
   {
     rules: {
-      "import/no-cycle": "off",
-      "import/order": "off",
-      "sort-imports": "off",
-      "@typescript-eslint/array-type": "off",
-      "@typescript-eslint/require-await": "off",
-      "pnpm/json-enforce-catalog": "off",
-      "@typescript-eslint/consistent-type-imports": "error"
+      'import/no-cycle': 'off',
+      'import/order': 'off',
+      'sort-imports': 'off',
+      '@typescript-eslint/array-type': 'off',
+      '@typescript-eslint/require-await': 'off',
+      'pnpm/json-enforce-catalog': 'off',
     },
   },
   {
-    ignores: ["eslint.config.js", ".prettierrc"],
+    ignores: ['eslint.config.js', 'prettier.config.js'],
   },
-];
+]
