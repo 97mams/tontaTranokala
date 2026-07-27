@@ -1,26 +1,22 @@
 import { Link } from '@tanstack/react-router'
-import BetterAuthHeader from '../integrations/better-auth/header-user.tsx'
-import RemyButton from './RemyButton'
-import ThemeToggle from './ThemeToggle'
-import { Button } from './ui/button.tsx'
+import { Button } from './ui/button'
+import { ModeToggle } from './mode-toggle'
 
 export default function Header() {
   return (
     <header className="sticky top-0 z-50 border-b-2 border-accent px-4 backdrop-blur-lg">
       <nav className="page-wrap flex flex-wrap items-center gap-x-3 gap-y-2 py-3 sm:py-4">
-        <h2 className="m-0 flex-shrink-0 text-base font-semibold tracking-tight">
-          tranokala
-        </h2>
-
-       
-
-        <div className="ml-auto flex items-center gap-1.5 sm:gap-2">
-   <Link
+        <img src="/logo.png" className="w-10 h-8" alt="logo" />
+          <Link
             to="/about"
             className="nav-link"
             activeProps={{ className: 'nav-link is-active' }}
           >
             About
+          </Link>
+        <div className="ml-auto flex items-center gap-1.5 sm:gap-2">
+          <Link to="/tranokala/singin">
+            <Button>Se connecter</Button>
           </Link>
           <a
             href="https://github.com/TanStack"
@@ -36,15 +32,7 @@ export default function Header() {
               />
             </svg>
           </a>
-
-          <ThemeToggle />
-          <Link
-            to="/tranokala/singin"
-          >
-          <Button>
-            Se connecter
-          </Button>
-          </Link>
+          <ModeToggle />
 
         </div>
       </nav>
