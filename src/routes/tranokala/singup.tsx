@@ -6,7 +6,7 @@ export const Route = createFileRoute('/tranokala/singup')({
 })
 
 function RouteComponent() {
-  return <div className="h-150 w-150 felx justify-center items-end">
+  return <div className="h-  w-full bg-background backdrop-blur-lg z-100  m-auto flex justify-center items-center">
       <SingupForm />
     </div>
 }
