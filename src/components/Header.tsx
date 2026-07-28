@@ -13,17 +13,17 @@ export default function Header() {
         <Link
           to="/"
         >
-          <img src="/logo.png" className="w-10 h-8" alt="logo" />
+          <img src="/logo.png" className="w-8 h-5" alt="logo" />
         </Link>
           <Link
             to="/about"
-            className={pathname === "/about" ? "border broder--2accent" : ""}
+            className={pathname === "/about" ? "border border-accent rounded-sm px-3 py-2" : "border border-background px-3 py-2"}
           >
             A propos
           </Link>
           <Link
             to="/docs"
-            className={pathname === "/docs" ? "border broder-2-accent px-2 py-3" : ""}
+            className={pathname === "/docs" ? "border broder-accent rounded-sm px-3 py-2" : "border border-background px-3 py-2"}
           >
             Documentation
           </Link>
