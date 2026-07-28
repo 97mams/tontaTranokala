@@ -84,7 +84,7 @@ function About() {
               <li>✔ 6 enregistrements par groupe</li>
             </ul>
             <Link
-              href={"/auth/signUp"}
+              to={"/tranokala/singup"}
               className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition"
             >
               Commencer

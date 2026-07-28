@@ -1,25 +1,38 @@
-import { Link } from '@tanstack/react-router'
+import { Link, useLocation } from '@tanstack/react-router'
 import { Button } from './ui/button'
 import { ModeToggle } from './mode-toggle'
 
 export default function Header() {
+    const pathname = useLocation({
+    select: (location) => location.pathname,
+  })
+
   return (
     <header className="sticky top-0 z-50 border-b-2 border-accent px-4 backdrop-blur-lg">
       <nav className="page-wrap flex flex-wrap items-center gap-x-3 gap-y-2 py-3 sm:py-4">
-        <img src="/logo.png" className="w-10 h-8" alt="logo" />
+        <Link
+          to="/"
+        >
+          <img src="/logo.png" className="w-10 h-8" alt="logo" />
+        </Link>
           <Link
             to="/about"
-            className="nav-link"
-            activeProps={{ className: 'nav-link is-active' }}
+            className={pathname === "/about" ? "border broder--2accent" : ""}
           >
-            About
+            A propos
+          </Link>
+          <Link
+            to="/docs"
+            className={pathname === "/docs" ? "border broder-2-accent px-2 py-3" : ""}
+          >
+            Documentation
           </Link>
         <div className="ml-auto flex items-center gap-1.5 sm:gap-2">
           <Link to="/tranokala/singin">
             <Button>Se connecter</Button>
           </Link>
           <a
-            href="https://github.com/TanStack"
+            href="https://github.com/97mams/tontaTranokala"
             target="_blank"
             rel="noreferrer"
             className="hidden rounded-xl p-2 text-[var(--sea-ink-soft)] transition hover:bg-[var(--link-bg-hover)] hover:text-[var(--sea-ink)] sm:block"
