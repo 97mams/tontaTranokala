@@ -1,4 +1,4 @@
-import { HeadContent, Scripts, createRootRoute } from '@tanstack/react-router'
+import { HeadContent, Scripts, createRootRoute, redirect } from '@tanstack/react-router'
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
 import { TanStackDevtools } from '@tanstack/react-devtools'
 import Footer from '../components/Footer'
@@ -9,6 +9,7 @@ import ConvexProvider from '../integrations/convex/provider'
 import appCss from '../styles.css?url'
 
 import { ThemeProvider } from "@/components/theme-provider"
+import { Toaster } from '#/components/ui/sonner'
 
 export const Route = createRootRoute({
   head: () => ({
@@ -35,6 +36,7 @@ export const Route = createRootRoute({
 })
 
 function RootDocument({ children }: { children: React.ReactNode }) {
+
   return (
     <html lang="fr" suppressHydrationWarning>
       <head>
@@ -59,6 +61,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
             ]}
           />
         </ConvexProvider>
+        <Toaster />
         <Scripts />
       </body>
     </html>

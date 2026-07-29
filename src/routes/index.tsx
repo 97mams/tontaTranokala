@@ -1,3 +1,4 @@
+import BetterAuthHeader from '#/integrations/better-auth/header-user'
 import { createFileRoute, Link } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/')({
@@ -9,6 +10,9 @@ function HomePage() {
   return (
  <section className="relative text-white min-h-[80vh] flex items-center justify-center">
       {/* Overlay */}
+
+      <BetterAuthHeader />
+
       <div className="absolute inset-0"></div>
 
       <div className="relative z-10 max-w-3xl text-center px-6">
