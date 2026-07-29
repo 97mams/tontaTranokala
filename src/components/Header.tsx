@@ -1,12 +1,14 @@
 import { Link, useLocation } from '@tanstack/react-router'
 import { Button } from './ui/button'
 import { ModeToggle } from './mode-toggle'
+import { authClient } from '@/lib/auth-client.ts'
 
 export default function Header() {
+    const session =  authClient.useSession()
     const pathname = useLocation({
     select: (location) => location.pathname,
   })
-
+  console.log(session)
   return (
     <header className="sticky top-0 z-50 border-b-2 border-accent px-4 backdrop-blur-lg">
       <nav className="page-wrap flex flex-wrap items-center gap-x-3 gap-y-2 py-3 sm:py-4">
@@ -28,9 +30,10 @@ export default function Header() {
             Documentation
           </Link>
         <div className="ml-auto flex items-center gap-1.5 sm:gap-2">
-          <Link to="/tranokala/singin">
+          {session.data?.user ?<Button onClick={() => authClient.signOut()}>Se deconnecter</Button> : <Link to="/tranokala/singin">
             <Button>Se connecter</Button>
           </Link>
+          }
           <a
             href="https://github.com/97mams/tontaTranokala"
             target="_blank"

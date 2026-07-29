@@ -26,7 +26,7 @@ import { authClient } from '#/lib/auth-client.ts'
 const formSchema = z.object({
   name: z
     .string()
-    .min(5, 'Bug title must be at least 5 characters.')
+    .min(3, 'Bug title must be at least 5 characters.')
     .max(32, 'Bug title must be at most 32 characters.'),
   email: z.email(),
   password: z.string().min(8, 'Doit comporter au moins 8 caractères.'),

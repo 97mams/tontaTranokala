@@ -38,11 +38,16 @@ export function SinginForm() {
       onSubmit: formSchema,
     },
     onSubmit: async (data) => {
+      toast.info('submit')
       const { email, password } = data.value
-      await authClient.signIn.email({
+      const resultat = await authClient.signIn.email({
         email,
         password,
       })
+
+      if(resultat.error) {
+        toast.error(resultat.error.message)
+      }
       redirect({ to: '/' })
     },
   })
