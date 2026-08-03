@@ -49,7 +49,14 @@ export function SingupForm() {
         name,
         email,
         password,
-      })
+      }, {
+      onSuccess: () => {
+        window.location.reload();
+      },
+      onError: (ctx) => {
+        alert(ctx.error.message);
+      }
+    })
       redirect({to:"/"});
     },
   })
