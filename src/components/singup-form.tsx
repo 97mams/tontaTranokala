@@ -43,21 +43,20 @@ export function SingupForm() {
       onSubmit: formSchema,
     },
     onSubmit: async (data) => {
-      toast.info('submit')
       const { email, name, password } = data.value
-      await authClient.signUp.email({
+      const response =  await authClient.signUp.email({
         name,
         email,
         password,
       }, {
       onSuccess: () => {
         window.location.reload();
+        toast.info(JSON.stringify(response))
       },
       onError: (ctx) => {
         alert(ctx.error.message);
       }
     })
-      redirect({to:"/"});
     },
   })
 
