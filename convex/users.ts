@@ -18,14 +18,3 @@ export const updateUserPassword = mutation({
     });
   },
 });
-
-export const createUser = mutation({
-  args:{
-    name: v.string(),
-    email: v.string(),
-    password: v.string()
-  },
-  handler: async (ctx, args) => {
-
-  }
-})
