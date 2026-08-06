@@ -8,7 +8,7 @@ export default function Header() {
     const pathname = useLocation({
     select: (location) => location.pathname,
   })
-  console.log(session)
+  
   return (
     <header className="sticky top-0 z-50 border-b-2 border-accent px-4 backdrop-blur-lg">
       <nav className="page-wrap flex flex-wrap items-center gap-x-3 gap-y-2 py-3 sm:py-4">
