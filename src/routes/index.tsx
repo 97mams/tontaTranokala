@@ -1,11 +1,19 @@
-import BetterAuthHeader from '#/integrations/better-auth/header-user'
-import { createFileRoute, Link } from '@tanstack/react-router'
+import BetterAuthHeader from '@/integrations/better-auth/header-user'
+import { authClient } from '@/lib/auth-client'
+import { createFileRoute, Link, redirect } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/')({
   component: HomePage,
 })
 
-function HomePage() {
+async function HomePage() {
+
+  const session  = await authClient.getSession()
+
+  if (session?.data?.user) {
+    return "hello user"
+  }
+
 
   return (
  <section className="relative text-white min-h-[80vh] flex items-center justify-center">

@@ -1,7 +1,7 @@
 import { Link, useLocation } from '@tanstack/react-router'
 import { Button } from './ui/button'
 import { ModeToggle } from './mode-toggle'
-import { authClient } from '@/lib/auth-client.ts'
+import { authClient } from '@/lib/auth-client'
 
 export default function Header() {
     const session =  authClient.useSession()

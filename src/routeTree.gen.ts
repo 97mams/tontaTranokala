@@ -18,6 +18,7 @@ import { Route as SpeakersIndexRouteImport } from './routes/speakers.index'
 import { Route as SpeakersSlugRouteImport } from './routes/speakers.$slug'
 import { Route as TalksIndexRouteImport } from './routes/talks.index'
 import { Route as TalksSlugRouteImport } from './routes/talks.$slug'
+import { Route as TranokalaIndexRouteImport } from './routes/tranokala/index'
 import { Route as TranokalaBetterAuthRouteImport } from './routes/tranokala/better-auth'
 import { Route as TranokalaConvexRouteImport } from './routes/tranokala/convex'
 import { Route as TranokalaSinginRouteImport } from './routes/tranokala/singin'
@@ -69,6 +70,11 @@ const TalksSlugRoute = TalksSlugRouteImport.update({
   path: '/talks/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TranokalaIndexRoute = TranokalaIndexRouteImport.update({
+  id: '/tranokala/',
+  path: '/tranokala/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TranokalaBetterAuthRoute = TranokalaBetterAuthRouteImport.update({
   id: '/tranokala/better-auth',
   path: '/tranokala/better-auth',
@@ -109,6 +115,7 @@ export interface FileRoutesByFullPath {
   '/schedule/': typeof ScheduleIndexRoute
   '/speakers/': typeof SpeakersIndexRoute
   '/talks/': typeof TalksIndexRoute
+  '/tranokala/': typeof TranokalaIndexRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
 }
 export interface FileRoutesByTo {
@@ -125,6 +132,7 @@ export interface FileRoutesByTo {
   '/schedule': typeof ScheduleIndexRoute
   '/speakers': typeof SpeakersIndexRoute
   '/talks': typeof TalksIndexRoute
+  '/tranokala': typeof TranokalaIndexRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
 }
 export interface FileRoutesById {
@@ -142,6 +150,7 @@ export interface FileRoutesById {
   '/schedule/': typeof ScheduleIndexRoute
   '/speakers/': typeof SpeakersIndexRoute
   '/talks/': typeof TalksIndexRoute
+  '/tranokala/': typeof TranokalaIndexRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
 }
 export interface FileRouteTypes {
@@ -160,6 +169,7 @@ export interface FileRouteTypes {
     | '/schedule/'
     | '/speakers/'
     | '/talks/'
+    | '/tranokala/'
     | '/api/auth/$'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -176,6 +186,7 @@ export interface FileRouteTypes {
     | '/schedule'
     | '/speakers'
     | '/talks'
+    | '/tranokala'
     | '/api/auth/$'
   id:
     | '__root__'
@@ -192,6 +203,7 @@ export interface FileRouteTypes {
     | '/schedule/'
     | '/speakers/'
     | '/talks/'
+    | '/tranokala/'
     | '/api/auth/$'
   fileRoutesById: FileRoutesById
 }
@@ -209,6 +221,7 @@ export interface RootRouteChildren {
   ScheduleIndexRoute: typeof ScheduleIndexRoute
   SpeakersIndexRoute: typeof SpeakersIndexRoute
   TalksIndexRoute: typeof TalksIndexRoute
+  TranokalaIndexRoute: typeof TranokalaIndexRoute
   ApiAuthSplatRoute: typeof ApiAuthSplatRoute
 }
 
@@ -277,6 +290,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TalksSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/tranokala/': {
+      id: '/tranokala/'
+      path: '/tranokala'
+      fullPath: '/tranokala/'
+      preLoaderRoute: typeof TranokalaIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/tranokala/better-auth': {
       id: '/tranokala/better-auth'
       path: '/tranokala/better-auth'
@@ -329,6 +349,7 @@ const rootRouteChildren: RootRouteChildren = {
   ScheduleIndexRoute: ScheduleIndexRoute,
   SpeakersIndexRoute: SpeakersIndexRoute,
   TalksIndexRoute: TalksIndexRoute,
+  TranokalaIndexRoute: TranokalaIndexRoute,
   ApiAuthSplatRoute: ApiAuthSplatRoute,
 }
 export const routeTree = rootRouteImport
