@@ -15,23 +15,26 @@ import { getToken } from '@/lib/auth-server'
 import appCss from '../styles.css?url'
 
 import { ThemeProvider } from "@/components/theme-provider"
-import { Toaster } from '#/components/ui/sonner'
+import { Toaster } from '@/components/ui/sonner'
+import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar'
+import { AppSidebar } from '@/components/app-sidebar'
 
 const getAuth = createServerFn({ method: 'GET' }).handler(async () => {
   return await getToken()
 })
 
-export const Route = createRootRouteWithContext<{queryClient: QueryClient, convexQueryClient: ConvexQueryClient}>()({
+export const Route = createRootRouteWithContext<{ queryClient: QueryClient, convexQueryClient: ConvexQueryClient }>()({
   beforeLoad: async (ctx) => {
     const token = await getAuth()
-
-    if(token) {
+    const session = await authClient.getSession()
+    if (token) {
       ctx.context.convexQueryClient.serverHttpClient?.setAuth(token)
     }
 
     return {
-      isAuthenticated : !!token,
+      isAuthenticated: !!token,
       token,
+      session,
     }
 
   },
@@ -58,8 +61,8 @@ export const Route = createRootRouteWithContext<{queryClient: QueryClient, conve
   shellComponent: RootComponent,
 })
 
-function RootComponent () {
-  const context = useRouteContext({from: Route.id})
+function RootComponent() {
+  const context = useRouteContext({ from: Route.id })
   return (
     <ConvexBetterAuthProvider
       client={context.convexQueryClient.convexClient}
@@ -73,7 +76,34 @@ function RootComponent () {
   )
 }
 
+
 function RootDocument({ children }: { children: React.ReactNode }) {
+
+  const user = useRouteContext({ from: Route.id }).session.data?.user
+
+  const renderDefault = () => {
+    return (
+      <>
+       <Header />
+              {children}
+              <Footer />
+              </>
+    )
+  }
+
+  const renderSidebar = () => {
+    return (
+      <>
+        <SidebarProvider>
+          <AppSidebar />
+          <main>
+            <SidebarTrigger />
+            {children}
+          </main>
+        </SidebarProvider>
+      </>
+    )
+  }
 
   return (
     <html lang="fr" suppressHydrationWarning>
@@ -82,10 +112,12 @@ function RootDocument({ children }: { children: React.ReactNode }) {
       </head>
       <body className="bg-background">
         <ConvexProvider>
-           <ThemeProvider defaultTheme="system" storageKey="theme">
-            <Header />
-              {children}
-            <Footer />
+          <ThemeProvider defaultTheme="system" storageKey="theme"> 
+          { user ?
+              renderDefault()
+              :
+              renderSidebar()
+          }
           </ThemeProvider>
           <TanStackDevtools
             config={{
