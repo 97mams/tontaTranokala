@@ -1,10 +1,8 @@
 import { Link, useLocation } from '@tanstack/react-router'
-import { Button } from './ui/button'
+import { SingButton } from './SingButton'
 import { ModeToggle } from './mode-toggle'
-import { authClient } from '@/lib/auth-client'
 
 export default function Header() {
-    const session =  authClient.useSession()
     const pathname = useLocation({
     select: (location) => location.pathname,
   })
@@ -30,11 +28,8 @@ export default function Header() {
             Documentation
           </Link>
         <div className="ml-auto flex items-center gap-1.5 sm:gap-2">
-          {session.data?.user ?<Button onClick={() => authClient.signOut()}>Se deconnecter</Button> : <Link to="/tranokala/singin">
-            <Button>Se connecter</Button>
-          </Link>
-          }
-          <a
+          <SingButton />
+        <a
             href="https://github.com/97mams/tontaTranokala"
             target="_blank"
             rel="noreferrer"
