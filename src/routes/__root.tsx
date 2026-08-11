@@ -85,9 +85,9 @@ function RootDocument({ children }: { children: React.ReactNode }) {
     return (
       <>
        <Header />
-              {children}
-              <Footer />
-              </>
+          {children}
+        <Footer />
+      </>
     )
   }
 
@@ -114,9 +114,9 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         <ConvexProvider>
           <ThemeProvider defaultTheme="system" storageKey="theme"> 
           { user ?
-              renderDefault()
-              :
               renderSidebar()
+              :
+              renderDefault()
           }
           </ThemeProvider>
           <TanStackDevtools

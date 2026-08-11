@@ -1,3 +1,4 @@
+import { SingButton } from '#/components/SingButton.tsx'
 import { createFileRoute } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/tranokala/')({
@@ -5,5 +6,5 @@ export const Route = createFileRoute('/tranokala/')({
 })
 
 function RouteComponent() {
-  return <div>Hello "/tranokala/"!</div>
+  return <div><SingButton /></div>
 }

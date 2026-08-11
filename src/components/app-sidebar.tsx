@@ -4,15 +4,23 @@ import {
   SidebarFooter,
   SidebarGroup,
   SidebarHeader,
+  SidebarMenuItem,
+  SidebarMenuSubItem,
 } from "@/components/ui/sidebar"
+import { Separator } from "./ui/separator"
 
 export function AppSidebar() {
   return (
     <Sidebar>
-      <SidebarHeader />
+      <SidebarHeader>
+        <img src="./logo.png" alt="logo" className="size-8 ml-4" />
+        <Separator />
+      </SidebarHeader>
       <SidebarContent>
-        <SidebarGroup />
-        <SidebarGroup />
+        <SidebarGroup>
+          <SidebarMenuItem>tranokala</SidebarMenuItem>
+          <SidebarMenuSubItem>test</SidebarMenuSubItem>
+        </SidebarGroup>
       </SidebarContent>
       <SidebarFooter />
     </Sidebar>

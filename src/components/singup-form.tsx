@@ -21,7 +21,7 @@ import {
 } from '@/components/ui/field'
 import { Input } from '@/components/ui/input'
 import { InputGroup } from '@/components/ui/input-group'
-import { authClient } from '#/lib/auth-client.ts'
+import { authClient } from '@/lib/auth-client'
 
 const formSchema = z.object({
   name: z
@@ -49,9 +49,9 @@ export function SingupForm() {
         email,
         password,
       }, {
-      onSuccess: () => {
-        window.location.reload();
-        toast.info(JSON.stringify(response))
+      onSuccess: (resp) => {
+        // window.location.reload();
+        toast.info(JSON.stringify(resp))
       },
       onError: (ctx) => {
         alert(ctx.error.message);
