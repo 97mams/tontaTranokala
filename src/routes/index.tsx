@@ -8,11 +8,11 @@ export const Route = createFileRoute('/')({
 
 function HomePage() {
 
-  const session  = authClient.useSession()
+ // const session  = authClient.useSession()
 
-  if (session.data?.user) {
-    return <h1>{session.data.user.name}</h1>
-  }
+ // if (session.data?.user) {
+   // return <h1>{session.data.user.name}</h1>
+  // }
 
 
   return (
