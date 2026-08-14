@@ -50,8 +50,8 @@ export function SingupForm() {
         password,
       }, {
       onSuccess: (resp) => {
-        // window.location.reload();
         toast.info(JSON.stringify(resp))
+        redirect({to:'/tranokala'})
       },
       onError: (ctx) => {
         alert(ctx.error.message);
