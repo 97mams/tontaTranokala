@@ -5,7 +5,6 @@ import { TanStackDevtools } from '@tanstack/react-devtools'
 import Footer from '../components/Footer'
 import Header from '../components/Header'
 
-import ConvexProvider from '../integrations/convex/provider'
 import { ConvexBetterAuthProvider } from '@convex-dev/better-auth/react'
 import type { ConvexQueryClient } from '@convex-dev/react-query'
 import type { QueryClient } from '@tanstack/react-query'
@@ -18,6 +17,7 @@ import { ThemeProvider } from "@/components/theme-provider"
 import { Toaster } from '@/components/ui/sonner'
 import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar'
 import { AppSidebar } from '@/components/app-sidebar'
+import { ConvexReactClient, ConvexProvider } from 'convex/react'
 
 const getAuth = createServerFn({ method: 'GET' }).handler(async () => {
   return await getToken()
@@ -60,12 +60,15 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient, conv
   }),
   shellComponent: RootComponent,
 })
+const convex = new ConvexReactClient(import.meta.env.VITE_CONVEX_URL);
 
 function RootComponent() {
   const context = useRouteContext({ from: Route.id })
   return (
+    <ConvexProvider
+      client={convex}
+    >
     <ConvexBetterAuthProvider
-      client={context.convexQueryClient.convexClient}
       authClient={authClient}
       initialToken={context.token}
     >
@@ -73,6 +76,7 @@ function RootComponent() {
         <Outlet />
       </RootDocument>
     </ConvexBetterAuthProvider>
+    </ ConvexProvider>
   )
 }
 
@@ -111,7 +115,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         <HeadContent />
       </head>
       <body className="bg-background">
-        <ConvexProvider>
+        <ConvexProvider client={convex}>
           <ThemeProvider defaultTheme="system" storageKey="theme"> 
           { user ?
               renderSidebar()

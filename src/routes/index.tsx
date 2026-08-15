@@ -1,6 +1,8 @@
 import BetterAuthHeader from '@/integrations/better-auth/header-user'
 import { authClient } from '@/lib/auth-client'
 import { createFileRoute, Link, redirect } from '@tanstack/react-router'
+import { useQuery } from 'convex/react'
+import { api } from '../../convex/_generated/api'
 
 export const Route = createFileRoute('/')({
   component: HomePage,
@@ -9,11 +11,9 @@ export const Route = createFileRoute('/')({
 function HomePage() {
 
  const session  = authClient.useSession()
+ const user = useQuery(api.auth.getCurrentUser)
 
- if (session.data?.user) {
-   redirect({to:'/tranokala'})
-  }
-
+ console.log('Current user:', user)
 
   return (
  <section className="relative text-white min-h-[80vh] flex items-center justify-center">

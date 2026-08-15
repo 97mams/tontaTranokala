@@ -1,5 +1,5 @@
 import { useForm } from '@tanstack/react-form'
-import { redirect } from '@tanstack/react-router'
+import { Navigate, redirect } from '@tanstack/react-router'
 import { toast } from 'sonner'
 import * as z from 'zod'
 
@@ -44,14 +44,14 @@ export function SingupForm() {
     },
     onSubmit: async (data) => {
       const { email, name, password } = data.value
-      const response =  await authClient.signUp.email({
+     await authClient.signUp.email({
         name,
         email,
         password,
       }, {
-      onSuccess: (resp) => {
-        toast.info(JSON.stringify(resp))
-        redirect({to:'/tranokala'})
+      onSuccess: async (resp) => {
+        console.log('User signed up successfully:', resp);
+        await Navigate({to:'/tranokala'})
       },
       onError: (ctx) => {
         alert(ctx.error.message);
