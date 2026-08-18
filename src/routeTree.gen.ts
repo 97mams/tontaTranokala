@@ -9,7 +9,6 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as DocsRouteImport } from './routes/docs'
 import { Route as ApiRemyChatRouteImport } from './routes/api.remy-chat'
@@ -25,11 +24,6 @@ import { Route as TranokalaSinginRouteImport } from './routes/tranokala/singin'
 import { Route as TranokalaSingupRouteImport } from './routes/tranokala/singup'
 import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
 
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
   path: '/about',
@@ -102,7 +96,6 @@ const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
 } as any)
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/docs': typeof DocsRoute
   '/api/remy-chat': typeof ApiRemyChatRoute
@@ -119,7 +112,6 @@ export interface FileRoutesByFullPath {
   '/api/auth/$': typeof ApiAuthSplatRoute
 }
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/docs': typeof DocsRoute
   '/api/remy-chat': typeof ApiRemyChatRoute
@@ -137,7 +129,6 @@ export interface FileRoutesByTo {
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/docs': typeof DocsRoute
   '/api/remy-chat': typeof ApiRemyChatRoute
@@ -156,7 +147,6 @@ export interface FileRoutesById {
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    | '/'
     | '/about'
     | '/docs'
     | '/api/remy-chat'
@@ -173,7 +163,6 @@ export interface FileRouteTypes {
     | '/api/auth/$'
   fileRoutesByTo: FileRoutesByTo
   to:
-    | '/'
     | '/about'
     | '/docs'
     | '/api/remy-chat'
@@ -190,7 +179,6 @@ export interface FileRouteTypes {
     | '/api/auth/$'
   id:
     | '__root__'
-    | '/'
     | '/about'
     | '/docs'
     | '/api/remy-chat'
@@ -208,7 +196,6 @@ export interface FileRouteTypes {
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   DocsRoute: typeof DocsRoute
   ApiRemyChatRoute: typeof ApiRemyChatRoute
@@ -227,13 +214,6 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/about': {
       id: '/about'
       path: '/about'
@@ -336,7 +316,6 @@ declare module '@tanstack/react-router' {
 }
 
 const rootRouteChildren: RootRouteChildren = {
-  IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   DocsRoute: DocsRoute,
   ApiRemyChatRoute: ApiRemyChatRoute,

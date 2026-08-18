@@ -1,7 +1,5 @@
 import { HeadContent, Outlet, Scripts, createRootRouteWithContext, useRouteContext } from '@tanstack/react-router'
 import { createServerFn } from '@tanstack/react-start'
-import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
-import { TanStackDevtools } from '@tanstack/react-devtools'
 import Footer from '../components/Footer'
 import Header from '../components/Header'
 
@@ -17,7 +15,6 @@ import { ThemeProvider } from "@/components/theme-provider"
 import { Toaster } from '@/components/ui/sonner'
 import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar'
 import { AppSidebar } from '@/components/app-sidebar'
-import { ConvexReactClient, ConvexProvider } from 'convex/react'
 
 const getAuth = createServerFn({ method: 'GET' }).handler(async () => {
   return await getToken()
@@ -26,7 +23,6 @@ const getAuth = createServerFn({ method: 'GET' }).handler(async () => {
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient, convexQueryClient: ConvexQueryClient }>()({
   beforeLoad: async (ctx) => {
     const token = await getAuth()
-    const session = await authClient.getSession()
     if (token) {
       ctx.context.convexQueryClient.serverHttpClient?.setAuth(token)
     }
@@ -34,7 +30,6 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient, conv
     return {
       isAuthenticated: !!token,
       token,
-      session,
     }
 
   },
@@ -60,31 +55,20 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient, conv
   }),
   shellComponent: RootComponent,
 })
-const convex = new ConvexReactClient(import.meta.env.VITE_CONVEX_URL);
 
 function RootComponent() {
-  const context = useRouteContext({ from: Route.id })
+  
   return (
-    <ConvexProvider
-      client={convex}
-    >
-    <ConvexBetterAuthProvider
-      authClient={authClient}
-      initialToken={context.token}
-    >
       <RootDocument>
         <Outlet />
       </RootDocument>
-    </ConvexBetterAuthProvider>
-    </ ConvexProvider>
   )
 }
 
 
 function RootDocument({ children }: { children: React.ReactNode }) {
 
-  const user = useRouteContext({ from: Route.id }).session.data?.user
-
+  const context = useRouteContext({ from: Route.id })
   const renderDefault = () => {
     return (
       <>
@@ -115,26 +99,19 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         <HeadContent />
       </head>
       <body className="bg-background">
-        <ConvexProvider client={convex}>
+      <ConvexBetterAuthProvider
+        client={context.convexQueryClient.convexClient}
+        authClient={authClient}
+        initialToken={context.token}
+      >
           <ThemeProvider defaultTheme="system" storageKey="theme"> 
-          { user ?
+          { context.isAuthenticated ?
               renderSidebar()
               :
               renderDefault()
           }
           </ThemeProvider>
-          <TanStackDevtools
-            config={{
-              position: 'bottom-right',
-            }}
-            plugins={[
-              {
-                name: 'Tanstack Router',
-                render: <TanStackRouterDevtoolsPanel />,
-              },
-            ]}
-          />
-        </ConvexProvider>
+          </ ConvexBetterAuthProvider>
         <Toaster />
         <Scripts />
       </body>

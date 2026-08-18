@@ -8,6 +8,7 @@ import {
   SidebarMenuSubItem,
 } from "@/components/ui/sidebar"
 import { Separator } from "./ui/separator"
+import { SingButton } from "./SingButton.tsx"
 
 export function AppSidebar() {
   return (
@@ -22,7 +23,9 @@ export function AppSidebar() {
           <SidebarMenuSubItem>test</SidebarMenuSubItem>
         </SidebarGroup>
       </SidebarContent>
-      <SidebarFooter />
+      <SidebarFooter>
+        <SingButton />
+      </SidebarFooter>
     </Sidebar>
   )
 }
