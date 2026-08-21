@@ -69,7 +69,7 @@ function RootComponent() {
 function RootDocument({ children }: { children: React.ReactNode }) {
 
   const context = useRouteContext({ from: Route.id })
-  console.log(context)
+  
   const renderDefault = () => {
     return (
       <>
