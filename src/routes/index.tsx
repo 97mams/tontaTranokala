@@ -1,12 +1,14 @@
 // import BetterAuthHeader from '@/integrations/better-auth/header-user'
 // import { useQuery } from '@tanstack/react-query'
 // // import { authClient } from '@/lib/auth-client'
-// import { createFileRoute, Link,  } from '@tanstack/react-router'
+import { createFileRoute  } from '@tanstack/react-router'
 // import { api } from '../../convex/_generated/api'
 
-// export const Route = createFileRoute('/')({
-//   component: HomePage,
-// })
+import { useConvexAuth } from "convex/react";
+
+export const Route = createFileRoute('/')({
+  component: HomePage,
+})
 
 // function HomePage() {
 
@@ -50,15 +52,16 @@
 //   )
 // }
 
-import { useConvexAuth } from "convex/react";
+
 
 export default function HomePage() {
   const { isAuthenticated, isLoading } = useConvexAuth();
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <div>Loading...</div>
 
   return (
     <div>
+      <h1>Home Page</h1>
       Convex authenticated: {String(isAuthenticated)}
     </div>
   );
