@@ -10,19 +10,8 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as AboutRouteImport } from './routes/about'
-import { Route as DocsRouteImport } from './routes/docs'
-import { Route as ApiRemyChatRouteImport } from './routes/api.remy-chat'
-import { Route as ScheduleIndexRouteImport } from './routes/schedule.index'
-import { Route as SpeakersIndexRouteImport } from './routes/speakers.index'
-import { Route as SpeakersSlugRouteImport } from './routes/speakers.$slug'
-import { Route as TalksIndexRouteImport } from './routes/talks.index'
-import { Route as TalksSlugRouteImport } from './routes/talks.$slug'
-import { Route as TranokalaIndexRouteImport } from './routes/tranokala/index'
-import { Route as TranokalaBetterAuthRouteImport } from './routes/tranokala/better-auth'
-import { Route as TranokalaConvexRouteImport } from './routes/tranokala/convex'
-import { Route as TranokalaSinginRouteImport } from './routes/tranokala/singin'
-import { Route as TranokalaSingupRouteImport } from './routes/tranokala/singup'
+import { Route as LoginRouteImport } from './routes/login'
+import { Route as RegisterRouteImport } from './routes/register'
 import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
 
 const IndexRoute = IndexRouteImport.update({
@@ -30,69 +19,14 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AboutRoute = AboutRouteImport.update({
-  id: '/about',
-  path: '/about',
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
-const DocsRoute = DocsRouteImport.update({
-  id: '/docs',
-  path: '/docs',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ApiRemyChatRoute = ApiRemyChatRouteImport.update({
-  id: '/api/remy-chat',
-  path: '/api/remy-chat',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ScheduleIndexRoute = ScheduleIndexRouteImport.update({
-  id: '/schedule/',
-  path: '/schedule/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SpeakersIndexRoute = SpeakersIndexRouteImport.update({
-  id: '/speakers/',
-  path: '/speakers/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SpeakersSlugRoute = SpeakersSlugRouteImport.update({
-  id: '/speakers/$slug',
-  path: '/speakers/$slug',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const TalksIndexRoute = TalksIndexRouteImport.update({
-  id: '/talks/',
-  path: '/talks/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const TalksSlugRoute = TalksSlugRouteImport.update({
-  id: '/talks/$slug',
-  path: '/talks/$slug',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const TranokalaIndexRoute = TranokalaIndexRouteImport.update({
-  id: '/tranokala/',
-  path: '/tranokala/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const TranokalaBetterAuthRoute = TranokalaBetterAuthRouteImport.update({
-  id: '/tranokala/better-auth',
-  path: '/tranokala/better-auth',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const TranokalaConvexRoute = TranokalaConvexRouteImport.update({
-  id: '/tranokala/convex',
-  path: '/tranokala/convex',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const TranokalaSinginRoute = TranokalaSinginRouteImport.update({
-  id: '/tranokala/singin',
-  path: '/tranokala/singin',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const TranokalaSingupRoute = TranokalaSingupRouteImport.update({
-  id: '/tranokala/singup',
-  path: '/tranokala/singup',
+const RegisterRoute = RegisterRouteImport.update({
+  id: '/register',
+  path: '/register',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
@@ -103,125 +37,35 @@ const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/about': typeof AboutRoute
-  '/docs': typeof DocsRoute
-  '/api/remy-chat': typeof ApiRemyChatRoute
-  '/speakers/$slug': typeof SpeakersSlugRoute
-  '/talks/$slug': typeof TalksSlugRoute
-  '/tranokala/better-auth': typeof TranokalaBetterAuthRoute
-  '/tranokala/convex': typeof TranokalaConvexRoute
-  '/tranokala/singin': typeof TranokalaSinginRoute
-  '/tranokala/singup': typeof TranokalaSingupRoute
-  '/schedule/': typeof ScheduleIndexRoute
-  '/speakers/': typeof SpeakersIndexRoute
-  '/talks/': typeof TalksIndexRoute
-  '/tranokala/': typeof TranokalaIndexRoute
+  '/login': typeof LoginRoute
+  '/register': typeof RegisterRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/about': typeof AboutRoute
-  '/docs': typeof DocsRoute
-  '/api/remy-chat': typeof ApiRemyChatRoute
-  '/speakers/$slug': typeof SpeakersSlugRoute
-  '/talks/$slug': typeof TalksSlugRoute
-  '/tranokala/better-auth': typeof TranokalaBetterAuthRoute
-  '/tranokala/convex': typeof TranokalaConvexRoute
-  '/tranokala/singin': typeof TranokalaSinginRoute
-  '/tranokala/singup': typeof TranokalaSingupRoute
-  '/schedule': typeof ScheduleIndexRoute
-  '/speakers': typeof SpeakersIndexRoute
-  '/talks': typeof TalksIndexRoute
-  '/tranokala': typeof TranokalaIndexRoute
+  '/login': typeof LoginRoute
+  '/register': typeof RegisterRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/about': typeof AboutRoute
-  '/docs': typeof DocsRoute
-  '/api/remy-chat': typeof ApiRemyChatRoute
-  '/speakers/$slug': typeof SpeakersSlugRoute
-  '/talks/$slug': typeof TalksSlugRoute
-  '/tranokala/better-auth': typeof TranokalaBetterAuthRoute
-  '/tranokala/convex': typeof TranokalaConvexRoute
-  '/tranokala/singin': typeof TranokalaSinginRoute
-  '/tranokala/singup': typeof TranokalaSingupRoute
-  '/schedule/': typeof ScheduleIndexRoute
-  '/speakers/': typeof SpeakersIndexRoute
-  '/talks/': typeof TalksIndexRoute
-  '/tranokala/': typeof TranokalaIndexRoute
+  '/login': typeof LoginRoute
+  '/register': typeof RegisterRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths:
-    | '/'
-    | '/about'
-    | '/docs'
-    | '/api/remy-chat'
-    | '/speakers/$slug'
-    | '/talks/$slug'
-    | '/tranokala/better-auth'
-    | '/tranokala/convex'
-    | '/tranokala/singin'
-    | '/tranokala/singup'
-    | '/schedule/'
-    | '/speakers/'
-    | '/talks/'
-    | '/tranokala/'
-    | '/api/auth/$'
+  fullPaths: '/' | '/login' | '/register' | '/api/auth/$'
   fileRoutesByTo: FileRoutesByTo
-  to:
-    | '/'
-    | '/about'
-    | '/docs'
-    | '/api/remy-chat'
-    | '/speakers/$slug'
-    | '/talks/$slug'
-    | '/tranokala/better-auth'
-    | '/tranokala/convex'
-    | '/tranokala/singin'
-    | '/tranokala/singup'
-    | '/schedule'
-    | '/speakers'
-    | '/talks'
-    | '/tranokala'
-    | '/api/auth/$'
-  id:
-    | '__root__'
-    | '/'
-    | '/about'
-    | '/docs'
-    | '/api/remy-chat'
-    | '/speakers/$slug'
-    | '/talks/$slug'
-    | '/tranokala/better-auth'
-    | '/tranokala/convex'
-    | '/tranokala/singin'
-    | '/tranokala/singup'
-    | '/schedule/'
-    | '/speakers/'
-    | '/talks/'
-    | '/tranokala/'
-    | '/api/auth/$'
+  to: '/' | '/login' | '/register' | '/api/auth/$'
+  id: '__root__' | '/' | '/login' | '/register' | '/api/auth/$'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  AboutRoute: typeof AboutRoute
-  DocsRoute: typeof DocsRoute
-  ApiRemyChatRoute: typeof ApiRemyChatRoute
-  SpeakersSlugRoute: typeof SpeakersSlugRoute
-  TalksSlugRoute: typeof TalksSlugRoute
-  TranokalaBetterAuthRoute: typeof TranokalaBetterAuthRoute
-  TranokalaConvexRoute: typeof TranokalaConvexRoute
-  TranokalaSinginRoute: typeof TranokalaSinginRoute
-  TranokalaSingupRoute: typeof TranokalaSingupRoute
-  ScheduleIndexRoute: typeof ScheduleIndexRoute
-  SpeakersIndexRoute: typeof SpeakersIndexRoute
-  TalksIndexRoute: typeof TalksIndexRoute
-  TranokalaIndexRoute: typeof TranokalaIndexRoute
+  LoginRoute: typeof LoginRoute
+  RegisterRoute: typeof RegisterRoute
   ApiAuthSplatRoute: typeof ApiAuthSplatRoute
 }
 
@@ -234,95 +78,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/about': {
-      id: '/about'
-      path: '/about'
-      fullPath: '/about'
-      preLoaderRoute: typeof AboutRouteImport
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/docs': {
-      id: '/docs'
-      path: '/docs'
-      fullPath: '/docs'
-      preLoaderRoute: typeof DocsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/api/remy-chat': {
-      id: '/api/remy-chat'
-      path: '/api/remy-chat'
-      fullPath: '/api/remy-chat'
-      preLoaderRoute: typeof ApiRemyChatRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/schedule/': {
-      id: '/schedule/'
-      path: '/schedule'
-      fullPath: '/schedule/'
-      preLoaderRoute: typeof ScheduleIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/speakers/': {
-      id: '/speakers/'
-      path: '/speakers'
-      fullPath: '/speakers/'
-      preLoaderRoute: typeof SpeakersIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/speakers/$slug': {
-      id: '/speakers/$slug'
-      path: '/speakers/$slug'
-      fullPath: '/speakers/$slug'
-      preLoaderRoute: typeof SpeakersSlugRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/talks/': {
-      id: '/talks/'
-      path: '/talks'
-      fullPath: '/talks/'
-      preLoaderRoute: typeof TalksIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/talks/$slug': {
-      id: '/talks/$slug'
-      path: '/talks/$slug'
-      fullPath: '/talks/$slug'
-      preLoaderRoute: typeof TalksSlugRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/tranokala/': {
-      id: '/tranokala/'
-      path: '/tranokala'
-      fullPath: '/tranokala/'
-      preLoaderRoute: typeof TranokalaIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/tranokala/better-auth': {
-      id: '/tranokala/better-auth'
-      path: '/tranokala/better-auth'
-      fullPath: '/tranokala/better-auth'
-      preLoaderRoute: typeof TranokalaBetterAuthRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/tranokala/convex': {
-      id: '/tranokala/convex'
-      path: '/tranokala/convex'
-      fullPath: '/tranokala/convex'
-      preLoaderRoute: typeof TranokalaConvexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/tranokala/singin': {
-      id: '/tranokala/singin'
-      path: '/tranokala/singin'
-      fullPath: '/tranokala/singin'
-      preLoaderRoute: typeof TranokalaSinginRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/tranokala/singup': {
-      id: '/tranokala/singup'
-      path: '/tranokala/singup'
-      fullPath: '/tranokala/singup'
-      preLoaderRoute: typeof TranokalaSingupRouteImport
+    '/register': {
+      id: '/register'
+      path: '/register'
+      fullPath: '/register'
+      preLoaderRoute: typeof RegisterRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/auth/$': {
@@ -337,19 +104,8 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  AboutRoute: AboutRoute,
-  DocsRoute: DocsRoute,
-  ApiRemyChatRoute: ApiRemyChatRoute,
-  SpeakersSlugRoute: SpeakersSlugRoute,
-  TalksSlugRoute: TalksSlugRoute,
-  TranokalaBetterAuthRoute: TranokalaBetterAuthRoute,
-  TranokalaConvexRoute: TranokalaConvexRoute,
-  TranokalaSinginRoute: TranokalaSinginRoute,
-  TranokalaSingupRoute: TranokalaSingupRoute,
-  ScheduleIndexRoute: ScheduleIndexRoute,
-  SpeakersIndexRoute: SpeakersIndexRoute,
-  TalksIndexRoute: TalksIndexRoute,
-  TranokalaIndexRoute: TranokalaIndexRoute,
+  LoginRoute: LoginRoute,
+  RegisterRoute: RegisterRoute,
   ApiAuthSplatRoute: ApiAuthSplatRoute,
 }
 export const routeTree = rootRouteImport

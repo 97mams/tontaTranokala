@@ -1,26 +1,14 @@
-import { defineConfig } from 'vite'
-import { devtools } from '@tanstack/devtools-vite'
-
-import { tanstackStart } from '@tanstack/react-start/plugin/vite'
-
-import viteReact from '@vitejs/plugin-react'
-import tailwindcss from '@tailwindcss/vite'
-import { nitro } from 'nitro/vite'
-import contentCollections from '@content-collections/vite'
+import { defineConfig } from "vite";
+import { tanstackStart } from "@tanstack/react-start/plugin/vite";
+import viteReact from "@vitejs/plugin-react";
+import tailwindcss from "@tailwindcss/vite";
+import tsConfigPaths from "vite-tsconfig-paths";
 
 const config = defineConfig({
-  resolve: { tsconfigPaths: true },
-  plugins: [
-    devtools(),
-    nitro({ rollupConfig: { external: [/^@sentry\//] } }),
-    contentCollections(),
-    tailwindcss(),
-    tanstackStart(),
-    viteReact(),
-  ],
   ssr: {
-    noExternal: ['@convex-dev/better-auth'],
-  }
-})
+    noExternal: ["@convex-dev/better-auth"],
+  },
+  plugins: [tailwindcss(), tanstackStart(), viteReact(), tsConfigPaths()],
+});
 
-export default config
+export default config;

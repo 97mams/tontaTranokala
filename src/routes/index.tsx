@@ -1,68 +1,116 @@
-// import BetterAuthHeader from '@/integrations/better-auth/header-user'
-// import { useQuery } from '@tanstack/react-query'
-// // import { authClient } from '@/lib/auth-client'
-import { createFileRoute  } from '@tanstack/react-router'
-// import { api } from '../../convex/_generated/api'
+import { Suspense } from "react";
+import { createFileRoute, redirect } from "@tanstack/react-router";
+import { useSuspenseQuery } from "@tanstack/react-query";
+import { convexQuery } from "@convex-dev/react-query";
+import { api } from "../../convex/_generated/api";
+import { authClient } from "@/lib/auth-client";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
+import { Skeleton } from "@/components/ui/skeleton";
 
-import { useConvexAuth } from "convex/react";
+export const Route = createFileRoute("/")({
+  loader: async ({ context }) => {
+    if (!context.isAuthenticated) {
+      throw redirect({ to: "/login" });
+    }
+    const user = await context.queryClient.ensureQueryData(
+      convexQuery(api.auth.getCurrentUser, {}),
+    );
+    if (!user) {
+      throw redirect({ to: "/login" });
+    }
+  },
+  component: IndexComponent,
+});
 
-export const Route = createFileRoute('/')({
-  component: HomePage,
-})
+function IndexComponent() {
+  return (
+    <main className="flex min-h-screen flex-col items-center justify-center gap-6 px-6">
+      <h1 className="text-3xl font-extrabold tracking-tight">Ndao</h1>
+      <Suspense fallback={<UserCardSkeleton />}>
+        <UserCard />
+      </Suspense>
+    </main>
+  );
+}
 
-// function HomePage() {
+function UserCard() {
+  const { data } = useSuspenseQuery(convexQuery(api.auth.getCurrentUser, {}));
+  const user = data as {
+    email: string;
+    name: string;
+    image?: string | null;
+  } | null;
 
-//   const user = useQuery(api.auth.getCurrentUser)
-
-//   console.log('user', user.data)
-
-//   return (
-//  <section className="relative text-white min-h-[80vh] flex items-center justify-center">
-//       {/* Overlay */}
-
-//       <BetterAuthHeader />
-
-//       <div className="absolute inset-0"></div>
-
-//       <div className="relative z-10 max-w-3xl text-center px-6">
-//         <h1 className="text-4xl md:text-6xl text-accent-foreground font-extrabold leading-tight drop-shadow-lg">
-//           Enregistrez vos plateformes & sites facilement
-//         </h1>
-//         <p className="mt-6 text-lg md:text-xl text-accent-foreground">
-//           Gérez vos informations de manière rapide, organisée et sécurisée. Un
-//           seul endroit pour tout centraliser.
-//         </p>
-
-//         <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
-//           <Link
-//             to={"/tranokala/singup"}
-//             className="px-6 py-3 bg-accent-foreground text-primary font-semibold rounded-2xl shadow-lg hover:scale-105 transition"
-//           >
-//             Commencer
-//           </Link>
-//           <Link
-//             to="/about"
-//             className="px-6 py-3 bg-primary border border-white/40 font-semibold rounded-2xl shadow-lg hover:scale-105 transition"
-//           >
-//             En savoir plus
-//           </Link>
-//         </div>
-//       </div>
-//       </ section>
-//   )
-// }
-
-
-
-export default function HomePage() {
-  const { isAuthenticated, isLoading } = useConvexAuth();
-
-  if (isLoading) return <div>Loading...</div>
+  if (!user) {
+    return (
+      <Card className="w-full max-w-sm">
+        <CardHeader>
+          <CardTitle>Not signed in</CardTitle>
+          <CardDescription>Your session may have expired.</CardDescription>
+        </CardHeader>
+        <CardFooter>
+          <Button
+            variant="outline"
+            className="w-full"
+            onClick={() => (location.href = "/login")}
+          >
+            Go to sign in
+          </Button>
+        </CardFooter>
+      </Card>
+    );
+  }
 
   return (
-    <div>
-      <h1>Home Page</h1>
-      Convex authenticated: {String(isAuthenticated)}
+    <Card className="w-full max-w-sm">
+      <CardHeader>
+        <CardTitle>Welcome{user.name ? `, ${user.name}` : ""}</CardTitle>
+        <CardDescription>You are signed in.</CardDescription>
+      </CardHeader>
+      <CardContent className="flex flex-col gap-1 text-sm">
+        <p>
+          <span className="text-muted-foreground">Email:</span> {user.email}
+        </p>
+        <p>
+          <span className="text-muted-foreground">Name:</span> {user.name}
+        </p>
+      </CardContent>
+      <CardFooter className="flex-col items-stretch gap-4">
+        <Separator />
+        <Button
+          variant="outline"
+          onClick={async () => {
+            await authClient.signOut({
+              fetchOptions: {
+                onSuccess: () => {
+                  location.href = "/login";
+                },
+              },
+            });
+          }}
+        >
+          Sign out
+        </Button>
+      </CardFooter>
+    </Card>
+  );
+}
+
+function UserCardSkeleton() {
+  return (
+    <div className="flex w-full max-w-sm flex-col gap-2">
+      <Skeleton className="h-5 w-1/2" />
+      <Skeleton className="h-4 w-2/3" />
+      <Skeleton className="h-24 w-full rounded-xl" />
     </div>
   );
 }
