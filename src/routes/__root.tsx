@@ -26,7 +26,7 @@ export const Route = createRootRouteWithContext<{
 }>()({
   head: () => ({
     meta: [
-      { title: "ndao" },
+      { title: "trankala" },
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
     ],
