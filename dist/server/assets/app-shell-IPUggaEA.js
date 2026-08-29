@@ -1,9 +1,9 @@
-import { n as api, r as authClient } from "./router-Bii0rzs0.js";
+import { n as api, r as authClient } from "./router-BK58jg0D.js";
 import { i as cn, r as Button, t as Logo } from "./navbar-Dvw6nZUM.js";
-import { a as CardDescription, c as CardTitle, i as CardContent, n as Separator, o as CardFooter, r as Card, s as CardHeader } from "./input-DXaDnxNU.js";
+import { n as Separator } from "./input-DXaDnxNU.js";
 import * as React$1 from "react";
 import { Suspense } from "react";
-import { Link } from "@tanstack/react-router";
+import { Link, useLocation } from "@tanstack/react-router";
 import { jsx, jsxs } from "react/jsx-runtime";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { convexQuery } from "@convex-dev/react-query";
@@ -406,11 +406,7 @@ function SidebarMenuButton({ render, isActive = false, variant = "default", size
 }
 //#endregion
 //#region src/components/app-sidebar.tsx
-var libraryItems = [
-	{
-		icon: Bookmark,
-		label: "Sites enregistrés"
-	},
+var disabledItems = [
 	{
 		icon: Folder,
 		label: "Collections"
@@ -426,6 +422,7 @@ var libraryItems = [
 ];
 function AppSidebar() {
 	const { state } = useSidebar();
+	const { pathname } = useLocation();
 	return /* @__PURE__ */ jsxs(Sidebar, {
 		collapsible: "icon",
 		children: [
@@ -434,14 +431,19 @@ function AppSidebar() {
 				hideText: state === "collapsed"
 			}) }),
 			/* @__PURE__ */ jsxs(SidebarContent, { children: [
-				/* @__PURE__ */ jsxs(SidebarGroup, { children: [/* @__PURE__ */ jsx(SidebarGroupLabel, { children: "Navigation" }), /* @__PURE__ */ jsx(SidebarMenu, { children: /* @__PURE__ */ jsx(SidebarMenuItem, { children: /* @__PURE__ */ jsxs(SidebarMenuButton, {
+				/* @__PURE__ */ jsxs(SidebarGroup, { children: [/* @__PURE__ */ jsx(SidebarGroupLabel, { children: "Navigation" }), /* @__PURE__ */ jsxs(SidebarMenu, { children: [/* @__PURE__ */ jsx(SidebarMenuItem, { children: /* @__PURE__ */ jsxs(SidebarMenuButton, {
 					render: /* @__PURE__ */ jsx(Link, { to: "/" }),
 					tooltip: "Accueil",
-					isActive: true,
+					isActive: pathname === "/",
 					children: [/* @__PURE__ */ jsx(House, {}), /* @__PURE__ */ jsx("span", { children: "Accueil" })]
-				}) }) })] }),
+				}) }), /* @__PURE__ */ jsx(SidebarMenuItem, { children: /* @__PURE__ */ jsxs(SidebarMenuButton, {
+					render: /* @__PURE__ */ jsx(Link, { to: "/sites" }),
+					tooltip: "Sites enregistrés",
+					isActive: pathname === "/sites",
+					children: [/* @__PURE__ */ jsx(Bookmark, {}), /* @__PURE__ */ jsx("span", { children: "Sites enregistrés" })]
+				}) })] })] }),
 				/* @__PURE__ */ jsx(SidebarSeparator, {}),
-				/* @__PURE__ */ jsxs(SidebarGroup, { children: [/* @__PURE__ */ jsx(SidebarGroupLabel, { children: "Bibliothèque" }), /* @__PURE__ */ jsx(SidebarMenu, { children: libraryItems.map((item) => /* @__PURE__ */ jsx(SidebarMenuItem, { children: /* @__PURE__ */ jsxs(SidebarMenuButton, {
+				/* @__PURE__ */ jsxs(SidebarGroup, { children: [/* @__PURE__ */ jsx(SidebarGroupLabel, { children: "Bibliothèque" }), /* @__PURE__ */ jsx(SidebarMenu, { children: disabledItems.map((item) => /* @__PURE__ */ jsx(SidebarMenuItem, { children: /* @__PURE__ */ jsxs(SidebarMenuButton, {
 					disabled: true,
 					tooltip: "Bientôt disponible",
 					children: [
@@ -529,83 +531,4 @@ function AppShell({ children }) {
 	})] })] });
 }
 //#endregion
-//#region src/routes/index.tsx?tsr-split=component
-function IndexComponent() {
-	return /* @__PURE__ */ jsx(AppShell, { children: /* @__PURE__ */ jsx(Suspense, {
-		fallback: /* @__PURE__ */ jsx(UserCardSkeleton, {}),
-		children: /* @__PURE__ */ jsx(UserCard, {})
-	}) });
-}
-function UserCard() {
-	const { data } = useSuspenseQuery(convexQuery(api.auth.getCurrentUser, {}));
-	const user = data;
-	if (!user) return /* @__PURE__ */ jsxs(Card, {
-		className: "w-full max-w-sm",
-		children: [/* @__PURE__ */ jsxs(CardHeader, { children: [/* @__PURE__ */ jsx(CardTitle, { children: "Non connecté" }), /* @__PURE__ */ jsx(CardDescription, { children: "Votre session a peut-être expiré." })] }), /* @__PURE__ */ jsx(CardFooter, { children: /* @__PURE__ */ jsx(Button, {
-			variant: "outline",
-			className: "w-full",
-			onClick: () => location.href = "/landing",
-			children: "Retour à l'accueil"
-		}) })]
-	});
-	return /* @__PURE__ */ jsxs("div", {
-		className: "mx-auto flex w-full max-w-2xl flex-col gap-4",
-		children: [/* @__PURE__ */ jsxs("div", {
-			className: "flex flex-col gap-1",
-			children: [/* @__PURE__ */ jsxs("h1", {
-				className: "text-2xl font-bold tracking-tight text-foreground sm:text-3xl",
-				children: ["Bienvenue", user.name ? `, ${user.name}` : ""]
-			}), /* @__PURE__ */ jsx("p", {
-				className: "text-muted-foreground",
-				children: "Vous êtes connecté. Retrouvez bientôt ici vos sites enregistrés et leurs informations."
-			})]
-		}), /* @__PURE__ */ jsxs(Card, {
-			className: "w-full",
-			children: [
-				/* @__PURE__ */ jsxs(CardHeader, { children: [/* @__PURE__ */ jsx(CardTitle, { children: "Votre compte" }), /* @__PURE__ */ jsx(CardDescription, { children: "Les informations de votre session." })] }),
-				/* @__PURE__ */ jsxs(CardContent, {
-					className: "flex flex-col gap-1 text-sm",
-					children: [/* @__PURE__ */ jsxs("p", { children: [
-						/* @__PURE__ */ jsx("span", {
-							className: "text-muted-foreground",
-							children: "Email :"
-						}),
-						" ",
-						user.email
-					] }), /* @__PURE__ */ jsxs("p", { children: [
-						/* @__PURE__ */ jsx("span", {
-							className: "text-muted-foreground",
-							children: "Nom :"
-						}),
-						" ",
-						user.name
-					] })]
-				}),
-				/* @__PURE__ */ jsxs(CardFooter, {
-					className: "flex-col items-stretch gap-4",
-					children: [/* @__PURE__ */ jsx(Separator, {}), /* @__PURE__ */ jsx(Button, {
-						variant: "outline",
-						onClick: async () => {
-							await authClient.signOut({ fetchOptions: { onSuccess: () => {
-								location.href = "/landing";
-							} } });
-						},
-						children: "Se déconnecter"
-					})]
-				})
-			]
-		})]
-	});
-}
-function UserCardSkeleton() {
-	return /* @__PURE__ */ jsxs("div", {
-		className: "mx-auto flex w-full max-w-2xl flex-col gap-4",
-		children: [
-			/* @__PURE__ */ jsx(Skeleton, { className: "h-8 w-64" }),
-			/* @__PURE__ */ jsx(Skeleton, { className: "h-4 w-80" }),
-			/* @__PURE__ */ jsx(Skeleton, { className: "h-40 w-full rounded-xl" })
-		]
-	});
-}
-//#endregion
-export { IndexComponent as component };
+export { Skeleton as n, AppShell as t };

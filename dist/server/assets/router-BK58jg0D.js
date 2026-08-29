@@ -97,7 +97,7 @@ function useUseAuthFromBetterAuth(authClient, initialToken) {
 }
 //#endregion
 //#region src/styles/app.css?url
-var app_default = "/assets/app-BlnDsm3Y.css";
+var app_default = "/assets/app-DVdflEb2.css";
 //#endregion
 //#region node_modules/.pnpm/@better-auth+core@1.6.30_@better-auth+utils@0.4.2_@better-fetch+fetch@1.3.1_better-call_a44fb6f0736b24d07a35e40a4414c548/node_modules/@better-auth/core/dist/env/env-impl.mjs
 var _envShim = Object.create(null);
@@ -1395,7 +1395,7 @@ var authClient = createAuthClient({ plugins: [convexClient()] });
 //#endregion
 //#region src/routes/__root.tsx
 var getAuth = createServerFn({ method: "GET" }).handler(createSsrRpc("cb2b3e5e1e8306e053224009604ac2548a745898344521b332eb26227a28d58b"));
-var Route$5 = createRootRouteWithContext()({
+var Route$6 = createRootRouteWithContext()({
 	head: () => ({
 		meta: [
 			{ title: "trankala" },
@@ -1425,7 +1425,7 @@ var Route$5 = createRootRouteWithContext()({
 	component: RootComponent
 });
 function RootComponent() {
-	const context = useRouteContext({ from: Route$5.id });
+	const context = useRouteContext({ from: Route$6.id });
 	return /* @__PURE__ */ jsx(ConvexBetterAuthProvider, {
 		client: context.convexQueryClient.convexClient,
 		authClient,
@@ -1465,33 +1465,42 @@ var api = anyApi;
 componentsGeneric();
 //#endregion
 //#region src/routes/index.tsx
-var $$splitComponentImporter$3 = () => import("./routes-ZBSlH37i.js");
-var Route$4 = createFileRoute("/")({
+var $$splitComponentImporter$4 = () => import("./routes-PpSN14LF.js");
+var Route$5 = createFileRoute("/")({
 	loader: async ({ context }) => {
 		if (!context.isAuthenticated) throw redirect({ to: "/landing" });
 		if (!await context.queryClient.ensureQueryData(convexQuery(api.auth.getCurrentUser, {}))) throw redirect({ to: "/landing" });
 	},
-	component: lazyRouteComponent($$splitComponentImporter$3, "component")
+	component: lazyRouteComponent($$splitComponentImporter$4, "component")
 });
 //#endregion
 //#region src/routes/landing.tsx
-var $$splitComponentImporter$2 = () => import("./landing-Vt0cztAX.js");
-var Route$3 = createFileRoute("/landing")({ component: lazyRouteComponent($$splitComponentImporter$2, "component") });
+var $$splitComponentImporter$3 = () => import("./landing-Vt0cztAX.js");
+var Route$4 = createFileRoute("/landing")({ component: lazyRouteComponent($$splitComponentImporter$3, "component") });
 //#endregion
 //#region src/routes/login.tsx
-var $$splitComponentImporter$1 = () => import("./login-DsyWjNaW.js");
-var Route$2 = createFileRoute("/login")({
+var $$splitComponentImporter$2 = () => import("./login-iaxHeUfI.js");
+var Route$3 = createFileRoute("/login")({
+	beforeLoad: ({ context }) => {
+		if (context.isAuthenticated) throw redirect({ to: "/" });
+	},
+	component: lazyRouteComponent($$splitComponentImporter$2, "component")
+});
+//#endregion
+//#region src/routes/register.tsx
+var $$splitComponentImporter$1 = () => import("./register-Bu--zAPO.js");
+var Route$2 = createFileRoute("/register")({
 	beforeLoad: ({ context }) => {
 		if (context.isAuthenticated) throw redirect({ to: "/" });
 	},
 	component: lazyRouteComponent($$splitComponentImporter$1, "component")
 });
 //#endregion
-//#region src/routes/register.tsx
-var $$splitComponentImporter = () => import("./register-tEzMHhDY.js");
-var Route$1 = createFileRoute("/register")({
-	beforeLoad: ({ context }) => {
-		if (context.isAuthenticated) throw redirect({ to: "/" });
+//#region src/routes/sites.tsx
+var $$splitComponentImporter = () => import("./sites-CJw1G_1l.js");
+var Route$1 = createFileRoute("/sites")({
+	loader: async ({ context }) => {
+		if (!context.isAuthenticated) throw redirect({ to: "/landing" });
 	},
 	component: lazyRouteComponent($$splitComponentImporter, "component")
 });
@@ -1508,33 +1517,38 @@ var Route = createFileRoute("/api/auth/$")({ server: { handlers: {
 //#endregion
 //#region src/routeTree.gen.ts
 var rootRouteChildren = {
-	IndexRoute: Route$4.update({
+	IndexRoute: Route$5.update({
 		id: "/",
 		path: "/",
-		getParentRoute: () => Route$5
+		getParentRoute: () => Route$6
 	}),
-	LandingRoute: Route$3.update({
+	LandingRoute: Route$4.update({
 		id: "/landing",
 		path: "/landing",
-		getParentRoute: () => Route$5
+		getParentRoute: () => Route$6
 	}),
-	LoginRoute: Route$2.update({
+	LoginRoute: Route$3.update({
 		id: "/login",
 		path: "/login",
-		getParentRoute: () => Route$5
+		getParentRoute: () => Route$6
 	}),
-	RegisterRoute: Route$1.update({
+	RegisterRoute: Route$2.update({
 		id: "/register",
 		path: "/register",
-		getParentRoute: () => Route$5
+		getParentRoute: () => Route$6
+	}),
+	SitesRoute: Route$1.update({
+		id: "/sites",
+		path: "/sites",
+		getParentRoute: () => Route$6
 	}),
 	ApiAuthSplatRoute: Route.update({
 		id: "/api/auth/$",
 		path: "/api/auth/$",
-		getParentRoute: () => Route$5
+		getParentRoute: () => Route$6
 	})
 };
-var routeTree = Route$5._addFileChildren(rootRouteChildren)._addFileTypes();
+var routeTree = Route$6._addFileChildren(rootRouteChildren)._addFileTypes();
 //#endregion
 //#region src/router.tsx
 var router_exports = /* @__PURE__ */ __exportAll({ getRouter: () => getRouter });

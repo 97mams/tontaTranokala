@@ -1,4 +1,4 @@
-import { Link } from "@tanstack/react-router";
+import { Link, useLocation } from "@tanstack/react-router";
 import { Suspense } from "react";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { convexQuery } from "@convex-dev/react-query";
@@ -30,8 +30,7 @@ import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Logo } from "@/components/landing/navbar";
 
-const libraryItems = [
-  { icon: Bookmark, label: "Sites enregistrés" },
+const disabledItems = [
   { icon: Folder, label: "Collections" },
   { icon: NotepadText, label: "Notes" },
   { icon: History, label: "Historique" },
@@ -39,6 +38,7 @@ const libraryItems = [
 
 export function AppSidebar() {
   const { state } = useSidebar();
+  const { pathname } = useLocation();
 
   return (
     <Sidebar collapsible="icon">
@@ -53,10 +53,20 @@ export function AppSidebar() {
               <SidebarMenuButton
                 render={<Link to="/" />}
                 tooltip="Accueil"
-                isActive
+                isActive={pathname === "/"}
               >
                 <House />
                 <span>Accueil</span>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+            <SidebarMenuItem>
+              <SidebarMenuButton
+                render={<Link to="/sites" />}
+                tooltip="Sites enregistrés"
+                isActive={pathname === "/sites"}
+              >
+                <Bookmark />
+                <span>Sites enregistrés</span>
               </SidebarMenuButton>
             </SidebarMenuItem>
           </SidebarMenu>
@@ -65,7 +75,7 @@ export function AppSidebar() {
         <SidebarGroup>
           <SidebarGroupLabel>Bibliothèque</SidebarGroupLabel>
           <SidebarMenu>
-            {libraryItems.map((item) => (
+            {disabledItems.map((item) => (
               <SidebarMenuItem key={item.label}>
                 <SidebarMenuButton disabled tooltip="Bientôt disponible">
                   <item.icon />
