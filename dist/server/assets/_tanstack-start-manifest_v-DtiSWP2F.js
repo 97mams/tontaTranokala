@@ -8,53 +8,66 @@ var tsrStartManifest = () => ({ routes: {
 			"/login",
 			"/register",
 			"/sites",
+			"/user",
 			"/api/auth/$"
 		],
-		preloads: ["/assets/index-BivY6Lx-.js"],
+		preloads: ["/assets/index-rvwQKaw4.js"],
 		scripts: [{ attrs: {
 			type: "module",
 			async: !0,
-			src: "/assets/index-BivY6Lx-.js"
+			src: "/assets/index-rvwQKaw4.js"
 		} }]
 	},
 	"/": {
 		filePath: "/home/mams/Documents/start/trankala/src/routes/index.tsx",
 		children: void 0,
 		preloads: [
-			"/assets/routes-CegRpLwu.js",
-			"/assets/app-shell-DtLySJVQ.js",
-			"/assets/navbar-BLvsnhAz.js",
-			"/assets/input-CJOH3yHg.js"
+			"/assets/routes-CSihQNlf.js",
+			"/assets/app-shell-Q4-jOFs3.js",
+			"/assets/website-list-CNEwClV8.js"
 		]
 	},
 	"/landing": {
 		filePath: "/home/mams/Documents/start/trankala/src/routes/landing.tsx",
 		children: void 0,
 		preloads: [
-			"/assets/landing-C3Dc35H5.js",
-			"/assets/navbar-BLvsnhAz.js",
-			"/assets/rotate-ccw-clock-7aM1fV-s.js"
+			"/assets/landing-CSYVjzd2.js",
+			"/assets/navbar-DQ1V1GBN.js",
+			"/assets/rotate-ccw-clock-CBHZ8nSR.js",
+			"/assets/plus-CPAcYGV5.js"
 		]
 	},
 	"/login": {
 		filePath: "/home/mams/Documents/start/trankala/src/routes/login.tsx",
 		children: void 0,
-		preloads: ["/assets/login-Cszbe3ke.js", "/assets/auth-header-BxGcHLkX.js"]
+		preloads: ["/assets/login-Dkv4tjA3.js", "/assets/auth-header-fpitMZk5.js"]
 	},
 	"/register": {
 		filePath: "/home/mams/Documents/start/trankala/src/routes/register.tsx",
 		children: void 0,
-		preloads: ["/assets/register-BN1xG8wn.js", "/assets/auth-header-BxGcHLkX.js"]
+		preloads: ["/assets/register-CBSQBGIf.js", "/assets/auth-header-fpitMZk5.js"]
 	},
 	"/sites": {
 		filePath: "/home/mams/Documents/start/trankala/src/routes/sites.tsx",
 		children: void 0,
 		preloads: [
-			"/assets/sites-DrX72chN.js",
-			"/assets/app-shell-DtLySJVQ.js",
-			"/assets/navbar-BLvsnhAz.js",
-			"/assets/input-CJOH3yHg.js",
-			"/assets/field-1CU13OC_.js"
+			"/assets/sites-BcFqiXMm.js",
+			"/assets/app-shell-Q4-jOFs3.js",
+			"/assets/navbar-DQ1V1GBN.js",
+			"/assets/website-list-CNEwClV8.js",
+			"/assets/plus-CPAcYGV5.js",
+			"/assets/card-2QB0abhB.js",
+			"/assets/field-D2Mb8MBv.js"
+		]
+	},
+	"/user": {
+		filePath: "/home/mams/Documents/start/trankala/src/routes/user.tsx",
+		children: void 0,
+		preloads: [
+			"/assets/user-hg9GNgF4.js",
+			"/assets/app-shell-Q4-jOFs3.js",
+			"/assets/navbar-DQ1V1GBN.js",
+			"/assets/card-2QB0abhB.js"
 		]
 	}
 } });

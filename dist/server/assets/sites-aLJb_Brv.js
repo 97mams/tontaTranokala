@@ -1,22 +1,78 @@
-import { n as api } from "./router-BK58jg0D.js";
-import { r as Button } from "./navbar-Dvw6nZUM.js";
-import { a as CardDescription, c as CardTitle, i as CardContent, r as Card, s as CardHeader, t as Input } from "./input-DXaDnxNU.js";
-import { n as Skeleton, t as AppShell } from "./app-shell-IPUggaEA.js";
-import { a as FieldLabel, i as FieldGroup, r as FieldError, t as Field } from "./field-CfcU4ISW.js";
+import { n as api } from "./router-CtdkhaJ7.js";
+import { i as cn, r as Button } from "./navbar-DZYvC_3D.js";
+import { t as AppShell } from "./app-shell-8PrU-cCk.js";
+import { a as CardHeader, c as Input, n as CardContent, o as CardTitle, r as CardDescription, t as Card } from "./card-DBbE6TN0.js";
+import { n as WebsiteListSkeleton, t as WebsiteList } from "./website-list-QFan19IR.js";
+import { a as FieldLabel, i as FieldGroup, r as FieldError, t as Field } from "./field-xud54hxL.js";
 import { Suspense, useState } from "react";
 import { Fragment, jsx, jsxs } from "react/jsx-runtime";
-import { useQueryClient, useSuspenseQuery } from "@tanstack/react-query";
+import { useQueryClient } from "@tanstack/react-query";
 import { convexQuery } from "@convex-dev/react-query";
 import { useMutation } from "convex/react";
-import { Eye, EyeOff, Globe, KeyRound, Mail, Trash2, User } from "lucide-react";
+import { Plus, X } from "lucide-react";
+import { Dialog } from "@base-ui/react/dialog";
 import { useForm } from "@tanstack/react-form";
+//#region src/components/ui/dialog.tsx
+function Dialog$1({ ...props }) {
+	return /* @__PURE__ */ jsx(Dialog.Root, {
+		"data-slot": "dialog",
+		...props
+	});
+}
+function DialogPortal({ ...props }) {
+	return /* @__PURE__ */ jsx(Dialog.Portal, {
+		"data-slot": "dialog-portal",
+		...props
+	});
+}
+function DialogOverlay({ className, ...props }) {
+	return /* @__PURE__ */ jsx(Dialog.Backdrop, {
+		"data-slot": "dialog-overlay",
+		className: cn("fixed inset-0 z-50 bg-black/10 transition-opacity duration-150 data-starting-style:opacity-0 data-ending-style:opacity-0 supports-backdrop-filter:backdrop-blur-xs", className),
+		...props
+	});
+}
+function DialogContent({ className, children, showCloseButton = true, ...props }) {
+	return /* @__PURE__ */ jsxs(DialogPortal, { children: [/* @__PURE__ */ jsx(DialogOverlay, {}), /* @__PURE__ */ jsxs(Dialog.Popup, {
+		"data-slot": "dialog-content",
+		className: cn("fixed top-1/2 left-1/2 z-50 grid max-h-[calc(100%-2rem)] w-full max-w-[calc(100%-2rem)] -translate-x-1/2 -translate-y-1/2 gap-4 overflow-y-auto rounded-xl bg-popover p-4 text-sm text-popover-foreground shadow-lg ring-1 ring-foreground/10 transition duration-150 ease-in-out outline-none sm:max-w-lg data-starting-style:opacity-0 data-starting-style:scale-95 data-ending-style:opacity-0 data-ending-style:scale-95", className),
+		...props,
+		children: [children, showCloseButton && /* @__PURE__ */ jsxs(Dialog.Close, {
+			"data-slot": "dialog-close",
+			render: /* @__PURE__ */ jsx(Button, {
+				variant: "ghost",
+				className: "absolute top-2 right-2",
+				size: "icon-sm"
+			}),
+			children: [/* @__PURE__ */ jsx(X, {}), /* @__PURE__ */ jsx("span", {
+				className: "sr-only",
+				children: "Fermer"
+			})]
+		})]
+	})] });
+}
+function DialogHeader({ className, ...props }) {
+	return /* @__PURE__ */ jsx("div", {
+		"data-slot": "dialog-header",
+		className: cn("flex flex-col gap-2", className),
+		...props
+	});
+}
+function DialogTitle({ className, ...props }) {
+	return /* @__PURE__ */ jsx(Dialog.Title, {
+		"data-slot": "dialog-title",
+		className: cn("cn-font-heading text-base leading-none font-medium", className),
+		...props
+	});
+}
+//#endregion
 //#region src/components/website-form.tsx
 function FieldErrors({ errors }) {
 	const messages = errors.map((error) => typeof error === "string" ? error : error.message ?? "").filter(Boolean);
 	if (messages.length === 0) return null;
 	return /* @__PURE__ */ jsx(FieldError, { children: messages.join(", ") });
 }
-function WebsiteForm() {
+function WebsiteForm({ onSubmitted }) {
 	const queryClient = useQueryClient();
 	const listKey = convexQuery(api.websites.list, {}).queryKey;
 	const addWebsite = useMutation(api.websites.add);
@@ -46,6 +102,7 @@ function WebsiteForm() {
 				});
 				formApi.reset();
 				queryClient.invalidateQueries({ queryKey: listKey });
+				onSubmitted?.();
 			} catch (error) {
 				formApi.setErrorMap({ onSubmit: error instanceof Error ? error.message : "Une erreur est survenue" });
 			}
@@ -233,178 +290,41 @@ function WebsiteForm() {
 	});
 }
 //#endregion
-//#region src/components/website-list.tsx
-function toDisplayUrl(raw) {
-	return raw.startsWith("http") ? raw : `https://${raw}`;
-}
-function PasswordValue({ password, loginUrl }) {
-	const [shown, setShown] = useState(false);
-	return /* @__PURE__ */ jsxs("li", {
-		className: "flex items-center gap-2",
-		children: [
-			/* @__PURE__ */ jsx(KeyRound, { className: "size-3.5 shrink-0 text-muted-foreground" }),
-			/* @__PURE__ */ jsx("span", {
-				className: "text-sm",
-				children: "Mot de passe\xA0:"
-			}),
-			/* @__PURE__ */ jsx("code", {
-				className: "rounded bg-muted px-1.5 py-0.5 text-sm",
-				children: shown ? password : "••••••••"
-			}),
-			/* @__PURE__ */ jsx(Button, {
-				variant: "ghost",
-				size: "sm",
-				className: "h-6 px-1.5",
-				type: "button",
-				onClick: () => setShown((s) => !s),
-				"aria-label": shown ? "Masquer le mot de passe" : "Afficher le mot de passe",
-				children: shown ? /* @__PURE__ */ jsx(EyeOff, {}) : /* @__PURE__ */ jsx(Eye, {})
-			}),
-			loginUrl && /* @__PURE__ */ jsx("a", {
-				href: toDisplayUrl(loginUrl),
-				target: "_blank",
-				rel: "noreferrer",
-				className: "text-sm text-primary underline underline-offset-4 hover:text-primary/80",
-				children: "Page de connexion"
-			})
-		]
-	});
-}
-function WebsiteList() {
-	const queryClient = useQueryClient();
-	const listKey = convexQuery(api.websites.list, {}).queryKey;
-	const { data } = useSuspenseQuery(convexQuery(api.websites.list, {}));
-	const removeWebsite = useMutation(api.websites.remove);
-	const handleDelete = async (id, name) => {
-		if (!window.confirm(`Supprimer « ${name} » ?`)) return;
-		await removeWebsite({ id });
-		queryClient.invalidateQueries({ queryKey: listKey });
-	};
-	if (data.length === 0) return /* @__PURE__ */ jsx(Card, {
-		className: "w-full",
-		children: /* @__PURE__ */ jsxs(CardContent, {
-			className: "flex flex-col items-center gap-2 py-10 text-center",
-			children: [/* @__PURE__ */ jsx(Globe, { className: "size-8 text-muted-foreground" }), /* @__PURE__ */ jsx("p", {
-				className: "text-sm text-muted-foreground",
-				children: "Aucun site enregistré pour le moment. Ajoutez votre premier site avec le formulaire ci-dessus."
-			})]
-		})
-	});
-	return /* @__PURE__ */ jsx("div", {
-		className: "flex w-full flex-col gap-3",
-		children: data.map((website) => {
-			const url = toDisplayUrl(website.url);
-			const loginItems = [website.loginEmail && {
-				icon: /* @__PURE__ */ jsx(Mail, { className: "size-3.5 shrink-0 text-muted-foreground" }),
-				label: "Email",
-				value: website.loginEmail
-			}, website.loginUsername && {
-				icon: /* @__PURE__ */ jsx(User, { className: "size-3.5 shrink-0 text-muted-foreground" }),
-				label: "Identifiant",
-				value: website.loginUsername
-			}].filter(Boolean);
-			return /* @__PURE__ */ jsxs(Card, {
-				className: "w-full",
-				children: [/* @__PURE__ */ jsx(CardHeader, { children: /* @__PURE__ */ jsxs("div", {
-					className: "flex items-start justify-between gap-4",
-					children: [/* @__PURE__ */ jsxs("div", {
-						className: "min-w-0",
-						children: [
-							/* @__PURE__ */ jsx("h3", {
-								className: "leading-snug font-semibold text-foreground",
-								children: website.name
-							}),
-							/* @__PURE__ */ jsx("a", {
-								href: url,
-								target: "_blank",
-								rel: "noreferrer",
-								className: "mt-0.5 inline-flex items-center gap-1 text-sm text-primary underline underline-offset-4 hover:text-primary/80",
-								children: website.url
-							}),
-							website.description && /* @__PURE__ */ jsx("p", {
-								className: "mt-1 text-sm text-muted-foreground",
-								children: website.description
-							})
-						]
-					}), /* @__PURE__ */ jsx(Button, {
-						variant: "ghost",
-						size: "sm",
-						className: "h-8 shrink-0 text-muted-foreground hover:text-destructive",
-						type: "button",
-						"aria-label": `Supprimer ${website.name}`,
-						onClick: () => handleDelete(website._id, website.name),
-						children: /* @__PURE__ */ jsx(Trash2, {})
-					})]
-				}) }), /* @__PURE__ */ jsxs(CardContent, {
-					className: "flex flex-col gap-2",
-					children: [website.notes && /* @__PURE__ */ jsx("p", {
-						className: "whitespace-pre-wrap text-sm text-muted-foreground",
-						children: website.notes
-					}), website.loginPassword && /* @__PURE__ */ jsxs("ul", {
-						className: "flex flex-col gap-1",
-						children: [loginItems.map((item) => /* @__PURE__ */ jsxs("li", {
-							className: "flex items-center gap-2",
-							children: [
-								item.icon,
-								/* @__PURE__ */ jsxs("span", {
-									className: "text-sm",
-									children: [item.label, "\xA0:"]
-								}),
-								/* @__PURE__ */ jsx("code", {
-									className: "rounded bg-muted px-1.5 py-0.5 text-sm",
-									children: item.value
-								})
-							]
-						}, item.label)), /* @__PURE__ */ jsx(PasswordValue, {
-							password: website.loginPassword,
-							loginUrl: website.loginUrl
-						})]
-					})]
-				})]
-			}, website._id);
-		})
-	});
-}
-function WebsiteListSkeleton() {
-	return /* @__PURE__ */ jsxs("div", {
-		className: "flex w-full flex-col gap-3",
-		children: [/* @__PURE__ */ jsxs("div", {
-			className: "flex w-full flex-col gap-2 rounded-xl border border-input p-4",
-			children: [
-				/* @__PURE__ */ jsx(Skeleton, { className: "h-4 w-40" }),
-				/* @__PURE__ */ jsx(Skeleton, { className: "h-3 w-56" }),
-				/* @__PURE__ */ jsx(Skeleton, { className: "h-3 w-full" })
-			]
-		}), /* @__PURE__ */ jsxs("div", {
-			className: "flex w-full flex-col gap-2 rounded-xl border border-input p-4",
-			children: [
-				/* @__PURE__ */ jsx(Skeleton, { className: "h-4 w-40" }),
-				/* @__PURE__ */ jsx(Skeleton, { className: "h-3 w-56" }),
-				/* @__PURE__ */ jsx(Skeleton, { className: "h-3 w-full" })
-			]
-		})]
-	});
-}
-//#endregion
 //#region src/routes/sites.tsx?tsr-split=component
 function SitesComponent() {
+	const [open, setOpen] = useState(false);
 	return /* @__PURE__ */ jsx(AppShell, { children: /* @__PURE__ */ jsxs("div", {
 		className: "mx-auto flex w-full max-w-3xl flex-col gap-6",
 		children: [
 			/* @__PURE__ */ jsxs("div", {
-				className: "flex flex-col gap-1",
-				children: [/* @__PURE__ */ jsx("h1", {
-					className: "text-2xl font-bold tracking-tight text-foreground sm:text-3xl",
-					children: "Sites enregistrés"
-				}), /* @__PURE__ */ jsx("p", {
-					className: "text-muted-foreground",
-					children: "Ajoutez et retrouvez les sites web que vous souhaitez garder sous la main."
+				className: "flex flex-col gap-4",
+				children: [/* @__PURE__ */ jsxs("div", {
+					className: "flex flex-col gap-1",
+					children: [/* @__PURE__ */ jsx("h1", {
+						className: "text-2xl font-bold tracking-tight text-foreground sm:text-3xl",
+						children: "Sites enregistrés"
+					}), /* @__PURE__ */ jsx("p", {
+						className: "text-muted-foreground",
+						children: "Retrouvez ici tous vos sites et leurs informations de connexion."
+					})]
+				}), /* @__PURE__ */ jsxs(Button, {
+					className: "w-fit",
+					onClick: () => setOpen(true),
+					"aria-haspopup": "dialog",
+					children: [/* @__PURE__ */ jsx(Plus, {}), "Ajouter un site"]
 				})]
 			}),
-			/* @__PURE__ */ jsx(WebsiteForm, {}),
 			/* @__PURE__ */ jsx(Suspense, {
 				fallback: /* @__PURE__ */ jsx(WebsiteListSkeleton, {}),
 				children: /* @__PURE__ */ jsx(WebsiteList, {})
+			}),
+			/* @__PURE__ */ jsx(Dialog$1, {
+				open,
+				onOpenChange: setOpen,
+				children: /* @__PURE__ */ jsxs(DialogContent, { children: [/* @__PURE__ */ jsx(DialogHeader, { children: /* @__PURE__ */ jsx(DialogTitle, {
+					className: "sr-only",
+					children: "Ajouter un site"
+				}) }), /* @__PURE__ */ jsx(WebsiteForm, { onSubmitted: () => setOpen(false) })] })
 			})
 		]
 	}) });

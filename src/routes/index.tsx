@@ -3,19 +3,12 @@ import { createFileRoute, redirect } from "@tanstack/react-router";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { convexQuery } from "@convex-dev/react-query";
 import { api } from "../../convex/_generated/api";
-import { authClient } from "@/lib/auth-client";
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
 import { Skeleton } from "@/components/ui/skeleton";
 import { AppShell } from "@/components/app-shell";
+import {
+  WebsiteList,
+  WebsiteListSkeleton,
+} from "@/components/website-list";
 
 export const Route = createFileRoute("/")({
   loader: async ({ context }) => {
@@ -35,14 +28,14 @@ export const Route = createFileRoute("/")({
 function IndexComponent() {
   return (
     <AppShell>
-      <Suspense fallback={<UserCardSkeleton />}>
-        <UserCard />
+      <Suspense fallback={<HomeSkeleton />}>
+        <HomeContent />
       </Suspense>
     </AppShell>
   );
 }
 
-function UserCard() {
+function HomeContent() {
   const { data } = useSuspenseQuery(convexQuery(api.auth.getCurrentUser, {}));
   const user = data as {
     email: string;
@@ -50,79 +43,41 @@ function UserCard() {
     image?: string | null;
   } | null;
 
-  if (!user) {
-    return (
-      <Card className="w-full max-w-sm">
-        <CardHeader>
-          <CardTitle>Non connecté</CardTitle>
-          <CardDescription>
-            Votre session a peut-être expiré.
-          </CardDescription>
-        </CardHeader>
-        <CardFooter>
-          <Button
-            variant="outline"
-            className="w-full"
-            onClick={() => (location.href = "/landing")}
-          >
-            Retour à l'accueil
-          </Button>
-        </CardFooter>
-      </Card>
-    );
-  }
-
   return (
-    <div className="mx-auto flex w-full max-w-2xl flex-col gap-4">
+    <div className="mx-auto flex w-full max-w-3xl flex-col gap-6">
       <div className="flex flex-col gap-1">
         <h1 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-          Bienvenue{user.name ? `, ${user.name}` : ""}
+          Bienvenue{user?.name ? `, ${user.name}` : ""}
         </h1>
         <p className="text-muted-foreground">
-          Vous êtes connecté. Retrouvez bientôt ici vos sites enregistrés et
-          leurs informations.
+          Retrouvez ici vos sites enregistrés et leurs informations.
         </p>
       </div>
-      <Card className="w-full">
-        <CardHeader>
-          <CardTitle>Votre compte</CardTitle>
-          <CardDescription>Les informations de votre session.</CardDescription>
-        </CardHeader>
-        <CardContent className="flex flex-col gap-1 text-sm">
-          <p>
-            <span className="text-muted-foreground">Email :</span> {user.email}
+
+      <div className="flex flex-col gap-3">
+        <div className="flex flex-col gap-1">
+          <h2 className="text-lg font-semibold tracking-tight text-foreground sm:text-xl">
+            Vos sites enregistrés
+          </h2>
+          <p className="text-muted-foreground">
+            Tous les sites que vous avez ajoutés, avec leurs informations.
           </p>
-          <p>
-            <span className="text-muted-foreground">Nom :</span> {user.name}
-          </p>
-        </CardContent>
-        <CardFooter className="flex-col items-stretch gap-4">
-          <Separator />
-          <Button
-            variant="outline"
-            onClick={async () => {
-              await authClient.signOut({
-                fetchOptions: {
-                  onSuccess: () => {
-                    location.href = "/landing";
-                  },
-                },
-              });
-            }}
-          >
-            Se déconnecter
-          </Button>
-        </CardFooter>
-      </Card>
+        </div>
+        <Suspense fallback={<WebsiteListSkeleton />}>
+          <WebsiteList />
+        </Suspense>
+      </div>
     </div>
   );
 }
 
-function UserCardSkeleton() {
+function HomeSkeleton() {
   return (
-    <div className="mx-auto flex w-full max-w-2xl flex-col gap-4">
+    <div className="mx-auto flex w-full max-w-3xl flex-col gap-6">
       <Skeleton className="h-8 w-64" />
       <Skeleton className="h-4 w-80" />
+      <Skeleton className="h-4 w-48" />
+      <Skeleton className="h-40 w-full rounded-xl" />
       <Skeleton className="h-40 w-full rounded-xl" />
     </div>
   );

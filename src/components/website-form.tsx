@@ -42,7 +42,7 @@ function FieldErrors({ errors }: { errors: unknown[] }) {
   return <FieldError>{messages.join(", ")}</FieldError>;
 }
 
-export function WebsiteForm() {
+export function WebsiteForm({ onSubmitted }: { onSubmitted?: () => void }) {
   const queryClient = useQueryClient();
   const listKey = convexQuery(api.websites.list, {}).queryKey;
   const addWebsite = useMutation(api.websites.add);
@@ -75,6 +75,7 @@ export function WebsiteForm() {
         });
         formApi.reset();
         queryClient.invalidateQueries({ queryKey: listKey });
+        onSubmitted?.();
       } catch (error) {
         formApi.setErrorMap({
           onSubmit: error instanceof Error ? error.message : "Une erreur est survenue",

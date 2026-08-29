@@ -74,8 +74,8 @@ export function WebsiteList() {
         <CardContent className="flex flex-col items-center gap-2 py-10 text-center">
           <Globe className="size-8 text-muted-foreground" />
           <p className="text-sm text-muted-foreground">
-            Aucun site enregistré pour le moment. Ajoutez votre premier site
-            avec le formulaire ci-dessus.
+            Aucun site enregistré pour le moment. Cliquez sur «&nbsp;Ajouter un
+            site&nbsp;» pour enregistrer votre premier site.
           </p>
         </CardContent>
       </Card>

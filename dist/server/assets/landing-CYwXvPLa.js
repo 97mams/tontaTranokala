@@ -1,4 +1,4 @@
-import { i as cn, n as Navbar, r as Button, t as Logo } from "./navbar-Dvw6nZUM.js";
+import { i as cn, n as Navbar, r as Button, t as Logo } from "./navbar-DZYvC_3D.js";
 import { Link } from "@tanstack/react-router";
 import { jsx, jsxs } from "react/jsx-runtime";
 import { ArrowRight, Bookmark, CircleCheck, Clock, Folder, FolderCheck, FolderClosed, FolderOpen, History, MousePointerClick, NotepadText, Pencil, Plus, Search, Sparkles, StickyNote } from "lucide-react";

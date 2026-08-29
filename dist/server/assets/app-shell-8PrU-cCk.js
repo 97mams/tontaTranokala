@@ -1,16 +1,16 @@
-import { n as api, r as authClient } from "./router-BK58jg0D.js";
-import { i as cn, r as Button, t as Logo } from "./navbar-Dvw6nZUM.js";
-import { n as Separator } from "./input-DXaDnxNU.js";
+import { n as api, r as authClient } from "./router-CtdkhaJ7.js";
+import { i as cn, r as Button, t as Logo } from "./navbar-DZYvC_3D.js";
+import { s as Separator } from "./card-DBbE6TN0.js";
 import * as React$1 from "react";
 import { Suspense } from "react";
 import { Link, useLocation } from "@tanstack/react-router";
 import { jsx, jsxs } from "react/jsx-runtime";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { convexQuery } from "@convex-dev/react-query";
-import { cva } from "class-variance-authority";
 import { mergeProps } from "@base-ui/react/merge-props";
 import { useRender } from "@base-ui/react/use-render";
-import { Bookmark, Folder, History, House, LogOut, NotepadText, PanelLeft, X } from "lucide-react";
+import { cva } from "class-variance-authority";
+import { Bookmark, Folder, History, House, LogOut, NotepadText, PanelLeft, UserRound, X } from "lucide-react";
 import { Dialog } from "@base-ui/react/dialog";
 import { Tooltip } from "@base-ui/react/tooltip";
 //#region src/components/ui/skeleton.tsx
@@ -431,17 +431,26 @@ function AppSidebar() {
 				hideText: state === "collapsed"
 			}) }),
 			/* @__PURE__ */ jsxs(SidebarContent, { children: [
-				/* @__PURE__ */ jsxs(SidebarGroup, { children: [/* @__PURE__ */ jsx(SidebarGroupLabel, { children: "Navigation" }), /* @__PURE__ */ jsxs(SidebarMenu, { children: [/* @__PURE__ */ jsx(SidebarMenuItem, { children: /* @__PURE__ */ jsxs(SidebarMenuButton, {
-					render: /* @__PURE__ */ jsx(Link, { to: "/" }),
-					tooltip: "Accueil",
-					isActive: pathname === "/",
-					children: [/* @__PURE__ */ jsx(House, {}), /* @__PURE__ */ jsx("span", { children: "Accueil" })]
-				}) }), /* @__PURE__ */ jsx(SidebarMenuItem, { children: /* @__PURE__ */ jsxs(SidebarMenuButton, {
-					render: /* @__PURE__ */ jsx(Link, { to: "/sites" }),
-					tooltip: "Sites enregistrés",
-					isActive: pathname === "/sites",
-					children: [/* @__PURE__ */ jsx(Bookmark, {}), /* @__PURE__ */ jsx("span", { children: "Sites enregistrés" })]
-				}) })] })] }),
+				/* @__PURE__ */ jsxs(SidebarGroup, { children: [/* @__PURE__ */ jsx(SidebarGroupLabel, { children: "Navigation" }), /* @__PURE__ */ jsxs(SidebarMenu, { children: [
+					/* @__PURE__ */ jsx(SidebarMenuItem, { children: /* @__PURE__ */ jsxs(SidebarMenuButton, {
+						render: /* @__PURE__ */ jsx(Link, { to: "/" }),
+						tooltip: "Accueil",
+						isActive: pathname === "/",
+						children: [/* @__PURE__ */ jsx(House, {}), /* @__PURE__ */ jsx("span", { children: "Accueil" })]
+					}) }),
+					/* @__PURE__ */ jsx(SidebarMenuItem, { children: /* @__PURE__ */ jsxs(SidebarMenuButton, {
+						render: /* @__PURE__ */ jsx(Link, { to: "/sites" }),
+						tooltip: "Sites enregistrés",
+						isActive: pathname === "/sites",
+						children: [/* @__PURE__ */ jsx(Bookmark, {}), /* @__PURE__ */ jsx("span", { children: "Sites enregistrés" })]
+					}) }),
+					/* @__PURE__ */ jsx(SidebarMenuItem, { children: /* @__PURE__ */ jsxs(SidebarMenuButton, {
+						render: /* @__PURE__ */ jsx(Link, { to: "/user" }),
+						tooltip: "Mon compte",
+						isActive: pathname === "/user",
+						children: [/* @__PURE__ */ jsx(UserRound, {}), /* @__PURE__ */ jsx("span", { children: "Mon compte" })]
+					}) })
+				] })] }),
 				/* @__PURE__ */ jsx(SidebarSeparator, {}),
 				/* @__PURE__ */ jsxs(SidebarGroup, { children: [/* @__PURE__ */ jsx(SidebarGroupLabel, { children: "Bibliothèque" }), /* @__PURE__ */ jsx(SidebarMenu, { children: disabledItems.map((item) => /* @__PURE__ */ jsx(SidebarMenuItem, { children: /* @__PURE__ */ jsxs(SidebarMenuButton, {
 					disabled: true,

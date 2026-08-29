@@ -11,6 +11,7 @@ import {
   House,
   LogOut,
   NotepadText,
+  UserRound,
 } from "lucide-react";
 import {
   Sidebar,
@@ -67,6 +68,16 @@ export function AppSidebar() {
               >
                 <Bookmark />
                 <span>Sites enregistrés</span>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+            <SidebarMenuItem>
+              <SidebarMenuButton
+                render={<Link to="/user" />}
+                tooltip="Mon compte"
+                isActive={pathname === "/user"}
+              >
+                <UserRound />
+                <span>Mon compte</span>
               </SidebarMenuButton>
             </SidebarMenuItem>
           </SidebarMenu>
