@@ -1,4 +1,4 @@
-import { r as authClient } from "./router-P2Yu57Gc.js";
+import { r as authClient } from "./router-Ez0irVsg.js";
 import { n as cn, t as Button } from "./button-BWUHUpVr.js";
 import { i as CardDescription, n as Card, o as CardHeader, r as CardContent, s as CardTitle } from "./separator-PT59Qpo1.js";
 import { useMemo } from "react";

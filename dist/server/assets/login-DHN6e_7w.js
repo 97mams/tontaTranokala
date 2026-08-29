@@ -1,4 +1,4 @@
-import { t as AuthForm } from "./auth-form-BmztEd89.js";
+import { t as AuthForm } from "./auth-form-DY7eOKuo.js";
 import { Link } from "@tanstack/react-router";
 import { jsx, jsxs } from "react/jsx-runtime";
 //#region src/routes/login.tsx?tsr-split=component

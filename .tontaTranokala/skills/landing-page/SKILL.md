@@ -1,558 +1,655 @@
-# TontaTranokala — Landing Page Skill
+# TontaTranokala Landing Page
 
-## Role
+## Project Context
 
-You are working on the TontaTranokala project.
+You are working on **TontaTranokala**, a web application designed to help users save, organize, and manage important websites along with their related information.
 
-Your primary task is to design and implement a modern, polished, responsive landing page while preserving the existing application architecture.
+The application provides a centralized place where users can keep track of websites they use and quickly retrieve important information related to those websites.
 
-The project already contains a working authentication system and backend infrastructure.
+Users can save a website with information such as:
 
-DO NOT rebuild the authentication system unless explicitly requested.
+* Website URL
+* Website name
+* Description
+* Login-related information
+* Notes
+* Other useful details
 
----
+The main purpose of TontaTranokala is to help users avoid losing track of important websites and information.
 
-# 1. Project Context
+The application already has its core functionality and authentication implemented.
 
-Project name: TontaTranokala
-
-Current stack:
-
-- TanStack Start
-- TanStack Router
-- React
-- TypeScript
-- Convex
-- Better Auth
-- @convex-dev/better-auth
-- @convex-dev/react-query
-- TanStack Query
-- Tailwind CSS
-- shadcn/ui
-- Sonner
-- pnpm
-- Hyprland/Linux development environment
-
-The project already has:
-
-- authentication
-- Convex integration
-- Better Auth integration
-- application routing
-
-The existing authentication architecture must be considered stable unless the user explicitly asks to modify it.
+Your responsibility is **ONLY to design and build the landing page**.
 
 ---
 
-# 2. Main Objective
-
-Build a professional landing page for TontaTranokala.
-
-The landing page should:
-
-- clearly explain what TontaTranokala does
-- immediately communicate its main value proposition
-- have a strong hero section
-- provide clear calls to action
-- explain the main features
-- build trust
-- be responsive
-- work well on mobile, tablet and desktop
-- support light/dark mode
-- use the existing design system
-- feel like a real production application rather than a template
-
-Avoid generic AI-generated landing page designs.
-
-The design should have a coherent visual identity.
-
----
-
-# 3. Before Writing Code
-
-Before modifying anything:
-
-1. Inspect the repository structure.
-2. Inspect package.json.
-3. Inspect the existing route structure.
-4. Inspect the existing __root.tsx.
-5. Inspect existing Header and Footer components.
-6. Inspect existing shadcn/ui components.
-7. Inspect the existing theme configuration.
-8. Inspect existing authentication routes.
-9. Identify the current public route used for the landing page.
-10. Reuse existing components whenever possible.
-
-Do not blindly create new components.
-
----
-
-# 4. Authentication Rules
-
-Authentication already exists.
-
-DO NOT:
-
-- replace Better Auth
-- replace Convex
-- introduce another authentication library
-- create another auth provider
-- modify Convex authentication configuration
-- create duplicate user tables
-- mix @convex-dev/auth with @convex-dev/better-auth
-
-The project uses:
-
-@convex-dev/better-auth
-
-The client authentication is based on:
-
-better-auth/react
-
-and:
-
-@convex-dev/better-auth/client/plugins
-
-Do not change this architecture for a landing page.
-
----
-
-# 5. Convex Rules
-
-Convex is already integrated.
-
-Do not create new Convex mutations, queries or schemas unless the landing page genuinely requires backend functionality.
-
-A static landing page should preferably require ZERO new Convex functions.
+# Important Scope Rule
 
 Do not modify:
 
-- convex.config.ts
-- Better Auth configuration
-- auth.ts
-- auth.config.ts
+* Authentication logic
+* Login system
+* Registration system
+* Database schema
+* Backend logic
+* API routes
+* Existing authentication providers
+* Environment variables
+* Existing core application functionality
 
-unless explicitly required.
+Do not rewrite working parts of the project.
 
----
+Focus exclusively on the public landing page and its UI components.
 
-# 6. Routing
-
-Use TanStack Router conventions.
-
-Before creating a route:
-
-- inspect the existing routes
-- determine whether the required route already exists
-- avoid duplicate routes
-
-The landing page should normally be a public route.
-
-Do not introduce React Router.
-
-Do not use Next.js routing APIs.
-
-Do not use React Router APIs.
-
-Use TanStack Router only.
+Before modifying existing files, inspect the current project structure and existing design system.
 
 ---
 
-# 7. UI Architecture
+# Product Description
 
-Prefer small reusable React components.
+TontaTranokala is a personal website organization platform.
 
-Recommended structure:
+The platform helps users:
 
-src/
-├── components/
-│   ├── landing/
-│   │   ├── Hero.tsx
-│   │   ├── Features.tsx
-│   │   ├── HowItWorks.tsx
-│   │   ├── CTA.tsx
-│   │   └── ...
-│   ├── Header.tsx
-│   └── Footer.tsx
-└── routes/
-    └── ...
+* Save important websites
+* Organize websites in one place
+* Store useful information related to websites
+* Keep notes associated with websites
+* Quickly search previously saved websites
+* Edit or delete saved entries
+* Access a history of important websites and information
 
-Do not put the entire landing page into one huge component.
+The central idea is:
 
-Each section should have a clear responsibility.
+> Keep your important websites and information organized in one place.
+
+The landing page should communicate this concept clearly and quickly.
+
+A visitor should understand within a few seconds what TontaTranokala does.
 
 ---
 
-# 8. Design Direction
+# Main Goal
 
-The landing page should feel:
+Create a modern, professional, visually attractive, and responsive landing page.
 
-- modern
-- clean
-- trustworthy
-- professional
-- slightly premium
-- fast
-- accessible
+The landing page should convince visitors that TontaTranokala is a useful tool for organizing their digital life.
+
+The main message should be:
+
+> Stop losing important websites and information. Keep everything organized in one place.
+
+The landing page should encourage users to:
+
+* Create an account
+* Start organizing their websites
+* Explore the application
+
+---
+
+# Design Direction
+
+The design should feel:
+
+* Modern
+* Clean
+* Organized
+* Minimal
+* Professional
+* Trustworthy
+* Productive
+
+The visual design should communicate:
+
+* Organization
+* Simplicity
+* Digital productivity
+* Easy access
+* Centralization
 
 Avoid:
 
-- excessive gradients
-- excessive glassmorphism
-- huge amounts of animation
-- random floating blobs
-- meaningless decorative elements
-- excessive rounded cards
-- generic "AI startup" aesthetics
-- visual noise
-
-Use whitespace intentionally.
-
-Typography should create a clear hierarchy.
-
----
-
-# 9. Landing Page Structure
-
-Unless the user specifies another structure, use:
-
-## Header
-
-Include:
-
-- logo / brand
-- navigation
-- authentication CTA
-- responsive mobile navigation
-
-The existing Header should be reused or extended rather than duplicated.
-
----
-
-## Hero
-
-The hero should contain:
-
-- strong headline
-- concise supporting paragraph
-- primary CTA
-- secondary CTA when useful
-- visual/product preview if appropriate
-
-The headline should explain the product rather than simply saying:
-
-"Welcome to TontaTranokala".
-
-Avoid meaningless marketing language.
-
----
-
-## Social Proof / Trust
-
-If appropriate:
-
-- numbers
-- benefits
-- partner/customer indicators
-- trust statements
-
-Do not invent real customers, statistics or testimonials.
-
-If no real data exists, omit fake social proof.
-
----
-
-## Features
-
-Present the most important product capabilities.
-
-Use existing shadcn/ui components where appropriate.
-
-Each feature should answer:
-
-"What problem does this solve?"
-
-Avoid feature lists that only describe technical implementation.
-
----
-
-## How It Works
-
-Explain the main user workflow in 3–4 steps.
-
-Keep it simple.
-
----
-
-## CTA
-
-Finish with a strong call to action.
-
-The CTA should lead to the existing registration/authentication route.
-
-Do not create another authentication flow.
-
----
-
-## Footer
-
-Reuse the existing Footer component.
-
-Do not create a second footer if one already exists.
-
----
-
-# 10. Responsive Design
-
-Mobile-first.
-
-The landing page must work at:
-
-- mobile
-- tablet
-- desktop
-- large desktop
-
-Check for:
-
-- horizontal overflow
-- broken navigation
-- oversized text
-- inaccessible buttons
-- unreadable content
-- excessive spacing
-
-Do not solve responsiveness by hiding important content.
-
----
-
-# 11. Accessibility
-
-Follow basic accessibility rules.
-
-Use:
-
-- semantic HTML
-- proper headings
-- labels
-- accessible buttons
-- keyboard navigation
-- sufficient contrast
-- meaningful alt text for real images
-
-Do not use divs as buttons.
-
-Do not rely exclusively on color to communicate information.
-
----
-
-# 12. Animations
-
-Animations should be subtle and purposeful.
+* Generic AI-generated SaaS layouts
+* Excessive gradients
+* Too many floating cards
+* Excessive animations
+* Too many colors
+* Overloaded interfaces
+* Large blocks of text
 
 Prefer:
 
-- opacity
-- translate
-- small scale
-- hover transitions
+* Strong typography
+* Clean spacing
+* Clear hierarchy
+* Subtle borders
+* Modern cards
+* Simple icons
+* Meaningful visuals
+* Subtle interactions
+
+The landing page should feel polished enough for a real production product.
+
+---
+
+# Landing Page Structure
+
+The page should include the following sections.
+
+---
+
+## 1. Navigation
+
+Create a clean and responsive navigation bar.
+
+Include:
+
+* TontaTranokala logo
+* Home
+* Features
+* How It Works
+
+Include authentication actions using the existing application routes:
+
+* Sign In
+* Get Started
+
+Do not modify authentication logic.
+
+The primary call-to-action should be visually distinct.
+
+The navigation must work correctly on mobile devices.
+
+---
+
+# 2. Hero Section
+
+The hero section must immediately explain the product.
+
+Suggested headline:
+
+> Keep your important websites in one place.
+
+Alternative:
+
+> Organize your digital world.
+
+Alternative:
+
+> Never lose an important website again.
+
+Supporting text:
+
+TontaTranokala helps you save, organize, and quickly find important websites and their related information.
+
+Example:
+
+> Save your favorite and important websites, organize useful information, and access everything whenever you need it.
+
+Primary CTA:
+
+**Get Started**
+
+Secondary CTA:
+
+**Learn More**
+
+The hero should include a visual representation of the product.
+
+Possible concepts:
+
+* A preview of the website management interface
+* A collection of organized website cards
+* A clean dashboard preview
+* URLs and notes organized in a simple interface
+
+The hero visual should help visitors understand the product without requiring a long explanation.
+
+---
+
+# 3. Problem Section
+
+Introduce the problem that TontaTranokala solves.
+
+Example concept:
+
+People use many websites every day.
+
+Over time, they may:
+
+* Forget important URLs
+* Lose useful websites
+* Forget which information belongs to which platform
+* Keep information scattered across multiple places
+* Waste time searching through browser history
+
+Create a concise section communicating this problem.
+
+Avoid long paragraphs.
+
+---
+
+# 4. Solution Section
+
+Introduce TontaTranokala as the solution.
+
+Possible headline:
+
+> Everything important, organized in one place.
+
+Explain that users can keep their important websites and related information together.
+
+The section should visually demonstrate how the application solves the problem.
+
+Possible visual layout:
+
+* Website card
+* Website information
+* Notes
+* Organization
+* Quick access
+
+Focus on clarity.
+
+---
+
+# 5. Features Section
+
+Create a visually attractive features section.
+
+The main features are:
+
+## Save Important Websites
+
+Save website URLs together with useful information.
+
+## Organize Your Websites
+
+Keep your saved websites organized and easy to access.
+
+## Store Related Information
+
+Keep useful notes and information associated with each website.
+
+## Search Quickly
+
+Find previously saved websites without searching through browser history.
+
+## Edit Anytime
+
+Update website information whenever necessary.
+
+## Keep Your History
+
+Access previously saved websites and information.
+
+Each feature should have:
+
+* A simple icon
+* A clear title
+* A short description
+
+Avoid excessive text.
+
+---
+
+# 6. How It Works
+
+Create a simple three-step process.
+
+## Step 1 — Save
+
+Add a website and its important information.
+
+## Step 2 — Organize
+
+Keep your websites and information in one centralized place.
+
+## Step 3 — Access
+
+Find and retrieve your information whenever you need it.
+
+The section should be easy to understand at a glance.
+
+---
+
+# 7. Product Preview
+
+Create a visual preview of how the application could look.
+
+This section should showcase concepts such as:
+
+* Saved website cards
+* Website names
+* URLs
+* Descriptions
+* Notes
+* Search functionality
+* Organized information
+
+Use realistic mock data.
+
+Do not create backend functionality solely for the landing page.
+
+The preview can be static.
+
+Focus on making the product understandable.
+
+---
+
+# 8. Benefits Section
+
+Explain the benefits of using TontaTranokala.
+
+Possible benefits:
+
+### Stay Organized
+
+Keep important websites in one centralized place.
+
+### Save Time
+
+Quickly find websites instead of searching through browser history.
+
+### Keep Information Together
+
+Store useful details alongside the websites they belong to.
+
+### Access Information Easily
+
+Retrieve important websites whenever you need them.
+
+Keep descriptions short and clear.
+
+---
+
+# 9. Final Call To Action
+
+Create a strong section near the bottom of the page.
+
+Suggested headline:
+
+> Start organizing your digital life today.
+
+Supporting text:
+
+> Keep your important websites and information organized and easy to access.
+
+Primary CTA:
+
+**Get Started for Free**
+
+The button should use the existing registration route.
+
+Do not modify authentication.
+
+---
+
+# 10. Footer
+
+Create a clean and minimal footer.
+
+Include:
+
+* TontaTranokala logo
+* Short product description
+* Navigation links
+* Important links
+* Copyright
+
+Do not overload the footer.
+
+---
+
+# Responsive Design
+
+The landing page MUST work correctly on:
+
+* Mobile
+* Tablet
+* Laptop
+* Desktop
+
+Follow a mobile-first approach.
+
+Pay special attention to:
+
+* Navigation
+* Hero section
+* Product preview
+* Feature grid
+* Buttons
+* Typography
+* Spacing
+
+Avoid horizontal scrolling.
+
+On smaller screens:
+
+* Stack content vertically when necessary.
+* Ensure buttons remain easy to use.
+* Keep text readable.
+* Simplify complex layouts.
+
+---
+
+# Component Architecture
+
+Create reusable components when appropriate.
+
+Suggested structure:
+
+```text
+components/
+└── landing/
+    ├── navbar.tsx
+    ├── hero.tsx
+    ├── problem.tsx
+    ├── solution.tsx
+    ├── features.tsx
+    ├── how-it-works.tsx
+    ├── product-preview.tsx
+    ├── benefits.tsx
+    ├── cta.tsx
+    └── footer.tsx
+```
+
+However:
+
+Always inspect the existing project structure first.
+
+Follow existing naming conventions.
+
+Do not create unnecessary components.
+
+---
+
+# UI Components
+
+Use the existing UI libraries and components already installed in the project.
+
+Before installing a new dependency:
+
+1. Inspect package.json.
+2. Inspect existing UI components.
+3. Reuse existing components when possible.
+
+Do not install a new library unless it provides a clear benefit.
+
+Avoid dependency bloat.
+
+---
+
+# Typography
+
+Use typography to create a strong hierarchy.
+
+The hero headline should be:
+
+* Clear
+* Confident
+* Easy to understand
+
+Section headings should clearly communicate the purpose of each section.
+
+Body text should remain concise.
 
 Avoid:
 
-- constant movement
-- excessive parallax
-- distracting animations
-- animation that blocks interaction
-
-Respect prefers-reduced-motion where practical.
+* Extremely small text
+* Too many font sizes
+* Long paragraphs
+* Decorative text that does not communicate useful information
 
 ---
 
-# 13. Dependencies
+# Icons
 
-Do not install new packages unless necessary.
+Use icons sparingly.
 
-Before installing a package:
+Icons should support understanding.
 
-1. Check package.json.
-2. Check whether an existing dependency already solves the problem.
-3. Prefer native CSS/Tailwind when possible.
-4. Ask the user before adding a major dependency.
+Good icon categories include:
 
-The package manager is:
+* Link
+* Folder
+* Search
+* History
+* Edit
+* Notes
+* Organization
 
-pnpm
-
-Do not use npm commands unless explicitly requested.
-
----
-
-# 14. Existing Design System
-
-Use the project's existing:
-
-- Tailwind configuration
-- CSS variables
-- shadcn/ui components
-- theme provider
-- typography
-- spacing conventions
-
-Do not introduce an unrelated design system.
-
-Do not hard-code an entirely separate color palette unless explicitly requested.
+Do not use icons as decoration without purpose.
 
 ---
 
-# 15. Icons
+# Product Mock Data
 
-If icons are already available in the project, reuse them.
+For the landing page, realistic static mock data can be used.
 
-Do not install another icon library without checking the existing dependencies first.
+Example:
 
-Use icons to improve comprehension, not as decoration everywhere.
+```text
+GitHub
+github.com
+Development projects and repositories.
+
+Notion
+notion.so
+Personal notes and project planning.
+
+Figma
+figma.com
+Design files and prototypes.
+
+LinkedIn
+linkedin.com
+Professional network and career information.
+```
+
+Mock data should make the product preview feel realistic.
+
+Do not create unnecessary API calls or database queries for landing page demonstrations.
 
 ---
 
-# 16. Images
+# Animations
 
-Before adding external images:
+Use subtle animations only.
 
-- inspect whether the project already has assets
-- prefer existing assets
-- do not use copyrighted images without appropriate rights
-- do not invent fake product screenshots
+Possible interactions:
 
-If a product mockup is needed and no real screenshot exists, create a UI representation using the project's components instead.
-
----
-
-# 17. Code Quality
-
-Use strict TypeScript.
+* Card hover effects
+* Button transitions
+* Small fade-in effects
+* Smooth navigation interactions
 
 Avoid:
 
-- any
-- unnecessary type assertions
-- duplicated code
-- giant components
-- unused imports
-- dead code
-- console.log left in production code
+* Heavy animations
+* Constant movement
+* Slow page loading
+* Distracting effects
 
-Follow the project's existing naming conventions.
+Animations should improve the experience, not become the main attraction.
 
 ---
 
-# 18. Do Not Break Existing Features
+# Accessibility
 
-Before modifying shared components such as:
+Ensure:
 
-- Header
-- Footer
-- ThemeProvider
-- Sidebar
-- auth components
-- root layout
+* Semantic HTML
+* Accessible navigation
+* Proper button labels
+* Good text contrast
+* Keyboard navigation
+* Meaningful alt text
 
-inspect their existing usage.
-
-A landing page change must not break:
-
-- authentication
-- dashboard
-- Convex
-- Better Auth
-- theme switching
-- existing routes
+Do not sacrifice accessibility for visual effects.
 
 ---
 
-# 19. Validation
+# Code Quality
 
-After implementing the landing page:
+Use:
 
-Run:
+* TypeScript
+* Clear component names
+* Reusable components
+* Existing project conventions
 
-pnpm typecheck
+Avoid:
 
-if available.
-
-Then run:
-
-pnpm build
-
-if available.
-
-Also inspect the browser manually if possible.
-
-Check:
-
-- console errors
-- hydration errors
-- routing errors
-- TypeScript errors
-- responsive layout
-- dark mode
-- authentication links
-
-Fix errors rather than hiding them.
+* `any`
+* Duplicated code
+* Large monolithic components
+* Unnecessary client-side state
+* Unnecessary dependencies
 
 ---
 
-# 20. Working Style
+# Implementation Workflow
 
-Do not make massive changes blindly.
+When working on the landing page:
 
-Work incrementally:
-
-1. inspect
-2. plan
-3. implement
-4. verify
-5. fix
-6. polish
-
-When modifying existing code, preserve unrelated functionality.
-
-Explain important architectural decisions briefly.
+1. Inspect the existing project structure.
+2. Identify the landing page route.
+3. Inspect the existing design system.
+4. Inspect available UI components.
+5. Preserve authentication and application logic.
+6. Build the landing page section by section.
+7. Reuse existing components.
+8. Ensure mobile responsiveness.
+9. Check for TypeScript errors.
+10. Check that no unrelated functionality was modified.
 
 ---
 
-# 21. Important Existing Architecture
+# Final Quality Checklist
 
-The application currently uses:
+Before finishing, verify:
 
-ConvexBetterAuthProvider
-
-with:
-
-authClient
-
-and:
-
-ConvexQueryClient
-
-Authentication is already connected through Better Auth and Convex.
-
-The root layout contains authentication-aware rendering.
-
-Do not replace this architecture when implementing the landing page.
+* The product purpose is understandable within seconds.
+* The hero clearly explains TontaTranokala.
+* The page has strong calls-to-action.
+* The features are clearly presented.
+* The product preview makes sense.
+* The design works on mobile.
+* Components are reusable.
+* Existing authentication was not modified.
+* Backend functionality was not modified.
+* No unnecessary dependencies were added.
+* TypeScript errors are resolved.
 
 ---
 
-# 22. Final Principle
+# Core Principle
 
-The goal is not to produce "a beautiful AI-generated landing page".
+The landing page should communicate one simple idea:
 
-The goal is to produce a landing page that looks like it belongs to TontaTranokala.
+> TontaTranokala helps you save, organize, and quickly find your important websites and information.
 
-Every design decision should answer:
+Every design and development decision should reinforce this idea.
 
-- What does TontaTranokala do?
-- Who is it for?
-- Why should the visitor care?
-- What should the visitor do next?
-
-Prioritize clarity, usability, consistency and maintainability over visual gimmicks.
+Build a landing page that feels modern, useful, trustworthy, and ready for production.

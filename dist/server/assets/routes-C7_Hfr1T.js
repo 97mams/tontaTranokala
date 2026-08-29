@@ -1,4 +1,4 @@
-import { n as api, r as authClient } from "./router-P2Yu57Gc.js";
+import { n as api, r as authClient } from "./router-Ez0irVsg.js";
 import { n as cn, t as Button } from "./button-BWUHUpVr.js";
 import { a as CardFooter, i as CardDescription, n as Card, o as CardHeader, r as CardContent, s as CardTitle, t as Separator } from "./separator-PT59Qpo1.js";
 import { Suspense } from "react";
