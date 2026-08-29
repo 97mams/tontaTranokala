@@ -3,23 +3,23 @@ import { Clock, FolderCheck, MousePointerClick, StickyNote } from "lucide-react"
 const benefits = [
   {
     icon: FolderCheck,
-    title: "Stay Organized",
-    description: "Keep important websites in one centralized place.",
+    title: "Rester organisé",
+    description: "Gardez vos sites importants dans un endroit centralisé.",
   },
   {
     icon: Clock,
-    title: "Save Time",
-    description: "Find websites instantly instead of searching history.",
+    title: "Gagner du temps",
+    description: "Retrouvez vos sites instantanément au lieu de fouiller l'historique.",
   },
   {
     icon: StickyNote,
-    title: "Keep Information Together",
-    description: "Store useful details alongside the websites they belong to.",
+    title: "Tout garder ensemble",
+    description: "Stockez les détails utiles à côté des sites concernés.",
   },
   {
     icon: MousePointerClick,
-    title: "Access Information Easily",
-    description: "Retrieve important websites whenever you need them.",
+    title: "Accéder facilement",
+    description: "Retrouvez vos sites importants quand vous en avez besoin.",
   },
 ];
 
@@ -29,7 +29,7 @@ export function Benefits() {
       <div className="mx-auto w-full max-w-6xl px-6 py-20 sm:py-24">
         <div className="mx-auto flex max-w-2xl flex-col items-center gap-4 text-center">
           <h2 className="text-3xl font-bold tracking-tight text-balance sm:text-4xl">
-            Built to make life easier
+            Conçu pour vous simplifier la vie
           </h2>
         </div>
         <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">

@@ -3,33 +3,33 @@ import { Bookmark, Folder, History, NotepadText, Pencil, Search } from "lucide-r
 const features = [
   {
     icon: Bookmark,
-    title: "Save Important Websites",
-    description: "Save website URLs together with useful information.",
+    title: "Enregistrer les sites importants",
+    description: "Enregistrez des adresses avec toutes les informations utiles.",
   },
   {
     icon: Folder,
-    title: "Organize Your Websites",
-    description: "Keep your saved websites organized and easy to access.",
+    title: "Organiser vos sites",
+    description: "Gardez vos sites enregistrés organisés et faciles d'accès.",
   },
   {
     icon: NotepadText,
-    title: "Store Related Information",
-    description: "Keep useful notes associated with each website.",
+    title: "Stocker les informations associées",
+    description: "Gardez des notes utiles associées à chaque site.",
   },
   {
     icon: Search,
-    title: "Search Quickly",
-    description: "Find saved websites without digging through history.",
+    title: "Rechercher rapidement",
+    description: "Retrouvez vos sites sans fouiller dans l'historique.",
   },
   {
     icon: Pencil,
-    title: "Edit Anytime",
-    description: "Update website information whenever necessary.",
+    title: "Modifier à tout moment",
+    description: "Mettez à jour les informations quand vous le souhaitez.",
   },
   {
     icon: History,
-    title: "Keep Your History",
-    description: "Access previously saved websites and information.",
+    title: "Conserver votre historique",
+    description: "Accédez à vos sites et informations déjà enregistrés.",
   },
 ];
 
@@ -39,10 +39,11 @@ export function Features() {
       <div className="mx-auto w-full max-w-6xl px-6 py-20 sm:py-24">
         <div className="mx-auto flex max-w-2xl flex-col items-center gap-4 text-center">
           <h2 className="text-3xl font-bold tracking-tight text-balance sm:text-4xl">
-            Everything you need to stay organized
+            Tout ce qu'il faut pour rester organisé
           </h2>
           <p className="text-muted-foreground">
-            Simple tools that make saving and finding websites effortless.
+            Des outils simples pour enregistrer et retrouver vos sites sans
+            effort.
           </p>
         </div>
         <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">

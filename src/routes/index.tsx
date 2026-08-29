@@ -19,13 +19,13 @@ import { Skeleton } from "@/components/ui/skeleton";
 export const Route = createFileRoute("/")({
   loader: async ({ context }) => {
     if (!context.isAuthenticated) {
-      throw redirect({ to: "/login" });
+      throw redirect({ to: "/landing" });
     }
     const user = await context.queryClient.ensureQueryData(
       convexQuery(api.auth.getCurrentUser, {}),
     );
     if (!user) {
-      throw redirect({ to: "/login" });
+      throw redirect({ to: "/landing" });
     }
   },
   component: IndexComponent,

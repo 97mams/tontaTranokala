@@ -5,9 +5,9 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 const navLinks = [
-  { label: "Home", href: "#home" },
-  { label: "Features", href: "#features" },
-  { label: "How It Works", href: "#how-it-works" },
+  { label: "Accueil", href: "#home" },
+  { label: "Fonctionnalités", href: "#features" },
+  { label: "Comment ça marche", href: "#how-it-works" },
 ];
 
 export function Logo({ className }: { className?: string }) {
@@ -29,10 +29,10 @@ export function Navbar() {
   return (
     <header className="sticky top-0 z-40 border-b border-neutral-800 bg-neutral-950/80 backdrop-blur">
       <nav
-        aria-label="Main"
+        aria-label="Navigation principale"
         className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-6"
       >
-        <Link to="/landing" aria-label="TontaTranokala home">
+        <Link to="/landing" aria-label="Accueil TontaTranokala">
           <Logo />
         </Link>
 
@@ -54,16 +54,16 @@ export function Navbar() {
             size="sm"
             render={<Link to="/login" />}
           >
-            Sign in
+            Se connecter
           </Button>
           <Button size="sm" render={<Link to="/register" />}>
-            Get started
+            Commencer
           </Button>
         </div>
 
         <button
           type="button"
-          aria-label={open ? "Close menu" : "Open menu"}
+          aria-label={open ? "Fermer le menu" : "Ouvrir le menu"}
           aria-expanded={open}
           aria-controls="mobile-menu"
           onClick={() => setOpen((value) => !value)}
@@ -96,10 +96,10 @@ export function Navbar() {
                 className="w-full"
                 render={<Link to="/login" />}
               >
-                Sign in
+                Se connecter
               </Button>
               <Button className="w-full" render={<Link to="/register" />}>
-                Get started
+                Commencer
               </Button>
             </div>
           </div>

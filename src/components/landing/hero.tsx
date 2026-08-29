@@ -23,16 +23,16 @@ function HeroVisual() {
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <p className="text-sm font-medium text-foreground">
-              Saved websites
+              Sites enregistrés
             </p>
             <p className="text-xs text-neutral-500">
-              {popularWebsites.length} of your important links
+              {popularWebsites.length} de vos liens importants
             </p>
           </div>
           <div className="relative">
             <Search className="pointer-events-none absolute top-1/2 left-2.5 size-3.5 -translate-y-1/2 text-neutral-500" />
             <div className="h-8 w-full rounded-lg border border-neutral-800 bg-neutral-950/60 pl-8 pr-3 text-left text-sm text-neutral-500 sm:w-52">
-              Search…
+              Rechercher…
             </div>
           </div>
         </div>
@@ -45,7 +45,7 @@ function HeroVisual() {
 
         <div className="flex items-center justify-center rounded-xl border border-dashed border-neutral-800 py-2.5 text-xs text-neutral-500">
           <Plus className="mr-1.5 size-3.5" />
-          Add another website
+          Ajouter un autre site
         </div>
       </div>
     </div>
@@ -66,14 +66,14 @@ export function Hero() {
         <div className="flex flex-col items-center gap-5 text-center">
           <span className="inline-flex items-center gap-1.5 rounded-full border border-neutral-800 bg-neutral-900 px-3 py-1 text-xs font-medium text-neutral-300">
             <Sparkles className="size-3.5 text-neutral-400" />
-            Your personal website organizer
+            Votre organisateur de sites web personnel
           </span>
           <h1 className="max-w-3xl text-4xl leading-[1.1] font-extrabold tracking-tight text-balance sm:text-5xl md:text-6xl">
-            Keep your important websites in one place.
+            Gardez vos sites importants au même endroit.
           </h1>
           <p className="max-w-xl text-balance text-base text-neutral-400 sm:text-lg">
-            Save the websites you rely on, store the information that matters,
-            and find everything again in seconds.
+            Enregistrez les sites sur lesquels vous comptez, stockez les
+            informations qui comptent et retrouvez tout en quelques secondes.
           </p>
           <div className="flex flex-col gap-3 pt-2 sm:flex-row">
             <Button
@@ -81,7 +81,7 @@ export function Hero() {
               className="gap-2 px-6"
               render={<Link to="/register" />}
             >
-              Get started
+              Commencer
               <ArrowRight data-icon="inline-end" />
             </Button>
             <Button
@@ -90,7 +90,7 @@ export function Hero() {
               className="px-6"
               render={<a href="#how-it-works" />}
             >
-              Learn more
+              En savoir plus
             </Button>
           </div>
         </div>

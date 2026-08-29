@@ -1,10 +1,10 @@
 import { CircleCheck } from "lucide-react";
 
 const problems = [
-  "Important URLs get forgotten over time",
-  "Useful websites disappear into browser history",
-  "Information is scattered across many places",
-  "Time is wasted searching for the right link",
+  "Les adresses importantes finissent par être oubliées",
+  "Les sites utiles se perdent dans l'historique du navigateur",
+  "Les informations sont dispersées un peu partout",
+  "Vous perdez du temps à chercher le bon lien",
 ];
 
 export function Problem() {
@@ -13,11 +13,11 @@ export function Problem() {
       <div className="mx-auto w-full max-w-6xl px-6 py-20 sm:py-24">
         <div className="mx-auto flex max-w-2xl flex-col items-center gap-4 text-center">
           <h2 className="text-3xl font-bold tracking-tight text-balance sm:text-4xl">
-            Too many websites. Too much scattered information.
+            Trop de sites. Trop d'informations éparpillées.
           </h2>
           <p className="text-muted-foreground">
-            You use dozens of websites every day. Without a system, the things
-            that matter get buried and hard to find.
+            Vous utilisez des dizaines de sites chaque jour. Sans organisation,
+            l'essentiel se perd et devient difficile à retrouver.
           </p>
         </div>
         <ul className="mx-auto mt-10 grid max-w-3xl gap-3 sm:grid-cols-2">

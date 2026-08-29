@@ -3,21 +3,21 @@ import { FolderOpen, MousePointerClick, Plus } from "lucide-react";
 const steps = [
   {
     icon: Plus,
-    step: "Step 1",
-    title: "Save",
-    description: "Add a website and its important information in one click.",
+    step: "Étape 1",
+    title: "Enregistrez",
+    description: "Ajoutez un site et ses informations importantes en un clic.",
   },
   {
     icon: FolderOpen,
-    step: "Step 2",
-    title: "Organize",
-    description: "Keep your websites and information in one centralized place.",
+    step: "Étape 2",
+    title: "Organisez",
+    description: "Gardez vos sites et informations dans un endroit centralisé.",
   },
   {
     icon: MousePointerClick,
-    step: "Step 3",
-    title: "Access",
-    description: "Find and retrieve your information whenever you need it.",
+    step: "Étape 3",
+    title: "Accédez",
+    description: "Retrouvez vos informations dès que vous en avez besoin.",
   },
 ];
 
@@ -27,10 +27,10 @@ export function HowItWorks() {
       <div className="mx-auto w-full max-w-6xl px-6 py-20 sm:py-24">
         <div className="mx-auto flex max-w-2xl flex-col items-center gap-4 text-center">
           <h2 className="text-3xl font-bold tracking-tight text-balance sm:text-4xl">
-            How it works
+            Comment ça marche
           </h2>
           <p className="text-muted-foreground">
-            Get started in three simple steps.
+            Commencez en trois étapes simples.
           </p>
         </div>
         <div className="mt-12 grid gap-4 md:grid-cols-3">

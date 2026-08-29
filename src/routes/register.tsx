@@ -1,5 +1,6 @@
 import { Link, createFileRoute, redirect } from "@tanstack/react-router";
 import { AuthForm } from "@/components/auth-form";
+import { AuthHeader } from "@/components/auth-header";
 
 export const Route = createFileRoute("/register")({
   beforeLoad: ({ context }) => {
@@ -12,14 +13,17 @@ export const Route = createFileRoute("/register")({
 
 function RegisterComponent() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center gap-4 px-6">
-      <AuthForm mode="signUp" />
-      <Link
-        to="/login"
-        className="text-sm text-neutral-400 hover:text-neutral-200"
-      >
-        Already have an account? Sign in
-      </Link>
-    </main>
+    <div className="flex min-h-screen flex-col">
+      <AuthHeader />
+      <main className="flex flex-1 flex-col items-center justify-center gap-4 px-6">
+        <AuthForm mode="signUp" />
+        <Link
+          to="/login"
+          className="text-sm text-neutral-400 hover:text-neutral-200"
+        >
+          Déjà un compte ? Se connecter
+        </Link>
+      </main>
+    </div>
   );
 }

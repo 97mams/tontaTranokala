@@ -8,18 +8,18 @@ export function Cta() {
       <div className="mx-auto w-full max-w-6xl px-6 py-20 sm:py-24">
         <div className="flex flex-col items-center gap-4 rounded-2xl border border-neutral-800 bg-neutral-900/50 px-6 py-14 text-center sm:px-12">
           <h2 className="max-w-2xl text-3xl font-bold tracking-tight text-balance sm:text-4xl">
-            Start organizing your digital life today.
+            Commencez à organiser votre vie numérique dès aujourd'hui.
           </h2>
           <p className="max-w-md text-balance text-muted-foreground">
-            Keep your important websites and information organized and easy to
-            access.
+            Gardez vos sites et informations importants organisés et faciles
+            d'accès.
           </p>
           <Button
             size="lg"
             className="mt-4 gap-2 px-6"
             render={<Link to="/register" />}
           >
-            Get started for free
+            Commencer gratuitement
             <ArrowRight data-icon="inline-end" />
           </Button>
         </div>

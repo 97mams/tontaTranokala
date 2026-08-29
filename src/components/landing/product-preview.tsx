@@ -3,10 +3,10 @@ import { WebsiteCard } from "@/components/landing/website-card";
 import { mockWebsites } from "@/components/landing/mock-data";
 
 const sidebarItems = [
-  { icon: Bookmark, label: "All websites", active: true },
+  { icon: Bookmark, label: "Tous les sites", active: true },
   { icon: FolderClosed, label: "Collections" },
   { icon: NotepadText, label: "Notes" },
-  { icon: History, label: "History" },
+  { icon: History, label: "Historique" },
 ];
 
 export function ProductPreview() {
@@ -15,10 +15,11 @@ export function ProductPreview() {
       <div className="mx-auto w-full max-w-6xl px-6 py-20 sm:py-24">
         <div className="mx-auto flex max-w-2xl flex-col items-center gap-4 text-center">
           <h2 className="text-3xl font-bold tracking-tight text-balance sm:text-4xl">
-            See your digital world at a glance
+            Votre univers numérique en un coup d'œil
           </h2>
           <p className="text-muted-foreground">
-            A clean workspace for the websites and information you depend on.
+            Un espace de travail clair pour les sites et informations dont vous
+            dépendez.
           </p>
         </div>
 
@@ -56,7 +57,7 @@ export function ProductPreview() {
               <div className="relative mb-4">
                 <Search className="pointer-events-none absolute top-1/2 left-3 size-4 -translate-y-1/2 text-neutral-500" />
                 <div className="h-9 w-full rounded-lg border border-neutral-800 bg-neutral-950/60 pl-9 pr-3 text-left text-sm text-neutral-500">
-                  Search saved websites…
+                  Rechercher des sites…
                 </div>
               </div>
               <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">

@@ -5,18 +5,18 @@ import { mockWebsites } from "@/components/landing/mock-data";
 const points = [
   {
     icon: Folder,
-    title: "Centralized",
-    description: "Every important website lives in one place.",
+    title: "Centralisé",
+    description: "Tous vos sites importants vivent au même endroit.",
   },
   {
     icon: NotepadText,
-    title: "With its information",
-    description: "Notes and details stay attached to the website.",
+    title: "Avec ses informations",
+    description: "Notes et détails restent attachés au site.",
   },
   {
     icon: Search,
-    title: "Instantly accessible",
-    description: "Search and retrieve everything in seconds.",
+    title: "Accessible instantanément",
+    description: "Recherchez et retrouvez tout en quelques secondes.",
   },
 ];
 
@@ -26,11 +26,11 @@ export function Solution() {
       <div className="mx-auto grid w-full max-w-6xl items-center gap-12 px-6 py-20 sm:py-24 lg:grid-cols-2">
         <div className="flex flex-col items-start gap-5">
           <h2 className="text-3xl font-bold tracking-tight text-balance sm:text-4xl">
-            Everything important, organized in one place.
+            Tout ce qui compte, organisé en un seul endroit.
           </h2>
           <p className="max-w-md text-muted-foreground">
-            TontaTranokala keeps your websites and the information that goes
-            with them together, so nothing gets lost in a sea of bookmarks.
+            TontaTranokala garde vos sites et les informations associées
+            ensemble, pour que rien ne se perde dans la masse des favoris.
           </p>
           <ul className="flex flex-col gap-4">
             {points.map((point) => (
@@ -59,8 +59,8 @@ export function Solution() {
               <p className="text-xs font-medium text-neutral-300">Notes</p>
             </div>
             <p className="mt-1.5 text-xs leading-relaxed text-neutral-400">
-              Checked in weekly — team stand-up notes, repo links and deploy
-              history for the current sprint.
+              Consulté chaque semaine — notes de réunion, liens du dépôt et
+              historique de déploiement pour le sprint en cours.
             </p>
           </div>
           <div className="ml-12 sm:ml-20">

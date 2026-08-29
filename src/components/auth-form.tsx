@@ -57,7 +57,7 @@ export function AuthForm({ mode }: { mode: Mode }) {
             });
       if (res.error) {
         formApi.setErrorMap({
-          onSubmit: res.error.message ?? "Something went wrong",
+          onSubmit: res.error.message ?? "Une erreur est survenue",
         });
         return;
       }
@@ -69,12 +69,12 @@ export function AuthForm({ mode }: { mode: Mode }) {
     <Card className="w-full max-w-sm">
       <CardHeader>
         <CardTitle>
-          {mode === "signIn" ? "Sign in" : "Create account"}
+          {mode === "signIn" ? "Se connecter" : "Créer un compte"}
         </CardTitle>
         <CardDescription>
           {mode === "signIn"
-            ? "Enter your email and password to sign in."
-            : "Fill in the fields below to create your account."}
+            ? "Saisissez votre email et votre mot de passe pour vous connecter."
+            : "Remplissez les champs ci-dessous pour créer votre compte."}
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -90,17 +90,18 @@ export function AuthForm({ mode }: { mode: Mode }) {
                 name="name"
                 validators={{
                   onChange: ({ value }) =>
-                    !value.trim() ? "Name is required" : undefined,
+                    !value.trim() ? "Le nom est requis"
+                      : undefined,
                 }}
               >
                 {(field) => (
                   <Field data-invalid={!field.state.meta.isValid}>
-                    <FieldLabel htmlFor={field.name}>Name</FieldLabel>
+                    <FieldLabel htmlFor={field.name}>Nom</FieldLabel>
                     <Input
                       id={field.name}
                       name={field.name}
                       required
-                      placeholder="Jane Doe"
+                      placeholder="Jean Dupont"
                       value={field.state.value}
                       onBlur={field.handleBlur}
                       onChange={(e) => field.handleChange(e.target.value)}
@@ -117,9 +118,9 @@ export function AuthForm({ mode }: { mode: Mode }) {
               validators={{
                 onChange: ({ value }) =>
                   !value.trim()
-                    ? "Email is required"
+                    ? "L'email est requis"
                     : !/^\S+@\S+\.\S+$/.test(value)
-                      ? "Enter a valid email"
+                      ? "Saisissez un email valide"
                       : undefined,
               }}
             >
@@ -131,7 +132,7 @@ export function AuthForm({ mode }: { mode: Mode }) {
                     name={field.name}
                     type="email"
                     required
-                    placeholder="jane@example.com"
+                    placeholder="jean@exemple.com"
                     value={field.state.value}
                     onBlur={field.handleBlur}
                     onChange={(e) => field.handleChange(e.target.value)}
@@ -147,15 +148,15 @@ export function AuthForm({ mode }: { mode: Mode }) {
               validators={{
                 onChange: ({ value }) =>
                   !value
-                    ? "Password is required"
+                    ? "Le mot de passe est requis"
                     : value.length < 8
-                      ? "Password must be at least 8 characters"
+                      ? "Le mot de passe doit contenir au moins 8 caractères"
                       : undefined,
               }}
             >
               {(field) => (
                 <Field data-invalid={!field.state.meta.isValid}>
-                  <FieldLabel htmlFor={field.name}>Password</FieldLabel>
+                  <FieldLabel htmlFor={field.name}>Mot de passe</FieldLabel>
                   <Input
                     id={field.name}
                     name={field.name}
@@ -168,7 +169,7 @@ export function AuthForm({ mode }: { mode: Mode }) {
                     aria-invalid={!field.state.meta.isValid}
                   />
                   {mode === "signUp" && (
-                    <FieldDescription>At least 8 characters.</FieldDescription>
+                    <FieldDescription>Au moins 8 caractères.</FieldDescription>
                   )}
                   <FieldErrors errors={field.state.meta.errors} />
                 </Field>
@@ -189,8 +190,8 @@ export function AuthForm({ mode }: { mode: Mode }) {
                     {isSubmitting
                       ? "…"
                       : mode === "signIn"
-                        ? "Sign in"
-                        : "Sign up"}
+                        ? "Se connecter"
+                        : "S'inscrire"}
                   </Button>
                 </>
               )}

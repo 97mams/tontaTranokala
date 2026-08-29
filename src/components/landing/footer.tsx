@@ -2,14 +2,14 @@ import { Link } from "@tanstack/react-router";
 import { Logo } from "@/components/landing/navbar";
 
 const navLinks = [
-  { label: "Home", href: "#home" },
-  { label: "Features", href: "#features" },
-  { label: "How It Works", href: "#how-it-works" },
+  { label: "Accueil", href: "#home" },
+  { label: "Fonctionnalités", href: "#features" },
+  { label: "Comment ça marche", href: "#how-it-works" },
 ];
 
 const accountLinks = [
-  { label: "Sign in", to: "/login" as const },
-  { label: "Create account", to: "/register" as const },
+  { label: "Se connecter", to: "/login" as const },
+  { label: "Créer un compte", to: "/register" as const },
 ];
 
 export function Footer() {
@@ -20,12 +20,13 @@ export function Footer() {
           <div className="flex max-w-xs flex-col gap-3">
             <Logo />
             <p className="text-sm text-neutral-500">
-              Save, organize and quickly find the websites that matter to you.
+              Enregistrez, organisez et retrouvez rapidement les sites qui
+              comptent pour vous.
             </p>
           </div>
           <div className="flex gap-16">
             <div className="flex flex-col gap-2">
-              <p className="text-sm font-medium text-foreground">Product</p>
+              <p className="text-sm font-medium text-foreground">Produit</p>
               {navLinks.map((link) => (
                 <a
                   key={link.href}
@@ -37,7 +38,7 @@ export function Footer() {
               ))}
             </div>
             <div className="flex flex-col gap-2">
-              <p className="text-sm font-medium text-foreground">Account</p>
+              <p className="text-sm font-medium text-foreground">Compte</p>
               {accountLinks.map((link) => (
                 <Link
                   key={link.to}
@@ -51,7 +52,7 @@ export function Footer() {
           </div>
         </div>
         <div className="mt-10 border-t border-neutral-800 pt-6 text-sm text-neutral-600">
-          © {new Date().getFullYear()} TontaTranokala. All rights reserved.
+          © {new Date().getFullYear()} TontaTranokala. Tous droits réservés.
         </div>
       </div>
     </footer>
