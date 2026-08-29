@@ -1,11 +1,12 @@
-import { r as authClient } from "./router-Ez0irVsg.js";
-import { n as cn, t as Button } from "./button-BWUHUpVr.js";
-import { i as CardDescription, n as Card, o as CardHeader, r as CardContent, s as CardTitle } from "./separator-PT59Qpo1.js";
+import { r as authClient } from "./router-Bii0rzs0.js";
+import { i as cn, r as Button, t as Logo } from "./navbar-Dvw6nZUM.js";
+import { a as CardDescription, c as CardTitle, i as CardContent, r as Card, s as CardHeader, t as Input } from "./input-DXaDnxNU.js";
 import { useMemo } from "react";
+import { Link } from "@tanstack/react-router";
 import { Fragment, jsx, jsxs } from "react/jsx-runtime";
 import { cva } from "class-variance-authority";
+import { ArrowLeft } from "lucide-react";
 import { useForm } from "@tanstack/react-form";
-import { Input } from "@base-ui/react/input";
 //#region src/components/ui/label.tsx
 function Label({ className, ...props }) {
 	return /* @__PURE__ */ jsx("label", {
@@ -75,16 +76,6 @@ function FieldError({ className, children, errors, ...props }) {
 	});
 }
 //#endregion
-//#region src/components/ui/input.tsx
-function Input$1({ className, type, ...props }) {
-	return /* @__PURE__ */ jsx(Input, {
-		type,
-		"data-slot": "input",
-		className: cn("h-8 w-full min-w-0 rounded-lg border border-input bg-transparent px-2.5 py-1 text-base transition-colors outline-none file:inline-flex file:h-6 file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 disabled:pointer-events-none disabled:cursor-not-allowed disabled:bg-input/50 disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 md:text-sm dark:bg-input/30 dark:disabled:bg-input/80 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40", className),
-		...props
-	});
-}
-//#endregion
 //#region src/components/auth-form.tsx
 function FieldErrors({ errors }) {
 	const messages = errors.map((error) => typeof error === "string" ? error : error.message ?? "").filter(Boolean);
@@ -105,7 +96,7 @@ function AuthForm({ mode }) {
 				password: value.password
 			});
 			if (res.error) {
-				formApi.setErrorMap({ onSubmit: res.error.message ?? "Something went wrong" });
+				formApi.setErrorMap({ onSubmit: res.error.message ?? "Une erreur est survenue" });
 				return;
 			}
 			location.href = "/";
@@ -113,7 +104,7 @@ function AuthForm({ mode }) {
 	});
 	return /* @__PURE__ */ jsxs(Card, {
 		className: "w-full max-w-sm",
-		children: [/* @__PURE__ */ jsxs(CardHeader, { children: [/* @__PURE__ */ jsx(CardTitle, { children: mode === "signIn" ? "Sign in" : "Create account" }), /* @__PURE__ */ jsx(CardDescription, { children: mode === "signIn" ? "Enter your email and password to sign in." : "Fill in the fields below to create your account." })] }), /* @__PURE__ */ jsx(CardContent, { children: /* @__PURE__ */ jsx("form", {
+		children: [/* @__PURE__ */ jsxs(CardHeader, { children: [/* @__PURE__ */ jsx(CardTitle, { children: mode === "signIn" ? "Se connecter" : "Créer un compte" }), /* @__PURE__ */ jsx(CardDescription, { children: mode === "signIn" ? "Saisissez votre email et votre mot de passe pour vous connecter." : "Remplissez les champs ci-dessous pour créer votre compte." })] }), /* @__PURE__ */ jsx(CardContent, { children: /* @__PURE__ */ jsx("form", {
 			onSubmit: (e) => {
 				e.preventDefault();
 				form.handleSubmit();
@@ -121,19 +112,19 @@ function AuthForm({ mode }) {
 			children: /* @__PURE__ */ jsxs(FieldGroup, { children: [
 				mode === "signUp" && /* @__PURE__ */ jsx(form.Field, {
 					name: "name",
-					validators: { onChange: ({ value }) => !value.trim() ? "Name is required" : void 0 },
+					validators: { onChange: ({ value }) => !value.trim() ? "Le nom est requis" : void 0 },
 					children: (field) => /* @__PURE__ */ jsxs(Field, {
 						"data-invalid": !field.state.meta.isValid,
 						children: [
 							/* @__PURE__ */ jsx(FieldLabel, {
 								htmlFor: field.name,
-								children: "Name"
+								children: "Nom"
 							}),
-							/* @__PURE__ */ jsx(Input$1, {
+							/* @__PURE__ */ jsx(Input, {
 								id: field.name,
 								name: field.name,
 								required: true,
-								placeholder: "Jane Doe",
+								placeholder: "Jean Dupont",
 								value: field.state.value,
 								onBlur: field.handleBlur,
 								onChange: (e) => field.handleChange(e.target.value),
@@ -145,7 +136,7 @@ function AuthForm({ mode }) {
 				}),
 				/* @__PURE__ */ jsx(form.Field, {
 					name: "email",
-					validators: { onChange: ({ value }) => !value.trim() ? "Email is required" : !/^\S+@\S+\.\S+$/.test(value) ? "Enter a valid email" : void 0 },
+					validators: { onChange: ({ value }) => !value.trim() ? "L'email est requis" : !/^\S+@\S+\.\S+$/.test(value) ? "Saisissez un email valide" : void 0 },
 					children: (field) => /* @__PURE__ */ jsxs(Field, {
 						"data-invalid": !field.state.meta.isValid,
 						children: [
@@ -153,12 +144,12 @@ function AuthForm({ mode }) {
 								htmlFor: field.name,
 								children: "Email"
 							}),
-							/* @__PURE__ */ jsx(Input$1, {
+							/* @__PURE__ */ jsx(Input, {
 								id: field.name,
 								name: field.name,
 								type: "email",
 								required: true,
-								placeholder: "jane@example.com",
+								placeholder: "jean@exemple.com",
 								value: field.state.value,
 								onBlur: field.handleBlur,
 								onChange: (e) => field.handleChange(e.target.value),
@@ -170,15 +161,15 @@ function AuthForm({ mode }) {
 				}),
 				/* @__PURE__ */ jsx(form.Field, {
 					name: "password",
-					validators: { onChange: ({ value }) => !value ? "Password is required" : value.length < 8 ? "Password must be at least 8 characters" : void 0 },
+					validators: { onChange: ({ value }) => !value ? "Le mot de passe est requis" : value.length < 8 ? "Le mot de passe doit contenir au moins 8 caractères" : void 0 },
 					children: (field) => /* @__PURE__ */ jsxs(Field, {
 						"data-invalid": !field.state.meta.isValid,
 						children: [
 							/* @__PURE__ */ jsx(FieldLabel, {
 								htmlFor: field.name,
-								children: "Password"
+								children: "Mot de passe"
 							}),
-							/* @__PURE__ */ jsx(Input$1, {
+							/* @__PURE__ */ jsx(Input, {
 								id: field.name,
 								name: field.name,
 								type: "password",
@@ -189,7 +180,7 @@ function AuthForm({ mode }) {
 								onChange: (e) => field.handleChange(e.target.value),
 								"aria-invalid": !field.state.meta.isValid
 							}),
-							mode === "signUp" && /* @__PURE__ */ jsx(FieldDescription, { children: "At least 8 characters." }),
+							mode === "signUp" && /* @__PURE__ */ jsx(FieldDescription, { children: "Au moins 8 caractères." }),
 							/* @__PURE__ */ jsx(FieldErrors, { errors: field.state.meta.errors })
 						]
 					})
@@ -203,7 +194,7 @@ function AuthForm({ mode }) {
 					children: ({ canSubmit, isSubmitting, submitError }) => /* @__PURE__ */ jsxs(Fragment, { children: [submitError && /* @__PURE__ */ jsx(FieldError, { children: submitError }), /* @__PURE__ */ jsx(Button, {
 						type: "submit",
 						disabled: !canSubmit || isSubmitting,
-						children: isSubmitting ? "…" : mode === "signIn" ? "Sign in" : "Sign up"
+						children: isSubmitting ? "…" : mode === "signIn" ? "Se connecter" : "S'inscrire"
 					})] })
 				})
 			] })
@@ -211,4 +202,23 @@ function AuthForm({ mode }) {
 	});
 }
 //#endregion
-export { AuthForm as t };
+//#region src/components/auth-header.tsx
+function AuthHeader() {
+	return /* @__PURE__ */ jsx("header", {
+		className: "border-b border-neutral-800 bg-neutral-950/80 backdrop-blur",
+		children: /* @__PURE__ */ jsxs("div", {
+			className: "mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-6",
+			children: [/* @__PURE__ */ jsx(Link, {
+				to: "/landing",
+				"aria-label": "Accueil TontaTranokala",
+				children: /* @__PURE__ */ jsx(Logo, {})
+			}), /* @__PURE__ */ jsxs(Link, {
+				to: "/landing",
+				className: "inline-flex items-center gap-1.5 text-sm text-neutral-400 transition-colors hover:text-foreground",
+				children: [/* @__PURE__ */ jsx(ArrowLeft, { className: "size-4" }), "Accueil"]
+			})]
+		})
+	});
+}
+//#endregion
+export { AuthForm as n, AuthHeader as t };

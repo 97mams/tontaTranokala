@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { Skeleton } from "@/components/ui/skeleton";
+import { AppShell } from "@/components/app-shell";
 
 export const Route = createFileRoute("/")({
   loader: async ({ context }) => {
@@ -33,12 +34,11 @@ export const Route = createFileRoute("/")({
 
 function IndexComponent() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center gap-6 px-6">
-      <h1 className="text-3xl font-extrabold tracking-tight">Ndao</h1>
+    <AppShell>
       <Suspense fallback={<UserCardSkeleton />}>
         <UserCard />
       </Suspense>
-    </main>
+    </AppShell>
   );
 }
 
@@ -54,16 +54,18 @@ function UserCard() {
     return (
       <Card className="w-full max-w-sm">
         <CardHeader>
-          <CardTitle>Not signed in</CardTitle>
-          <CardDescription>Your session may have expired.</CardDescription>
+          <CardTitle>Non connecté</CardTitle>
+          <CardDescription>
+            Votre session a peut-être expiré.
+          </CardDescription>
         </CardHeader>
         <CardFooter>
           <Button
             variant="outline"
             className="w-full"
-            onClick={() => (location.href = "/login")}
+            onClick={() => (location.href = "/landing")}
           >
-            Go to sign in
+            Retour à l'accueil
           </Button>
         </CardFooter>
       </Card>
@@ -71,46 +73,57 @@ function UserCard() {
   }
 
   return (
-    <Card className="w-full max-w-sm">
-      <CardHeader>
-        <CardTitle>Welcome{user.name ? `, ${user.name}` : ""}</CardTitle>
-        <CardDescription>You are signed in.</CardDescription>
-      </CardHeader>
-      <CardContent className="flex flex-col gap-1 text-sm">
-        <p>
-          <span className="text-muted-foreground">Email:</span> {user.email}
+    <div className="mx-auto flex w-full max-w-2xl flex-col gap-4">
+      <div className="flex flex-col gap-1">
+        <h1 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
+          Bienvenue{user.name ? `, ${user.name}` : ""}
+        </h1>
+        <p className="text-muted-foreground">
+          Vous êtes connecté. Retrouvez bientôt ici vos sites enregistrés et
+          leurs informations.
         </p>
-        <p>
-          <span className="text-muted-foreground">Name:</span> {user.name}
-        </p>
-      </CardContent>
-      <CardFooter className="flex-col items-stretch gap-4">
-        <Separator />
-        <Button
-          variant="outline"
-          onClick={async () => {
-            await authClient.signOut({
-              fetchOptions: {
-                onSuccess: () => {
-                  location.href = "/login";
+      </div>
+      <Card className="w-full">
+        <CardHeader>
+          <CardTitle>Votre compte</CardTitle>
+          <CardDescription>Les informations de votre session.</CardDescription>
+        </CardHeader>
+        <CardContent className="flex flex-col gap-1 text-sm">
+          <p>
+            <span className="text-muted-foreground">Email :</span> {user.email}
+          </p>
+          <p>
+            <span className="text-muted-foreground">Nom :</span> {user.name}
+          </p>
+        </CardContent>
+        <CardFooter className="flex-col items-stretch gap-4">
+          <Separator />
+          <Button
+            variant="outline"
+            onClick={async () => {
+              await authClient.signOut({
+                fetchOptions: {
+                  onSuccess: () => {
+                    location.href = "/landing";
+                  },
                 },
-              },
-            });
-          }}
-        >
-          Sign out
-        </Button>
-      </CardFooter>
-    </Card>
+              });
+            }}
+          >
+            Se déconnecter
+          </Button>
+        </CardFooter>
+      </Card>
+    </div>
   );
 }
 
 function UserCardSkeleton() {
   return (
-    <div className="flex w-full max-w-sm flex-col gap-2">
-      <Skeleton className="h-5 w-1/2" />
-      <Skeleton className="h-4 w-2/3" />
-      <Skeleton className="h-24 w-full rounded-xl" />
+    <div className="mx-auto flex w-full max-w-2xl flex-col gap-4">
+      <Skeleton className="h-8 w-64" />
+      <Skeleton className="h-4 w-80" />
+      <Skeleton className="h-40 w-full rounded-xl" />
     </div>
   );
 }

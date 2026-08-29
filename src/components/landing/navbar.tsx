@@ -10,15 +10,23 @@ const navLinks = [
   { label: "Comment ça marche", href: "#how-it-works" },
 ];
 
-export function Logo({ className }: { className?: string }) {
+export function Logo({
+  className,
+  hideText = false,
+}: {
+  className?: string;
+  hideText?: boolean;
+}) {
   return (
     <span className={cn("flex items-center gap-2", className)}>
-      <span className="flex size-7 items-center justify-center rounded-lg bg-primary text-primary-foreground">
+      <span className="flex size-7 shrink-0 items-center justify-center rounded-lg bg-primary text-primary-foreground">
         <Bookmark className="size-4" />
       </span>
-      <span className="text-sm font-semibold tracking-tight text-foreground">
-        TontaTranokala
-      </span>
+      {!hideText && (
+        <span className="text-sm font-semibold tracking-tight text-foreground">
+          TontaTranokala
+        </span>
+      )}
     </span>
   );
 }

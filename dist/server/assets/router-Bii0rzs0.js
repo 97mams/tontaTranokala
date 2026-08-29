@@ -97,7 +97,7 @@ function useUseAuthFromBetterAuth(authClient, initialToken) {
 }
 //#endregion
 //#region src/styles/app.css?url
-var app_default = "/assets/app-CBcxLHrl.css";
+var app_default = "/assets/app-BlnDsm3Y.css";
 //#endregion
 //#region node_modules/.pnpm/@better-auth+core@1.6.30_@better-auth+utils@0.4.2_@better-fetch+fetch@1.3.1_better-call_a44fb6f0736b24d07a35e40a4414c548/node_modules/@better-auth/core/dist/env/env-impl.mjs
 var _envShim = Object.create(null);
@@ -1465,21 +1465,21 @@ var api = anyApi;
 componentsGeneric();
 //#endregion
 //#region src/routes/index.tsx
-var $$splitComponentImporter$3 = () => import("./routes-C7_Hfr1T.js");
+var $$splitComponentImporter$3 = () => import("./routes-ZBSlH37i.js");
 var Route$4 = createFileRoute("/")({
 	loader: async ({ context }) => {
-		if (!context.isAuthenticated) throw redirect({ to: "/login" });
-		if (!await context.queryClient.ensureQueryData(convexQuery(api.auth.getCurrentUser, {}))) throw redirect({ to: "/login" });
+		if (!context.isAuthenticated) throw redirect({ to: "/landing" });
+		if (!await context.queryClient.ensureQueryData(convexQuery(api.auth.getCurrentUser, {}))) throw redirect({ to: "/landing" });
 	},
 	component: lazyRouteComponent($$splitComponentImporter$3, "component")
 });
 //#endregion
 //#region src/routes/landing.tsx
-var $$splitComponentImporter$2 = () => import("./landing-CNwQzi3F.js");
+var $$splitComponentImporter$2 = () => import("./landing-Vt0cztAX.js");
 var Route$3 = createFileRoute("/landing")({ component: lazyRouteComponent($$splitComponentImporter$2, "component") });
 //#endregion
 //#region src/routes/login.tsx
-var $$splitComponentImporter$1 = () => import("./login-DHN6e_7w.js");
+var $$splitComponentImporter$1 = () => import("./login-DsyWjNaW.js");
 var Route$2 = createFileRoute("/login")({
 	beforeLoad: ({ context }) => {
 		if (context.isAuthenticated) throw redirect({ to: "/" });
@@ -1488,7 +1488,7 @@ var Route$2 = createFileRoute("/login")({
 });
 //#endregion
 //#region src/routes/register.tsx
-var $$splitComponentImporter = () => import("./register-DwErkv-7.js");
+var $$splitComponentImporter = () => import("./register-tEzMHhDY.js");
 var Route$1 = createFileRoute("/register")({
 	beforeLoad: ({ context }) => {
 		if (context.isAuthenticated) throw redirect({ to: "/" });

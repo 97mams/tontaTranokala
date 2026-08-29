@@ -1,111 +1,7 @@
-import { n as cn, t as Button } from "./button-BWUHUpVr.js";
-import { useState } from "react";
+import { i as cn, n as Navbar, r as Button, t as Logo } from "./navbar-Dvw6nZUM.js";
 import { Link } from "@tanstack/react-router";
 import { jsx, jsxs } from "react/jsx-runtime";
-import { ArrowRight, Bookmark, CircleCheck, Clock, Folder, FolderCheck, FolderClosed, FolderOpen, History, Menu, MousePointerClick, NotepadText, Pencil, Plus, Search, Sparkles, StickyNote, X } from "lucide-react";
-//#region src/components/landing/navbar.tsx
-var navLinks$1 = [
-	{
-		label: "Home",
-		href: "#home"
-	},
-	{
-		label: "Features",
-		href: "#features"
-	},
-	{
-		label: "How It Works",
-		href: "#how-it-works"
-	}
-];
-function Logo({ className }) {
-	return /* @__PURE__ */ jsxs("span", {
-		className: cn("flex items-center gap-2", className),
-		children: [/* @__PURE__ */ jsx("span", {
-			className: "flex size-7 items-center justify-center rounded-lg bg-primary text-primary-foreground",
-			children: /* @__PURE__ */ jsx(Bookmark, { className: "size-4" })
-		}), /* @__PURE__ */ jsx("span", {
-			className: "text-sm font-semibold tracking-tight text-foreground",
-			children: "TontaTranokala"
-		})]
-	});
-}
-function Navbar() {
-	const [open, setOpen] = useState(false);
-	return /* @__PURE__ */ jsxs("header", {
-		className: "sticky top-0 z-40 border-b border-neutral-800 bg-neutral-950/80 backdrop-blur",
-		children: [/* @__PURE__ */ jsxs("nav", {
-			"aria-label": "Main",
-			className: "mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-6",
-			children: [
-				/* @__PURE__ */ jsx(Link, {
-					to: "/landing",
-					"aria-label": "TontaTranokala home",
-					children: /* @__PURE__ */ jsx(Logo, {})
-				}),
-				/* @__PURE__ */ jsx("div", {
-					className: "hidden items-center gap-1 md:flex",
-					children: navLinks$1.map((link) => /* @__PURE__ */ jsx("a", {
-						href: link.href,
-						className: "rounded-lg px-3 py-2 text-sm text-neutral-400 transition-colors hover:text-foreground",
-						children: link.label
-					}, link.href))
-				}),
-				/* @__PURE__ */ jsxs("div", {
-					className: "hidden items-center gap-2 md:flex",
-					children: [/* @__PURE__ */ jsx(Button, {
-						variant: "ghost",
-						size: "sm",
-						render: /* @__PURE__ */ jsx(Link, { to: "/login" }),
-						children: "Sign in"
-					}), /* @__PURE__ */ jsx(Button, {
-						size: "sm",
-						render: /* @__PURE__ */ jsx(Link, { to: "/register" }),
-						children: "Get started"
-					})]
-				}),
-				/* @__PURE__ */ jsx("button", {
-					type: "button",
-					"aria-label": open ? "Close menu" : "Open menu",
-					"aria-expanded": open,
-					"aria-controls": "mobile-menu",
-					onClick: () => setOpen((value) => !value),
-					className: "flex size-9 items-center justify-center rounded-lg border border-neutral-800 text-neutral-300 transition-colors hover:bg-neutral-900 md:hidden",
-					children: open ? /* @__PURE__ */ jsx(X, { className: "size-4" }) : /* @__PURE__ */ jsx(Menu, { className: "size-4" })
-				})
-			]
-		}), open && /* @__PURE__ */ jsx("div", {
-			id: "mobile-menu",
-			className: "border-t border-neutral-800 bg-neutral-950/95 px-6 py-4 md:hidden",
-			children: /* @__PURE__ */ jsxs("div", {
-				className: "flex flex-col gap-1",
-				children: [
-					navLinks$1.map((link) => /* @__PURE__ */ jsx("a", {
-						href: link.href,
-						onClick: () => setOpen(false),
-						className: "rounded-lg px-3 py-2.5 text-sm text-neutral-300 transition-colors hover:bg-neutral-900 hover:text-foreground",
-						children: link.label
-					}, link.href)),
-					/* @__PURE__ */ jsx("div", { className: "my-2 border-t border-neutral-800" }),
-					/* @__PURE__ */ jsxs("div", {
-						className: "flex flex-col gap-2 px-3",
-						children: [/* @__PURE__ */ jsx(Button, {
-							variant: "outline",
-							className: "w-full",
-							render: /* @__PURE__ */ jsx(Link, { to: "/login" }),
-							children: "Sign in"
-						}), /* @__PURE__ */ jsx(Button, {
-							className: "w-full",
-							render: /* @__PURE__ */ jsx(Link, { to: "/register" }),
-							children: "Get started"
-						})]
-					})
-				]
-			})
-		})]
-	});
-}
-//#endregion
+import { ArrowRight, Bookmark, CircleCheck, Clock, Folder, FolderCheck, FolderClosed, FolderOpen, History, MousePointerClick, NotepadText, Pencil, Plus, Search, Sparkles, StickyNote } from "lucide-react";
 //#region src/components/landing/website-card.tsx
 function WebsiteCard({ website, className }) {
 	return /* @__PURE__ */ jsxs("article", {
@@ -152,23 +48,23 @@ var mockWebsites = [
 	{
 		name: "GitHub",
 		url: "github.com",
-		description: "Development projects and repositories.",
-		tags: ["Development", "Code"],
+		description: "Projets de développement et dépôts.",
+		tags: ["Développement", "Code"],
 		initials: "GH",
 		tone: "bg-neutral-700"
 	},
 	{
 		name: "Notion",
 		url: "notion.so",
-		description: "Personal notes and project planning.",
-		tags: ["Notes", "Planning"],
+		description: "Notes personnelles et planification de projets.",
+		tags: ["Notes", "Planification"],
 		initials: "NO",
 		tone: "bg-neutral-600"
 	},
 	{
 		name: "Figma",
 		url: "figma.com",
-		description: "Design files and prototypes.",
+		description: "Fichiers de design et prototypes.",
 		tags: ["Design", "UI"],
 		initials: "FG",
 		tone: "bg-neutral-500"
@@ -176,24 +72,24 @@ var mockWebsites = [
 	{
 		name: "LinkedIn",
 		url: "linkedin.com",
-		description: "Professional network and career information.",
-		tags: ["Career", "Network"],
+		description: "Réseau professionnel et informations de carrière.",
+		tags: ["Carrière", "Réseau"],
 		initials: "LI",
 		tone: "bg-neutral-800"
 	},
 	{
 		name: "Stack Overflow",
 		url: "stackoverflow.com",
-		description: "Answers and solutions for coding problems.",
-		tags: ["Reference", "Code"],
+		description: "Réponses et solutions pour les problèmes de code.",
+		tags: ["Référence", "Code"],
 		initials: "SO",
 		tone: "bg-neutral-600"
 	},
 	{
 		name: "Spotify",
 		url: "spotify.com",
-		description: "Playlists, podcasts and personal music library.",
-		tags: ["Music", "Media"],
+		description: "Playlists, podcasts et bibliothèque musicale.",
+		tags: ["Musique", "Médias"],
 		initials: "SP",
 		tone: "bg-neutral-700"
 	}
@@ -223,15 +119,15 @@ function HeroVisual() {
 					className: "flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between",
 					children: [/* @__PURE__ */ jsxs("div", { children: [/* @__PURE__ */ jsx("p", {
 						className: "text-sm font-medium text-foreground",
-						children: "Saved websites"
+						children: "Sites enregistrés"
 					}), /* @__PURE__ */ jsxs("p", {
 						className: "text-xs text-neutral-500",
-						children: [popularWebsites.length, " of your important links"]
+						children: [popularWebsites.length, " de vos liens importants"]
 					})] }), /* @__PURE__ */ jsxs("div", {
 						className: "relative",
 						children: [/* @__PURE__ */ jsx(Search, { className: "pointer-events-none absolute top-1/2 left-2.5 size-3.5 -translate-y-1/2 text-neutral-500" }), /* @__PURE__ */ jsx("div", {
 							className: "h-8 w-full rounded-lg border border-neutral-800 bg-neutral-950/60 pl-8 pr-3 text-left text-sm text-neutral-500 sm:w-52",
-							children: "Search…"
+							children: "Rechercher…"
 						})]
 					})]
 				}),
@@ -241,7 +137,7 @@ function HeroVisual() {
 				}),
 				/* @__PURE__ */ jsxs("div", {
 					className: "flex items-center justify-center rounded-xl border border-dashed border-neutral-800 py-2.5 text-xs text-neutral-500",
-					children: [/* @__PURE__ */ jsx(Plus, { className: "mr-1.5 size-3.5" }), "Add another website"]
+					children: [/* @__PURE__ */ jsx(Plus, { className: "mr-1.5 size-3.5" }), "Ajouter un autre site"]
 				})
 			]
 		})]
@@ -261,15 +157,15 @@ function Hero() {
 				children: [
 					/* @__PURE__ */ jsxs("span", {
 						className: "inline-flex items-center gap-1.5 rounded-full border border-neutral-800 bg-neutral-900 px-3 py-1 text-xs font-medium text-neutral-300",
-						children: [/* @__PURE__ */ jsx(Sparkles, { className: "size-3.5 text-neutral-400" }), "Your personal website organizer"]
+						children: [/* @__PURE__ */ jsx(Sparkles, { className: "size-3.5 text-neutral-400" }), "Votre organisateur de sites web personnel"]
 					}),
 					/* @__PURE__ */ jsx("h1", {
 						className: "max-w-3xl text-4xl leading-[1.1] font-extrabold tracking-tight text-balance sm:text-5xl md:text-6xl",
-						children: "Keep your important websites in one place."
+						children: "Gardez vos sites importants au même endroit."
 					}),
 					/* @__PURE__ */ jsx("p", {
 						className: "max-w-xl text-balance text-base text-neutral-400 sm:text-lg",
-						children: "Save the websites you rely on, store the information that matters, and find everything again in seconds."
+						children: "Enregistrez les sites sur lesquels vous comptez, stockez les informations qui comptent et retrouvez tout en quelques secondes."
 					}),
 					/* @__PURE__ */ jsxs("div", {
 						className: "flex flex-col gap-3 pt-2 sm:flex-row",
@@ -277,13 +173,13 @@ function Hero() {
 							size: "lg",
 							className: "gap-2 px-6",
 							render: /* @__PURE__ */ jsx(Link, { to: "/register" }),
-							children: ["Get started", /* @__PURE__ */ jsx(ArrowRight, { "data-icon": "inline-end" })]
+							children: ["Commencer", /* @__PURE__ */ jsx(ArrowRight, { "data-icon": "inline-end" })]
 						}), /* @__PURE__ */ jsx(Button, {
 							variant: "outline",
 							size: "lg",
 							className: "px-6",
 							render: /* @__PURE__ */ jsx("a", { href: "#how-it-works" }),
-							children: "Learn more"
+							children: "En savoir plus"
 						})]
 					})
 				]
@@ -294,10 +190,10 @@ function Hero() {
 //#endregion
 //#region src/components/landing/problem.tsx
 var problems = [
-	"Important URLs get forgotten over time",
-	"Useful websites disappear into browser history",
-	"Information is scattered across many places",
-	"Time is wasted searching for the right link"
+	"Les adresses importantes finissent par être oubliées",
+	"Les sites utiles se perdent dans l'historique du navigateur",
+	"Les informations sont dispersées un peu partout",
+	"Vous perdez du temps à chercher le bon lien"
 ];
 function Problem() {
 	return /* @__PURE__ */ jsx("section", {
@@ -308,10 +204,10 @@ function Problem() {
 				className: "mx-auto flex max-w-2xl flex-col items-center gap-4 text-center",
 				children: [/* @__PURE__ */ jsx("h2", {
 					className: "text-3xl font-bold tracking-tight text-balance sm:text-4xl",
-					children: "Too many websites. Too much scattered information."
+					children: "Trop de sites. Trop d'informations éparpillées."
 				}), /* @__PURE__ */ jsx("p", {
 					className: "text-muted-foreground",
-					children: "You use dozens of websites every day. Without a system, the things that matter get buried and hard to find."
+					children: "Vous utilisez des dizaines de sites chaque jour. Sans organisation, l'essentiel se perd et devient difficile à retrouver."
 				})]
 			}), /* @__PURE__ */ jsx("ul", {
 				className: "mx-auto mt-10 grid max-w-3xl gap-3 sm:grid-cols-2",
@@ -331,18 +227,18 @@ function Problem() {
 var points = [
 	{
 		icon: Folder,
-		title: "Centralized",
-		description: "Every important website lives in one place."
+		title: "Centralisé",
+		description: "Tous vos sites importants vivent au même endroit."
 	},
 	{
 		icon: NotepadText,
-		title: "With its information",
-		description: "Notes and details stay attached to the website."
+		title: "Avec ses informations",
+		description: "Notes et détails restent attachés au site."
 	},
 	{
 		icon: Search,
-		title: "Instantly accessible",
-		description: "Search and retrieve everything in seconds."
+		title: "Accessible instantanément",
+		description: "Recherchez et retrouvez tout en quelques secondes."
 	}
 ];
 function Solution() {
@@ -355,11 +251,11 @@ function Solution() {
 				children: [
 					/* @__PURE__ */ jsx("h2", {
 						className: "text-3xl font-bold tracking-tight text-balance sm:text-4xl",
-						children: "Everything important, organized in one place."
+						children: "Tout ce qui compte, organisé en un seul endroit."
 					}),
 					/* @__PURE__ */ jsx("p", {
 						className: "max-w-md text-muted-foreground",
-						children: "TontaTranokala keeps your websites and the information that goes with them together, so nothing gets lost in a sea of bookmarks."
+						children: "TontaTranokala garde vos sites et les informations associées ensemble, pour que rien ne se perde dans la masse des favoris."
 					}),
 					/* @__PURE__ */ jsx("ul", {
 						className: "flex flex-col gap-4",
@@ -392,7 +288,7 @@ function Solution() {
 							})]
 						}), /* @__PURE__ */ jsx("p", {
 							className: "mt-1.5 text-xs leading-relaxed text-neutral-400",
-							children: "Checked in weekly — team stand-up notes, repo links and deploy history for the current sprint."
+							children: "Consulté chaque semaine — notes de réunion, liens du dépôt et historique de déploiement pour le sprint en cours."
 						})]
 					}),
 					/* @__PURE__ */ jsx("div", {
@@ -409,33 +305,33 @@ function Solution() {
 var features = [
 	{
 		icon: Bookmark,
-		title: "Save Important Websites",
-		description: "Save website URLs together with useful information."
+		title: "Enregistrer les sites importants",
+		description: "Enregistrez des adresses avec toutes les informations utiles."
 	},
 	{
 		icon: Folder,
-		title: "Organize Your Websites",
-		description: "Keep your saved websites organized and easy to access."
+		title: "Organiser vos sites",
+		description: "Gardez vos sites enregistrés organisés et faciles d'accès."
 	},
 	{
 		icon: NotepadText,
-		title: "Store Related Information",
-		description: "Keep useful notes associated with each website."
+		title: "Stocker les informations associées",
+		description: "Gardez des notes utiles associées à chaque site."
 	},
 	{
 		icon: Search,
-		title: "Search Quickly",
-		description: "Find saved websites without digging through history."
+		title: "Rechercher rapidement",
+		description: "Retrouvez vos sites sans fouiller dans l'historique."
 	},
 	{
 		icon: Pencil,
-		title: "Edit Anytime",
-		description: "Update website information whenever necessary."
+		title: "Modifier à tout moment",
+		description: "Mettez à jour les informations quand vous le souhaitez."
 	},
 	{
 		icon: History,
-		title: "Keep Your History",
-		description: "Access previously saved websites and information."
+		title: "Conserver votre historique",
+		description: "Accédez à vos sites et informations déjà enregistrés."
 	}
 ];
 function Features() {
@@ -448,10 +344,10 @@ function Features() {
 				className: "mx-auto flex max-w-2xl flex-col items-center gap-4 text-center",
 				children: [/* @__PURE__ */ jsx("h2", {
 					className: "text-3xl font-bold tracking-tight text-balance sm:text-4xl",
-					children: "Everything you need to stay organized"
+					children: "Tout ce qu'il faut pour rester organisé"
 				}), /* @__PURE__ */ jsx("p", {
 					className: "text-muted-foreground",
-					children: "Simple tools that make saving and finding websites effortless."
+					children: "Des outils simples pour enregistrer et retrouver vos sites sans effort."
 				})]
 			}), /* @__PURE__ */ jsx("div", {
 				className: "mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3",
@@ -481,21 +377,21 @@ function Features() {
 var steps = [
 	{
 		icon: Plus,
-		step: "Step 1",
-		title: "Save",
-		description: "Add a website and its important information in one click."
+		step: "Étape 1",
+		title: "Enregistrez",
+		description: "Ajoutez un site et ses informations importantes en un clic."
 	},
 	{
 		icon: FolderOpen,
-		step: "Step 2",
-		title: "Organize",
-		description: "Keep your websites and information in one centralized place."
+		step: "Étape 2",
+		title: "Organisez",
+		description: "Gardez vos sites et informations dans un endroit centralisé."
 	},
 	{
 		icon: MousePointerClick,
-		step: "Step 3",
-		title: "Access",
-		description: "Find and retrieve your information whenever you need it."
+		step: "Étape 3",
+		title: "Accédez",
+		description: "Retrouvez vos informations dès que vous en avez besoin."
 	}
 ];
 function HowItWorks() {
@@ -508,10 +404,10 @@ function HowItWorks() {
 				className: "mx-auto flex max-w-2xl flex-col items-center gap-4 text-center",
 				children: [/* @__PURE__ */ jsx("h2", {
 					className: "text-3xl font-bold tracking-tight text-balance sm:text-4xl",
-					children: "How it works"
+					children: "Comment ça marche"
 				}), /* @__PURE__ */ jsx("p", {
 					className: "text-muted-foreground",
-					children: "Get started in three simple steps."
+					children: "Commencez en trois étapes simples."
 				})]
 			}), /* @__PURE__ */ jsx("div", {
 				className: "mt-12 grid gap-4 md:grid-cols-3",
@@ -547,7 +443,7 @@ function HowItWorks() {
 var sidebarItems = [
 	{
 		icon: Bookmark,
-		label: "All websites",
+		label: "Tous les sites",
 		active: true
 	},
 	{
@@ -560,7 +456,7 @@ var sidebarItems = [
 	},
 	{
 		icon: History,
-		label: "History"
+		label: "Historique"
 	}
 ];
 function ProductPreview() {
@@ -572,10 +468,10 @@ function ProductPreview() {
 				className: "mx-auto flex max-w-2xl flex-col items-center gap-4 text-center",
 				children: [/* @__PURE__ */ jsx("h2", {
 					className: "text-3xl font-bold tracking-tight text-balance sm:text-4xl",
-					children: "See your digital world at a glance"
+					children: "Votre univers numérique en un coup d'œil"
 				}), /* @__PURE__ */ jsx("p", {
 					className: "text-muted-foreground",
-					children: "A clean workspace for the websites and information you depend on."
+					children: "Un espace de travail clair pour les sites et informations dont vous dépendez."
 				})]
 			}), /* @__PURE__ */ jsxs("div", {
 				"aria-hidden": "true",
@@ -605,7 +501,7 @@ function ProductPreview() {
 							className: "relative mb-4",
 							children: [/* @__PURE__ */ jsx(Search, { className: "pointer-events-none absolute top-1/2 left-3 size-4 -translate-y-1/2 text-neutral-500" }), /* @__PURE__ */ jsx("div", {
 								className: "h-9 w-full rounded-lg border border-neutral-800 bg-neutral-950/60 pl-9 pr-3 text-left text-sm text-neutral-500",
-								children: "Search saved websites…"
+								children: "Rechercher des sites…"
 							})]
 						}), /* @__PURE__ */ jsx("div", {
 							className: "grid gap-3 sm:grid-cols-2 xl:grid-cols-3",
@@ -622,23 +518,23 @@ function ProductPreview() {
 var benefits = [
 	{
 		icon: FolderCheck,
-		title: "Stay Organized",
-		description: "Keep important websites in one centralized place."
+		title: "Rester organisé",
+		description: "Gardez vos sites importants dans un endroit centralisé."
 	},
 	{
 		icon: Clock,
-		title: "Save Time",
-		description: "Find websites instantly instead of searching history."
+		title: "Gagner du temps",
+		description: "Retrouvez vos sites instantanément au lieu de fouiller l'historique."
 	},
 	{
 		icon: StickyNote,
-		title: "Keep Information Together",
-		description: "Store useful details alongside the websites they belong to."
+		title: "Tout garder ensemble",
+		description: "Stockez les détails utiles à côté des sites concernés."
 	},
 	{
 		icon: MousePointerClick,
-		title: "Access Information Easily",
-		description: "Retrieve important websites whenever you need them."
+		title: "Accéder facilement",
+		description: "Retrouvez vos sites importants quand vous en avez besoin."
 	}
 ];
 function Benefits() {
@@ -650,7 +546,7 @@ function Benefits() {
 				className: "mx-auto flex max-w-2xl flex-col items-center gap-4 text-center",
 				children: /* @__PURE__ */ jsx("h2", {
 					className: "text-3xl font-bold tracking-tight text-balance sm:text-4xl",
-					children: "Built to make life easier"
+					children: "Conçu pour vous simplifier la vie"
 				})
 			}), /* @__PURE__ */ jsx("div", {
 				className: "mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4",
@@ -687,17 +583,17 @@ function Cta() {
 				children: [
 					/* @__PURE__ */ jsx("h2", {
 						className: "max-w-2xl text-3xl font-bold tracking-tight text-balance sm:text-4xl",
-						children: "Start organizing your digital life today."
+						children: "Commencez à organiser votre vie numérique dès aujourd'hui."
 					}),
 					/* @__PURE__ */ jsx("p", {
 						className: "max-w-md text-balance text-muted-foreground",
-						children: "Keep your important websites and information organized and easy to access."
+						children: "Gardez vos sites et informations importants organisés et faciles d'accès."
 					}),
 					/* @__PURE__ */ jsxs(Button, {
 						size: "lg",
 						className: "mt-4 gap-2 px-6",
 						render: /* @__PURE__ */ jsx(Link, { to: "/register" }),
-						children: ["Get started for free", /* @__PURE__ */ jsx(ArrowRight, { "data-icon": "inline-end" })]
+						children: ["Commencer gratuitement", /* @__PURE__ */ jsx(ArrowRight, { "data-icon": "inline-end" })]
 					})
 				]
 			})
@@ -708,23 +604,23 @@ function Cta() {
 //#region src/components/landing/footer.tsx
 var navLinks = [
 	{
-		label: "Home",
+		label: "Accueil",
 		href: "#home"
 	},
 	{
-		label: "Features",
+		label: "Fonctionnalités",
 		href: "#features"
 	},
 	{
-		label: "How It Works",
+		label: "Comment ça marche",
 		href: "#how-it-works"
 	}
 ];
 var accountLinks = [{
-	label: "Sign in",
+	label: "Se connecter",
 	to: "/login"
 }, {
-	label: "Create account",
+	label: "Créer un compte",
 	to: "/register"
 }];
 function Footer() {
@@ -738,7 +634,7 @@ function Footer() {
 					className: "flex max-w-xs flex-col gap-3",
 					children: [/* @__PURE__ */ jsx(Logo, {}), /* @__PURE__ */ jsx("p", {
 						className: "text-sm text-neutral-500",
-						children: "Save, organize and quickly find the websites that matter to you."
+						children: "Enregistrez, organisez et retrouvez rapidement les sites qui comptent pour vous."
 					})]
 				}), /* @__PURE__ */ jsxs("div", {
 					className: "flex gap-16",
@@ -746,7 +642,7 @@ function Footer() {
 						className: "flex flex-col gap-2",
 						children: [/* @__PURE__ */ jsx("p", {
 							className: "text-sm font-medium text-foreground",
-							children: "Product"
+							children: "Produit"
 						}), navLinks.map((link) => /* @__PURE__ */ jsx("a", {
 							href: link.href,
 							className: "text-sm text-neutral-500 transition-colors hover:text-foreground",
@@ -756,7 +652,7 @@ function Footer() {
 						className: "flex flex-col gap-2",
 						children: [/* @__PURE__ */ jsx("p", {
 							className: "text-sm font-medium text-foreground",
-							children: "Account"
+							children: "Compte"
 						}), accountLinks.map((link) => /* @__PURE__ */ jsx(Link, {
 							to: link.to,
 							className: "text-sm text-neutral-500 transition-colors hover:text-foreground",
@@ -769,7 +665,7 @@ function Footer() {
 				children: [
 					"© ",
 					(/* @__PURE__ */ new Date()).getFullYear(),
-					" TontaTranokala. All rights reserved."
+					" TontaTranokala. Tous droits réservés."
 				]
 			})]
 		})
