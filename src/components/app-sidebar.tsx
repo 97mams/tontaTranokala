@@ -34,7 +34,6 @@ import { Logo } from "@/components/landing/navbar";
 const disabledItems = [
   { icon: Folder, label: "Collections" },
   { icon: NotepadText, label: "Notes" },
-  { icon: History, label: "Historique" },
 ];
 
 export function AppSidebar() {
@@ -97,6 +96,16 @@ export function AppSidebar() {
                 </SidebarMenuButton>
               </SidebarMenuItem>
             ))}
+            <SidebarMenuItem>
+              <SidebarMenuButton
+                render={<Link to="/history" />}
+                tooltip="Historique"
+                isActive={pathname === "/history"}
+              >
+                <History />
+                <span>Historique</span>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
           </SidebarMenu>
         </SidebarGroup>
       </SidebarContent>

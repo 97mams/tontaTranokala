@@ -18,7 +18,17 @@ export const add = mutation({
     if (!user) {
       throw new ConvexError("Vous devez être connecté");
     }
-    return await ctx.db.insert("websites", { userId: user._id, ...args });
+    const id = await ctx.db.insert("websites", {
+      userId: user._id,
+      ...args,
+    });
+    await ctx.db.insert("history", {
+      userId: user._id,
+      type: "site_added",
+      websiteName: args.name,
+      websiteUrl: args.url,
+    });
+    return id;
   },
 });
 
@@ -48,6 +58,12 @@ export const remove = mutation({
     if (!website || website.userId !== user._id) {
       throw new ConvexError("Site introuvable");
     }
+    await ctx.db.insert("history", {
+      userId: user._id,
+      type: "site_removed",
+      websiteName: website.name,
+      websiteUrl: website.url,
+    });
     await ctx.db.delete(id);
   },
 });
