@@ -31,8 +31,6 @@ import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Logo } from "@/components/landing/navbar";
 
-const disabledItems = [{ icon: Folder, label: "Collections" }];
-
 export function AppSidebar() {
   const { state } = useSidebar();
   const { pathname } = useLocation();
@@ -82,17 +80,16 @@ export function AppSidebar() {
         <SidebarGroup>
           <SidebarGroupLabel>Bibliothèque</SidebarGroupLabel>
           <SidebarMenu>
-            {disabledItems.map((item) => (
-              <SidebarMenuItem key={item.label}>
-                <SidebarMenuButton disabled tooltip="Bientôt disponible">
-                  <item.icon />
-                  <span>{item.label}</span>
-                  <span className="ml-auto truncate text-[0.625rem] text-sidebar-foreground/50 group-data-[collapsible=icon]:hidden">
-                    Bientôt
-                  </span>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-            ))}
+            <SidebarMenuItem>
+              <SidebarMenuButton
+                render={<Link to="/collections" />}
+                tooltip="Collections"
+                isActive={pathname === "/collections"}
+              >
+                <Folder />
+                <span>Collections</span>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
             <SidebarMenuItem>
               <SidebarMenuButton
                 render={<Link to="/note" />}
