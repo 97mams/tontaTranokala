@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as HistoryRouteImport } from './routes/history'
 import { Route as LandingRouteImport } from './routes/landing'
 import { Route as LoginRouteImport } from './routes/login'
+import { Route as NoteRouteImport } from './routes/note'
 import { Route as RegisterRouteImport } from './routes/register'
 import { Route as SitesRouteImport } from './routes/sites'
 import { Route as UserRouteImport } from './routes/user'
@@ -36,6 +37,11 @@ const LandingRoute = LandingRouteImport.update({
 const LoginRoute = LoginRouteImport.update({
   id: '/login',
   path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NoteRoute = NoteRouteImport.update({
+  id: '/note',
+  path: '/note',
   getParentRoute: () => rootRouteImport,
 } as any)
 const RegisterRoute = RegisterRouteImport.update({
@@ -64,6 +70,7 @@ export interface FileRoutesByFullPath {
   '/history': typeof HistoryRoute
   '/landing': typeof LandingRoute
   '/login': typeof LoginRoute
+  '/note': typeof NoteRoute
   '/register': typeof RegisterRoute
   '/sites': typeof SitesRoute
   '/user': typeof UserRoute
@@ -74,6 +81,7 @@ export interface FileRoutesByTo {
   '/history': typeof HistoryRoute
   '/landing': typeof LandingRoute
   '/login': typeof LoginRoute
+  '/note': typeof NoteRoute
   '/register': typeof RegisterRoute
   '/sites': typeof SitesRoute
   '/user': typeof UserRoute
@@ -85,6 +93,7 @@ export interface FileRoutesById {
   '/history': typeof HistoryRoute
   '/landing': typeof LandingRoute
   '/login': typeof LoginRoute
+  '/note': typeof NoteRoute
   '/register': typeof RegisterRoute
   '/sites': typeof SitesRoute
   '/user': typeof UserRoute
@@ -97,6 +106,7 @@ export interface FileRouteTypes {
     | '/history'
     | '/landing'
     | '/login'
+    | '/note'
     | '/register'
     | '/sites'
     | '/user'
@@ -107,6 +117,7 @@ export interface FileRouteTypes {
     | '/history'
     | '/landing'
     | '/login'
+    | '/note'
     | '/register'
     | '/sites'
     | '/user'
@@ -117,6 +128,7 @@ export interface FileRouteTypes {
     | '/history'
     | '/landing'
     | '/login'
+    | '/note'
     | '/register'
     | '/sites'
     | '/user'
@@ -128,6 +140,7 @@ export interface RootRouteChildren {
   HistoryRoute: typeof HistoryRoute
   LandingRoute: typeof LandingRoute
   LoginRoute: typeof LoginRoute
+  NoteRoute: typeof NoteRoute
   RegisterRoute: typeof RegisterRoute
   SitesRoute: typeof SitesRoute
   UserRoute: typeof UserRoute
@@ -162,6 +175,13 @@ declare module '@tanstack/react-router' {
       path: '/login'
       fullPath: '/login'
       preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/note': {
+      id: '/note'
+      path: '/note'
+      fullPath: '/note'
+      preLoaderRoute: typeof NoteRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/register': {
@@ -200,6 +220,7 @@ const rootRouteChildren: RootRouteChildren = {
   HistoryRoute: HistoryRoute,
   LandingRoute: LandingRoute,
   LoginRoute: LoginRoute,
+  NoteRoute: NoteRoute,
   RegisterRoute: RegisterRoute,
   SitesRoute: SitesRoute,
   UserRoute: UserRoute,

@@ -31,10 +31,7 @@ import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Logo } from "@/components/landing/navbar";
 
-const disabledItems = [
-  { icon: Folder, label: "Collections" },
-  { icon: NotepadText, label: "Notes" },
-];
+const disabledItems = [{ icon: Folder, label: "Collections" }];
 
 export function AppSidebar() {
   const { state } = useSidebar();
@@ -96,6 +93,16 @@ export function AppSidebar() {
                 </SidebarMenuButton>
               </SidebarMenuItem>
             ))}
+            <SidebarMenuItem>
+              <SidebarMenuButton
+                render={<Link to="/note" />}
+                tooltip="Notes"
+                isActive={pathname === "/note"}
+              >
+                <NotepadText />
+                <span>Notes</span>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
             <SidebarMenuItem>
               <SidebarMenuButton
                 render={<Link to="/history" />}
