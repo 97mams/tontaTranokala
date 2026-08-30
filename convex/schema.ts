@@ -21,4 +21,10 @@ export default defineSchema({
     websiteUrl: v.optional(v.union(v.string(), v.null())),
   })
     .index("by_user_creation", ["userId"]),
+  notes: defineTable({
+    userId: v.string(),
+    title: v.optional(v.union(v.string(), v.null())),
+    content: v.optional(v.union(v.string(), v.null())),
+  })
+    .index("by_user_creation", ["userId"]),
 });

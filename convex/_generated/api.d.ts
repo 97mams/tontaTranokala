@@ -11,6 +11,7 @@
 import type * as auth from "../auth.js";
 import type * as history from "../history.js";
 import type * as http from "../http.js";
+import type * as notes from "../notes.js";
 import type * as websites from "../websites.js";
 
 import type {
@@ -23,6 +24,7 @@ declare const fullApi: ApiFromModules<{
   auth: typeof auth;
   history: typeof history;
   http: typeof http;
+  notes: typeof notes;
   websites: typeof websites;
 }>;
 
