@@ -27,4 +27,9 @@ export default defineSchema({
     content: v.optional(v.union(v.string(), v.null())),
   })
     .index("by_user_creation", ["userId"]),
+  collections: defineTable({
+    userId: v.string(),
+    name: v.string(),
+  })
+    .index("by_user_creation", ["userId"]),
 });
