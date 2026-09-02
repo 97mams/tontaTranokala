@@ -118,7 +118,7 @@ export function WebsiteForm({ onSubmitted }: { onSubmitted?: () => void }) {
                     id={field.name}
                     name={field.name}
                     required
-                    placeholder="OpenAI"
+                    placeholder="Tranokala"
                     value={field.state.value}
                     onBlur={field.handleBlur}
                     onChange={(e) => field.handleChange(e.target.value)}
@@ -158,7 +158,7 @@ export function WebsiteForm({ onSubmitted }: { onSubmitted?: () => void }) {
                     name={field.name}
                     required
                     type="url"
-                    placeholder="https://openai.com"
+                    placeholder="https://tranokala.com"
                     value={field.state.value}
                     onBlur={field.handleBlur}
                     onChange={(e) => field.handleChange(e.target.value)}
