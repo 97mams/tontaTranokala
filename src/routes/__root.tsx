@@ -67,13 +67,25 @@ function RootComponent() {
   );
 }
 
+const themeScript = `
+(function() {
+  var theme = localStorage.getItem('theme');
+  if (theme === 'light' || theme === 'dark') {
+    document.documentElement.classList.add(theme);
+  } else {
+    document.documentElement.classList.add(window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+  }
+})()
+`;
+
 function RootDocument({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <HeadContent />
       </head>
-      <body className="min-h-screen bg-neutral-950 text-neutral-50 antialiased">
+      <body className="min-h-screen bg-background text-foreground antialiased">
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
         {children}
         <Scripts />
       </body>
