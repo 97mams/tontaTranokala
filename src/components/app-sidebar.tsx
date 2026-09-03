@@ -3,13 +3,11 @@ import { Suspense } from "react";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { convexQuery } from "@convex-dev/react-query";
 import { api } from "../../convex/_generated/api";
-import { authClient } from "@/lib/auth-client";
 import {
   Bookmark,
   Folder,
   History,
   House,
-  LogOut,
   NotepadText,
   UserRound,
 } from "lucide-react";
@@ -27,7 +25,6 @@ import {
   SidebarSeparator,
   useSidebar,
 } from "@/components/ui/sidebar";
-import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Logo } from "@/components/landing/navbar";
 
@@ -148,23 +145,6 @@ function SidebarUser() {
               </p>
             </div>
           </div>
-          <Button
-            variant="outline"
-            size="sm"
-            className="w-full justify-start group-data-[collapsible=icon]:hidden"
-            onClick={async () => {
-              await authClient.signOut({
-                fetchOptions: {
-                  onSuccess: () => {
-                    location.href = "/landing";
-                  },
-                },
-              });
-            }}
-          >
-            <LogOut />
-            Se déconnecter
-          </Button>
         </div>
       </SidebarMenuItem>
     </SidebarMenu>
