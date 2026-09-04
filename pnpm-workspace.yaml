@@ -1,8 +1,5 @@
-ignoredBuiltDependencies:
-  - '@prisma/client'
-  - '@prisma/engines'
-  - '@tailwindcss/oxide'
-  - bcrypt
+allowBuilds:
+  esbuild: false
+  unrs-resolver: false
+onlyBuiltDependencies:
   - esbuild
-  - prisma
-  - sharp

@@ -1,14 +1,12 @@
-import { headers } from "next/headers";
-import { auth } from "./auth";
+import { convexBetterAuthReactStart } from "@convex-dev/better-auth/react-start";
 
-export const getSession = async () => {
-  const session = await auth.api.getSession({
-    headers: await headers(),
-  });
-  return session;
-};
-
-export const getUser = async () => {
-  const session = await getSession();
-  return session?.user || null;
-};
+export const {
+  handler,
+  getToken,
+  fetchAuthQuery,
+  fetchAuthMutation,
+  fetchAuthAction,
+} = convexBetterAuthReactStart({
+  convexUrl: process.env.VITE_CONVEX_URL!,
+  convexSiteUrl: process.env.VITE_CONVEX_SITE_URL!,
+});
