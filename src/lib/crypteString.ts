@@ -1,0 +1,6 @@
+
+
+const crypteString = (str: string) => {
+
+
+}
