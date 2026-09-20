@@ -12,6 +12,7 @@ import { api } from "../../convex/_generated/api";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
+import { decipherString } from "@/lib/crypteString.ts";
 
 function toDisplayUrl(raw: string) {
   return raw.startsWith("http") ? raw : `https://${raw}`;
@@ -90,12 +91,12 @@ export function WebsiteList() {
           website.loginEmail && {
             icon: <Mail className="size-3.5 shrink-0 text-muted-foreground" />,
             label: "Email",
-            value: website.loginEmail,
+            value: decipherString(website.loginEmail),
           },
           website.loginUsername && {
             icon: <User className="size-3.5 shrink-0 text-muted-foreground" />,
             label: "Identifiant",
-            value: website.loginUsername,
+            value: decipherString(website.loginUsername),
           },
         ].filter(Boolean) as Array<{
           icon: ReactNode;

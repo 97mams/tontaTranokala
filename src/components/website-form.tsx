@@ -18,6 +18,7 @@ import {
   FieldLabel,
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
+import { crypteString } from "@/lib/crypteString.ts";
 
 interface FormValues {
   name: string;
@@ -68,8 +69,8 @@ export function WebsiteForm({ onSubmitted }: { onSubmitted?: () => void }) {
           url: value.url.trim(),
           description: value.description.trim() || null,
           notes: value.notes.trim() || null,
-          loginEmail: value.loginEmail.trim() || null,
-          loginUsername: value.loginUsername.trim() || null,
+          loginEmail: crypteString(value.loginEmail.trim()) || null,
+          loginUsername: crypteString(value.loginUsername.trim()) || null,
           loginPassword: value.loginPassword || null,
           loginUrl: value.loginUrl.trim() || null,
         });
