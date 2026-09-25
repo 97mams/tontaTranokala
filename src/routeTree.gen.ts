@@ -18,6 +18,7 @@ import { Route as NoteRouteImport } from './routes/note'
 import { Route as RegisterRouteImport } from './routes/register'
 import { Route as SitesRouteImport } from './routes/sites'
 import { Route as UserRouteImport } from './routes/user'
+import { Route as CollectionsIdRouteImport } from './routes/collections/$id'
 import { Route as TranokalaAdminRouteImport } from './routes/tranokala/admin'
 import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
 
@@ -66,6 +67,11 @@ const UserRoute = UserRouteImport.update({
   path: '/user',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CollectionsIdRoute = CollectionsIdRouteImport.update({
+  id: '/$id',
+  path: '/$id',
+  getParentRoute: () => CollectionsRoute,
+} as any)
 const TranokalaAdminRoute = TranokalaAdminRouteImport.update({
   id: '/tranokala/admin',
   path: '/tranokala/admin',
@@ -79,7 +85,7 @@ const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/collections': typeof CollectionsRoute
+  '/collections': typeof CollectionsRouteWithChildren
   '/history': typeof HistoryRoute
   '/landing': typeof LandingRoute
   '/login': typeof LoginRoute
@@ -87,12 +93,13 @@ export interface FileRoutesByFullPath {
   '/register': typeof RegisterRoute
   '/sites': typeof SitesRoute
   '/user': typeof UserRoute
+  '/collections/$id': typeof CollectionsIdRoute
   '/tranokala/admin': typeof TranokalaAdminRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/collections': typeof CollectionsRoute
+  '/collections': typeof CollectionsRouteWithChildren
   '/history': typeof HistoryRoute
   '/landing': typeof LandingRoute
   '/login': typeof LoginRoute
@@ -100,13 +107,14 @@ export interface FileRoutesByTo {
   '/register': typeof RegisterRoute
   '/sites': typeof SitesRoute
   '/user': typeof UserRoute
+  '/collections/$id': typeof CollectionsIdRoute
   '/tranokala/admin': typeof TranokalaAdminRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/collections': typeof CollectionsRoute
+  '/collections': typeof CollectionsRouteWithChildren
   '/history': typeof HistoryRoute
   '/landing': typeof LandingRoute
   '/login': typeof LoginRoute
@@ -114,6 +122,7 @@ export interface FileRoutesById {
   '/register': typeof RegisterRoute
   '/sites': typeof SitesRoute
   '/user': typeof UserRoute
+  '/collections/$id': typeof CollectionsIdRoute
   '/tranokala/admin': typeof TranokalaAdminRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
 }
@@ -129,6 +138,7 @@ export interface FileRouteTypes {
     | '/register'
     | '/sites'
     | '/user'
+    | '/collections/$id'
     | '/tranokala/admin'
     | '/api/auth/$'
   fileRoutesByTo: FileRoutesByTo
@@ -142,6 +152,7 @@ export interface FileRouteTypes {
     | '/register'
     | '/sites'
     | '/user'
+    | '/collections/$id'
     | '/tranokala/admin'
     | '/api/auth/$'
   id:
@@ -155,13 +166,14 @@ export interface FileRouteTypes {
     | '/register'
     | '/sites'
     | '/user'
+    | '/collections/$id'
     | '/tranokala/admin'
     | '/api/auth/$'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  CollectionsRoute: typeof CollectionsRoute
+  CollectionsRoute: typeof CollectionsRouteWithChildren
   HistoryRoute: typeof HistoryRoute
   LandingRoute: typeof LandingRoute
   LoginRoute: typeof LoginRoute
@@ -238,6 +250,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof UserRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/collections/$id': {
+      id: '/collections/$id'
+      path: '/$id'
+      fullPath: '/collections/$id'
+      preLoaderRoute: typeof CollectionsIdRouteImport
+      parentRoute: typeof CollectionsRoute
+    }
     '/tranokala/admin': {
       id: '/tranokala/admin'
       path: '/tranokala/admin'
@@ -255,9 +274,21 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface CollectionsRouteChildren {
+  CollectionsIdRoute: typeof CollectionsIdRoute
+}
+
+const CollectionsRouteChildren: CollectionsRouteChildren = {
+  CollectionsIdRoute: CollectionsIdRoute,
+}
+
+const CollectionsRouteWithChildren = CollectionsRoute._addFileChildren(
+  CollectionsRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  CollectionsRoute: CollectionsRoute,
+  CollectionsRoute: CollectionsRouteWithChildren,
   HistoryRoute: HistoryRoute,
   LandingRoute: LandingRoute,
   LoginRoute: LoginRoute,
