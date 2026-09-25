@@ -2,11 +2,6 @@ import { defineSchema, defineTable } from "convex/server";
 import { v } from "convex/values";
 
 export default defineSchema({
-  groups: defineTable({
-    userId: v.string(),
-    name: v.string(),
-  })
-    .index("by_user_creation", ["userId"]),
   websites: defineTable({
     userId: v.string(),
     name: v.string(),
