@@ -18,6 +18,7 @@ import { Route as NoteRouteImport } from './routes/note'
 import { Route as RegisterRouteImport } from './routes/register'
 import { Route as SitesRouteImport } from './routes/sites'
 import { Route as UserRouteImport } from './routes/user'
+import { Route as TranokalaAdminRouteImport } from './routes/tranokala/admin'
 import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
 
 const IndexRoute = IndexRouteImport.update({
@@ -65,6 +66,11 @@ const UserRoute = UserRouteImport.update({
   path: '/user',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TranokalaAdminRoute = TranokalaAdminRouteImport.update({
+  id: '/tranokala/admin',
+  path: '/tranokala/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
   id: '/api/auth/$',
   path: '/api/auth/$',
@@ -81,6 +87,7 @@ export interface FileRoutesByFullPath {
   '/register': typeof RegisterRoute
   '/sites': typeof SitesRoute
   '/user': typeof UserRoute
+  '/tranokala/admin': typeof TranokalaAdminRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
 }
 export interface FileRoutesByTo {
@@ -93,6 +100,7 @@ export interface FileRoutesByTo {
   '/register': typeof RegisterRoute
   '/sites': typeof SitesRoute
   '/user': typeof UserRoute
+  '/tranokala/admin': typeof TranokalaAdminRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
 }
 export interface FileRoutesById {
@@ -106,6 +114,7 @@ export interface FileRoutesById {
   '/register': typeof RegisterRoute
   '/sites': typeof SitesRoute
   '/user': typeof UserRoute
+  '/tranokala/admin': typeof TranokalaAdminRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
 }
 export interface FileRouteTypes {
@@ -120,6 +129,7 @@ export interface FileRouteTypes {
     | '/register'
     | '/sites'
     | '/user'
+    | '/tranokala/admin'
     | '/api/auth/$'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -132,6 +142,7 @@ export interface FileRouteTypes {
     | '/register'
     | '/sites'
     | '/user'
+    | '/tranokala/admin'
     | '/api/auth/$'
   id:
     | '__root__'
@@ -144,6 +155,7 @@ export interface FileRouteTypes {
     | '/register'
     | '/sites'
     | '/user'
+    | '/tranokala/admin'
     | '/api/auth/$'
   fileRoutesById: FileRoutesById
 }
@@ -157,6 +169,7 @@ export interface RootRouteChildren {
   RegisterRoute: typeof RegisterRoute
   SitesRoute: typeof SitesRoute
   UserRoute: typeof UserRoute
+  TranokalaAdminRoute: typeof TranokalaAdminRoute
   ApiAuthSplatRoute: typeof ApiAuthSplatRoute
 }
 
@@ -225,6 +238,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof UserRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/tranokala/admin': {
+      id: '/tranokala/admin'
+      path: '/tranokala/admin'
+      fullPath: '/tranokala/admin'
+      preLoaderRoute: typeof TranokalaAdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/auth/$': {
       id: '/api/auth/$'
       path: '/api/auth/$'
@@ -245,6 +265,7 @@ const rootRouteChildren: RootRouteChildren = {
   RegisterRoute: RegisterRoute,
   SitesRoute: SitesRoute,
   UserRoute: UserRoute,
+  TranokalaAdminRoute: TranokalaAdminRoute,
   ApiAuthSplatRoute: ApiAuthSplatRoute,
 }
 export const routeTree = rootRouteImport
