@@ -31,7 +31,7 @@ export default defineSchema({
   collections: defineTable({
     userId: v.string(),
     name: v.string(),
-    websiteIds: v.array(v.string()),
+    websiteIds: v.string(),
   })
     .index("by_user_creation", ["userId"]),
 });
