@@ -57,11 +57,17 @@ function PasswordValue({
   );
 }
 
-export function WebsiteList() {
+export function WebsiteList({ collectionId }: { collectionId?: string }) {
   const queryClient = useQueryClient();
   const listKey = convexQuery(api.websites.list, {}).queryKey;
-  const { data } = useSuspenseQuery(convexQuery(api.websites.list, {}));
+  let { data } = useSuspenseQuery(convexQuery(api.websites.list, {}));
   const removeWebsite = useMutation(api.websites.remove);
+
+  if (collectionId) {
+    data = data.filter((website) => website.collectionId === collectionId);
+  } else {
+    data = data.filter((website) => !website.collectionId);
+  }
 
   const handleDelete = async (id: Id<"websites">, name: string) => {
     if (!window.confirm(`Supprimer « ${name} » ?`)) return;
