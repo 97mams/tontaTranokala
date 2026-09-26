@@ -1,7 +1,4 @@
-import {
-  useQueryClient,
-  useSuspenseQuery,
-} from "@tanstack/react-query";
+import { useQueryClient, useSuspenseQuery } from "@tanstack/react-query";
 import { convexQuery } from "@convex-dev/react-query";
 import { useMutation } from "convex/react";
 import type { Id } from "../../convex/_generated/dataModel";
@@ -10,6 +7,7 @@ import { api } from "../../convex/_generated/api";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
+import { Link } from "@tanstack/react-router";
 
 export function CollectionList() {
   const queryClient = useQueryClient();
@@ -38,30 +36,36 @@ export function CollectionList() {
   }
 
   return (
-    <div className="flex w-full flex-col gap-3">
+    <>
       {data.map((collection) => (
-        <Card key={collection._id} className="w-full">
-          <CardContent className="flex items-center justify-between gap-4">
-            <div className="flex min-w-0 items-center gap-3">
-              <Folder className="size-5 shrink-0 text-muted-foreground" />
-              <p className="truncate font-medium text-foreground">
-                {collection.name}
-              </p>
-            </div>
-            <Button
-              variant="ghost"
-              size="sm"
-              className="h-8 shrink-0 text-muted-foreground hover:text-destructive"
-              type="button"
-              aria-label={`Supprimer ${collection.name}`}
-              onClick={() => handleDelete(collection._id, collection.name)}
-            >
-              <Trash2 />
-            </Button>
-          </CardContent>
-        </Card>
+        <Link
+          to="/collectionsSite/$id"
+          params={{ id: collection._id }}
+          className="flex w-full flex-col gap-3 cursor-pointer"
+        >
+          <Card key={collection._id} className="w-full">
+            <CardContent className="flex items-center justify-between gap-4">
+              <div className="flex min-w-0 items-center gap-3">
+                <Folder className="size-5 shrink-0 text-muted-foreground" />
+                <p className="truncate font-medium text-foreground">
+                  {collection.name}
+                </p>
+              </div>
+              <Button
+                variant="ghost"
+                size="sm"
+                className="h-8 shrink-0 text-muted-foreground hover:text-destructive"
+                type="button"
+                aria-label={`Supprimer ${collection.name}`}
+                onClick={() => handleDelete(collection._id, collection.name)}
+              >
+                <Trash2 />
+              </Button>
+            </CardContent>
+          </Card>
+        </Link>
       ))}
-    </div>
+    </>
   );
 }
 
