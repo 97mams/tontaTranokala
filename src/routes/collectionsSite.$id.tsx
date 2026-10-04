@@ -33,6 +33,8 @@ function CollectionsComponent() {
   const collectionId = Route.useParams().id;
   const [open, setOpen] = useState(false);
 
+  console.log(collectionId)
+
   return (
     <AppShell>
        <div className="mx-auto flex w-full max-w-3xl flex-col gap-6">
