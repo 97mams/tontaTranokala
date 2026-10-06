@@ -30,14 +30,12 @@ export const Route = createFileRoute("/collectionsSite/$id")({
 });
 
 function CollectionsComponent() {
-  const collectionId = Route.useParams().id;
-  const [open, setOpen] = useState(false);
-
-  console.log(collectionId)
+  // const collectionId = Route.useParams().id;
+  // const [open, setOpen] = useState(false);
 
   return (
     <AppShell>
-       <div className="mx-auto flex w-full max-w-3xl flex-col gap-6">
+       {/* <div className="mx-auto flex w-full max-w-3xl flex-col gap-6">
         <div className="flex flex-col gap-4">
           <div className="flex flex-col gap-1">
             <h1 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
@@ -69,7 +67,7 @@ function CollectionsComponent() {
             <WebsiteForm onSubmitted={() => setOpen(false)} />
           </DialogContent>
         </Dialog>
-      </div>
+      </div> */}
     </AppShell>
   );
 }
