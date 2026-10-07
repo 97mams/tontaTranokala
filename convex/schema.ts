@@ -2,6 +2,11 @@ import { defineSchema, defineTable } from "convex/server";
 import { v } from "convex/values";
 
 export default defineSchema({
+   collections: defineTable({
+    userId: v.string(),
+    name: v.string(),
+    websiteIds: v.string(),
+  }),
   websites: defineTable({
     userId: v.string(),
     collectionId: v.optional(v.union(v.string(), v.null())),
@@ -14,7 +19,8 @@ export default defineSchema({
     loginPassword: v.optional(v.union(v.string(), v.null())),
     loginUrl: v.optional(v.union(v.string(), v.null())),
   })
-    .index("by_user_creation", ["userId"]),
+    .index("by_user_creation", ["userId"])
+    .index("by_collection", ["collectionId"]),
   history: defineTable({
     userId: v.string(),
     type: v.union(v.literal("site_added"), v.literal("site_removed")),
@@ -28,10 +34,5 @@ export default defineSchema({
     content: v.optional(v.union(v.string(), v.null())),
   })
     .index("by_user_creation", ["userId"]),
-  collections: defineTable({
-    userId: v.string(),
-    name: v.string(),
-    websiteIds: v.string(),
-  })
-    .index("by_user_creation", ["userId"]),
+ 
 });
