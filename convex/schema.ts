@@ -5,7 +5,7 @@ export default defineSchema({
    collections: defineTable({
     userId: v.string(),
     name: v.string(),
-    websiteIds: v.string(),
+    websiteIds: v.optional(v.union(v.string(), v.null())),
   }).index("by_user_creation", ["userId"]),
   websites: defineTable({
     userId: v.string(),

@@ -49,7 +49,7 @@ export function CollectionForm({ onSubmitted }: { onSubmitted?: () => void }) {
     },
     onSubmit: async ({ value, formApi }) => {
       try {
-        await addCollection({ name: value.name.trim() });
+        await addCollection({ name: value.name.trim(), websiteIds: "" });
         formApi.reset();
         queryClient.invalidateQueries({ queryKey: listKey });
         onSubmitted?.();

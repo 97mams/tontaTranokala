@@ -27,8 +27,7 @@ export function CollectionList() {
         <CardContent className="flex flex-col items-center gap-2 py-10 text-center">
           <Folder className="size-8 text-muted-foreground" />
           <p className="text-sm text-muted-foreground">
-            Aucune collection pour le moment. Utilisez le formulaire ci-dessus
-            pour créer votre première collection.
+            Aucune collection pour le moment.
           </p>
         </CardContent>
       </Card>
