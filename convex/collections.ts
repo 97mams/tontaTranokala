@@ -3,8 +3,8 @@ import { mutation, query } from "./_generated/server";
 import { authComponent } from "./auth";
 
 export const add = mutation({
-  args: { name: v.string() },
-  handler: async (ctx, { name }) => {
+  args: { name: v.string(), websiteIds: v.string() },
+  handler: async (ctx, { name, websiteIds }) => {
     const user = await authComponent.safeGetAuthUser(ctx);
     if (!user) {
       throw new ConvexError("Vous devez être connecté");
@@ -12,7 +12,7 @@ export const add = mutation({
     return await ctx.db.insert("collections", {
       userId: user._id,
       name,
-      websiteIds: [],
+      websiteIds,
     });
   },
 });
@@ -33,7 +33,7 @@ export const list = query({
 });
 
 export const listWebsites = query({
-  args: { collectionId: v.string() },
+  args: { collectionId: v.id("collections") },
   handler: async (ctx, { collectionId }) => {
     const user = await authComponent.safeGetAuthUser(ctx);
     if (!user) {

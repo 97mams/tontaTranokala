@@ -6,10 +6,10 @@ export default defineSchema({
     userId: v.string(),
     name: v.string(),
     websiteIds: v.string(),
-  }),
+  }).index("by_user_creation", ["userId"]),
   websites: defineTable({
     userId: v.string(),
-    collectionId: v.optional(v.union(v.string(), v.null())),
+    collectionId: v.optional(v.union(v.id("collections"), v.null())),
     name: v.string(),
     url: v.string(), 
     description: v.optional(v.union(v.string(), v.null())),
