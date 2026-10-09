@@ -39,7 +39,7 @@ function CollectionsComponent() {
         <div className="flex flex-col gap-4">
           <div className="flex flex-col gap-1">
             <h1 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-              Sites enregistrés
+              Collection
             </h1>
               <p className="text-muted-foreground">
             Regroupez vos sites en collections pour mieux les organiser.
