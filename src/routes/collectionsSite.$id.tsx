@@ -1,14 +1,12 @@
 import { Suspense, useState } from "react";
 import { createFileRoute, redirect } from "@tanstack/react-router";
 import { AppShell } from "@/components/app-shell";
-import { CollectionForm } from "@/components/collection-form";
 import {
   CollectionSiteList,
   CollectionsSiteListSkeleton,
 } from "@/components/collectionsSite-list";
 import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
-import { WebsiteList, WebsiteListSkeleton } from "@/components/website-list";
 import { WebsiteForm } from "@/components/website-form";
 import {
   Dialog,
@@ -55,8 +53,8 @@ function CollectionsComponent() {
           </Button>
         </div>
 
-        <Suspense fallback={<WebsiteListSkeleton />}>
-          <WebsiteList collectionId={collectionId} />
+        <Suspense fallback={<CollectionsSiteListSkeleton />}>
+          <CollectionSiteList collectionId={collectionId} />
         </Suspense>
 
         <Dialog open={open} onOpenChange={setOpen}>
