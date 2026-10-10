@@ -57,7 +57,7 @@ function PasswordValue({
   );
 }
 
-export function CollectionSiteList({collectionId}: {collectionId: Id<"collections">}) {
+export function CollectionSiteList({collectionId}: {collectionId: string}) {
   const queryClient = useQueryClient();
   const listKey = convexQuery(api.collections.list, {}).queryKey;
   const { data } = useSuspenseQuery(convexQuery(api.collections.listWebsites, { collectionId }));
@@ -68,6 +68,8 @@ export function CollectionSiteList({collectionId}: {collectionId: Id<"collection
     await removeWebsite({ id });
     queryClient.invalidateQueries({ queryKey: listKey });
   };
+
+  console.log(data);
 
   if (data.length === 0) {
     return (
