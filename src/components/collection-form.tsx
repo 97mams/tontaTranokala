@@ -18,6 +18,7 @@ import {
   FieldLabel,
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
+import { toast } from "@/components/ui/toast";
 
 interface FormValues {
   name: string;
@@ -53,6 +54,7 @@ export function CollectionForm({ onSubmitted }: { onSubmitted?: () => void }) {
         formApi.reset();
         queryClient.invalidateQueries({ queryKey: listKey });
         onSubmitted?.();
+        toast.add({ type:"success", description: "Collection créée avec succès" });
       } catch (error) {
         formApi.setErrorMap({
           onSubmit:

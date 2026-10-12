@@ -5,11 +5,11 @@ import {
 import { convexQuery } from "@convex-dev/react-query";
 import { useMutation } from "convex/react";
 import type { Id } from "../../convex/_generated/dataModel";
-import { NotepadText, Trash2 } from "lucide-react";
+import { NotepadText } from "lucide-react";
 import { api } from "../../convex/_generated/api";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
+import { ModalConfirm } from "./modalConfirm";
 
 export function NoteList() {
   const queryClient = useQueryClient();
@@ -18,7 +18,6 @@ export function NoteList() {
   const removeNote = useMutation(api.notes.remove);
 
   const handleDelete = async (id: Id<"notes">) => {
-    if (!window.confirm("Supprimer cette note ?")) return;
     await removeNote({ id });
     queryClient.invalidateQueries({ queryKey: listKey });
   };
@@ -53,16 +52,7 @@ export function NoteList() {
                   </p>
                 )}
               </div>
-              <Button
-                variant="ghost"
-                size="sm"
-                className="h-8 shrink-0 text-muted-foreground hover:text-destructive"
-                type="button"
-                aria-label="Supprimer la note"
-                onClick={() => handleDelete(note._id)}
-              >
-                <Trash2 />
-              </Button>
+              <ModalConfirm title={`Supprimer ${note.title || "cette note"}`} description="Êtes-vous sûr de vouloir supprimer cette note ?" isConfirm={() => handleDelete(note._id)} />
             </div>
           </CardHeader>
         </Card>
