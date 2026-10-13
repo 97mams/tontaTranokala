@@ -45,7 +45,7 @@ export const listWebsites = query({
     }
     return await ctx.db
       .query("websites")
-      .withIndex("by_user_creation", (q) => q.eq("userId", user._id))
+      .withIndex("by_collection", (q) => q.eq("collectionId", collectionId))
       .order("desc")
       .collect();
   },

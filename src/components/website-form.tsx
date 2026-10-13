@@ -18,7 +18,8 @@ import {
   FieldLabel,
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
-import { crypteString } from "@/lib/crypteString.ts";
+import { crypteString } from "@/lib/crypteString";
+import { toast } from "@/components/ui/toast";
 
 interface FormValues {
   name: string;
@@ -80,6 +81,7 @@ export function WebsiteForm({ onSubmitted, collectionId }: { onSubmitted?: () =>
         formApi.reset();
         queryClient.invalidateQueries({ queryKey: listKey });
         onSubmitted?.();
+        toast.add({ type: "success", description: "Site enregistré avec succès" });
       } catch (error) {
         formApi.setErrorMap({
           onSubmit: error instanceof Error ? error.message : "Une erreur est survenue",
