@@ -24,7 +24,7 @@ export function ModalConfirm({title, description, isConfirm}: {title: string, de
           </DialogHeader>
           <DialogFooter>
             <DialogClose render={<Button variant="outline">Annuler</Button>} />
-            <Button type="submit" onClick={isConfirm}>
+            <Button variant="destructive" onClick={isConfirm}>
               Confirmer
             </Button>
           </DialogFooter>
