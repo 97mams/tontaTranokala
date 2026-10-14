@@ -66,10 +66,12 @@ export function WebsiteList({ collectionId }: { collectionId?: string }) {
   const removeWebsite = useMutation(api.websites.remove);
 
   if (collectionId) {
-    data = data.filter((website) => website.collectionId === collectionId);
+    data = data.filter((website) => website.collectionId == collectionId as Id<"collections">);
   } else {
     data = data.filter((website) => !website.collectionId);
   }
+
+  console.log({id: collectionId, data});
 
   const handleDelete = async (id: Id<"websites">) => {
     await removeWebsite({ id });

@@ -60,9 +60,12 @@ function PasswordValue({
 }
 
 export function CollectionSiteList({collectionId}: {collectionId: string}) {
+
+  const idC = collectionId as Id<"collections">;
+
   const queryClient = useQueryClient();
   const listKey = convexQuery(api.collections.list, {}).queryKey;
-  const { data } = useSuspenseQuery(convexQuery(api.collections.listWebsites, { collectionId }));
+  const { data } = useSuspenseQuery(convexQuery(api.collections.listWebsites, { collectionId: idC }));
   const removeWebsite = useMutation(api.websites.remove);
 
   const handleDelete = async (id: Id<"websites">) => {
