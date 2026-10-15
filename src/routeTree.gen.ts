@@ -18,6 +18,7 @@ import { Route as NoteRouteImport } from './routes/note'
 import { Route as RegisterRouteImport } from './routes/register'
 import { Route as SitesRouteImport } from './routes/sites'
 import { Route as UserRouteImport } from './routes/user'
+import { Route as CollectionsSiteIdRouteImport } from './routes/collectionsSite.$id'
 import { Route as TranokalaAdminRouteImport } from './routes/tranokala/admin'
 import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
 
@@ -66,6 +67,11 @@ const UserRoute = UserRouteImport.update({
   path: '/user',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CollectionsSiteIdRoute = CollectionsSiteIdRouteImport.update({
+  id: '/collectionsSite/$id',
+  path: '/collectionsSite/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TranokalaAdminRoute = TranokalaAdminRouteImport.update({
   id: '/tranokala/admin',
   path: '/tranokala/admin',
@@ -87,6 +93,7 @@ export interface FileRoutesByFullPath {
   '/register': typeof RegisterRoute
   '/sites': typeof SitesRoute
   '/user': typeof UserRoute
+  '/collectionsSite/$id': typeof CollectionsSiteIdRoute
   '/tranokala/admin': typeof TranokalaAdminRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
 }
@@ -100,6 +107,7 @@ export interface FileRoutesByTo {
   '/register': typeof RegisterRoute
   '/sites': typeof SitesRoute
   '/user': typeof UserRoute
+  '/collectionsSite/$id': typeof CollectionsSiteIdRoute
   '/tranokala/admin': typeof TranokalaAdminRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
 }
@@ -114,6 +122,7 @@ export interface FileRoutesById {
   '/register': typeof RegisterRoute
   '/sites': typeof SitesRoute
   '/user': typeof UserRoute
+  '/collectionsSite/$id': typeof CollectionsSiteIdRoute
   '/tranokala/admin': typeof TranokalaAdminRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
 }
@@ -129,6 +138,7 @@ export interface FileRouteTypes {
     | '/register'
     | '/sites'
     | '/user'
+    | '/collectionsSite/$id'
     | '/tranokala/admin'
     | '/api/auth/$'
   fileRoutesByTo: FileRoutesByTo
@@ -142,6 +152,7 @@ export interface FileRouteTypes {
     | '/register'
     | '/sites'
     | '/user'
+    | '/collectionsSite/$id'
     | '/tranokala/admin'
     | '/api/auth/$'
   id:
@@ -155,6 +166,7 @@ export interface FileRouteTypes {
     | '/register'
     | '/sites'
     | '/user'
+    | '/collectionsSite/$id'
     | '/tranokala/admin'
     | '/api/auth/$'
   fileRoutesById: FileRoutesById
@@ -169,6 +181,7 @@ export interface RootRouteChildren {
   RegisterRoute: typeof RegisterRoute
   SitesRoute: typeof SitesRoute
   UserRoute: typeof UserRoute
+  CollectionsSiteIdRoute: typeof CollectionsSiteIdRoute
   TranokalaAdminRoute: typeof TranokalaAdminRoute
   ApiAuthSplatRoute: typeof ApiAuthSplatRoute
 }
@@ -238,6 +251,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof UserRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/collectionsSite/$id': {
+      id: '/collectionsSite/$id'
+      path: '/collectionsSite/$id'
+      fullPath: '/collectionsSite/$id'
+      preLoaderRoute: typeof CollectionsSiteIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/tranokala/admin': {
       id: '/tranokala/admin'
       path: '/tranokala/admin'
@@ -265,6 +285,7 @@ const rootRouteChildren: RootRouteChildren = {
   RegisterRoute: RegisterRoute,
   SitesRoute: SitesRoute,
   UserRoute: UserRoute,
+  CollectionsSiteIdRoute: CollectionsSiteIdRoute,
   TranokalaAdminRoute: TranokalaAdminRoute,
   ApiAuthSplatRoute: ApiAuthSplatRoute,
 }

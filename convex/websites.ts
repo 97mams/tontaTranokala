@@ -8,6 +8,7 @@ export const add = mutation({
     url: v.string(),
     description: v.optional(v.union(v.string(), v.null())),
     notes: v.optional(v.union(v.string(), v.null())),
+    collectionId: v.optional(v.union(v.string(), v.null())),
     loginEmail: v.optional(v.union(v.string(), v.null())),
     loginUsername: v.optional(v.union(v.string(), v.null())),
     loginPassword: v.optional(v.union(v.string(), v.null())),

@@ -7,12 +7,14 @@ import {
 import { convexQuery } from "@convex-dev/react-query";
 import { useMutation } from "convex/react";
 import type { Id } from "../../convex/_generated/dataModel";
-import { Eye, EyeOff, Globe, KeyRound, Mail, Trash2, User } from "lucide-react";
+import { Eye, EyeOff, Globe, KeyRound, Mail, User } from "lucide-react";
 import { api } from "../../convex/_generated/api";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
-import { decipherString } from "@/lib/crypteString.ts";
+import { decipherString } from "@/lib/crypteString";
+import { ModalConfirm } from "@/components/modalConfirm";
+import { toast } from "@/components/ui/toast";
 
 function toDisplayUrl(raw: string) {
   return raw.startsWith("http") ? raw : `https://${raw}`;
@@ -57,16 +59,24 @@ function PasswordValue({
   );
 }
 
-export function WebsiteList() {
+export function WebsiteList({ collectionId }: { collectionId?: string }) {
   const queryClient = useQueryClient();
   const listKey = convexQuery(api.websites.list, {}).queryKey;
-  const { data } = useSuspenseQuery(convexQuery(api.websites.list, {}));
+  let { data } = useSuspenseQuery(convexQuery(api.websites.list, {}));
   const removeWebsite = useMutation(api.websites.remove);
 
-  const handleDelete = async (id: Id<"websites">, name: string) => {
-    if (!window.confirm(`Supprimer « ${name} » ?`)) return;
+  if (collectionId) {
+    data = data.filter((website) => website.collectionId == collectionId as Id<"collections">);
+  } else {
+    data = data.filter((website) => !website.collectionId);
+  }
+
+  console.log({id: collectionId, data});
+
+  const handleDelete = async (id: Id<"websites">) => {
     await removeWebsite({ id });
     queryClient.invalidateQueries({ queryKey: listKey });
+    toast.add({ type: "success", description: "Site supprimé avec succès" });
   };
 
   if (data.length === 0) {
@@ -126,16 +136,7 @@ export function WebsiteList() {
                     </p>
                   )}
                 </div>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className="h-8 shrink-0 text-muted-foreground hover:text-destructive"
-                  type="button"
-                  aria-label={`Supprimer ${website.name}`}
-                  onClick={() => handleDelete(website._id, website.name)}
-                >
-                  <Trash2 />
-                </Button>
+                <ModalConfirm title={`Supprimer ${website.name}`} description="Êtes-vous sûr de vouloir supprimer ce site ?" isConfirm={() => handleDelete(website._id)} />
               </div>
             </CardHeader>
             <CardContent className="flex flex-col gap-2">

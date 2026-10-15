@@ -18,13 +18,15 @@ import {
   FieldLabel,
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
-import { crypteString } from "@/lib/crypteString.ts";
+import { crypteString } from "@/lib/crypteString";
+import { toast } from "@/components/ui/toast";
 
 interface FormValues {
   name: string;
   url: string;
   description: string;
   notes: string;
+  collectionId: string | null;
   loginEmail: string;
   loginUsername: string;
   loginPassword: string;
@@ -43,7 +45,7 @@ function FieldErrors({ errors }: { errors: unknown[] }) {
   return <FieldError>{messages.join(", ")}</FieldError>;
 }
 
-export function WebsiteForm({ onSubmitted }: { onSubmitted?: () => void }) {
+export function WebsiteForm({ onSubmitted, collectionId }: { onSubmitted?: () => void; collectionId?: string }) {
   const queryClient = useQueryClient();
   const listKey = convexQuery(api.websites.list, {}).queryKey;
   const addWebsite = useMutation(api.websites.add);
@@ -54,6 +56,7 @@ export function WebsiteForm({ onSubmitted }: { onSubmitted?: () => void }) {
       url: "",
       description: "",
       notes: "",
+      collectionId: "",
       loginEmail: "",
       loginUsername: "",
       loginPassword: "",
@@ -69,6 +72,7 @@ export function WebsiteForm({ onSubmitted }: { onSubmitted?: () => void }) {
           url: value.url.trim(),
           description: value.description.trim() || null,
           notes: value.notes.trim() || null,
+          collectionId: value.collectionId.trim() || null,
           loginEmail: crypteString(value.loginEmail.trim()) || null,
           loginUsername: crypteString(value.loginUsername.trim()) || null,
           loginPassword: value.loginPassword || null,
@@ -77,6 +81,7 @@ export function WebsiteForm({ onSubmitted }: { onSubmitted?: () => void }) {
         formApi.reset();
         queryClient.invalidateQueries({ queryKey: listKey });
         onSubmitted?.();
+        toast.add({ type: "success", description: "Site enregistré avec succès" });
       } catch (error) {
         formApi.setErrorMap({
           onSubmit: error instanceof Error ? error.message : "Une erreur est survenue",
@@ -258,6 +263,7 @@ export function WebsiteForm({ onSubmitted }: { onSubmitted?: () => void }) {
                     </Field>
                   )}
                 </form.Field>
+              
                 <form.Field name="loginUrl">
                   {(field) => (
                     <Field>
@@ -278,7 +284,18 @@ export function WebsiteForm({ onSubmitted }: { onSubmitted?: () => void }) {
                 </form.Field>
               </div>
             </fieldset>
-
+   <form.Field name="collectionId">
+                  {(field) => (
+                    <Field>
+                      <Input
+                        id={field.name}
+                        name={field.name}
+                        hidden
+                        value={collectionId || ""}
+                      />
+                    </Field>
+                  )}
+                </form.Field>
             <form.Subscribe
               selector={(state) => ({
                 canSubmit: state.canSubmit,
