@@ -21,6 +21,7 @@ import { Route as UserRouteImport } from './routes/user'
 import { Route as CollectionsSiteIdRouteImport } from './routes/collectionsSite.$id'
 import { Route as TranokalaAdminRouteImport } from './routes/tranokala/admin'
 import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
+import { Route as TranokalaAdminUsersRouteImport } from './routes/tranokala/admin/users'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -82,6 +83,11 @@ const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
   path: '/api/auth/$',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TranokalaAdminUsersRoute = TranokalaAdminUsersRouteImport.update({
+  id: '/users',
+  path: '/users',
+  getParentRoute: () => TranokalaAdminRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -94,8 +100,9 @@ export interface FileRoutesByFullPath {
   '/sites': typeof SitesRoute
   '/user': typeof UserRoute
   '/collectionsSite/$id': typeof CollectionsSiteIdRoute
-  '/tranokala/admin': typeof TranokalaAdminRoute
+  '/tranokala/admin': typeof TranokalaAdminRouteWithChildren
   '/api/auth/$': typeof ApiAuthSplatRoute
+  '/tranokala/admin/users': typeof TranokalaAdminUsersRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -108,8 +115,9 @@ export interface FileRoutesByTo {
   '/sites': typeof SitesRoute
   '/user': typeof UserRoute
   '/collectionsSite/$id': typeof CollectionsSiteIdRoute
-  '/tranokala/admin': typeof TranokalaAdminRoute
+  '/tranokala/admin': typeof TranokalaAdminRouteWithChildren
   '/api/auth/$': typeof ApiAuthSplatRoute
+  '/tranokala/admin/users': typeof TranokalaAdminUsersRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -123,8 +131,9 @@ export interface FileRoutesById {
   '/sites': typeof SitesRoute
   '/user': typeof UserRoute
   '/collectionsSite/$id': typeof CollectionsSiteIdRoute
-  '/tranokala/admin': typeof TranokalaAdminRoute
+  '/tranokala/admin': typeof TranokalaAdminRouteWithChildren
   '/api/auth/$': typeof ApiAuthSplatRoute
+  '/tranokala/admin/users': typeof TranokalaAdminUsersRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -141,6 +150,7 @@ export interface FileRouteTypes {
     | '/collectionsSite/$id'
     | '/tranokala/admin'
     | '/api/auth/$'
+    | '/tranokala/admin/users'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -155,6 +165,7 @@ export interface FileRouteTypes {
     | '/collectionsSite/$id'
     | '/tranokala/admin'
     | '/api/auth/$'
+    | '/tranokala/admin/users'
   id:
     | '__root__'
     | '/'
@@ -169,6 +180,7 @@ export interface FileRouteTypes {
     | '/collectionsSite/$id'
     | '/tranokala/admin'
     | '/api/auth/$'
+    | '/tranokala/admin/users'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -182,7 +194,7 @@ export interface RootRouteChildren {
   SitesRoute: typeof SitesRoute
   UserRoute: typeof UserRoute
   CollectionsSiteIdRoute: typeof CollectionsSiteIdRoute
-  TranokalaAdminRoute: typeof TranokalaAdminRoute
+  TranokalaAdminRoute: typeof TranokalaAdminRouteWithChildren
   ApiAuthSplatRoute: typeof ApiAuthSplatRoute
 }
 
@@ -272,8 +284,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiAuthSplatRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/tranokala/admin/users': {
+      id: '/tranokala/admin/users'
+      path: '/users'
+      fullPath: '/tranokala/admin/users'
+      preLoaderRoute: typeof TranokalaAdminUsersRouteImport
+      parentRoute: typeof TranokalaAdminRoute
+    }
   }
 }
+
+interface TranokalaAdminRouteChildren {
+  TranokalaAdminUsersRoute: typeof TranokalaAdminUsersRoute
+}
+
+const TranokalaAdminRouteChildren: TranokalaAdminRouteChildren = {
+  TranokalaAdminUsersRoute: TranokalaAdminUsersRoute,
+}
+
+const TranokalaAdminRouteWithChildren = TranokalaAdminRoute._addFileChildren(
+  TranokalaAdminRouteChildren,
+)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
@@ -286,7 +317,7 @@ const rootRouteChildren: RootRouteChildren = {
   SitesRoute: SitesRoute,
   UserRoute: UserRoute,
   CollectionsSiteIdRoute: CollectionsSiteIdRoute,
-  TranokalaAdminRoute: TranokalaAdminRoute,
+  TranokalaAdminRoute: TranokalaAdminRouteWithChildren,
   ApiAuthSplatRoute: ApiAuthSplatRoute,
 }
 export const routeTree = rootRouteImport

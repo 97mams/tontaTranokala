@@ -20,21 +20,25 @@ const sections = [
     title: "Sites",
     description: "Gérer les sites enregistrés.",
     icon: Folder,
+    url: "/tranokala/admin/sites",
   },
   {
     title: "Notes",
     description: "Gérer les notes des utilisateurs.",
     icon: NotepadText,
+    url: "/tranokala/admin/notes",
   },
   {
     title: "Historique",
     description: "Consulter l'activité de la plateforme.",
     icon: History,
+    url: "/tranokala/admin/history"
   },
   {
     title: "Utilisateurs",
     description: "Gérer les comptes utilisateurs.",
     icon: Users,
+    url: "/tranokala/admin/users"
   },
 ];
 
@@ -74,9 +78,11 @@ function AdminComponent() {
                 <CardDescription>{section.description}</CardDescription>
               </CardHeader>
               <CardContent>
-                <Button variant="outline" size="sm">
-                  Ouvrir
-                </Button>
+                <Link to={section.url}>
+                  <Button variant="outline" size="sm">
+                    Ouvrir
+                  </Button>
+                </Link>
               </CardContent>
             </Card>
           ))}
