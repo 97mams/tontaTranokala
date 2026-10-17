@@ -5,5 +5,8 @@ export const Route = createFileRoute('/tranokala/admin/users')({
 })
 
 function RouteComponent() {
-  return <div>Hello "/tranokala/admin/users"!</div>
+  return <div>
+    <h1>Liste des utilisateurs</h1>
+    
+  </div>
 }
