@@ -10,6 +10,9 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { ArrowLeft, Folder, History, NotepadText, Users } from "lucide-react";
+import { api } from "../../../convex/_generated/api";
+import { useSuspenseQuery } from "@tanstack/react-query";
+import { convexQuery } from "@convex-dev/react-query";
 
 export const Route = createFileRoute("/tranokala/admin")({
   component: AdminComponent,
@@ -43,6 +46,8 @@ const sections = [
 ];
 
 function AdminComponent() {
+const { data } = useSuspenseQuery(convexQuery(api.admin.getusers, {}));
+  console.log(data)
   return (
     <div className="flex min-h-screen flex-col">
       <header className="flex h-14 shrink-0 items-center gap-3 border-b px-4 sm:px-6">
