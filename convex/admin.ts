@@ -4,7 +4,8 @@ import { authClient } from "@/lib/auth-client.ts";
 
 export const getusers = query({
     args: {},
-    handler: async () => {
-        return await authClient.listAccounts();
+    handler: async (ctx) => {
+        return await authClien
     }
+  },
 })
