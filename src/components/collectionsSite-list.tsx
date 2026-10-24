@@ -74,8 +74,6 @@ export function CollectionSiteList({collectionId}: {collectionId: string}) {
     toast.add({ type:"success", description: "Site supprimé avec succès" });
   };
 
-  console.log(data);
-
   if (data.length === 0) {
     return (
       <Card className="w-full">
