@@ -2,10 +2,16 @@ import { defineSchema, defineTable } from "convex/server";
 import { v } from "convex/values";
 
 export default defineSchema({
-  websites: defineTable({
+  collections: defineTable({
     userId: v.string(),
     name: v.string(),
-    url: v.string(),
+    websiteIds: v.optional(v.union(v.string(), v.null())),
+  }).index("by_user_creation", ["userId"]),
+  websites: defineTable({
+    userId: v.string(),
+    collectionId: v.optional(v.union(v.id("collections"), v.null())),
+    name: v.string(),
+    url: v.string(), 
     description: v.optional(v.union(v.string(), v.null())),
     notes: v.optional(v.union(v.string(), v.null())),
     loginEmail: v.optional(v.union(v.string(), v.null())),
@@ -13,7 +19,8 @@ export default defineSchema({
     loginPassword: v.optional(v.union(v.string(), v.null())),
     loginUrl: v.optional(v.union(v.string(), v.null())),
   })
-    .index("by_user_creation", ["userId"]),
+    .index("by_user_creation", ["userId"])
+    .index("by_collection", ["collectionId"]),
   history: defineTable({
     userId: v.string(),
     type: v.union(v.literal("site_added"), v.literal("site_removed")),
@@ -27,9 +34,5 @@ export default defineSchema({
     content: v.optional(v.union(v.string(), v.null())),
   })
     .index("by_user_creation", ["userId"]),
-  collections: defineTable({
-    userId: v.string(),
-    name: v.string(),
-  })
-    .index("by_user_creation", ["userId"]),
+ 
 });
