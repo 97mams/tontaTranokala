@@ -62,7 +62,7 @@ function CollectionsComponent() {
             <DialogHeader>
               <DialogTitle className="sr-only">Ajouter un site</DialogTitle>
             </DialogHeader>
-            <WebsiteForm onSubmitted={() => setOpen(false)} />
+            <WebsiteForm onSubmitted={() => setOpen(false) } collectionId={collectionId} />
           </DialogContent>
         </Dialog>
       </div>
