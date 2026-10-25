@@ -68,7 +68,7 @@ export function WebsiteList({ collectionId }: { collectionId?: string }) {
   if (collectionId) {
     data = data.filter((website) => website.collectionId == collectionId as Id<"collections">);
   } else {
-    data = data.filter((website) => !website.collectionId);
+    data = data.filter((website) => website.collectionId === null);
   }
 
   console.log({id: collectionId, data});
