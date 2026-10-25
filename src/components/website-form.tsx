@@ -45,10 +45,18 @@ function FieldErrors({ errors }: { errors: unknown[] }) {
   return <FieldError>{messages.join(", ")}</FieldError>;
 }
 
-export function WebsiteForm({ onSubmitted, collectionId }: { onSubmitted?: () => void; collectionId?: string }) {
+export function WebsiteForm({
+  onSubmitted,
+  collectionId,
+}: {
+  onSubmitted?: () => void;
+  collectionId?: string;
+}) {
   const queryClient = useQueryClient();
   const listKey = convexQuery(api.websites.list, {}).queryKey;
   const addWebsite = useMutation(api.websites.add);
+
+  console.log({collectionId});
 
   const form = useForm({
     defaultValues: {
@@ -72,7 +80,7 @@ export function WebsiteForm({ onSubmitted, collectionId }: { onSubmitted?: () =>
           url: value.url.trim(),
           description: value.description.trim() || null,
           notes: value.notes.trim() || null,
-          collectionId: value.collectionId.trim() || null,
+          collectionId: collectionId || null,
           loginEmail: crypteString(value.loginEmail.trim()) || null,
           loginUsername: crypteString(value.loginUsername.trim()) || null,
           loginPassword: value.loginPassword || null,
@@ -81,10 +89,14 @@ export function WebsiteForm({ onSubmitted, collectionId }: { onSubmitted?: () =>
         formApi.reset();
         queryClient.invalidateQueries({ queryKey: listKey });
         onSubmitted?.();
-        toast.add({ type: "success", description: "Site enregistré avec succès" });
+        toast.add({
+          type: "success",
+          description: "Site enregistré avec succès",
+        });
       } catch (error) {
         formApi.setErrorMap({
-          onSubmit: error instanceof Error ? error.message : "Une erreur est survenue",
+          onSubmit:
+            error instanceof Error ? error.message : "Une erreur est survenue",
         });
       }
     },
@@ -196,7 +208,9 @@ export function WebsiteForm({ onSubmitted, collectionId }: { onSubmitted?: () =>
             <form.Field name="notes">
               {(field) => (
                 <Field>
-                  <FieldLabel htmlFor={field.name}>Notes (optionnel)</FieldLabel>
+                  <FieldLabel htmlFor={field.name}>
+                    Notes (optionnel)
+                  </FieldLabel>
                   <textarea
                     id={field.name}
                     name={field.name}
@@ -263,7 +277,7 @@ export function WebsiteForm({ onSubmitted, collectionId }: { onSubmitted?: () =>
                     </Field>
                   )}
                 </form.Field>
-              
+
                 <form.Field name="loginUrl">
                   {(field) => (
                     <Field>
@@ -284,18 +298,18 @@ export function WebsiteForm({ onSubmitted, collectionId }: { onSubmitted?: () =>
                 </form.Field>
               </div>
             </fieldset>
-   <form.Field name="collectionId">
-                  {(field) => (
-                    <Field>
-                      <Input
-                        id={field.name}
-                        name={field.name}
-                        hidden
-                        value={collectionId || ""}
-                      />
-                    </Field>
-                  )}
-                </form.Field>
+            <form.Field name="collectionId">
+              {(field) => (
+                <Field>
+                  <Input
+                    id={field.name}
+                    name={field.name}
+                    hidden
+                    value={collectionId}
+                  />
+                </Field>
+              )}
+            </form.Field>
             <form.Subscribe
               selector={(state) => ({
                 canSubmit: state.canSubmit,
