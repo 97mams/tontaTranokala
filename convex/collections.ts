@@ -3,8 +3,8 @@ import { mutation, query } from "./_generated/server";
 import { authComponent } from "./auth";
 
 export const add = mutation({
-  args: { name: v.string() },
-  handler: async (ctx, { name }) => {
+  args: { name: v.string(), websiteIds: v.string() },
+  handler: async (ctx, { name, websiteIds }) => {
     const user = await authComponent.safeGetAuthUser(ctx);
     if (!user) {
       throw new ConvexError("Vous devez être connecté");
@@ -12,6 +12,7 @@ export const add = mutation({
     return await ctx.db.insert("collections", {
       userId: user._id,
       name,
+      websiteIds,
     });
   },
 });
@@ -26,6 +27,25 @@ export const list = query({
     return await ctx.db
       .query("collections")
       .withIndex("by_user_creation", (q) => q.eq("userId", user._id))
+      .order("desc")
+      .collect();
+  },
+});
+
+export const listWebsites = query({
+  args: { collectionId: v.id("collections") },
+  handler: async (ctx, { collectionId }) => {
+    const user = await authComponent.safeGetAuthUser(ctx);
+    if (!user) {
+      return [];
+    }
+    const collection = await ctx.db.get(collectionId);
+    if (!collection || collection.userId !== user._id) {
+      throw new ConvexError("Collection introuvable");
+    }
+    return await ctx.db
+      .query("websites")
+      .withIndex("by_collection", (q) => q.eq("collectionId", collectionId))
       .order("desc")
       .collect();
   },

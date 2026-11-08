@@ -6,6 +6,7 @@ import {
   createRootRouteWithContext,
   useRouteContext,
 } from "@tanstack/react-router";
+import { Toaster } from "@/components/ui/toast"
 import * as React from "react";
 import { createServerFn } from "@tanstack/react-start";
 import { ConvexBetterAuthProvider } from "@convex-dev/better-auth/react";
@@ -88,6 +89,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
         {children}
         <Scripts />
+        <Toaster />
       </body>
     </html>
   );
